@@ -1,5 +1,14 @@
+"use client";
+import Hero from "@/components/Hero/Hero";
+import CardWithAnimation from "@/components/card1/CardWithAnimation";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Hero />
+      <CardWithAnimation />
+    </>
+  );
 };
 
 export default Home;
