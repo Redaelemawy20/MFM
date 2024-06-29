@@ -6,6 +6,7 @@ const NavStyle = styled.nav`
     width: 100%;
     z-index: 999;
     background-color: var(--primary-color);
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   }
   .first_Row {
     background-color: var(--secondary-color);

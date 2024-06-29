@@ -26,7 +26,7 @@ const MakeAppoint: React.FC<MakeAppointProps> = ({ data }) => {
   };
   return (
     <MakeAppointStyle>
-      <div className="inner__cont">
+      <div className="inner__cont" data-aos="zoom-in">
         <h2 className="title">{data.title}</h2>
         <p>{data.description}</p>
         <Button
