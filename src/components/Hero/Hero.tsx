@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import ExampleCarouselImage from "../exampleCarouselImg/ExampleCarouselImage";
+
 import HeroStyle from "./HeroStyle";
 import Button from "../Button/Button";
  

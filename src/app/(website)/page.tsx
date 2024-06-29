@@ -5,10 +5,9 @@ import { FaHeartPulse } from "react-icons/fa6";
 import { FaPills } from "react-icons/fa";
 import { FaThermometer } from "react-icons/fa";
 import { FaDna } from "react-icons/fa";
+import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
 
 const Home = () => {
-  
-  
   /****Hero Data****/
   const dataOfHeroSection = [
     {
@@ -59,10 +58,19 @@ const Home = () => {
         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
     },
   ];
+  /*****Make An Appointment****/
+  const MakeAppointData = {
+    title: "In an emergency? Need help now?",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    btnText: "Make An Appointment",
+    path: "#",
+  };
   return (
     <>
       <Hero data={dataOfHeroSection} />
       <CardWithAnimation data={dataofAnimatedCards} />
+      <MakeAppoint data={MakeAppointData} />
     </>
   );
 };
