@@ -35,7 +35,7 @@ const Hero:React.FC<HeroProps>=({data})=> {
             <Carousel.Caption>
               <h2>{item.title}</h2>
               <p>{item.description}</p>
-              <Button type="link" text="Read more" />
+              <Button type="link" text="Read more" path="#" />
             </Carousel.Caption>
           </Carousel.Item>
         ))}
