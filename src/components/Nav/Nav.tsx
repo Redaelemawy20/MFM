@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button/Button";
 import { usePathname } from "next/navigation";
+
 interface DataProps {
   name: string;
   go: string;
@@ -59,7 +60,7 @@ const Nav: React.FC<NavProps> = ({ data }) => {
         <div className="Nav__Container">
           <div className="inner__Container flex">
             <Image
-              src="/assets/imgs/Logo.png"
+              src="/assets/imgs/logo.png"
               width={150}
               height={50}
               alt="logo"
