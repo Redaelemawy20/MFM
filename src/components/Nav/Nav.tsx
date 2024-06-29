@@ -9,10 +9,10 @@ interface DataProps {
   name: string;
   go: string;
 }
-interface NavProps{
-  data:DataProps[];
+interface NavProps {
+  data: DataProps[];
 }
-const Nav:React.FC<NavProps>=({data})=> {
+const Nav: React.FC<NavProps> = ({ data }) => {
   /**get Path Name */
   const pathName = usePathname();
   console.log(pathName);
@@ -31,7 +31,6 @@ const Nav:React.FC<NavProps>=({data})=> {
     };
   }, [window.innerWidth]);
 
-  
   return (
     <NavStyle>
       <div className="main__Nav">
@@ -89,9 +88,11 @@ const Nav:React.FC<NavProps>=({data})=> {
             </div>
             <div className="flex" style={{ gap: "25px" }}>
               {width > 1100 && (
-                <Button text="Make an Appointment" type="link" />
+                <Button text="Make an Appointment" type="link" path="#" />
               )}
-              {width < 1100 && <Button text="Appointment" type="link" />}
+              {width < 1100 && (
+                <Button text="Appointment" type="link" path="#" />
+              )}
               <button
                 className="list_btn"
                 onClick={() => {
@@ -107,6 +108,6 @@ const Nav:React.FC<NavProps>=({data})=> {
       </div>
     </NavStyle>
   );
-}
+};
 
 export default Nav;
