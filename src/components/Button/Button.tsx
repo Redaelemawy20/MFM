@@ -9,7 +9,7 @@ interface ButtonProps {
   path: string;
   styleButton?: React.CSSProperties;
 }
-const Button: React.FC<ButtonProps> = ({ text, type, path, styleButton }) => {
+const Button: React.FC<ButtonProps> = ({ text, type, path="#", styleButton }) => {
   return (
     <>
       {styleButton && type === "roundedLink" && (
