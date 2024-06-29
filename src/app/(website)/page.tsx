@@ -1,5 +1,12 @@
+import AuthStatus from "@/components/Nav/AuthStatus";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <AuthStatus />
+      Home
+    </div>
+  );
 };
 
 export default Home;
