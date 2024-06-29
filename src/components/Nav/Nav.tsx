@@ -29,7 +29,7 @@ const Nav: React.FC<NavProps> = ({ data }) => {
     return () => {
       window.removeEventListener("resize", updateWidth);
     };
-  }, [window.innerWidth]);
+  }, []);
 
   return (
     <NavStyle>
