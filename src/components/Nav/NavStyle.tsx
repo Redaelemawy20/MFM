@@ -44,6 +44,7 @@ const NavStyle = styled.nav`
     color: var(--accent-color);
     padding: 0.2em 0;
     transition: all ease 0.8s;
+    font-weight: 600;
   }
   li a:hover {
     color: var(--secondary-color);

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavStyle from "./NavStyle";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,21 +16,21 @@ interface NavProps {
 const Nav: React.FC<NavProps> = ({ data }) => {
   /**get Path Name */
   const pathName = usePathname();
-  console.log(pathName);
+  // console.log(pathName);
   const [showList, setShowList] = useState(false);
-  const updateWidth = () => {
-    setWidth(window.innerWidth);
-  };
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
-  useEffect(() => {
-    window.addEventListener("resize", updateWidth);
-    //  console.log(width);
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-    };
-  }, []);
+  // const updateWidth = () => {
+  //   setWidth(window.innerWidth);
+  // };
+  // const [width, setWidth] = useState(
+  //   typeof window !== "undefined" ? window.innerWidth : 0
+  // );
+  // useEffect(() => {
+  //   window.addEventListener("resize", updateWidth);
+  //   //  console.log(width);
+  //   return () => {
+  //     window.removeEventListener("resize", updateWidth);
+  //   };
+  // }, []);
 
   return (
     <NavStyle>
@@ -88,12 +88,7 @@ const Nav: React.FC<NavProps> = ({ data }) => {
               </ul>
             </div>
             <div className="flex" style={{ gap: "25px" }}>
-              {width > 1100 && (
-                <Button text="Make an Appointment" type="link" path="#" />
-              )}
-              {width < 1100 && (
-                <Button text="Appointment" type="link" path="#" />
-              )}
+              <Button text="Login" type="link" path="#" />
               <button
                 className="list_btn"
                 onClick={() => {

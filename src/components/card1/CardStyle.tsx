@@ -43,7 +43,8 @@ const CardStyle = styled.div`
     margin-bottom: 0.4em;
   }
   .title {
-    font-weight: 700;
+    font-weight: 500;
+    font-style: italic;
     margin-bottom: 15px;
     font-size: 18px;
   }

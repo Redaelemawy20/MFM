@@ -1,11 +1,11 @@
 "use client";
-import Nav from "@/components/Nav/Nav";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
+import Nav from "@/components/Nav/Nav";
 import AOS from "aos";
-
 import "./globals.css";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,8 +51,9 @@ export default function RootLayout({
   ];
   return (
     <html lang="en">
-      <body>
+      <body  suppressHydrationWarning={true}>
         <Nav data={links} />
+
         <main>{children}</main>
       </body>
     </html>
