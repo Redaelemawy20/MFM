@@ -2,26 +2,18 @@ import Carousel from "react-bootstrap/Carousel";
 import ExampleCarouselImage from "../exampleCarouselImg/ExampleCarouselImage";
 import HeroStyle from "./HeroStyle";
 import Button from "../Button/Button";
+ 
+interface DataProps{
+  backgrounImg:string,
+  title:string,
+  description:string,
+}
+interface HeroProps{
+  data:DataProps[];
+}
 
-function Hero() {
-  const data = [
-    {
-      backgrounImg: "/assets/imgs/slide-1.jpg",
-      title: "First slide label",
-      description: "Nulla vitae elit libero, a pharetra augue mollis interdum.",
-    },
-    {
-      backgrounImg: "/assets/imgs/slide-2.jpg",
-      title: "Second slide label",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      backgrounImg: "/assets/imgs/slide-3.jpg",
-      title: "Third slide label",
-      description:
-        " Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
-    },
-  ];
+const Hero:React.FC<HeroProps>=({data})=> {
+ 
   return (
     <HeroStyle>
       <Carousel fade>

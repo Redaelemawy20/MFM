@@ -5,57 +5,33 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button/Button";
 import { usePathname } from "next/navigation";
-
-function Nav() {
+interface DataProps {
+  name: string;
+  go: string;
+}
+interface NavProps{
+  data:DataProps[];
+}
+const Nav:React.FC<NavProps>=({data})=> {
   /**get Path Name */
   const pathName = usePathname();
   console.log(pathName);
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
   const [showList, setShowList] = useState(false);
   const updateWidth = () => {
     setWidth(window.innerWidth);
   };
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
   useEffect(() => {
     window.addEventListener("resize", updateWidth);
     //  console.log(width);
     return () => {
       window.removeEventListener("resize", updateWidth);
     };
-  }, []);
+  }, [window.innerWidth]);
 
-  const links = [
-    {
-      name: "Home",
-      go: "/",
-    },
-    {
-      name: "About",
-      go: "/about",
-    },
-    {
-      name: "Services",
-      go: "/services",
-    },
-    {
-      name: "Departments",
-      go: "/departments",
-    },
-    {
-      name: "Doctors",
-      go: "/doctors",
-    },
-    {
-      name: "Drop down",
-      dropdown: true,
-      go: "#",
-    },
-    {
-      name: "Contact",
-      go: "/contact",
-    },
-  ];
+  
   return (
     <NavStyle>
       <div className="main__Nav">
@@ -99,7 +75,7 @@ function Nav() {
                 </button>
               )}
               <ul className="flex list_links">
-                {links.map((item, index) => (
+                {data.map((item, index) => (
                   <li key={index}>
                     <Link
                       href="#"

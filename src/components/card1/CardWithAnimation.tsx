@@ -1,39 +1,36 @@
-import React from "react";
-import CardStyle from "./CardStyle";
-function CardWithAnimation() {
-  const data = [
-    {
-      img: "",
-      title: "lorem Ipsum",
-      description:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis",
-    },
-    {
-      img: "",
-      title: "Sed ut perspiciatis",
-      description:
-        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
-    },
-    {
-      img: "",
-      title: "Magni Dolores",
-      description:
-        "Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi",
-    },
-    {
-      img: "",
-      title: "Nemo Enim",
-      description:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
-    },
-  ];
-  return (
-    <CardStyle>
-      <img src="/assets/svgs/heart-pulse-fill.svg" alt="" />
-      <h2></h2>
-      <p></p>
-    </CardStyle>
-  );
+import React, { JSXElementConstructor } from "react";
+import CardStyle, { CardsSectionStyle } from "./CardStyle";
+import Link from "next/link";
+
+interface DataProps {
+  img: React.ReactNode;
+  title: string;
+  path: string;
+  description: string;
 }
+
+interface CardWithAnimationProps {
+  data: DataProps[];
+}
+
+const CardWithAnimation: React.FC<CardWithAnimationProps> = ({ data }) => {
+  return (
+    <CardsSectionStyle>
+      {data.map((item, index) => (
+        <CardStyle
+          key={index}
+          data-aos="fade-up"
+          data-aos-delay={`${200 * index}`}
+        >
+          <span className="icon">{item.img}</span>
+          <h2 className="title">
+            <Link href={item.path}>{item.title}</Link>
+          </h2>
+          <p className="description">{item.description}</p>
+        </CardStyle>
+      ))}
+    </CardsSectionStyle>
+  );
+};
 
 export default CardWithAnimation;

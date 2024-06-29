@@ -1,4 +1,3 @@
-"use client";
 import styled from "styled-components";
 const NavStyle = styled.nav`
   position: relative;
@@ -10,6 +9,9 @@ const NavStyle = styled.nav`
   }
   .first_Row {
     background-color: var(--secondary-color);
+  }
+  .first_Row p {
+    margin: 0;
   }
   .Nav__Container {
     width: 86%;
@@ -93,7 +95,7 @@ const NavStyle = styled.nav`
         background: var(--primary-color);
         height: 100%;
         justify-content: flex-start;
-        padding: 0.6em 0;
+        padding: 0.5em !important;
         align-items: flex-start;
         border-radius: 8px;
       }
