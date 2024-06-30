@@ -20,13 +20,19 @@ const Home = () => {
       backgrounImg: "/assets/imgs/slide-2.png",
       title: "Second slide label",
       description:
-        "Menoufia Medicine organizes the scientific symposium Energy rationalization and the importance of new and renewable energy in reducing the pace of climate change",
+        "The launch of the activities of the twenty-ninth annual conference in Menoufia Medicine",
     },
     {
       backgrounImg: "/assets/imgs/slide-3.png",
       title: "Third slide label",
       description:
         "“Al-Qasid” inaugurates the activities of the annual conference of the Department of General Surgery at Menoufia Medicine",
+    },
+    {
+      backgrounImg: "/assets/imgs/slide-4.png",
+      title: "Fourth Slide Label",
+      description:
+        "The President of Menoufia University provides all means of support to the Palestinian student whose entire family was martyred in Gaza",
     },
   ];
   /****Animated Cards Data****/
