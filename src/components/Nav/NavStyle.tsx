@@ -11,8 +11,9 @@ const NavStyle = styled.nav`
   .first_Row {
     background-color: var(--secondary-color);
   }
-  .first_Row p {
+  .first_Row .Nav__Container .info {
     margin: 0;
+    font-weight: 500;
   }
   .Nav__Container {
     width: 86%;
