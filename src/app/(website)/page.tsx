@@ -6,6 +6,7 @@ import { FaPills } from "react-icons/fa";
 import { FaThermometer } from "react-icons/fa";
 import { FaDna } from "react-icons/fa";
 import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
+import { title } from "process";
 
 const Home = () => {
   /****Hero Data****/
@@ -33,6 +34,12 @@ const Home = () => {
       title: "Fourth Slide Label",
       description:
         "The President of Menoufia University provides all means of support to the Palestinian student whose entire family was martyred in Gaza",
+    },
+    {
+      backgrounImg: "/assets/imgs/slide-5.png",
+      title: "Fivth Slide Label",
+      description:
+        "The closing ceremony of the activities of the twenty-ninth annual conference of medicine in Menoufia",
     },
   ];
   /****Animated Cards Data****/
