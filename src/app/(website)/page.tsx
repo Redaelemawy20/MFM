@@ -12,13 +12,13 @@ const Home = () => {
   const dataOfHeroSection = [
     {
       backgrounImg: "/assets/imgs/slide-1.png",
-      title: "First slide label",
+      title: "Microscopic Surgery Training",
       description:
         "The seventh training course on the basics of microscopic surgeries at Menoufia Medicine",
     },
     {
       backgrounImg: "/assets/imgs/slide-2.png",
-      title: "Second slide label",
+      title: "Energy Rationalization Symposium at Menoufia",
       description:
         "Menoufia Medicine organizes the scientific symposium Energy rationalization and the importance of new and renewable energy in reducing the pace of climate change",
     },
@@ -33,39 +33,39 @@ const Home = () => {
   const dataofAnimatedCards = [
     {
       img: <FaHeartPulse />,
-      title: "lorem Ipsum",
+      title: "Medical Education",
       path: "#",
       description:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis",
+        "The Faculty of Medicine provides comprehensive medical education to undergraduate and postgraduate students. It offers a range of programs including MBBS, MD, and various specialized diplomas. The curriculum is designed to ensure students gain practical and theoretical knowledge.",
     },
     {
       img: <FaPills />,
-      title: "Sed ut perspiciatis",
+      title: "Clinical Services",
       path: "#",
       description:
-        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
+        "The faculty operates multiple hospitals and clinics that offer a wide range of medical services. These facilities provide care in specialties like cardiology, neurology, and orthopedics. Patients receive treatment from highly qualified healthcare professionals.",
     },
     {
       img: <FaThermometer />,
-      title: "Magni Dolores",
+      title: "Research and Development",
       path: "#",
       description:
-        "Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi",
+        "The Faculty of Medicine engages in cutting-edge medical research to advance healthcare knowledge. It conducts clinical trials, epidemiological studies, and laboratory research. Collaboration with international institutions enhances its research capabilities.",
     },
     {
       img: <FaDna />,
-      title: "Nemo Enim",
+      title: "Community Outreach",
       path: "#",
       description:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
+        "The faculty is committed to improving public health through community outreach programs. It organizes health camps, awareness campaigns, and vaccination drives. These initiatives aim to provide medical assistance and education to underserved populations.",
     },
   ];
   /*****Make An Appointment****/
   const MakeAppointData = {
-    title: "In an emergency? Need help now?",
+    title: "The History of The Faculty of Medicne ",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    btnText: "Make An Appointment",
+      "The Faculty of Medicine at Menoufia University was established by Presidential Decree No. 1142 in 1976, with its headquarters in Shebin El-Kom. The clinical phase of study began on October 27, 1984, with 54 students. The faculty moved to its current location behind the university hospital in 1986 and now includes 31 departments, offering degrees at the bachelor's, diploma, master's, and doctoral levels.",
+    btnText: "Explore more",
     path: "#",
   };
   return (
