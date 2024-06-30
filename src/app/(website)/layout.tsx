@@ -53,6 +53,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/assets/imgs/logo.png" />
+        <title>الموقع الرسمى لكلية الطب جامعة المنوفية</title>
       </head>
       <body suppressHydrationWarning={true}>
         <Nav data={links} />
