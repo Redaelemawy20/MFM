@@ -11,20 +11,22 @@ const Home = () => {
   /****Hero Data****/
   const dataOfHeroSection = [
     {
-      backgrounImg: "/assets/imgs/slide-1.jpg",
+      backgrounImg: "/assets/imgs/slide-1.png",
       title: "First slide label",
-      description: "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+      description:
+        "The seventh training course on the basics of microscopic surgeries at Menoufia Medicine",
     },
     {
-      backgrounImg: "/assets/imgs/slide-2.jpg",
+      backgrounImg: "/assets/imgs/slide-2.png",
       title: "Second slide label",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description:
+        "Menoufia Medicine organizes the scientific symposium Energy rationalization and the importance of new and renewable energy in reducing the pace of climate change",
     },
     {
-      backgrounImg: "/assets/imgs/slide-3.jpg",
+      backgrounImg: "/assets/imgs/slide-3.png",
       title: "Third slide label",
       description:
-        " Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+        "“Al-Qasid” inaugurates the activities of the annual conference of the Department of General Surgery at Menoufia Medicine",
     },
   ];
   /****Animated Cards Data****/
