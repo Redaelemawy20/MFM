@@ -6,7 +6,6 @@ import { FaPills } from "react-icons/fa";
 import { FaThermometer } from "react-icons/fa";
 import { FaDna } from "react-icons/fa";
 import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
-import { title } from "process";
 
 const Home = () => {
   /****Hero Data****/

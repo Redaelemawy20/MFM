@@ -51,7 +51,10 @@ export default function RootLayout({
   ];
   return (
     <html lang="en">
-      <body  suppressHydrationWarning={true}>
+      <head>
+        <link rel="icon" href="/assets/imgs/logo.png" />
+      </head>
+      <body suppressHydrationWarning={true}>
         <Nav data={links} />
 
         <main>{children}</main>
