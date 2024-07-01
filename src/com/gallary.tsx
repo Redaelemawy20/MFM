@@ -1,30 +1,24 @@
-const gallary = [
+import About from "@/sections/About/About";
+import Footer from "@/sections/Footer/Footer";
+export interface SectionProps {
+  data?: any;
+}
+const gallary: {
+  src: string;
+  Component: (props: SectionProps) => JSX.Element;
+}[] = [
   {
-    id: "1",
-    props: "ali",
-    component: "",
-    img: "",
-    editcomponet: "",
-    name: "",
+    src: "hiwie",
+    Component: About,
   },
   {
-    id: "2",
-    props: "",
-    component: "",
-    img: "",
-    editcomponet: "",
-    name: "",
-  },
-  {
-    id: "3",
-    props: "",
-    component: "",
-    img: "",
-    editcomponet: "",
-    name: "",
+    src: "iowa",
+    Component: Footer,
   },
 ];
-const state: any = [];
-gallary.map((g) => <div onClick={() => state.push(g)}></div>);
 
-const showEditCompont = () => {};
+export const getComponent = (src: string) => {
+  const found = gallary.find((g) => g.src === src);
+  if (!found) return null;
+  return found.Component;
+};

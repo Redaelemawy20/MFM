@@ -8,20 +8,22 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
+import EditIcon from "./EditIcon";
+import DeleteIcon from "./DeleteIcon";
 
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
 interface HasId {
   id: number;
 }
 interface TableProps<T extends HasId> {
   items: T[];
   columns: (keyof T)[];
+  actions?: ("edit" | "delete")[];
 }
-export default function <T extends HasId>({ items, columns }: TableProps<T>) {
+export default function <T extends HasId>({
+  items,
+  columns,
+  actions,
+}: TableProps<T>) {
   const renderCell = React.useCallback((user: T, columnKey: keyof T) => {
     const cellValue = user[columnKey] as string;
     return (
@@ -30,13 +32,25 @@ export default function <T extends HasId>({ items, columns }: TableProps<T>) {
       </div>
     );
   }, []);
-
+  const renderActions = () => {
+    actions?.length &&
+      actions.map((action, i) => {
+        return (
+          <TableColumn key={action + i}>
+            {action === "edit" ? <EditIcon /> : <DeleteIcon />}
+          </TableColumn>
+        );
+      });
+  };
   return (
-    <Table aria-label="Example table with custom cells" className="w-9/12">
+    <Table aria-label="Example table with custom cells" className="w-[50vw]">
       <TableHeader columns={columns}>
-        {columns.map((c, i) => {
-          return <TableColumn key={String(c)}>{String(c)}</TableColumn>;
-        })}
+        <>
+          {columns.map((c, i) => {
+            return <TableColumn key={String(c)}>{String(c)}</TableColumn>;
+          })}
+          {renderActions()}
+        </>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
@@ -46,9 +60,6 @@ export default function <T extends HasId>({ items, columns }: TableProps<T>) {
                 <TableCell key={i + String(c)}>{renderCell(item, c)}</TableCell>
               );
             })}
-            {/* {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
-            )} */}
           </TableRow>
         )}
       </TableBody>
