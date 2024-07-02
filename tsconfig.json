@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/nav/Nav.tsx",
-    "src/components/Button/ButtonStyle.jsx"
+    "src/components/common/Button/ButtonStyle.jsx"
   ],
   "exclude": ["node_modules"]
 }

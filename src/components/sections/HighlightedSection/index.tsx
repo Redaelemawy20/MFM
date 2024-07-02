@@ -1,17 +1,9 @@
 import React from "react";
-import MakeAppointStyle from "./MakeAppointStyle";
-import Button from "../Button/Button";
+import HighlightedSectionStyle from "./HighlightedSectionStyle";
+import Button from "../../common/Button";
+import HighlightedSectionProps from "@/ts/interfaces/HighlightedSectionProps";
 
-interface DataProp {
-  title: string;
-  description: string;
-  btnText: string;
-  path: string;
-}
-interface MakeAppointProps {
-  data: DataProp;
-}
-const MakeAppoint: React.FC<MakeAppointProps> = ({ data }) => {
+const HighlightedSection = ({ data }: HighlightedSectionProps) => {
   const styleButton = {
     fontWeight: "500",
     fontSize: "16px",
@@ -25,7 +17,7 @@ const MakeAppoint: React.FC<MakeAppointProps> = ({ data }) => {
     color: "var(--primary-color)",
   };
   return (
-    <MakeAppointStyle>
+    <HighlightedSectionStyle>
       <div className="inner__cont" data-aos="zoom-in">
         <h2 className="title">{data.title}</h2>
         <p>{data.description}</p>
@@ -36,8 +28,8 @@ const MakeAppoint: React.FC<MakeAppointProps> = ({ data }) => {
           styleButton={styleButton}
         />
       </div>
-    </MakeAppointStyle>
+    </HighlightedSectionStyle>
   );
 };
 
-export default MakeAppoint;
+export default HighlightedSection;

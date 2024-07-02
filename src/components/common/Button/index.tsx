@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import Buttonstyle from "./ButtonStyle";
 import styled from "styled-components";
@@ -9,7 +8,12 @@ interface ButtonProps {
   path: string;
   styleButton?: React.CSSProperties;
 }
-const Button: React.FC<ButtonProps> = ({ text, type, path="#", styleButton }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  type,
+  path = "#",
+  styleButton,
+}) => {
   return (
     <>
       {styleButton && type === "roundedLink" && (

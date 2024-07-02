@@ -1,22 +1,12 @@
-import React, { JSXElementConstructor } from "react";
+import React from "react";
 import CardStyle, { CardsSectionStyle } from "./CardStyle";
 import Link from "next/link";
+import CardWithAnimationProps from "@/ts/interfaces/CardWithAnimation";
 
-interface DataProps {
-  img: React.ReactNode;
-  title: string;
-  path: string;
-  description: string;
-}
-
-interface CardWithAnimationProps {
-  data: DataProps[];
-}
-
-const CardWithAnimation: React.FC<CardWithAnimationProps> = ({ data }) => {
+const CardWithAnimation = ({ data }: CardWithAnimationProps) => {
   return (
     <CardsSectionStyle>
-      {data.map((item, index) => (
+      {data.items.map((item, index) => (
         <CardStyle
           key={index}
           data-aos="fade-up"

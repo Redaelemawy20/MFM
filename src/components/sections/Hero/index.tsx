@@ -1,23 +1,14 @@
 import Carousel from "react-bootstrap/Carousel";
 
 import HeroStyle from "./HeroStyle";
-import Button from "../Button/Button";
- 
-interface DataProps{
-  backgrounImg:string,
-  title:string,
-  description:string,
-}
-interface HeroProps{
-  data:DataProps[];
-}
+import Button from "../../common/Button";
+import HeroProps from "@/ts/interfaces/HeroSectionProps";
 
-const Hero:React.FC<HeroProps>=({data})=> {
- 
+const Hero = ({ data }: HeroProps) => {
   return (
     <HeroStyle>
       <Carousel fade>
-        {data.map((item, index) => (
+        {data.items.map((item, index) => (
           <Carousel.Item
             key={index}
             style={{
@@ -42,6 +33,6 @@ const Hero:React.FC<HeroProps>=({data})=> {
       </Carousel>
     </HeroStyle>
   );
-}
+};
 
 export default Hero;

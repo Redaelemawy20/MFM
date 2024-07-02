@@ -1,5 +1,5 @@
-import About from "@/sections/About/About";
-import Footer from "@/sections/Footer/Footer";
+import About from "@/components/sections/About";
+import Footer from "@/components/sections/Footer";
 export interface SectionProps {
   data?: any;
 }

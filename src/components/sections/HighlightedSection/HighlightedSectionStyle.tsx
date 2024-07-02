@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const MakeAppointStyle = styled.section`
+const HighlightedSection = styled.section`
   width: 100%;
   padding: 3.5rem 0;
   background-color: var(--secondary-color);
@@ -23,4 +23,4 @@ const MakeAppointStyle = styled.section`
     }
   }
 `;
-export default MakeAppointStyle;
+export default HighlightedSection;
