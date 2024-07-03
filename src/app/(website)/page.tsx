@@ -1,13 +1,14 @@
 "use client";
 import Hero from "@/components/Hero/Hero";
 import CardWithAnimation from "@/components/card1/CardWithAnimation";
-import { FaHeartPulse } from "react-icons/fa6";
+import { FaAward, FaFlask, FaHeartPulse, FaRegHospital } from "react-icons/fa6";
 import { FaPills } from "react-icons/fa";
 import { FaThermometer } from "react-icons/fa";
 import { FaDna } from "react-icons/fa";
 import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
-import { title } from "process";
 import About from "@/components/About/About";
+import Statistics from "@/components/statistics/Statistics";
+import { FaUserMd } from "react-icons/fa";
 
 const Home = () => {
   /****Hero Data****/
@@ -100,12 +101,40 @@ const Home = () => {
     endCaption:
       "Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
   };
+  /***Statistics Data***/
+  const dataofStatistics = [
+    {
+      icon: <FaUserMd />,
+      num: 100,
+      subtitel: "Doctors",
+      description: "consequuntur quae qui deca rode",
+    },
+    {
+      icon: <FaRegHospital />,
+      num: 26,
+      subtitel: "Departments",
+      description: "adipisci atque cum quia aut numquam delectus",
+    },
+    {
+      icon: <FaFlask />,
+      num: 15,
+      subtitel: "Research Lab",
+      description: "aut commodi quaerat. Aliquam ratione",
+    },
+    {
+      icon: <FaAward />,
+      num: 150,
+      subtitel: "Awards",
+      description: "rerum asperiores dolor molestiae doloribu",
+    },
+  ];
   return (
     <>
       <Hero data={dataOfHeroSection} />
       <CardWithAnimation data={dataofAnimatedCards} />
       <MakeAppoint data={MakeAppointData} />
       <About data={dataofAbout} />
+      <Statistics data={dataofStatistics} />
     </>
   );
 };
