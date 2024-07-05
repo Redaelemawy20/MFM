@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import NavStyle from "./NavStyle";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../Button/Button";
+// import Button from "../Button/Button";
 import { usePathname } from "next/navigation";
-
+import LoginModal from "../login/Login";
 interface DataProps {
   name: string;
   go: string;
@@ -16,21 +16,9 @@ interface NavProps {
 const Nav: React.FC<NavProps> = ({ data }) => {
   /**get Path Name */
   const pathName = usePathname();
-  // console.log(pathName);
+
   const [showList, setShowList] = useState(false);
-  // const updateWidth = () => {
-  //   setWidth(window.innerWidth);
-  // };
-  // const [width, setWidth] = useState(
-  //   typeof window !== "undefined" ? window.innerWidth : 0
-  // );
-  // useEffect(() => {
-  //   window.addEventListener("resize", updateWidth);
-  //   //  console.log(width);
-  //   return () => {
-  //     window.removeEventListener("resize", updateWidth);
-  //   };
-  // }, []);
+  // const [open, setOpen] = useState(false);
 
   return (
     <NavStyle>
@@ -88,7 +76,8 @@ const Nav: React.FC<NavProps> = ({ data }) => {
               </ul>
             </div>
             <div className="flex" style={{ gap: "25px" }}>
-              <Button text="Login" type="link" path="#" />
+              <LoginModal />
+
               <button
                 className="list_btn"
                 onClick={() => {

@@ -4,7 +4,7 @@ const NavStyle = styled.nav`
   .main__Nav {
     position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 9;
     background-color: var(--primary-color);
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   }

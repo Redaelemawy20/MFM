@@ -9,7 +9,7 @@ import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
 import About from "@/components/About/About";
 import Statistics from "@/components/statistics/Statistics";
 import { FaUserMd } from "react-icons/fa";
-
+import LoginModal from "../../components/login/Login";
 const Home = () => {
   /****Hero Data****/
   const dataOfHeroSection = [
@@ -135,6 +135,7 @@ const Home = () => {
       <MakeAppoint data={MakeAppointData} />
       <About data={dataofAbout} />
       <Statistics data={dataofStatistics} />
+     
     </>
   );
 };
