@@ -9,7 +9,12 @@ import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
 import About from "@/components/About/About";
 import Statistics from "@/components/statistics/Statistics";
 import { FaUserMd } from "react-icons/fa";
-import LoginModal from "../../components/login/Login";
+import Features from "@/components/features/Features";
+import { BiReceipt } from "react-icons/bi";
+import { BiCubeAlt } from "react-icons/bi";
+import { FaRegImages } from "react-icons/fa6";
+import { LuShield } from "react-icons/lu";
+
 const Home = () => {
   /****Hero Data****/
   const dataOfHeroSection = [
@@ -128,6 +133,37 @@ const Home = () => {
       description: "rerum asperiores dolor molestiae doloribu",
     },
   ];
+  /**Features Data**/
+  const dataofFeatures = {
+    mainImg: "./assets/imgs/22.jpg",
+    featuresItems: [
+      {
+        icon: <BiReceipt />,
+        titel: "Est labore ad",
+        description:
+          "Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip",
+      },
+      {
+        icon: <BiCubeAlt />,
+        titel: "Harum esse qui",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt",
+      },
+      {
+        icon: <FaRegImages />,
+        titel: "Aut occaecati",
+        description:
+          "Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere",
+      },
+      {
+        icon: <LuShield />,
+        titel: "Beatae veritatis",
+        description:
+          "Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta",
+      },
+    ],
+  };
+
   return (
     <>
       <Hero data={dataOfHeroSection} />
@@ -135,7 +171,7 @@ const Home = () => {
       <MakeAppoint data={MakeAppointData} />
       <About data={dataofAbout} />
       <Statistics data={dataofStatistics} />
-     
+      <Features data={dataofFeatures} />
     </>
   );
 };

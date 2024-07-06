@@ -1,7 +1,8 @@
 import React from "react";
-import Image from "next/image";
+
 import AboutStyle from "./AboutStyle";
 import { BiCheckCircle } from "react-icons/bi";
+import MainTitel from "../mainTitel/MainTitel";
 
 interface DataProps {
   mainTitel: string;
@@ -28,10 +29,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
   } = data;
   return (
     <AboutStyle>
-      <div data-aos="fade-up">
-        <h1 className="Main__Title">{mainTitel}</h1>
-        <p className="main_Caption">{caption}</p>
-      </div>
+      <MainTitel mainTitel={mainTitel} caption={caption} />
       <div className="divide_Sec">
         <div className="view__Image" data-aos="fade-right" data-aos-delay="300">
           <img src={viewImg} alt="view" />

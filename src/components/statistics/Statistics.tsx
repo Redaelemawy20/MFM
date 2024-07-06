@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, {  ReactNode } from "react";
 import CardofStatitics from "./CardofStatitics";
 interface DataProps {
   icon: ReactNode;

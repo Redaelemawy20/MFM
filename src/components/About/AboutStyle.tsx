@@ -4,11 +4,7 @@ const AboutStyle = styled.section`
   width: 86%;
   margin: auto;
   padding: 3.5rem 0;
-  .main_Caption {
-    color: var(--paragraph-color);
-    margin-bottom: 2em;
-    text-align: center;
-  }
+  
   .divide_Sec {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
