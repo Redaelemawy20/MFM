@@ -1,6 +1,5 @@
+import SectionProps from "@/ts/interfaces/SectionProps";
 import { Button } from "@nextui-org/react";
-// import { SectionProps } from "../../com/gallary";
-import { SectionProps } from "@/com/gallary";
 
 const Footer = ({ data }: SectionProps) => {
   return (

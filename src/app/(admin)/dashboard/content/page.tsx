@@ -1,20 +1,11 @@
-import Table from "@/components/dashboard/table/Table";
-import db from "@/db";
-import PageCreateForm from "../../../../components/dashboard/forms/PageCreate";
-import { createPage } from "@/actions";
+import CreatePageModal from "@/components/dashboard/factories/CreatePageModal";
 
-const Content = async () => {
-  const pages = await db.page.findMany({ include: { sections: true } });
+const ContentPage = () => {
   return (
-    <>
-      <PageCreateForm
-        items={[{ name: "name" }]}
-        model="Page"
-        action={createPage}
-      />
-      <Table items={pages} columns={["id", "name"]} />
-    </>
+    <div>
+      you can show gallaries .... <CreatePageModal />{" "}
+    </div>
   );
 };
 
-export default Content;
+export default ContentPage;

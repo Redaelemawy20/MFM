@@ -9,12 +9,7 @@ const Nav = ({ data }: NavProps) => {
   return (
     <NavStyle>
       <div className="main__Nav">
-        <Top
-          // startText="Saturday - Thursday, 8AM to 10PM"
-          // endText="Call us now +1 5589 55488 55"
-          topStartText={data.topStartText}
-          topEndText={data.topEndText}
-        />
+        <Top topStartText={data.topStartText} topEndText={data.topEndText} />
         <NavContent items={data.items} />
       </div>
     </NavStyle>

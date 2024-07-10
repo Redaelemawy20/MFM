@@ -1,6 +1,7 @@
-type FormActionType = (
-  formState: { message: string | boolean },
-  formData: FormData
-) => Promise<{ message: string | boolean }> | { message: string | boolean };
+export type ActionResultType = { message: string | false };
 
-export default FormActionType;
+export type FormActionType = (
+  formState: ActionResultType,
+  formData: FormData
+) => Promise<ActionResultType> | ActionResultType;
+export type HTMLFormAction = (payload: FormData) => void;

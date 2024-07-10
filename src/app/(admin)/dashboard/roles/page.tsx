@@ -1,13 +1,5 @@
-import Table from "@/components/dashboard/table/Table";
-import db from "@/db";
-
-const Roles = async () => {
-  const users = await db.user.findMany();
-  return (
-    <>
-      <Table items={users} columns={["id", "email", "name", "roleId"]} />
-    </>
-  );
+const Roles = () => {
+  return <h1>Roles</h1>;
 };
 
 export default Roles;

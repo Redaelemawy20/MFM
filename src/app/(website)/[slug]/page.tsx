@@ -1,4 +1,4 @@
-import { getComponent } from "@/com/gallary";
+import getComponent from "@/com/getComponent";
 
 const src = "hiwie";
 const sections = [

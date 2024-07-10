@@ -1,4 +1,6 @@
-const NavEdit = () => {
+import NavProps from "@/ts/interfaces/NavPops";
+
+const NavEdit = ({ data }: NavProps) => {
   return <>j</>;
 };
 

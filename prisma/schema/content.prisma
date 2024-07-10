@@ -1,7 +1,7 @@
 model Section{
     id Int @id @default(autoincrement())
     name String @unique
-    src String @unique
+    componentId String @unique
     pages PageSections[] 
 }
 
@@ -12,10 +12,11 @@ model Page {
 }
 
 model PageSections{
+    id Int @id @default(autoincrement()) 
     pageId Int
     sectionId Int
     page Page @relation(fields: [pageId], references: [id])
     section Section @relation(fields: [sectionId], references: [id])
     data Json @default("{}")
-    @@id([pageId, sectionId])
+   
 }

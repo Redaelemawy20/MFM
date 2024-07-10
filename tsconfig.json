@@ -5,6 +5,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -12,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -27,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/nav/Nav.tsx",
-    "src/components/common/Button/ButtonStyle.jsx"
+    "src/components/common/Button/ButtonStyle.jsx",
+    "prisma/seeds/section.seed.ts"
   ],
   "exclude": ["node_modules"]
 }
