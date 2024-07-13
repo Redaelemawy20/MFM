@@ -88,6 +88,7 @@ const NavStyle = styled.nav`
         justify-content: flex-start;
         align-items: end;
         gap: 1em;
+        z-index: 9;
       }
       .list_btn {
         display: block;

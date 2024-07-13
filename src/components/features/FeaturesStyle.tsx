@@ -3,10 +3,11 @@ import styled from "styled-components";
 export default styled.div`
   .Main_wraper_grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
   .Main_wraper_grid img {
     width: 100%;
-    max-height: 450px;
+    height: 100%;
   }
   .row__Item {
     align-items: flex-start;
@@ -28,7 +29,7 @@ export default styled.div`
     color: #848484;
   }
   @media (max-width: 1080px) {
-    .Main_wraper_grid {
+    .Main_wraper {
       width: 96%;
     }
   }
@@ -47,7 +48,7 @@ export default styled.div`
   }
   @media (max-width: 570px) {
     padding: 0;
-    .Main_wraper_grid {
+    .Main_wraper {
       width: 100%;
     }
     .row__Item {

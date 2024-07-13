@@ -14,6 +14,13 @@ import { BiReceipt } from "react-icons/bi";
 import { BiCubeAlt } from "react-icons/bi";
 import { FaRegImages } from "react-icons/fa6";
 import { LuShield } from "react-icons/lu";
+import Services from "@/components/servicessection/Services";
+import { FaHeartbeat } from "react-icons/fa";
+import { FaHospitalUser } from "react-icons/fa6";
+import { FaWheelchair } from "react-icons/fa6";
+import { FaNotesMedical } from "react-icons/fa";
+// import { FaPills } from "react-icons/fa";
+import { title } from "process";
 
 const Home = () => {
   /****Hero Data****/
@@ -163,7 +170,48 @@ const Home = () => {
       },
     ],
   };
-
+  const dataofServices = {
+    caption:
+      "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
+    cardsData: [
+      {
+        icon: <FaHeartbeat />,
+        title: "Lorem",
+        description:
+          "Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
+      },
+      {
+        icon: <FaPills />,
+        title: "Dolor Sitema",
+        description:
+          "Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata",
+      },
+      {
+        icon: <FaHospitalUser />,
+        title: "Sed ut perspiciatis",
+        description:
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      },
+      {
+        icon: <FaDna />,
+        title: "Magni Dolores",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      },
+      {
+        icon: <FaWheelchair />,
+        title: "Magni Dolores",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      },
+      {
+        icon: <FaNotesMedical />,
+        title: "Magni Dolores",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      },
+    ],
+  };
   return (
     <>
       <Hero data={dataOfHeroSection} />
@@ -172,6 +220,7 @@ const Home = () => {
       <About data={dataofAbout} />
       <Statistics data={dataofStatistics} />
       <Features data={dataofFeatures} />
+      <Services data={dataofServices} />
     </>
   );
 };

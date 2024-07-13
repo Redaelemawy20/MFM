@@ -1,4 +1,4 @@
-import React, {  ReactNode } from "react";
+import React, { ReactNode } from "react";
 import CardofStatitics from "./CardofStatitics";
 interface DataProps {
   icon: ReactNode;
@@ -11,10 +11,12 @@ interface StatisticsProps {
 }
 const Statistics: React.FC<StatisticsProps> = ({ data }) => {
   return (
-    <section className="Main_wraper_grid" data-aos="fade-up">
-      {data.map((item, index) => (
-        <CardofStatitics key={index} item={item} />
-      ))}
+    <section className="Main_wraper" data-aos="fade-up">
+      <div className="Main_wraper_grid">
+        {data.map((item, index) => (
+          <CardofStatitics key={index} item={item} />
+        ))}
+      </div>
     </section>
   );
 };
