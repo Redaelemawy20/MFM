@@ -7,7 +7,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@nextui-org/react";
-import { FormActionType, HTMLFormAction } from "@/ts/Types/FormActionType";
+import {
+  EditSectionType,
+  FormActionType,
+  HTMLFormAction,
+} from "@/ts/Types/FormActionType";
 
 interface FormModalExtraProps {
   action: HTMLFormAction;
@@ -15,11 +19,13 @@ interface FormModalExtraProps {
 }
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
-  action: FormActionType,
+  action: FormActionType | EditSectionType<T>,
   btnText: string
 ) {
   return (props: Omit<T, "action" | "errorMessage">) => {
-    const [formState, formAction] = useFormState(action, { message: "" });
+    const [formState, formAction] = useFormState(action as FormActionType, {
+      message: "",
+    });
     const [open, setOpen] = useState(false);
     useEffect(() => {
       if (formState.message === false) {

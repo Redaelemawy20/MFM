@@ -2,7 +2,7 @@ import CreatePageModal from "@/components/dashboard/factories/CreatePageModal";
 import SidebarItem from "@/components/dashboard/sidebar/SideBarItem";
 import SideBarWithBack from "@/components/dashboard/sidebar/SideBarWithBack";
 import db from "@/db";
-import { Button, Divider } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import Link from "next/link";
 
 const AsideContent = async () => {

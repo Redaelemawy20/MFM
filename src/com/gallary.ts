@@ -1,3 +1,4 @@
+// "use client";
 import Hero from "@/components/sections/Hero";
 import HeroEdit from "@/components/sections/Hero/HeroEdit";
 import Nav from "@/components/sections/Nav";
@@ -20,4 +21,4 @@ const gallary: GallaryItem[] = [
   },
 ];
 
-export default [];
+export default gallary;

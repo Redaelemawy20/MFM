@@ -27,16 +27,18 @@ const NavContent = ({ items }: NavContentProps) => {
             </button>
           )}
           <ul className="flex list_links">
-            {items.map((item, index) => (
-              <li key={index}>
-                <Link
-                  href="#"
-                  className={item.href === pathName ? "active" : ""}
-                >
-                  {item.name.toUpperCase()}
-                </Link>
-              </li>
-            ))}
+            {Array.isArray(items)
+              ? items.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      href="#"
+                      className={item.href === pathName ? "active" : ""}
+                    >
+                      {item.name.toUpperCase()}
+                    </Link>
+                  </li>
+                ))
+              : "No links"}
           </ul>
         </div>
         <div className="flex" style={{ gap: "25px" }}>

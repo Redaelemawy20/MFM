@@ -1,5 +1,7 @@
 interface DataProps {
-  backgrounImg: string;
+  backgroundImage: {
+    preview: string;
+  };
   title: string;
   description: string;
 }

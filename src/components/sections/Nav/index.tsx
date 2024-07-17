@@ -9,7 +9,7 @@ const Nav = ({ data }: NavProps) => {
   return (
     <NavStyle>
       <div className="main__Nav">
-        <Top topStartText={data.topStartText} topEndText={data.topEndText} />
+        <Top start={data.start} end={data.end} />
         <NavContent items={data.items} />
       </div>
     </NavStyle>

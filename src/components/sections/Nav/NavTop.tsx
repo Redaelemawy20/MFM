@@ -1,9 +1,9 @@
 import Image from "next/image";
 export interface NavTopProps {
-  topStartText: string;
-  topEndText: string;
+  start: string;
+  end: string;
 }
-const NavTop = ({ topStartText, topEndText }: NavTopProps) => {
+const NavTop = ({ start, end }: NavTopProps) => {
   return (
     <>
       <div className="first_Row">
@@ -15,7 +15,7 @@ const NavTop = ({ topStartText, topEndText }: NavTopProps) => {
               height={16}
               alt="clock icon"
             />
-            {topStartText}
+            {start}
           </p>
           <p className="info flex">
             <Image
@@ -24,7 +24,7 @@ const NavTop = ({ topStartText, topEndText }: NavTopProps) => {
               height={16}
               alt="clock icon"
             />
-            {topEndText}
+            {end}
           </p>
         </div>
       </div>

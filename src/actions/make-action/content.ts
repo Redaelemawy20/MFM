@@ -25,6 +25,19 @@ export async function addSectionsAction(data: any) {
   });
 }
 
+export async function editSections(data: any) {
+  const id = parseInt(data.id);
+  delete data.id;
+  await db.pageSections.update({
+    where: {
+      id,
+    },
+    data: {
+      data: data,
+    },
+  });
+}
+
 export const onPageCreated = () => {
   revalidatePath("/dashboard/content");
 };

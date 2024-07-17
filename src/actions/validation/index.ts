@@ -1,15 +1,19 @@
 import { ZodSchema } from "zod";
+import { schemas } from "./Schema";
 
 interface ValidationResult {
   message: string | false;
 }
 
 export default function validateFormData<T>(
-  schema: ZodSchema<T>,
+  schema: ZodSchema<T> | keyof typeof schemas,
   data: Object
 ): ValidationResult {
   // Validate the data object against the schema
-  const result = schema.safeParse(data);
+  let result;
+  if (typeof schema === "string" || typeof schema === "number")
+    result = schemas[schema].safeParse(data);
+  else result = schema.safeParse(data);
 
   if (result.success) {
     return {

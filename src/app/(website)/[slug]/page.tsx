@@ -1,24 +1,38 @@
 import getComponent from "@/com/getComponent";
+import db from "@/db";
+import { notFound } from "next/navigation";
 
-const src = "hiwie";
-const sections = [
-  { id: 0, src: "hiwie", data: { h: "haiwiwe", p: "kdhowiehwon" } },
-  { id: 1, src: "iowa", data: { b1: "button1", b2: "button2" } },
-];
-const HI = () => {
-  console.log("%%%%%%%%%%%%55");
+const HI = async ({ params }: { params: { slug: string } }) => {
+  console.log({ params });
+
+  const page = await db.page.findFirst({
+    where: { name: params.slug },
+    include: {
+      sections: {
+        include: {
+          section: true,
+        },
+      },
+    },
+  });
+  if (!page) return notFound();
+  // console.log({ page });
+
+  const sections = page.sections;
+  const renderComponent = (section: any) => {
+    console.log(section);
+
+    const found = getComponent(section.section.componentId);
+    if (!found) return null;
+    console.log("found");
+
+    return <found.component data={section.data} key={section.id} />;
+  };
   return (
     <div>
-      HI
-      <h1>Faculty of Medicine</h1>
-      <div>
-        {sections.map((s) => {
-          const C = getComponent(s.src);
-          console.log(C);
-
-          return <div key={s.src}>{C ? <C data={s.data} /> : s.src}</div>;
-        })}
-      </div>
+      {sections.map((s) => {
+        return renderComponent(s);
+      })}
     </div>
   );
 };

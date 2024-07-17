@@ -28,7 +28,7 @@ const AsideContent = async ({ params }: { params: { p: string } }) => {
         <div className="flex flex-col">
           {page?.sections.map((s) => {
             return (
-              <SidebarItem>
+              <SidebarItem key={s.id}>
                 <Link href={`/dashboard/content/${pagename}/${s.section.name}`}>
                   {s.section.name}
                 </Link>

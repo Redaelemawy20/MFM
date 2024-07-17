@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
+    serverActions: true,
+    serverActions: {
+      bodySizeLimit: "50mb",
+    },
   },
   compiler: {
     styledComponents: true,

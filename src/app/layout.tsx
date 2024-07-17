@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "./globals.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 export default function RootLayout({
   children,
@@ -23,7 +24,9 @@ export default function RootLayout({
         <link rel="icon" href="/assets/imgs/logo.png" />
       </head>
       <body suppressHydrationWarning={true}>
-        <main>{children}</main>
+        <main>
+          <NextUIProvider>{children}</NextUIProvider>
+        </main>
       </body>
     </html>
   );
