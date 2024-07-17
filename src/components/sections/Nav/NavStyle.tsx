@@ -4,15 +4,16 @@ const NavStyle = styled.nav`
   .main__Nav {
     position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 9;
     background-color: var(--primary-color);
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   }
   .first_Row {
     background-color: var(--secondary-color);
   }
-  .first_Row p {
+  .first_Row .Nav__Container .info {
     margin: 0;
+    font-weight: 500;
   }
   .Nav__Container {
     width: 86%;
@@ -87,6 +88,7 @@ const NavStyle = styled.nav`
         justify-content: flex-start;
         align-items: end;
         gap: 1em;
+        z-index: 9;
       }
       .list_btn {
         display: block;

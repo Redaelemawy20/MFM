@@ -1,0 +1,65 @@
+import styled from "styled-components";
+
+export default styled.div`
+  .Main_wraper_grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Service_Card_Style {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .icon_cont {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+    color: var(--secondary-color);
+    overflow: hidden;
+    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.15);
+  }
+  .icon {
+    fill: var(--secondary-color);
+    font-size: 2.4rem;
+  }
+  .titel {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 18px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  .titel::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--secondary-color);
+    bottom: 0;
+    left: calc(50% - 25px);
+  }
+  .description {
+    line-height: 24px;
+    font-size: 14px;
+    color: var(--paragraph-color);
+    text-align: center;
+  }
+  @media (max-width: 992px) {
+    .Main_wraper_grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 767px) {
+    .Main_wraper_grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+`;

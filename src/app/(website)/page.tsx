@@ -14,11 +14,11 @@ const Home = () => {
       <Nav
         data={{
           items: links,
-          topStartText: "Saturday - Thursday, 8AM to 10PM",
-          topEndText: "Call us now +1 5589 55488 55",
+          start: "Saturday - Thursday, 8AM to 10PM",
+          end: "Call us now +1 5589 55488 55",
         }}
       />
-      <Hero data={{ items: dataOfHeroSection }} />
+      <Hero data={{ items: [] }} />
       <CardWithAnimation data={{ items: dataofAnimatedCards }} />
       <HighlightedSection data={HighlightedSectionData} />
     </>

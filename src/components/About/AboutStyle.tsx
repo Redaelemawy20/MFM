@@ -1,0 +1,53 @@
+import styled from "styled-components";
+
+const AboutStyle = styled.section`
+  width: 86%;
+  margin: auto;
+  padding: 3.5rem 0;
+  
+  .divide_Sec {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+  .divide_Sec .view__Image img {
+    width: 100%;
+    max-height: 450px;
+  }
+  .info_Text h2 {
+    font-size: 1.6rem;
+    color: var(--paragraph-color);
+    font-weight: 700;
+    margin-bottom: 0.3em;
+  }
+  .info_Text .sub__Caption {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--paragraph-color);
+  }
+  .info_Text .list_Item {
+    display: flex;
+    align-items: start;
+    gap: 0.5em;
+    padding: 0 0 1em 0;
+  }
+  .info_Text .list_Item span {
+    font-size: 1.5rem;
+  }
+  .end_Caption {
+    font-size: 1rem;
+    color: var(--paragraph-color);
+  }
+  @media (max-width: 1080px) {
+    width: 96%;
+  }
+  @media (max-width: 891px) {
+    padding: 3.5em 0.8em;
+    .divide_Sec {
+      max-width: 650px;
+      margin: auto;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+`;
+export default AboutStyle;
