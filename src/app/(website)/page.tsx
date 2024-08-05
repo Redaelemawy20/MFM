@@ -266,9 +266,9 @@ const Home = () => {
       {/* Section-5 */}
       {/* <About data={dataofAbout} /> */}
       {/* Section-6 */}
-      <Statistics data={dataofStatistics} />
+      {/* <Statistics data={dataofStatistics} /> */}
       {/* Section-7 */}
-      <Features data={dataofFeatures} />
+      {/* <Features data={dataofFeatures} /> */}
       {/* Section-8 */}
       {/* <Services data={dataofServices} /> */}
       {/* Section-9*/}
