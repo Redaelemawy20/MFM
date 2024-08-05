@@ -1,0 +1,1 @@
+// display entiy sub pages

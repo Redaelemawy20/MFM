@@ -11,16 +11,7 @@ import HighlightedSection from "@/components/sections/HighlightedSection";
 const Home = () => {
   return (
     <>
-      <Nav
-        data={{
-          items: links,
-          start: "Saturday - Thursday, 8AM to 10PM",
-          end: "Call us now +1 5589 55488 55",
-        }}
-      />
-      <Hero data={{ items: [] }} />
-      <CardWithAnimation data={{ items: dataofAnimatedCards }} />
-      <HighlightedSection data={HighlightedSectionData} />
+      <h1>displaying the home page of menofia univesity</h1>
     </>
   );
 };
