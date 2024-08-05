@@ -520,7 +520,7 @@ export default function RootLayout({
                 data={mfmLinks}
               />
             ) : (
-              <Nav logo="/assets/imgs/Logo.png" data={links} />
+              <Nav logo="/assets/imgs/logo.png" data={links} />
             )}
             <main>{children}</main>
           </>
