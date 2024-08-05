@@ -10,6 +10,8 @@ import {
 } from "@nextui-org/react";
 import EditIcon from "./EditIcon";
 import DeleteIcon from "./DeleteIcon";
+import { columns, users } from "./data";
+import { RenderCell } from "./render-cell";
 
 interface HasId {
   id: number;
@@ -21,9 +23,11 @@ interface TableProps<T extends HasId> {
 }
 export default function <T extends HasId>({
   items,
-  columns,
+  // columns,
   actions,
 }: TableProps<T>) {
+  console.log(columns);
+
   const renderCell = React.useCallback((user: T, columnKey: keyof T) => {
     const cellValue = user[columnKey] as string;
     return (
@@ -43,26 +47,31 @@ export default function <T extends HasId>({
       });
   };
   return (
-    <Table aria-label="Example table with custom cells" className="w-[50vw]">
-      <TableHeader columns={columns}>
-        <>
-          {columns.map((c, i) => {
-            return <TableColumn key={String(c)}>{String(c)}</TableColumn>;
-          })}
-          {renderActions()}
-        </>
-      </TableHeader>
-      <TableBody items={items}>
-        {(item) => (
-          <TableRow key={item.id}>
-            {columns.map((c, i) => {
-              return (
-                <TableCell key={i + String(c)}>{renderCell(item, c)}</TableCell>
-              );
-            })}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <div className=" w-full flex flex-col gap-4">
+      <Table aria-label="Example table with custom cells">
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn
+              key={column.uid}
+              hideHeader={column.uid === "actions"}
+              align={column.uid === "actions" ? "center" : "start"}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={users}>
+          {(item) => (
+            <TableRow>
+              {(columnKey) => (
+                <TableCell>
+                  {RenderCell({ user: item, columnKey: columnKey })}
+                </TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

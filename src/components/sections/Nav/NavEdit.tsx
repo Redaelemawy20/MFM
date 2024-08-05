@@ -5,6 +5,7 @@ import NavProps from "@/ts/interfaces/NavPops";
 import Accordions from "../../dashboard/form-controls/Accordion";
 import InputI from "@/components/dashboard/form-controls/interfaces/InputI";
 import FormButton from "@/components/dashboard/forms/FormButton";
+import Form from "@/components/common/Form";
 
 interface NavEditPropsI extends NavProps, FormProps {
   id: number;
@@ -13,12 +14,11 @@ const NavEdit = ({ id, data, action, errorMessage }: NavEditPropsI) => {
   const { state, handleChange } = useStateManager(data);
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
+  formData.set("schema", "editNav");
   const modefiedAction = action.bind(null, formData);
 
-  console.log({ errorMessage });
-
   return (
-    <form action={modefiedAction}>
+    <Form action={modefiedAction} errorMessage={errorMessage}>
       <TextFeild
         label="Top Start Text"
         name="start"
@@ -41,7 +41,7 @@ const NavEdit = ({ id, data, action, errorMessage }: NavEditPropsI) => {
         }}
       />
       <FormButton>Save</FormButton>
-    </form>
+    </Form>
   );
 };
 

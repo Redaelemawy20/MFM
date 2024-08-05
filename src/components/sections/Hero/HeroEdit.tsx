@@ -8,22 +8,26 @@ import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "@/components/dashboard/forms/FormButton";
 import TextArea from "@/components/dashboard/form-controls/TextArea";
 import TextAreaI from "@/components/dashboard/form-controls/interfaces/TextAreaI";
+import Form from "@/components/common/Form";
 
-interface HeroEditI extends HeroProps, FormProps {}
-const HeroEdit = ({ action, data, errorMessage }: HeroEditI) => {
+interface HeroEditI extends HeroProps, FormProps {
+  id: number;
+}
+const HeroEdit = ({ id, action, data, errorMessage }: HeroEditI) => {
   const { state, handleChange, onUpload, onRemove, files } =
     useStateManager(data);
   const formData = new FormData();
+  formData.set("data", JSON.stringify({ ...state, id }));
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
-  formData.set("data", JSON.stringify(state));
-
+  // formData.set("data", JSON.stringify(state));
+  formData.set("schema", "editHero");
   const modifiedAction = action.bind(null, formData);
-  // console.log(errorMessage);
+  console.log(errorMessage);
 
   return (
-    <form action={modifiedAction}>
+    <Form action={modifiedAction} errorMessage={errorMessage}>
       <Accordions
         name="items"
         titleProp={"title"}
@@ -43,7 +47,7 @@ const HeroEdit = ({ action, data, errorMessage }: HeroEditI) => {
         }}
       />
       <FormButton>Submit</FormButton>
-    </form>
+    </Form>
   );
 };
 

@@ -14,10 +14,11 @@ export default function ({
       fullWidth
       label={label}
       name={name}
-      value={String(value) ?? ""}
+      value={value ? String(value) : ""}
       onChange={(e) => {
         onChange(e.target);
       }}
+      className="w-full"
       rows={rows}
     />
   );

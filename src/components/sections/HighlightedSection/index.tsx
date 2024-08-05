@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import HighlightedSectionStyle from "./HighlightedSectionStyle";
 import Button from "../../common/Button";

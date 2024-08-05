@@ -3,8 +3,6 @@ import db from "@/db";
 import { notFound } from "next/navigation";
 
 const HI = async ({ params }: { params: { slug: string } }) => {
-  console.log({ params });
-
   const page = await db.page.findFirst({
     where: { name: params.slug },
     include: {
@@ -16,17 +14,20 @@ const HI = async ({ params }: { params: { slug: string } }) => {
     },
   });
   if (!page) return notFound();
-  // console.log({ page });
 
-  const sections = page.sections;
+  const sections = page.sections.sort((a, b) => {
+    let first = a.order ?? 0;
+    let second = b.order ?? 0;
+    if (first === -1) return 1;
+    if (second === -1) return -1;
+    return first - second;
+  });
   const renderComponent = (section: any) => {
-    console.log(section);
-
     const found = getComponent(section.section.componentId);
     if (!found) return null;
-    console.log("found");
-
-    return <found.component data={section.data} key={section.id} />;
+    const data =
+      Object.keys(section.data).length === 0 ? found.defaultData : section.data;
+    return <found.component data={data} key={section.id} />;
   };
   return (
     <div>

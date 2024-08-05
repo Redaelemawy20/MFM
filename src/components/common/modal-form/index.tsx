@@ -36,7 +36,7 @@ function withModalForm<T extends FormModalExtraProps>(
     return (
       <Popover
         className="z-50"
-        placement="top-end"
+        placement="top-start"
         isOpen={open}
         shouldCloseOnInteractOutside={() => true}
         onClose={() => {
@@ -48,7 +48,7 @@ function withModalForm<T extends FormModalExtraProps>(
             {btnText}
           </Button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent className="w-[60vw] overflow-y-auto">
           <WrappedForm
             {...(props as T)}
             action={formAction}

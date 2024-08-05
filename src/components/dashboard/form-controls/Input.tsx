@@ -11,6 +11,8 @@ const TextFeild = ({
   onValidate,
   rest = {},
 }: InputI) => {
+  console.log(value);
+
   return (
     <Input
       fullWidth

@@ -13,7 +13,6 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
-    console.log(e.target.files);
 
     if (target.files) {
       const uploadedFile = target.files[0];
@@ -31,7 +30,13 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
     onChange({ name, value: {} });
     onRemove(value.name);
   };
-  const src = typeof value !== "object" ? value : value.preview;
+  const getSrc = () => {
+    if (typeof value !== "object") return value;
+    if (value.image) return value.preview;
+    if (value._s) return `/api/files?name=${value._s}`;
+    return "";
+  };
+
   return (
     <div className="flex flex-col items-center content-center">
       <Image
@@ -41,9 +46,9 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
         onError={() => {
           console.log("had error");
         }}
-        src={src}
-        width={300}
-        height={300}
+        src={getSrc()}
+        width={100}
+        height={100}
         alt={alt}
         className="!opacity-100"
       />

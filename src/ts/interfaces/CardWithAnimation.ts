@@ -1,5 +1,7 @@
+import ServerImage from "./ServerImage";
+
 interface DataProps {
-  img: React.ReactNode;
+  img: ServerImage;
   title: string;
   path: string;
   description: string;

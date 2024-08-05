@@ -1,6 +1,6 @@
 interface DataProps {
   backgroundImage: {
-    preview: string;
+    _s: string;
   };
   title: string;
   description: string;

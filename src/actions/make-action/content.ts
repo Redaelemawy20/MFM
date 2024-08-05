@@ -1,11 +1,11 @@
 import db from "@/db";
 import { revalidatePath } from "next/cache";
 
-export async function createPageAction(data: any) {
+export async function createPage(data: any) {
   await db.page.create({ data: { name: data.name } });
 }
 
-export async function addSectionsAction(data: any) {
+export async function addSections(data: any) {
   const { pagename, sections } = data;
   await db.page.update({
     where: {
@@ -25,6 +25,36 @@ export async function addSectionsAction(data: any) {
   });
 }
 
+export async function sortSections(data: any) {
+  const { pagename, sections } = data;
+  console.log(sections);
+
+  for (let section of sections) {
+    await db.pageSections.update({
+      where: {
+        id: parseInt(section.id),
+      },
+      data: {
+        order: parseInt(section.order),
+      },
+    });
+  }
+  // await db.page.update({
+  //   where: {
+  //     name: pagename,
+  //   },
+  //   data: {
+  //     sections: {
+  //       updateMany: {
+  //         where: { id: sections.map((s: any) => s.id) },
+  //         data: sections.map((section: any) => {
+  //           return { order: section.order };
+  //         }),
+  //       },
+  //     },
+  //   },
+  // });
+}
 export async function editSections(data: any) {
   const id = parseInt(data.id);
   delete data.id;

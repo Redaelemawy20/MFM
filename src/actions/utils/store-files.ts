@@ -4,7 +4,11 @@ import path from "path";
 export default async function stroreFiles(files: any[], formData: FormData) {
   try {
     const writeOperations = files.map(async (file) => {
+      console.log(file);
+
       const f = formData.get(file.name) as File;
+      console.log(f);
+
       const arrayBuffer = await f.arrayBuffer();
       const buffer = new Uint8Array(arrayBuffer);
 

@@ -24,9 +24,7 @@ export default function RootLayout({
         <link rel="icon" href="/assets/imgs/logo.png" />
       </head>
       <body suppressHydrationWarning={true}>
-        <main>
-          <NextUIProvider>{children}</NextUIProvider>
-        </main>
+        <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   );

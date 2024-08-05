@@ -1,3 +1,3 @@
 export default interface HasId {
-  id?: number;
+  id: number;
 }

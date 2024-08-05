@@ -17,21 +17,19 @@ const SideBarEdit = ({ section }: { section: any }) => {
   return (
     <>
       <EditSectionButton id={section.id} data={sectionData} />
-      <div>
+      {/* <div>
         {dataKeys.map((k: any, i) => {
           return (
-            <div key={k + i}>
+            <div key={i} className="w-3/4">
               {" "}
               {k}
-              <p>
-                {typeof sectionData[k] === "object"
-                  ? JSON.stringify(sectionData[k])
-                  : sectionData[k]}
+              <p className="!text-wrap break-words">
+                {JSON.stringify(sectionData[k])}
               </p>
             </div>
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 };
