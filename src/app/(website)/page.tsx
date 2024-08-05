@@ -21,40 +21,43 @@ import { FaWheelchair } from "react-icons/fa6";
 import { FaNotesMedical } from "react-icons/fa";
 // import { FaPills } from "react-icons/fa";
 import { title } from "process";
-
+import NewsSection from "@/sections/NewsSection/NewsSection";
+import Footer from "@/components/Footer/Footer";
 const Home = () => {
   /****Hero Data****/
   const dataOfHeroSection = [
     {
-      backgrounImg: "/assets/imgs/slide-1.png",
-      title: "Microscopic Surgery Training",
+      backgrounImg: "/assets/imgs/banner1.png",
+      title: "مجلس جامعة المنوفية يكرم نائب رئيس الجامعة للدراسات العليا",
       description:
-        "The seventh training course on the basics of microscopic surgeries at Menoufia Medicine",
+        "عقد الدكتور أحمد القاصد رئيس جامعة المنوفية جلسة مجلس الجامعة لشهر يوليو ٢٠٢٤ بحضور نواب رئيس الجامعة الدكتور صبحى شرف لخدمة المجتمع وتنمية البيئة والدكتور حازم صالح للدراسات العليا والبحوث والدكتور ناصر عبدالبارى للتعليم والطلاب وعمداء الكليات.",
     },
     {
-      backgrounImg: "/assets/imgs/slide-2.png",
-      title: "Energy Rationalization Symposium at Menoufia",
+      backgrounImg: "/assets/imgs/banner2.jpg",
+      title:
+        '"القاصد" يعلن عن بدء إتخاذ الاجراءات اللازمة لإنشاء معهد الأورام بجامعة المنوفية',
       description:
-        "The launch of the activities of the twenty-ninth annual conference in Menoufia Medicine",
+        "أعلن الدكتور أحمد القاصد رئيس جامعة المنوفية عن بدء إتخاذ الإجراءات اللازمة لإنشاء معهد الأورام كمعهد بحثي وعلاجي بعد موافقة المجلس الأعلى للجامعات برئاسة الدكتور أيمن عاشور وزير التعليم العالي والبحث العلمي، علي إنشائه في جلسته الأخيرة ، وحصول الجامعة علي موافقة لجنة القطاع الطبي من قبل .",
     },
     {
-      backgrounImg: "/assets/imgs/slide-3.png",
-      title: "Third slide label",
+      backgrounImg: "/assets/imgs/banner3.png",
+      title:
+        "رئيس جامعة المنوفية يهنئ منسوبي الجامعة والعاملين بالإدارة العامة للجامعة بقرب حلول عيد الأضحى المبارك",
       description:
-        "“Al-Qasid” inaugurates the activities of the annual conference of the Department of General Surgery at Menoufia Medicine",
+        "قام الدكتور أحمد القاصد رئيس جامعة المنوفية، بتقديم التهنئة لجميع منسوبى الجامعة من أعضاء هيئة التدريس والعاملين والطلاب بقرب حلول عيد الأضحى المبارك، ، كما حرص رئيس الجامعة علي تقديم التهنئة للعاملين بالادارات المختلفة بمبني بالإدارة العامة للجامعة",
     },
-    {
-      backgrounImg: "/assets/imgs/slide-4.png",
-      title: "Fourth Slide Label",
-      description:
-        "The President of Menoufia University provides all means of support to the Palestinian student whose entire family was martyred in Gaza",
-    },
-    {
-      backgrounImg: "/assets/imgs/slide-5.png",
-      title: "Fivth Slide Label",
-      description:
-        "The closing ceremony of the activities of the twenty-ninth annual conference of medicine in Menoufia",
-    },
+    // {
+    //   backgrounImg: "/assets/imgs/slide-4.png",
+    //   title: "Fourth Slide Label",
+    //   description:
+    //     "The President of Menoufia University provides all means of support to the Palestinian student whose entire family was martyred in Gaza",
+    // },
+    // {
+    //   backgrounImg: "/assets/imgs/slide-5.png",
+    //   title: "Fivth Slide Label",
+    //   description:
+    //     "The closing ceremony of the activities of the twenty-ninth annual conference of medicine in Menoufia",
+    // },
   ];
   /****Animated Cards Data****/
   const dataofAnimatedCards = [
@@ -89,10 +92,11 @@ const Home = () => {
   ];
   /*****Make An Appointment****/
   const MakeAppointData = {
-    title: "The History of The Faculty of Medicne ",
+    title: "تــاريــخ جــامــعــة الــمــنــوفــيــة",
     description:
-      "The Faculty of Medicine at Menoufia University was established by Presidential Decree No. 1142 in 1976, with its headquarters in Shebin El-Kom. The clinical phase of study began on October 27, 1984, with 54 students. The faculty moved to its current location behind the university hospital in 1986 and now includes 31 departments, offering degrees at the bachelor's, diploma, master's, and doctoral levels.",
-    btnText: "Explore more",
+      "أنشئت جامعة المنوفية بالقانون رقم ( 93 ) الصادر في الرابع عشر من أغسطس عام 1976 م ومقرها بشبين الكوم ، لتلبية الطلب المتزايد على التعليم العالي ، ولدعم الجامعات المصرية ومؤسسات التعليم العالي الأخرى في تحقيق رسالتها في تنمية وتطوير المجتمع من خلال تقديم خدمات تعليمية وبحثية ومجتمعية متميزة. واقتضى القانون (93) في مادته الثانية بأن تتكون جامعة المنوفية من الكليات التابعة آنذاك لجامعة طنطا بشبين الكوم ومنوف",
+    btnText: "اســتــكــشــف الــمــزيــد",
+
     path: "#",
   };
   /****About Data***/
@@ -170,6 +174,7 @@ const Home = () => {
       },
     ],
   };
+  /**Service Data**/
   const dataofServices = {
     caption:
       "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
@@ -212,15 +217,62 @@ const Home = () => {
       },
     ],
   };
+  /** News Data **/
+
+  const newsData = {
+    mainTitle: "اخر الاخبار",
+    newsData: [
+      {
+        image: "./assets/imgs/new1.png",
+        date: "الخميس , 1 اغسطس 2024",
+        title:
+          "رئيس جامعة المنوفية يصدر قرارات بتكليف وتجديد تكليف عمداء بعض الكليات ووكيل جديد بكلية التجارة",
+        // views: 123,
+      },
+      {
+        image: "./assets/imgs/new2.png",
+        date: "الخميس , 1 اغسطس 2024",
+
+        title:
+          "القاصد يصدر قرار بتكليف إكرامى جمال للقيام بعمل أمين عام جامعة المنوفية .",
+        // views: 456,
+      },
+      {
+        image: "./assets/imgs/new3.png",
+        date: "الخميس , 1 اغسطس 2024",
+
+        title:
+          "رئيس جامعة المنوفية يشارك فى اجتماع المجلس الأعلى للجامعات بجامعة الأزهر",
+        // views: 789,
+      },
+      // {
+      //   image: "./assets/imgs/uni1.png",
+      //   date: "الأربعاء, 23 يوليو 2024",
+      //   title: "ندوة حول التعليم الإلكتروني والتعليم عن بعد",
+      //   // views: 789,
+      // },
+    ],
+  };
   return (
     <>
+      {/* Section-1 */}
       <Hero data={dataOfHeroSection} />
-      <CardWithAnimation data={dataofAnimatedCards} />
+      {/*Section-2*/}
+      <NewsSection data={newsData} />
+      {/* Section-3 */}
+      {/* <CardWithAnimation data={dataofAnimatedCards} /> */}
+      {/* Section-4 */}
       <MakeAppoint data={MakeAppointData} />
-      <About data={dataofAbout} />
+      {/* Section-5 */}
+      {/* <About data={dataofAbout} /> */}
+      {/* Section-6 */}
       <Statistics data={dataofStatistics} />
+      {/* Section-7 */}
       <Features data={dataofFeatures} />
-      <Services data={dataofServices} />
+      {/* Section-8 */}
+      {/* <Services data={dataofServices} /> */}
+      {/* Section-9*/}
+      <Footer />
     </>
   );
 };

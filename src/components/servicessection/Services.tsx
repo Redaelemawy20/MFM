@@ -18,10 +18,9 @@ interface ServicesProps {
 const Services: React.FC<ServicesProps> = ({ data }) => {
   return (
     <div className="Main_wraper">
-      <MainTitel mainTitel="Serices" caption={data.caption} />
-     
-        <ServiceCard dataCard={data.cardsData} />
-      
+      <MainTitel mainTitel="الـخـدمـات" caption={data.caption} />
+
+      <ServiceCard dataCard={data.cardsData} />
     </div>
   );
 };

@@ -9,10 +9,15 @@
   --secondary-color: #3fbbc0;
   --accent-color: #626262;
   --paragraph-color: #444444;
+  /* --text-light-color: #bdc3c7; /* Light text color */
   /*--text-color: #2c3e50; /* Primary text color */
-  /*--text-light-color: #bdc3c7; /* Light text color */
   /*--border-color: #dcdde1; /* Border color */
-  /*--shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
+  --shadow-color: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Shadow color
   /*--success-color: #27ae60; /* Color indicating success */
   /*--warning-color: #f1c40f; /* Color indicating warning */
   /*--error-color: #e74c3c; /* Color indicating error */
@@ -52,7 +57,7 @@ ul {
 .Main_wraper {
   margin: auto;
   width: 86%;
-
+  max-width: 1300px;
   padding-top: 3.6rem;
   padding-bottom: 2rem;
 }
@@ -61,6 +66,12 @@ ul {
   display: grid;
   gap: 1.4em;
   grid-template-columns: repeat(4, 1fr);
+}
+.Text_elipsis {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 1080px) {
   .Main_wraper {

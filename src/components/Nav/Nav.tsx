@@ -1,56 +1,114 @@
-"use client";
-import React, { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavStyle from "./NavStyle";
-import Image from "next/image";
-import Link from "next/link";
-// import Button from "../Button/Button";
-import { usePathname } from "next/navigation";
-import LoginModal from "../login/Login";
-interface DataProps {
-  name: string;
-  go: string;
-}
-interface NavProps {
-  data: DataProps[];
-}
-const Nav: React.FC<NavProps> = ({ data }) => {
-  /**get Path Name */
-  const pathName = usePathname();
 
+import { FaAngleDown } from "react-icons/fa";
+
+import { FaBars } from "react-icons/fa";
+import { HiXMark } from "react-icons/hi2";
+import { CSSProperties } from "styled-components";
+type SubLink = {
+  name: string;
+  go?: string;
+};
+
+type LinkWithSubLinks = {
+  name: string;
+  go?: string;
+  subLinks?: SubLink[];
+};
+
+type DropdownLinks = {
+  links: LinkWithSubLinks[];
+};
+
+type DataProps = {
+  name: string;
+  go?: string;
+  dropdownLinks?: DropdownLinks;
+};
+type logoStyle = {
+  width: string;
+  height: string;
+};
+type NavProps = {
+  data: DataProps[];
+  logo: string;
+  logoStyle?: logoStyle;
+};
+
+export default function Header({ data, logo, logoStyle }: NavProps) {
   const [showList, setShowList] = useState(false);
-  // const [open, setOpen] = useState(false);
+  const [scrollDown, setScrollDown] = useState(0);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollDown(() => window.pageYOffset);
+    });
+  }, []);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null
+  );
+  const [openSubDropdownIndex, setOpenSubDropdownIndex] = useState<
+    number | null
+  >(null);
+
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const handleDropdownClick = (index: number) => {
+    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+    setOpenSubDropdownIndex(null); // Close sub-dropdown when a new dropdown is opened
+  };
+
+  const handleSubDropdownClick = (index: number) => {
+    setOpenSubDropdownIndex(openSubDropdownIndex === index ? null : index);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      headerRef.current &&
+      !headerRef.current.contains(event.target as Node)
+    ) {
+      setOpenDropdownIndex(null);
+      setOpenSubDropdownIndex(null);
+      setShowList(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <NavStyle>
-      <div className="main__Nav">
+      <div
+        className={`main__Nav ${scrollDown > 80 ? "toggleFirstRow" : ""}`}
+        ref={headerRef}
+      >
         <div className="first_Row">
           <div className="Nav__Container flex">
             <p className="info flex">
-              <Image
-                src="/assets/svgs/clock.svg"
-                width={16}
-                height={16}
-                alt="clock icon"
-              />
-              Saturday - Thursday, 8AM to 10PM
+              <a className="btn_link" href="/">
+                جائزة التميز
+              </a>
+              <a className="btn_link" href="/">
+                بوابة التوظيف
+              </a>
             </p>
             <p className="info flex">
-              <Image
-                src="/assets/svgs/phone.svg"
-                width={16}
-                height={16}
-                alt="clock icon"
-              />
-              Call us now +1 5589 55488 55
+              <select>
+                <option>AR</option>
+                <option>EN</option>
+              </select>
             </p>
           </div>
         </div>
         <div className="Nav__Container">
           <div className="inner__Container flex">
-            <Image
-              src="/assets/imgs/logo.png"
-              width={150}
-              height={50}
+            <img
+              src={logo}
+              style={logoStyle ? logoStyle : { width: "85px", height: "80px" }}
               alt="logo"
             />
             <div className={`navigate_Cont flex ${showList ? "show" : ""}`}>
@@ -59,33 +117,61 @@ const Nav: React.FC<NavProps> = ({ data }) => {
                   className="exit_btn"
                   onClick={() => setShowList(!showList)}
                 >
-                  <img src="/assets/svgs/x-lg.svg" alt="" />
+                  <HiXMark />
                 </button>
               )}
               <ul className="flex list_links">
                 {data.map((item, index) => (
                   <li key={index}>
-                    <Link
-                      href="#"
-                      className={item.go === pathName ? "active" : ""}
-                    >
+                    <a onClick={() => handleDropdownClick(index)}>
                       {item.name.toUpperCase()}
-                    </Link>
+                      {item.dropdownLinks && (
+                        <FaAngleDown className="down_angle" />
+                      )}
+                    </a>
+                    {item.dropdownLinks && openDropdownIndex === index && (
+                      <ul className="dropdown_menu">
+                        {item.dropdownLinks.links.map((link, linkIndex) => (
+                          <li key={linkIndex}>
+                            <a
+                              href={link.go}
+                              onClick={() =>
+                                link.subLinks &&
+                                handleSubDropdownClick(linkIndex)
+                              }
+                              // className={link.go === pathname ? "active" : ""}
+                            >
+                              {link.name}
+                              {link.subLinks && (
+                                <FaAngleDown className="down_angle" />
+                              )}
+                            </a>
+                            {link.subLinks &&
+                              openSubDropdownIndex === linkIndex && (
+                                <ul className="dropdown_menu dropdown_sub_menu">
+                                  {link.subLinks.map(
+                                    (subLink, subLinkIndex) => (
+                                      <li key={subLinkIndex}>
+                                        <a href={subLink.go}>{subLink.name}</a>
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
             <div className="flex" style={{ gap: "25px" }}>
-              <LoginModal />
-
               <button
                 className="list_btn"
-                onClick={() => {
-                  setShowList(!showList);
-                  console.log(showList);
-                }}
+                onClick={() => setShowList(!showList)}
               >
-                <img src="/assets/svgs/list.svg" alt="list" />
+                <FaBars style={{ width: "100%", height: "100%" }} />
               </button>
             </div>
           </div>
@@ -93,6 +179,4 @@ const Nav: React.FC<NavProps> = ({ data }) => {
       </div>
     </NavStyle>
   );
-};
-
-export default Nav;
+}

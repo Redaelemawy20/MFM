@@ -2,7 +2,7 @@ import React from "react";
 import MaintitelStyel from "./MaintitelStyel";
 interface DataProps {
   mainTitel: string;
-  caption: string;
+  caption?: string;
 }
 const MainTitel: React.FC<DataProps> = ({ mainTitel, caption }) => {
   return (

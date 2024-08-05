@@ -43,7 +43,7 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
   }, []);
 
   return (
-    <CardStatisticsStyle ref={cardRef} >
+    <CardStatisticsStyle ref={cardRef}>
       <div className="title">
         <span className="icon">{item.icon}</span>
         {startCount ? (
@@ -58,7 +58,8 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
         <span className="strong">{item.subtitel}</span>
         {item.description}
       </p>
-      <Link href="#">Find out more »</Link>
+      {/* <Link href="#">Find out more »</Link> */}
+      <Link href="#">الـمـزيـد»</Link>
     </CardStatisticsStyle>
   );
 };

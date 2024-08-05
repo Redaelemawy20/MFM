@@ -2,18 +2,17 @@ import Carousel from "react-bootstrap/Carousel";
 
 import HeroStyle from "./HeroStyle";
 import Button from "../Button/Button";
- 
-interface DataProps{
-  backgrounImg:string,
-  title:string,
-  description:string,
+
+interface DataProps {
+  backgrounImg: string;
+  title: string;
+  description?: string;
 }
-interface HeroProps{
-  data:DataProps[];
+interface HeroProps {
+  data: DataProps[];
 }
 
-const Hero:React.FC<HeroProps>=({data})=> {
- 
+const Hero: React.FC<HeroProps> = ({ data }) => {
   return (
     <HeroStyle>
       <Carousel fade>
@@ -23,7 +22,7 @@ const Hero:React.FC<HeroProps>=({data})=> {
             style={{
               backgroundImage: `url(${item.backgrounImg})`,
               backgroundSize: "cover",
-              backgroundPosition: "center top",
+              backgroundPosition: "center center",
               width: "100%",
               height: "100vh",
               display: "flex",
@@ -42,6 +41,6 @@ const Hero:React.FC<HeroProps>=({data})=> {
       </Carousel>
     </HeroStyle>
   );
-}
+};
 
 export default Hero;
