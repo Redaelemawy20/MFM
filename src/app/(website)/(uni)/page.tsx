@@ -1,4 +1,3 @@
-"use client";
 import Hero from "@/components/sections/Hero";
 import CardWithAnimation from "@/components/sections/CardWithAnimation";
 import Nav from "@/components/sections/Nav";
