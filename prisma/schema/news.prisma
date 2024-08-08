@@ -1,0 +1,8 @@
+model News {
+    id Int @id @default(autoincrement())
+    title String
+    details String
+    files Json
+    entityId Int
+    entity Entity @relation(fields: [entityId], references: [id])
+}

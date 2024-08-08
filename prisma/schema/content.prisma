@@ -1,16 +1,39 @@
+model Entity {
+    id Int @id @default(autoincrement())
+    name String @unique
+    slug String @unique
+    meta String @default("")
+    pages Page[]
+    news  News[]
+    staff User[]
+    layoutItem Layout[]
+}
+model Page {
+    id Int @id @default(autoincrement())
+    name String @unique
+    entityId Int 
+    sections PageSections[] 
+    entity Entity @relation(fields: [entityId], references: [id])
+}
 model Section{
     id Int @id @default(autoincrement())
     name String @unique
     componentId String @unique
     imgUrl String @default("") 
     pages PageSections[] 
+    layouts Layout[]
+}
+model Layout {
+    id Int @id @default(autoincrement())
+    type  SectionType
+    data Json @default("{}")
+    sectionId Int
+    entityId Int
+    entity Entity @relation(fields: [entityId], references: [id])
+    section Section @relation(fields: [sectionId], references: [id])
+
 }
 
-model Page {
-    id Int @id @default(autoincrement())
-    name String @unique
-    sections PageSections[] 
-}
 
 model PageSections{
     id Int @id @default(autoincrement()) 
@@ -21,4 +44,11 @@ model PageSections{
     data Json @default("{}")
     order Int ?
    
+}
+
+
+enum SectionType{
+    nav
+    footer 
+    news
 }
