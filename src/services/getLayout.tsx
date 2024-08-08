@@ -19,11 +19,16 @@ export async function getLayout(entity_slug: string) {
   for (let layoutItem of layoutItems) {
     const section = layoutItem.section;
     const found = getComponent(section.componentId);
-    const sectionData = layoutItem.data;
-    if (found)
-      layout[layoutItem.type as keyof LayoutI] = () => {
-        return <found.component data={sectionData} />;
-      };
+
+    const type = layoutItem.type as keyof LayoutI;
+    layout[type] = () => {
+      if (!found) return null;
+      const sectionData =
+        Object.keys(layoutItem.data as Object).length === 0
+          ? found.defaultData
+          : layoutItem.data;
+      return <found.component data={sectionData} />;
+    };
   }
   return layout;
 }

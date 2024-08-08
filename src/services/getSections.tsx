@@ -17,9 +17,13 @@ export async function getSections(page_slug: string) {
   const elments = [];
   for (let section of sections) {
     const found = getComponent(section.section.componentId);
-    const sectionData = section.data;
-    if (found)
+    if (found) {
+      const sectionData =
+        Object.keys(section.data as Object).length === 0
+          ? found.defaultData
+          : section.data;
       elments.push(<found.component data={sectionData} key={section.id} />);
+    }
   }
   return elments;
 }
