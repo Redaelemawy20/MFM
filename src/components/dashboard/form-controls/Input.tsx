@@ -19,6 +19,7 @@ const TextFeild = ({
       label={label}
       name={name}
       value={value ? String(value) : ""}
+      className="mb-2"
       onChange={(e) => {
         onChange(e.target);
         onValidate && onValidate(e.target);

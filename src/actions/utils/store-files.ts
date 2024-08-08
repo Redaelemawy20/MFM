@@ -1,7 +1,11 @@
+import { ActionResultType } from "@/ts/Types/FormActionType";
 import fs from "fs/promises";
 import path from "path";
 
-export default async function stroreFiles(files: any[], formData: FormData) {
+export default async function stroreFiles(
+  files: any[],
+  formData: FormData
+): Promise<ActionResultType> {
   try {
     const writeOperations = files.map(async (file) => {
       console.log(file);

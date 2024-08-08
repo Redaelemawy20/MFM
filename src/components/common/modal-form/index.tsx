@@ -3,15 +3,20 @@ import { useFormState } from "react-dom";
 import { ComponentType, useEffect, useState } from "react";
 import {
   Button,
+  Modal,
+  ModalBody,
+  ModalContent,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  useDisclosure,
 } from "@nextui-org/react";
 import {
   EditSectionType,
   FormActionType,
   HTMLFormAction,
 } from "@/ts/Types/FormActionType";
+import { ModalHeader } from "react-bootstrap";
 
 interface FormModalExtraProps {
   action: HTMLFormAction;
@@ -26,6 +31,7 @@ function withModalForm<T extends FormModalExtraProps>(
     const [formState, formAction] = useFormState(action as FormActionType, {
       message: "",
     });
+
     const [open, setOpen] = useState(false);
     useEffect(() => {
       if (formState.message === false) {
@@ -34,28 +40,30 @@ function withModalForm<T extends FormModalExtraProps>(
     }, [formState]);
     const { message } = formState;
     return (
-      <Popover
-        className="z-50"
-        placement="top-start"
-        isOpen={open}
-        shouldCloseOnInteractOutside={() => true}
-        onClose={() => {
-          setOpen(false);
-        }}
-      >
-        <PopoverTrigger>
-          <Button color="primary" onClick={() => setOpen(!open)}>
-            {btnText}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[60vw] overflow-y-auto">
-          <WrappedForm
-            {...(props as T)}
-            action={formAction}
-            errorMessage={message ?? null}
-          />
-        </PopoverContent>
-      </Popover>
+      <>
+        <Button onPress={() => setOpen(true)} color="primary">
+          {btnText}
+        </Button>
+        <Modal
+          isOpen={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          placement="top-center"
+          shouldCloseOnInteractOutside={() => true}
+        >
+          <ModalContent className="max-h-[90vh] overflow-y-auto">
+            <ModalHeader className="font-bold p-3 pb-1">{btnText}</ModalHeader>
+            <ModalBody>
+              <WrappedForm
+                {...(props as T)}
+                action={formAction}
+                errorMessage={message ?? null}
+              />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </>
     );
   };
 }

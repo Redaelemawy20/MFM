@@ -1,4 +1,4 @@
-const slugify = (str: string) =>
+const convertToSlug = (str: string) =>
   str
     .toLowerCase()
     .trim()
@@ -6,4 +6,4 @@ const slugify = (str: string) =>
     .replace(/[\s_-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-export default slugify;
+export default convertToSlug;

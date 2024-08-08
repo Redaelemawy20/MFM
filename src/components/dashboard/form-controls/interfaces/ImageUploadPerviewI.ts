@@ -11,6 +11,7 @@ export default interface ImageUploadPerviewI {
         preview: string;
       };
   alt?: string;
+  btnText?: string;
   onUpload: (filename: string, file: File) => void;
   onRemove: (filename: string) => void;
 }

@@ -10,6 +10,7 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   name,
   value,
   alt,
+  btnText = "Upload Image",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
@@ -38,30 +39,28 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   };
 
   return (
-    <div className="flex flex-col items-center content-center">
+    <div className="flex flex-col items-center content-center mb-2">
       <Image
         fallbackSrc={
           "https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
         }
-        onError={() => {
-          console.log("had error");
-        }}
         src={getSrc()}
-        width={100}
-        height={100}
+        width={240}
+        height={240}
         alt={alt}
-        className="!opacity-100"
+        className="!opacity-100 shadow-sm"
       />
-      <div className="flex flex-row gap-1">
+      <div className="flex flex-row gap-1 mt-2">
         <input
           type="file"
+          hidden
           name={`img-input${name}`}
           accept="image/*"
           id={`img-input${name}`}
           onChange={handleChange}
         />
         <Button>
-          <label htmlFor={`img-input${name}`}>upload image</label>
+          <label htmlFor={`img-input${name}`}>{btnText}</label>
         </Button>
 
         <CiSquareRemove onClick={handleRemove} />

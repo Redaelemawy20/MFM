@@ -7,7 +7,7 @@ export default function ({
   label,
   value,
   onChange,
-  rows = 3,
+  rows = 5,
 }: TextAreaI) {
   return (
     <Textarea
@@ -18,7 +18,6 @@ export default function ({
       onChange={(e) => {
         onChange(e.target);
       }}
-      className="w-full"
       rows={rows}
     />
   );

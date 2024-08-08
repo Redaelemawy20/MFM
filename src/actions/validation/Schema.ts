@@ -6,6 +6,10 @@ const linkValidator = z
   .regex(/^[a-z-]+$/, {
     message: "must be lowercase letters or dashes without speces",
   });
+export const createEntitySchema = z.object({
+  name: z.string().min(3),
+  description: z.string().min(50),
+});
 export const createPageSchema = z.object({
   name: linkValidator,
 });

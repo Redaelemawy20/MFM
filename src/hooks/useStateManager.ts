@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const useStateManager = <T>(data: T) => {
   const [state, setState] = useState<T>(data);
-  const [files, setFiles] = useState({});
+  const [files, setFiles] = useState({} as { [key: string]: any });
   const [lang, setLang] = useState<Lang>("en");
   const handleChange: HandleChange = (target): void => {
     const { name, value } = target;

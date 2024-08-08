@@ -13,7 +13,7 @@ export default function FormButton({ children }: FormButtonProps) {
     <Button
       type="submit"
       isLoading={pending}
-      className="rounded p-2 bg-blue-500"
+      className="rounded p-2 bg-blue-500 mt-3"
     >
       {children}
     </Button>

@@ -1,5 +1,5 @@
-export default function (obj: Object) {
-  let result: {}[] = [];
+export default function (obj: Object): [{}[], object, object] {
+  let result: any[] = [];
   const dataToStore = { ...obj };
 
   function search(obj: any) {
