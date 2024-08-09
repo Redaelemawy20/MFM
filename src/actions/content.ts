@@ -37,7 +37,7 @@ export const createPage: FormActionType = async (formState, formData) => {
   const data = extractFormData(formData);
   const validationResult = validateFormData(createPageSchema, data);
   if (validationResult.message) return validationResult;
-  const result = await makeAction(createPageAction, data, onPageCreated);
+  const result = await makeAction(createPageAction, data);
   return result;
 };
 

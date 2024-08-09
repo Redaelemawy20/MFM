@@ -1,16 +1,7 @@
 "use client";
 import { useFormState } from "react-dom";
 import { ComponentType, useEffect, useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Button, Modal, ModalBody, ModalContent } from "@nextui-org/react";
 import {
   EditSectionType,
   FormActionType,

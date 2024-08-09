@@ -1,15 +1,34 @@
 import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./FormButton";
+import Form from "@/components/common/Form";
+import TextFeild from "../form-controls/Input";
+import useStateManager from "@/hooks/useStateManager";
+interface PageCreateFormI extends FormProps {
+  entity_slug: string;
+}
 
-export default function PageCreateForm({ action, errorMessage }: FormProps) {
+export default function PageCreateForm({
+  entity_slug,
+  action,
+  errorMessage,
+}: PageCreateFormI) {
+  const { state, handleChange } = useStateManager({
+    name: "",
+  });
+  const formData = new FormData();
+  formData.set("name", state.name);
+  formData.set("entity_slug", entity_slug);
+  const modefiedAction = action.bind(null, formData);
   return (
-    <form action={action}>
-      <div className="flex flex-col gap-4 p-4 w-80">
-        <h3 className="text-lg">Add a new page</h3>
-        <input type="text" name="name" />
-        {errorMessage ?? <div> {errorMessage} </div>}
-        <FormButton>Save</FormButton>
-      </div>
-    </form>
+    <Form action={modefiedAction} errorMessage={errorMessage}>
+      <TextFeild
+        label="Page Name"
+        value={state.name}
+        name="name"
+        onChange={handleChange}
+      />
+
+      <FormButton>Save</FormButton>
+    </Form>
   );
 }

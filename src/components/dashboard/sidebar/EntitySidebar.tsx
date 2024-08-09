@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Sidebar } from "./sidebar.styles";
 import { usePathname } from "next/navigation";
@@ -6,6 +7,10 @@ import { HomeIcon } from "../icons/sidebar/home-icon";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
 import { SidebarMenu } from "./sidebar-menu";
 import { PaymentsIcon } from "../icons/sidebar/payments-icon";
+
+interface EntitySidebarI {
+  params: {};
+}
 
 const EntitySideBar = () => {
   const pathname = usePathname();

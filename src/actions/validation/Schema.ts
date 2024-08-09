@@ -11,7 +11,8 @@ export const createEntitySchema = z.object({
   description: z.string().min(50),
 });
 export const createPageSchema = z.object({
-  name: linkValidator,
+  name: z.string().min(3),
+  entity_slug: linkValidator,
 });
 
 export const addSectionsShecma = z.object({

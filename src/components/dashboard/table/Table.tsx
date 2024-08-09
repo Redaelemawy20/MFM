@@ -10,8 +10,6 @@ import {
 } from "@nextui-org/react";
 import EditIcon from "./EditIcon";
 import DeleteIcon from "./DeleteIcon";
-import { columns, users } from "./data";
-import { RenderCell } from "./render-cell";
 
 interface HasId {
   id: number;
@@ -23,13 +21,15 @@ interface TableProps<T extends HasId> {
 }
 export default function <T extends HasId>({
   items,
-  // columns,
-  actions,
+  columns,
+  actions = [],
 }: TableProps<T>) {
-  console.log(columns);
+  // console.log(columns);
 
-  const renderCell = React.useCallback((user: T, columnKey: keyof T) => {
-    const cellValue = user[columnKey] as string;
+  const renderCell = React.useCallback((item: T, columnKey: keyof T) => {
+    const cellValue = item[columnKey] as string;
+    if (columnKey === "actions")
+      return <div className="flex flex-row ">{renderActions()}</div>;
     return (
       <div className="flex flex-col">
         <p className="text-bold text-sm capitalize">{cellValue}</p>
@@ -37,41 +37,36 @@ export default function <T extends HasId>({
     );
   }, []);
   const renderActions = () => {
-    actions?.length &&
-      actions.map((action, i) => {
-        return (
-          <TableColumn key={action + i}>
-            {action === "edit" ? <EditIcon /> : <DeleteIcon />}
-          </TableColumn>
-        );
-      });
+    return actions.map((action, i) => {
+      return (
+        <span key={action + i}>
+          {action === "edit" ? <EditIcon /> : <DeleteIcon />}
+        </span>
+      );
+    });
   };
+  const colHeader = actions?.length
+    ? [...columns, "actions" as keyof T]
+    : columns;
+
   return (
-    <div className=" w-full flex flex-col gap-4">
-      <Table aria-label="Example table with custom cells">
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn
-              key={column.uid}
-              hideHeader={column.uid === "actions"}
-              align={column.uid === "actions" ? "center" : "start"}
-            >
-              {column.name}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={users}>
-          {(item) => (
-            <TableRow>
-              {(columnKey) => (
-                <TableCell>
-                  {RenderCell({ user: item, columnKey: columnKey })}
-                </TableCell>
-              )}
+    <Table aria-label="Example table with custom cells">
+      <TableHeader>
+        {colHeader.map((c, i) => {
+          return <TableColumn key={i}>{String(c)}</TableColumn>;
+        })}
+      </TableHeader>
+      <TableBody>
+        {items.map((item, index) => {
+          return (
+            <TableRow key={index}>
+              {colHeader.map((cold, i) => {
+                return <TableCell key={i}>{renderCell(item, cold)}</TableCell>;
+              })}
             </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+          );
+        })}
+      </TableBody>
+    </Table>
   );
 }

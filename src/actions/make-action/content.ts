@@ -3,7 +3,16 @@ import convertToSlug from "@/utils/convet-to-slug";
 import { revalidatePath } from "next/cache";
 
 export async function createPage(data: any) {
-  await db.page.create({ data: { name: data.name, entityId: data.entity } });
+  await db.page.create({
+    data: {
+      name: data.name,
+      entity: {
+        connect: {
+          slug: data.entity_slug,
+        },
+      },
+    },
+  });
 }
 export async function createEntityAction(data: any) {
   const name = data.name as string;
