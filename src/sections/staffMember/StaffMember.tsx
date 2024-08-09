@@ -28,7 +28,7 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
               img={item.img}
               name={item.name}
               bio={item.bio}
-              delayTime={index * 300}
+              delayTime={index * 150}
               socialLinks={item.socialLinks}
             />
           ))}
