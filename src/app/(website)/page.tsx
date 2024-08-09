@@ -23,6 +23,9 @@ import { FaNotesMedical } from "react-icons/fa";
 import { title } from "process";
 import NewsSection from "@/sections/NewsSection/NewsSection";
 import Footer from "@/components/Footer/Footer";
+import StaffMember from "@/sections/staffMember/StaffMember";
+import { ImLinkedin, ImFacebook2 } from "react-icons/im";
+import { MdEmail } from "react-icons/md";
 const Home = () => {
   /****Hero Data****/
   const dataOfHeroSection = [
@@ -253,6 +256,87 @@ const Home = () => {
       // },
     ],
   };
+  /** Staff Member Data*/
+  const staffMembers = [
+    {
+      name: "أ.د/ أحـمـد فـرج الـقـاصــد",
+      bio: "رئـيـس الـجـامـعـة",
+      img: "./assets/imgs/presidant.png",
+      socialLinks: [
+        {
+          platform: <ImLinkedin />,
+          link: "/",
+        },
+        {
+          platform: <ImFacebook2 />,
+          link: "/",
+        },
+        {
+          platform: <MdEmail />,
+          link: "/",
+        },
+      ],
+    },
+    {
+      name: "أ.د/حازم صالح",
+      bio: "نائب رئيس الجامعة لشئون التعليم والطلاب",
+      img: "./assets/imgs/drhazem.jpg",
+      socialLinks: [
+        {
+          platform: <ImLinkedin />,
+          link: "/",
+        },
+        {
+          platform: <ImFacebook2 />,
+          link: "/",
+        },
+        {
+          platform: <MdEmail />,
+          link: "/",
+        },
+      ],
+    },
+    {
+      name: "أ.د/ صبحي شعبان علي شرف",
+      bio: "نائب رئيس الجامعة لشئون خدمة المجتمع وتنمية البيئة",
+
+      img: "./assets/imgs/drsobhy.png",
+      socialLinks: [
+        {
+          platform: <ImLinkedin />,
+          link: "/",
+        },
+        {
+          platform: <ImFacebook2 />,
+          link: "/",
+        },
+        {
+          platform: <MdEmail />,
+          link: "/",
+        },
+      ],
+    },
+    {
+      name: "أ.د/ ناصر عبدالبارى",
+      bio: "نائب رئيس الجامعة لشئون التعليم والطلاب",
+
+      img: "./assets/imgs/student.png",
+      socialLinks: [
+        {
+          platform: <ImLinkedin />,
+          link: "/",
+        },
+        {
+          platform: <ImFacebook2 />,
+          link: "/",
+        },
+        {
+          platform: <MdEmail />,
+          link: "/",
+        },
+      ],
+    },
+  ];
   return (
     <>
       {/* Section-1 */}
@@ -272,6 +356,8 @@ const Home = () => {
       {/* Section-8 */}
       {/* <Services data={dataofServices} /> */}
       {/* Section-9*/}
+      <StaffMember data={staffMembers} />
+      {/* Section-10*/}
       <Footer />
     </>
   );
