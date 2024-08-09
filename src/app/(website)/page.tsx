@@ -300,7 +300,7 @@ const Home = () => {
       name: "أ.د/ صبحي شعبان علي شرف",
       bio: "نائب رئيس الجامعة لشئون خدمة المجتمع وتنمية البيئة",
 
-      img: "./assets/imgs/drsobhy.png",
+      img: "./assets/imgs/drSobhy.png",
       socialLinks: [
         {
           platform: <ImLinkedin />,
