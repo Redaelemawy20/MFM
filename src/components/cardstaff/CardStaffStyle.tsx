@@ -1,0 +1,76 @@
+import styled from "styled-components";
+
+export default styled.div`
+  width: 100%;
+  height: 457px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: auto;
+  &:hover .img_container .social_Icons_container {
+    bottom: 30px;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+  }
+  .img_container {
+    position: relative;
+  }
+  .img_container img {
+    height: 340px;
+    width: 100%;
+  }
+  .img_container .social_Icons_container {
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  a {
+    background: color-mix(in srgb, var(--primary-color), transparent 25%);
+    margin: 0 3px;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    transition: ease-in-out 0.3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Cv_Page_Link {
+    display: block;
+    width: 100%;
+  }
+  .social_icon {
+    width: 20px;
+    height: 20px;
+  }
+  a:hover .social_icon svg {
+    fill: var(--secondary-color);
+  }
+  .social_icon svg {
+    width: 100%;
+    height: 100%;
+    fill: color-mix(in srgb, var(--paragraph-color), transparent 10%);
+  }
+  .info {
+    padding: 1rem;
+  }
+  .info h1 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+  }
+  .info p {
+    color: color-mix(in srgb, var(--paragraph-color), transparent 40%);
+  }
+  .Text_elipsis {
+    -webkit-line-clamp: 2;
+  }
+`;

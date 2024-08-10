@@ -26,7 +26,7 @@ export async function getLayout(entity_slug: string) {
       const sectionData =
         Object.keys(layoutItem.data as Object).length === 0
           ? found.defaultData
-          : layoutItem.data;
+          : JSON.parse(layoutItem.data as string);
       return <found.component data={sectionData} />;
     };
   }

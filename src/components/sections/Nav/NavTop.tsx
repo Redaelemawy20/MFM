@@ -1,32 +1,25 @@
 import { NavTopProps } from "@/ts/interfaces/NavPops";
-import Image from "next/image";
 
 const NavTop = ({ start, end }: NavTopProps) => {
   return (
-    <>
-      <div className="first_Row">
-        <div className="Nav__Container flex">
-          <p className="info flex">
-            <Image
-              src="/assets/svgs/clock.svg"
-              width={16}
-              height={16}
-              alt="clock icon"
-            />
+    <div className="first_Row">
+      <div className="Nav__Container flex">
+        <p className="info flex">
+          <a className="btn_link" href="/">
             {start}
-          </p>
-          <p className="info flex">
-            <Image
-              src="/assets/svgs/phone.svg"
-              width={16}
-              height={16}
-              alt="clock icon"
-            />
+          </a>
+          <a className="btn_link" href="/">
             {end}
-          </p>
-        </div>
+          </a>
+        </p>
+        <p className="info flex">
+          <select>
+            <option>AR</option>
+            <option>EN</option>
+          </select>
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 

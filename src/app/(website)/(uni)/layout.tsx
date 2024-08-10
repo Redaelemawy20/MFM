@@ -10,7 +10,7 @@ const UniLayout = async ({ children }: { children: React.ReactNode }) => {
     <>
       {layout.nav()}
       <div>{children}</div>
-      {layout.footer()}
+      {/* {layout.footer()} */}
     </>
   );
 };

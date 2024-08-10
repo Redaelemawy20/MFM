@@ -1,12 +1,20 @@
 export default interface NavProps {
-  data: NavTopProps & NavContentProps;
+  data: NavTopProps & Omit<NavContentProps, "logo" | "logoStyle">;
+  logo: string;
 }
 export interface NavTopProps {
   start: string;
   end: string;
 }
+type logoStyle = {
+  width: string;
+  height: string;
+};
+
 export interface NavContentProps {
   items: NavItemI[];
+  logo: string;
+  logoStyle?: logoStyle;
 }
 export type NavItemI = (LinkWithDropDown | LinkWihoutDropDown) & LinkBase;
 interface LinkWithDropDown {

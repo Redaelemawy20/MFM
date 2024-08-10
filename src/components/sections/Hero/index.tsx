@@ -17,7 +17,7 @@ const Hero = ({ data }: HeroProps) => {
             style={{
               backgroundImage: `url(/api/files?name=${item.backgroundImage._s})`,
               backgroundSize: "cover",
-              backgroundPosition: "center top",
+              backgroundPosition: "center center",
               width: "100%",
               height: "100vh",
               display: "flex",

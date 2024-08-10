@@ -7,6 +7,9 @@ const HeroStyle = styled.section`
     border-radius: 50%;
     border: none;
   }
+  .carousel-inner {
+    margin-top: 140px;
+  }
   .carousel-indicators .active {
     opacity: 1;
     background: var(--secondary-color);
@@ -57,6 +60,9 @@ const HeroStyle = styled.section`
     .carousel-control-next-icon,
     .carousel-control-prev-icon {
       visibility: hidden;
+    }
+    .carousel-caption h2 {
+      font-size: 25px;
     }
   }
 `;

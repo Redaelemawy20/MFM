@@ -9,7 +9,7 @@ export default styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 20px;                                                    
   }
   .icon_cont {
     display: inline-flex;
