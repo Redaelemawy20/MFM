@@ -262,6 +262,7 @@ const Home = () => {
       name: "أ.د/ أحـمـد فـرج الـقـاصــد",
       bio: "رئـيـس الـجـامـعـة",
       img: "./assets/imgs/presidant.png",
+      cvLink: "/cvs/1",
       socialLinks: [
         {
           platform: <ImLinkedin />,
@@ -281,6 +282,7 @@ const Home = () => {
       name: "أ.د/حازم صالح",
       bio: "نائب رئيس الجامعة لشئون التعليم والطلاب",
       img: "./assets/imgs/drhazem.jpg",
+      cvLink: "/cvs/2",
       socialLinks: [
         {
           platform: <ImLinkedin />,
@@ -299,7 +301,7 @@ const Home = () => {
     {
       name: "أ.د/ صبحي شعبان علي شرف",
       bio: "نائب رئيس الجامعة لشئون خدمة المجتمع وتنمية البيئة",
-
+      cvLink: "/cvs/3",
       img: "./assets/imgs/drSobhy.png",
       socialLinks: [
         {
@@ -319,7 +321,7 @@ const Home = () => {
     {
       name: "أ.د/ ناصر عبدالبارى",
       bio: "نائب رئيس الجامعة لشئون التعليم والطلاب",
-
+      cvLink: "/cvs/4",
       img: "./assets/imgs/student.png",
       socialLinks: [
         {
