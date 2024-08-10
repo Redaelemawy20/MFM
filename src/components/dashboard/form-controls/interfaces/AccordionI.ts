@@ -7,9 +7,10 @@ import TextAreaI from "./TextAreaI";
 import MultiPointInterface from "./MultiPointInputI";
 import ImageUploadPerview from "../ImageUploadPerview";
 import ImageUploadPerviewI from "./ImageUploadPerviewI";
+import CheckBoxI from "./CheckBoxI";
 
 export default interface MuiAccordionDetails<T, K extends keyof T> {
-  childs: Partial<{
+  childs: (item: T) => Partial<{
     [key in keyof T]: ChildFunction;
   }>;
   name: string;
@@ -25,7 +26,14 @@ export interface HasTitleAndValue {
   value: any;
 }
 export type ChildFunction = (
-  props: (InputI | TextAreaI | MultiPointInterface | ImageUploadPerviewI) & {
+  props: (
+    | InputI
+    | TextAreaI
+    | MultiPointInterface
+    | ImageUploadPerviewI
+    | MuiAccordionDetails<any, any>
+    | CheckBoxI
+  ) & {
     index: number;
   }
 ) => React.ReactElement<

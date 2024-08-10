@@ -17,36 +17,34 @@ import { Button, Input } from "@nextui-org/react";
 export default () => {
   return (
     <>
-      <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
-        <h3 className="text-xl font-semibold">All Accounts</h3>
-        <div className="flex justify-between flex-wrap gap-4 items-center">
-          <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-            <Input
-              classNames={{
-                input: "w-full",
-                mainWrapper: "w-full",
-              }}
-              placeholder="Search users"
-            />
-            <SettingsIcon />
-            <TrashIcon />
-            <InfoIcon />
-            <DotsIcon />
-          </div>
-          <div className="flex flex-row gap-3.5 flex-wrap">
-            <AddUser />
-            <Button color="primary" startContent={<ExportIcon />}>
-              Export to CSV
-            </Button>
-          </div>
-        </div>
-        <div className="max-w-[95rem] mx-auto w-full">
-          <Table
-            items={[{ id: 1, name: "haiei" }]}
-            columns={["name"]}
-            // actions={["edit", "delete"]}
+      <h3 className="text-xl font-semibold">All Accounts</h3>
+      <div className="flex justify-between flex-wrap gap-4 items-center">
+        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
+          <Input
+            classNames={{
+              input: "w-full",
+              mainWrapper: "w-full",
+            }}
+            placeholder="Search users"
           />
+          <SettingsIcon />
+          <TrashIcon />
+          <InfoIcon />
+          <DotsIcon />
         </div>
+        <div className="flex flex-row gap-3.5 flex-wrap">
+          <AddUser />
+          <Button color="primary" startContent={<ExportIcon />}>
+            Export to CSV
+          </Button>
+        </div>
+      </div>
+      <div className="max-w-[95rem] mx-auto w-full">
+        <Table
+          items={[{ id: 1, name: "haiei" }]}
+          columns={["name"]}
+          // actions={["edit", "delete"]}
+        />
       </div>
     </>
   );

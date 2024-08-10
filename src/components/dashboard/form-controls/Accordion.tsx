@@ -30,20 +30,6 @@ export default function Accordions<T, K extends keyof T>({
   return (
     <div className="flex flex-col gap-2 w-full">
       {/* <MdLibraryAdd className="!ml-auto block " /> */}
-      <Button
-        color="success"
-        className=""
-        variant="shadow"
-        startContent={<MdLibraryAdd />}
-        onClick={() => {
-          const v = [...value];
-          v.push({ value: " ", title: "new item" } as T);
-          onChange({ name, value: v });
-          onValidate && onValidate({ name, value: v });
-        }}
-      >
-        add item
-      </Button>
 
       <Accordion selectionMode="single" variant="shadow">
         {value &&
@@ -78,7 +64,7 @@ export default function Accordions<T, K extends keyof T>({
                     value={item[titleProp]}
                   />
 
-                  {Object.entries(childs).map((a, i) => {
+                  {Object.entries(childs(item)).map((a, i) => {
                     const child = a[1] as ChildFunction;
                     return (
                       <div key={i} className="w-full">
@@ -99,6 +85,20 @@ export default function Accordions<T, K extends keyof T>({
             );
           })}
       </Accordion>
+      <Button
+        color="success"
+        className=""
+        variant="shadow"
+        startContent={<MdLibraryAdd />}
+        onClick={() => {
+          const v = [...value];
+          v.push({} as T);
+          onChange({ name, value: v });
+          onValidate && onValidate({ name, value: v });
+        }}
+      >
+        add item
+      </Button>
     </div>
   );
 }

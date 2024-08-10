@@ -14,38 +14,7 @@ const Home = () => {
     </>
   );
 };
-/**Header Links**/
-const links = [
-  {
-    name: "Home",
-    href: "/",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Services",
-    href: "/services",
-  },
-  {
-    name: "Departments",
-    href: "/departments",
-  },
-  {
-    name: "Doctors",
-    href: "/doctors",
-  },
-  {
-    name: "Drop down",
-    dropdown: true,
-    href: "#",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
-];
+
 /****Hero Data****/
 const dataOfHeroSection = [
   {

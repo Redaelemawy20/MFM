@@ -5,6 +5,7 @@ import {
   addSectionsShecma,
   createEntitySchema,
   createPageSchema,
+  EditNavSchema,
   sortSectionsSchema,
 } from "./validation/Schema";
 import makeAction from "./make-action";
@@ -15,6 +16,7 @@ import {
   editSections,
   onPageCreated,
   onSectionAdded,
+  setEntityLinksAction,
   sortSections,
 } from "./make-action/content";
 import extractFormData from "./utils/exract-formdata";
@@ -83,4 +85,12 @@ export const edit: EditSectionType<SectionProps> = async (
   if (updateResult.message) return updateResult;
   const storeFileResult = await storeFiles(result, formData as any);
   return storeFileResult;
+};
+
+export const setEntityLinks: FormActionType = async (formState, formData) => {
+  const data = extractFormData(formData) as any;
+  const validationResult = validateFormData(EditNavSchema, data.data);
+  if (validationResult.message) return validationResult;
+  const result = await makeAction(setEntityLinksAction, data);
+  return result;
 };

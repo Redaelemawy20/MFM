@@ -3,14 +3,8 @@ import Link from "next/link";
 import Button from "../../common/Button";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { NavContentProps } from "@/ts/interfaces/NavPops";
 
-interface DataProps {
-  name: string;
-  href: string;
-}
-export interface NavContentProps {
-  items: DataProps[];
-}
 const NavContent = ({ items }: NavContentProps) => {
   /**get Path Name */
   const pathName = usePathname();

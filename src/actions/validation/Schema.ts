@@ -27,12 +27,26 @@ export const sortSectionsSchema = z.object({
   ),
   // pagename: z.string(),
 });
+
+// Define the schema with a recursive reference using z.lazy
+const baseLinkSchema = z.object({
+  name: z.string(),
+  href: z.string().url(),
+});
+
+type Link = z.infer<typeof baseLinkSchema> & {
+  menu?: Link[];
+};
+const linkSchema: z.ZodType<Link> = baseLinkSchema.extend({
+  menu: z.optional(z.lazy(() => linkSchema.array())),
+});
+
+export const EditNavSchema = z.object({
+  items: z.array(linkSchema),
+  start: z.string().min(3),
+  end: z.string().min(3),
+});
 export const schemas = {
-  editNav: z.object({
-    items: z.array(z.object({ name: z.string().min(3), href: linkValidator })),
-    start: z.string().min(3),
-    end: z.string().min(3),
-  }),
   editHero: z.object({
     items: z
       .array(

@@ -1,8 +1,6 @@
+import { NavTopProps } from "@/ts/interfaces/NavPops";
 import Image from "next/image";
-export interface NavTopProps {
-  start: string;
-  end: string;
-}
+
 const NavTop = ({ start, end }: NavTopProps) => {
   return (
     <>

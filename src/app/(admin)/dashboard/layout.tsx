@@ -32,7 +32,11 @@ const Layout = ({ children, aside }: Props) => {
           {aside}
         </div>
       </aside>
-      <NavbarWrapper>{children}</NavbarWrapper>
+      <NavbarWrapper>
+        <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+          {children}
+        </div>
+      </NavbarWrapper>
     </section>
   );
 };

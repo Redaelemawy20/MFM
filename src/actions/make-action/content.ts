@@ -1,11 +1,13 @@
 import db from "@/db";
 import convertToSlug from "@/utils/convet-to-slug";
 import { revalidatePath } from "next/cache";
+// import { setEntityLinks } from '../content';
 
 export async function createPage(data: any) {
   await db.page.create({
     data: {
       name: data.name,
+      slug: convertToSlug(data.name),
       entity: {
         connect: {
           slug: data.entity_slug,
@@ -29,6 +31,45 @@ export async function createEntityAction(data: any) {
       meta,
     },
   });
+}
+export async function setEntityLinksAction(data: any) {
+  const layoutItem = await db.layout.findFirst({
+    where: {
+      type: "nav",
+      AND: {
+        entity: {
+          slug: data.entity_slug,
+        },
+      },
+    },
+  });
+  if (layoutItem) {
+    await db.layout.update({
+      where: {
+        id: layoutItem.id,
+      },
+      data: {
+        data: data.data,
+      },
+    });
+  } else {
+    await db.layout.create({
+      data: {
+        data: data.data,
+        type: "nav",
+        section: {
+          connect: {
+            id: 1,
+          },
+        },
+        entity: {
+          connect: {
+            slug: data.entity_slug,
+          },
+        },
+      },
+    });
+  }
 }
 export async function addSections(data: any) {
   const { pagename, sections } = data;

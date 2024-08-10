@@ -2,7 +2,7 @@ model Entity {
     id Int @id @default(autoincrement())
     name String @unique
     slug String @unique
-    meta String @default("")
+    meta Json @default("{}")
     pages Page[]
     news  News[]
     staff User[]
@@ -11,6 +11,7 @@ model Entity {
 model Page {
     id Int @id @default(autoincrement())
     name String @unique
+    slug String @unique
     entityId Int 
     sections PageSections[] 
     entity Entity @relation(fields: [entityId], references: [id])
