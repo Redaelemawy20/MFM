@@ -24,7 +24,6 @@ const HeroEdit = ({ id, action, data, errorMessage }: HeroEditI) => {
   // formData.set("data", JSON.stringify(state));
   formData.set("schema", "editHero");
   const modifiedAction = action.bind(null, formData);
-  console.log(errorMessage);
 
   return (
     <Form action={modifiedAction} errorMessage={errorMessage}>

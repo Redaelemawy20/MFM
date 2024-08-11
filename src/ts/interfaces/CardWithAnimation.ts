@@ -1,4 +1,4 @@
-import ServerImage from "./ServerImage";
+import ServerImage from "./ImageI";
 
 interface DataProps {
   img: ServerImage;

@@ -10,7 +10,10 @@ import ImageUploadPerviewI from "./ImageUploadPerviewI";
 import CheckBoxI from "./CheckBoxI";
 
 export default interface MuiAccordionDetails<T, K extends keyof T> {
-  childs: (item: T) => Partial<{
+  childs: (
+    item: T,
+    index: number
+  ) => Partial<{
     [key in keyof T]: ChildFunction;
   }>;
   name: string;

@@ -64,7 +64,7 @@ export default function Accordions<T, K extends keyof T>({
                     value={item[titleProp]}
                   />
 
-                  {Object.entries(childs(item)).map((a, i) => {
+                  {Object.entries(childs(item, index)).map((a, i) => {
                     const child = a[1] as ChildFunction;
                     return (
                       <div key={i} className="w-full">

@@ -46,6 +46,11 @@ export const EditNavSchema = z.object({
   start: z.string().min(3),
   end: z.string().min(3),
 });
+export const NewsSchema = z.object({
+  title: z.string(),
+  content: z.array(z.string()),
+  mainImageIdx: z.number(),
+});
 export const schemas = {
   editHero: z.object({
     items: z

@@ -4,7 +4,7 @@ import React from "react";
 import AboutStyle from "./AboutStyle";
 import { BiCheckCircle } from "react-icons/bi";
 import MainTitel from "../mainTitle/MainTitle";
-import ServerImage from "@/ts/interfaces/ServerImage";
+import ServerImage from "@/ts/interfaces/ImageI";
 
 interface DataProps {
   mainTitle: string;

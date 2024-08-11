@@ -71,6 +71,22 @@ export async function setEntityLinksAction(data: any) {
     });
   }
 }
+export async function editNewsAction(data: any) {
+  const { entity_slug } = data;
+  delete data.entity_slug;
+  await db.news.create({
+    data: {
+      slug: convertToSlug(data.title.slice(0, 50)),
+      title: data.title,
+      details: data,
+      entity: {
+        connect: {
+          slug: entity_slug,
+        },
+      },
+    },
+  });
+}
 export async function addSections(data: any) {
   const { pagename, sections } = data;
   await db.page.update({
@@ -93,7 +109,6 @@ export async function addSections(data: any) {
 
 export async function sortSections(data: any) {
   const { pagename, sections } = data;
-  console.log(sections);
 
   for (let section of sections) {
     await db.pageSections.update({

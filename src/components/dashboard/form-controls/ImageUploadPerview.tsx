@@ -1,7 +1,7 @@
 "use client";
-import React, { FormEvent } from "react";
+import React from "react";
 import ImageUploadPerviewI from "./interfaces/ImageUploadPerviewI";
-import { Avatar, Button, Image } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import { CiSquareRemove } from "react-icons/ci";
 const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   onChange,
@@ -29,6 +29,7 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   };
   const handleRemove = () => {
     onChange({ name, value: {} });
+
     onRemove(value.name);
   };
   const getSrc = () => {

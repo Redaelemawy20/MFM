@@ -6,6 +6,7 @@ import {
   createEntitySchema,
   createPageSchema,
   EditNavSchema,
+  NewsSchema,
   sortSectionsSchema,
 } from "./validation/Schema";
 import makeAction from "./make-action";
@@ -13,6 +14,7 @@ import {
   addSections,
   createEntityAction,
   createPage as createPageAction,
+  editNewsAction,
   editSections,
   onPageCreated,
   onSectionAdded,
@@ -93,4 +95,17 @@ export const setEntityLinks: FormActionType = async (formState, formData) => {
   if (validationResult.message) return validationResult;
   const result = await makeAction(setEntityLinksAction, data);
   return result;
+};
+
+export const editNews: FormActionType = async (formState, formData) => {
+  const data = JSON.parse(formData.get("data") as string);
+  const [files, dataToStore] = extractUploadedFiles(data);
+  const validationResult = validateFormData(NewsSchema, data);
+  if (validationResult.message) return validationResult;
+  const result = await makeAction(editNewsAction, dataToStore);
+  if (result.message) return result;
+  // console.log(files, "files......................");
+
+  const storeFileResult = await storeFiles(files, formData);
+  return storeFileResult;
 };

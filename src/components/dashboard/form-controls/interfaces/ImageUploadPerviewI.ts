@@ -1,15 +1,10 @@
 import HandleChange from "@/ts/common/HandleChange";
-import { FormEvent, ReactNode } from "react";
+import { ServerImage, UploadedImage } from "@/ts/interfaces/ImageI";
 export default interface ImageUploadPerviewI {
   onChange: HandleChange;
   error?: boolean | undefined;
   name: string;
-  value:
-    | string
-    | {
-        image: string;
-        preview: string;
-      };
+  value: (UploadedImage | ServerImage) & { name: string };
   alt?: string;
   btnText?: string;
   onUpload: (filename: string, file: File) => void;
