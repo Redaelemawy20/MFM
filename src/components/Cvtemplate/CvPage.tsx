@@ -21,6 +21,8 @@ interface staffObject {
   office: string;
   mobile: string;
   empolyments: string[];
+  academicQualifications: string[];
+  publishedResearch: string[];
   socialLinks: socialLinksObject[];
 }
 interface CvPageProps {
@@ -90,37 +92,19 @@ const CvPage: React.FC<CvPageProps> = ({ data }) => {
                   <p key={index}>{item}</p>
                 ))}
               </section>
-              {/* <section>
-                <h1>Technical Skills</h1>
-                <ul className="skill-set">
-                  <li>Mobile Development</li>
-                  <li>Xamarin</li>
-                  <li>CSS3</li>
-                  <li>Adobe Photoshop</li>
-                  <li>HTML5</li>
-                  <li>CSS3</li>
-                  <li>JQUERY</li>
-                  <li>UI Design</li>
-                  <li>Company Branding</li>
-                  <li>Responsive Web Design</li>
-                </ul>
-              </section> */}
               <section>
-                <h1>References</h1>
-                <p>
-                  William Grand | <em>Grand Interactive, llc. | CEO</em>
-                </p>
-                <p>(617) 448-0910 | wgrand@grandinteractive.com</p>
-                <p>
-                  Eric Chauvin | <em>PadMatcher Inc. | CEO</em>
-                </p>
-                <p>(617) 448-0910 | eric@padmatcher.com</p>
-                <p>
-                  Chris Heller <em>Penrose Realty LLC. | Broker</em>
-                </p>
-                <p>(617) 794-4554 | chris@penroserealty.com</p>
+                <h1>Academic Qualifications</h1>
+                {data?.academicQualifications.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
               </section>
               <section>
+                <h1>Published Research</h1>
+                {data?.publishedResearch.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
+              </section>
+              {/* <section>
                 <h1>Personal Interests</h1>
                 <ul className="skill-set">
                   <li>Faith</li>
@@ -130,11 +114,11 @@ const CvPage: React.FC<CvPageProps> = ({ data }) => {
                   <li>Health & Nutrition</li>
                   <li>Reading</li>
                 </ul>
-              </section>
+              </section> */}
               <section>
                 <div className="handmade">
                   <p>
-                    handmade by <em> Anthony Adamski</em>
+                    handmade by <em> Alaa Ayaad</em>
                   </p>
                 </div>
               </section>
