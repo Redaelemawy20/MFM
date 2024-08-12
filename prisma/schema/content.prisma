@@ -19,6 +19,7 @@ model Page {
 model Section{
     id Int @id @default(autoincrement())
     name String @unique
+    type  SectionType @default(section)
     componentId String @unique
     imgUrl String @default("") 
     pages PageSections[] 
@@ -26,13 +27,13 @@ model Section{
 }
 model Layout {
     id Int @id @default(autoincrement())
-    type  SectionType
     data Json @default("{}")
-    sectionId Int
+    type SectionType @default(nav)
+    sectionId Int?
     entityId Int
+    @@unique([sectionId, entityId])
     entity Entity @relation(fields: [entityId], references: [id])
-    section Section @relation(fields: [sectionId], references: [id])
-
+    section Section? @relation(fields: [sectionId], references: [id])
 }
 
 
@@ -47,9 +48,10 @@ model PageSections{
    
 }
 
-
 enum SectionType{
     nav
     footer 
     news
+    section
+    persons
 }

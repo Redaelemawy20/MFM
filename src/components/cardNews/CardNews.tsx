@@ -1,13 +1,18 @@
 import Link from "next/link";
 import React from "react";
 import CardNewsStyle from "./CardNewsStyle";
-interface newsItemProps {
-  image: string;
-  date: string;
-  title: string;
+import { NewsProps } from "@/ts/interfaces/NewsProps";
+interface newsItemProps extends NewsProps {
   index: number;
 }
-const CardNews: React.FC<newsItemProps> = ({ image, date, title, index }) => {
+const CardNews: React.FC<newsItemProps> = ({
+  gallary,
+  mainImageIdx,
+  date,
+  title,
+  index,
+}) => {
+  const image = `/api/files?name=${gallary[mainImageIdx].img._s}`;
   return (
     <CardNewsStyle data-aos="zoom-in" data-aos-delay={`${300 * index}`}>
       <img src={image} alt="" className="img_news" />

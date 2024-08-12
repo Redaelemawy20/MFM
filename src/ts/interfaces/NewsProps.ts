@@ -5,4 +5,5 @@ export interface NewsProps {
   content: string[];
   gallary: ({ img: ServerImage } & { imageDescription: string })[];
   mainImageIdx: number;
+  date: string;
 }

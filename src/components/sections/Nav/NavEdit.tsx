@@ -11,7 +11,7 @@ import CheckBox from "@/components/dashboard/form-controls/CheckBox";
 import CheckBoxI from "../../dashboard/form-controls/interfaces/CheckBoxI";
 import WithTabs from "@/components/common/withTabs";
 
-interface NavEditPropsI extends NavProps, FormProps {
+interface NavEditPropsI extends Omit<NavProps, "logo">, FormProps {
   entity_slug: string;
 }
 const NavEdit = ({

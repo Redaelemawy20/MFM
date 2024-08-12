@@ -18,24 +18,12 @@ import Services from "@/components/sections/servicessection/Services";
 import ServiceEdit from "@/components/sections/servicessection/ServiceEdit";
 import Statistics from "@/components/sections/statistics/Statistics";
 import StatisticsEdit from "@/components/sections/statistics/StatisticsEdit";
+import NewsSection from "@/sections/NewsSection/NewsSection";
+import StaffMember from "@/sections/staffMember/StaffMember";
+import Footer from "@/components/Footer/Footer";
 
 // sections
 const gallary: GallaryItem[] = [
-  {
-    componentId: "1720029268728",
-    component: Nav,
-    componentEdit: NavEdit,
-    defaultData: {
-      start: "Saturday - Thursday, 8AM to 10PM",
-      end: "Call us now +1 5589 55488 55",
-      items: [
-        {
-          href: "/",
-          name: "Home",
-        },
-      ],
-    },
-  },
   {
     componentId: "1720029268729",
     component: Hero,
@@ -177,6 +165,72 @@ const gallary: GallaryItem[] = [
           num: 26,
           subtitle: "Departments",
           description: "adipisci atque cum quia aut numquam delectus",
+        },
+      ],
+    },
+  },
+];
+
+export const navGallary = [
+  {
+    componentId: "1700000000",
+    component: Nav,
+    defaultData: {
+      start: "Saturday - Thursday, 8AM to 10PM",
+      end: "Call us now +1 5589 55488 55",
+      items: [
+        {
+          href: "/",
+          name: "Home",
+        },
+      ],
+    },
+  },
+];
+export const newsGallary = [
+  {
+    componentId: "1700000009",
+    component: NewsSection,
+    defaultData: {
+      start: "Saturday - Thursday, 8AM to 10PM",
+      end: "Call us now +1 5589 55488 55",
+      items: [
+        {
+          href: "/",
+          name: "Home",
+        },
+      ],
+    },
+  },
+];
+export const personsGallary = [
+  {
+    componentId: "1700000010",
+    component: StaffMember,
+    defaultData: {
+      start: "Saturday - Thursday, 8AM to 10PM",
+      end: "Call us now +1 5589 55488 55",
+      items: [
+        {
+          href: "/",
+          name: "Home",
+        },
+      ],
+    },
+  },
+];
+
+export const footerGallary = [
+  {
+    componentId: "1700000011",
+    component: Footer,
+    defaultData: {
+      start: "Saturday - Thursday, 8AM to 10PM",
+      end: "Call us now +1 5589 55488 55",
+      items: [
+        {
+          href: "/",
+          name: "Home",
         },
       ],
     },

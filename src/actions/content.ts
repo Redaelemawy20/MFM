@@ -18,6 +18,7 @@ import {
   editSections,
   onPageCreated,
   onSectionAdded,
+  setDiplaySectionAction,
   setEntityLinksAction,
   sortSections,
 } from "./make-action/content";
@@ -104,8 +105,16 @@ export const editNews: FormActionType = async (formState, formData) => {
   if (validationResult.message) return validationResult;
   const result = await makeAction(editNewsAction, dataToStore);
   if (result.message) return result;
-  // console.log(files, "files......................");
 
   const storeFileResult = await storeFiles(files, formData);
   return storeFileResult;
+};
+
+export const setDisplaySection: FormActionType = async (
+  formState,
+  formData
+) => {
+  const data = extractFormData(formData);
+  const result = await makeAction(setDiplaySectionAction, data);
+  return result;
 };

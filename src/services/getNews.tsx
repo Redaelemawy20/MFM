@@ -12,6 +12,7 @@ export async function getNews(entiy_slug: string) {
         where: {
           id: 1,
         },
+        take: 3,
         include: {
           section: true,
         },

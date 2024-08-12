@@ -1,7 +1,7 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./FormButton";
-import { Button, Card, CardBody, CardFooter, Chip } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Chip } from "@nextui-org/react";
 import Image from "next/image";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useState } from "react";

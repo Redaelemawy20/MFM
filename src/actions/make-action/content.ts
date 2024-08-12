@@ -148,7 +148,41 @@ export async function editSections(data: any) {
     },
   });
 }
-
+export async function setDiplaySectionAction(data: any) {
+  const foundLayout = await db.layout.findFirst({
+    where: {
+      sectionId: data.sectionId,
+      AND: {
+        entity: {
+          slug: data.entity_slug,
+        },
+      },
+    },
+  });
+  if (foundLayout) {
+    await db.layout.update({
+      where: {
+        id: foundLayout.id,
+      },
+      data: {
+        sectionId: data.sectionId,
+      },
+    });
+  } else {
+    await db.layout.create({
+      data: {
+        data: "{}",
+        type: data.sectionType,
+        sectionId: data.sectionId,
+        entity: {
+          connect: {
+            slug: data.entity_slug,
+          },
+        },
+      },
+    });
+  }
+}
 export const onPageCreated = () => {
   revalidatePath("/dashboard/content");
 };

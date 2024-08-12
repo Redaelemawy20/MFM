@@ -1,27 +1,15 @@
-import React from "react";
 import CardNews from "@/components/cardNews/CardNews";
-import MainTitel from "@/components/mainTitel/MainTitel";
-interface newsData {
-  image: string;
-  date: string;
-  title: string;
-}
-interface DataProps {
-  mainTitle: string;
-  newsData: newsData[];
-}
+import MainTitle from "@/components/sections/mainTitle/MainTitle";
+import { NewsProps } from "@/ts/interfaces/NewsProps";
 
-interface NewsProps {
-  data: DataProps;
-}
-const NewsSection: React.FC<NewsProps> = ({ data }) => {
+const NewsSection = ({ data: news }: { data: NewsProps[] }) => {
   return (
     <div className="Main_wraper">
-      <MainTitel mainTitel={data.mainTitle} />
+      <MainTitle data={{ mainTitle: "Latest News" }} />
       <div className="Main_wraper_divide flex  flex-wrap gap-4">
-        {data.newsData.map((item, index) => (
+        {news.map((item, index) => (
           <CardNews
-            image={item.image}
+            {...item}
             date={item.date}
             title={item.title}
             index={index}

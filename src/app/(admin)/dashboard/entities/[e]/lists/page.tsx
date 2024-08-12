@@ -1,14 +1,20 @@
 // select template will show
 
+import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import EditLinksModal from "@/components/dashboard/factories/EditLinksModal";
+import db from "@/db";
+import { getLayoutItemOfEntity } from "@/services/getLayoutItemOfEntity";
+import { getSectionsOfType } from "@/services/getSectionsOfType";
+import { EntitySlugParams } from "@/ts/common/NextPageParams";
 import { Divider } from "@nextui-org/react";
 
-interface EntityListsI {
-  params: {
-    e: string;
-  };
-}
-export default function EntityLists({ params }: EntityListsI) {
+export default async function EntityLists({ params }: EntitySlugParams) {
+  const { e: slug } = params;
+  const navLayout = await getLayoutItemOfEntity(slug, "nav");
+  const footerLayout = await getLayoutItemOfEntity(slug, "footer");
+  const navSections = await getSectionsOfType("nav");
+  const footerSections = await getSectionsOfType("footer");
+
   const renderLinks = (links: Link[], level = 0) => {
     return (
       <ul className={`ps-${level * 2} border-l  border-gray-300`}>
@@ -34,22 +40,34 @@ export default function EntityLists({ params }: EntityListsI) {
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
           <EditLinksModal
-            entity_slug={params.e}
-            data={{
-              start: "kdhow",
-              end: "akhoew",
-              items: [
-                {
-                  name: "first-link",
-                  href: "/link",
-                },
-              ],
-            }}
+            entity_slug={slug}
+            data={(navLayout ? navLayout.data : {}) as any}
+          />
+          <DisplaySectionModal
+            entity_slug={slug}
+            sections={navSections}
+            selectedIndex={navLayout ? navLayout.sectionId : 1}
           />
         </div>
       </div>
       <div className="p-4 border-2">{renderLinks(links)}</div>
       <Divider />
+      <div className="flex justify-between flex-wrap gap-4 items-center">
+        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
+          <h1 className="text-2xl font-extrabold">Footer</h1>
+        </div>
+        <div className="flex flex-row gap-3.5 flex-wrap">
+          {/* <EditLinksModal
+            entity_slug={slug}
+            data={(navLayout ? navLayout.data : {}) as any}
+          /> */}
+          <DisplaySectionModal
+            entity_slug={slug}
+            sections={footerSections}
+            selectedIndex={footerLayout ? footerLayout.sectionId : 1}
+          />
+        </div>
+      </div>
     </>
   );
 }
