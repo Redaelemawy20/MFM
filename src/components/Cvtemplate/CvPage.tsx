@@ -2,6 +2,11 @@ import React, { ReactNode } from "react";
 import CvPageStyle from "./CvPageStyle";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+
+interface About {
+  dateOfBirth: string;
+  gradFrom: string;
+}
 interface socialLinksObject {
   platform: ReactNode;
   link: string;
@@ -12,6 +17,10 @@ interface staffObject {
   img: string;
   bio: string;
   email?: string;
+  about: About;
+  office: string;
+  mobile: string;
+  empolyments: string[];
   socialLinks: socialLinksObject[];
 }
 interface CvPageProps {
@@ -40,6 +49,9 @@ const CvPage: React.FC<CvPageProps> = ({ data }) => {
       console.error("Element with id 'cv-content' not found.");
     }
   };
+  /****Destruct About *****/
+
+  const { dateOfBirth, gradFrom } = data?.about || {};
 
   return (
     <CvPageStyle>
@@ -50,53 +62,35 @@ const CvPage: React.FC<CvPageProps> = ({ data }) => {
         </div>
 
         {/* CV Content */}
-        <div id="cv-content">
-          <div className="left">
-            <div className="name-hero">
-              <div className="me-img">
-                <img src={data?.img} alt="my photo" />
-              </div>
-              <div className="name-text">
-                <h1>{data?.name}</h1>
-                <p>{data?.bio}</p>
-                <p>{data?.email}</p>
-                <p>(956) 500-5558</p>
-              </div>
+        {/* <div id="cv-content"> */}
+        <div className="left">
+          <div className="name-hero">
+            <div className="me-img">
+              <img src={data?.img} alt="my photo" />
+            </div>
+            <div className="name-text">
+              <h1>{data?.name}</h1>
+              <p>{data?.bio}</p>
+              <p>{data?.email}</p>
+              <p>(956) 500-5558</p>
             </div>
           </div>
+        </div>
+        <div id="cv-content">
           <div className="right">
             <div className="inner">
               <section>
-                <h1>Employment</h1>
-                <p>
-                  Winter 2015 - Present{" "}
-                  <em>Grand Interactive, llc. | Mobile App Developer</em>
-                </p>
-                <p>
-                  Raised $78,000 in early stage funding, created initial design
-                  concepts, and oversaw initial development. Currently oversee
-                  and maintain all front end code and server functionality.
-                </p>
-                <p>
-                  Spring 2012 - Winter 2015 |{" "}
-                  <em>PadMatcher Inc. | CTO, Co-Founder</em>
-                </p>
-                <p>
-                  Raised $78,000 in early stage funding, created initial design
-                  concepts, and oversaw initial development. Oversaw and
-                  maintained all front end code and server functionality.
-                </p>
-                <p>
-                  Fall 2011 - Fall 2013 |{" "}
-                  <em>Penrose Realty llc. | Desinger & Assistant</em>
-                </p>
-                <p>
-                  Responsible for all technical areas. Maintain servers,
-                  computers, and provide in office technical support. Rebranded
-                  company from ground up including a fully responsive website.{" "}
-                </p>
+                <h1>About</h1>
+                <p>Date Of Birth:{dateOfBirth}</p>
+                <p>{gradFrom}</p>
               </section>
               <section>
+                <h1>Employment</h1>
+                {data?.empolyments.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
+              </section>
+              {/* <section>
                 <h1>Technical Skills</h1>
                 <ul className="skill-set">
                   <li>Mobile Development</li>
@@ -110,7 +104,7 @@ const CvPage: React.FC<CvPageProps> = ({ data }) => {
                   <li>Company Branding</li>
                   <li>Responsive Web Design</li>
                 </ul>
-              </section>
+              </section> */}
               <section>
                 <h1>References</h1>
                 <p>
