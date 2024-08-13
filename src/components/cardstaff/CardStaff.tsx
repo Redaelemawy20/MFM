@@ -8,10 +8,18 @@ interface CardStaffProps {
   img: string;
   name: string;
   bio: string;
+  cvLink: string;
   delayTime: number;
   socialLinks: SocialLinks[];
 }
-function CardStaff({ img, name, bio, delayTime, socialLinks }: CardStaffProps) {
+function CardStaff({
+  img,
+  name,
+  cvLink,
+  bio,
+  delayTime,
+  socialLinks,
+}: CardStaffProps) {
   return (
     <CardStaffStyle data-aos="fade-up" data-aos-delay={delayTime}>
       <div className="img_container">
@@ -25,7 +33,7 @@ function CardStaff({ img, name, bio, delayTime, socialLinks }: CardStaffProps) {
         </div>
       </div>
       <div className="info">
-        <a href="/" className="Cv_Page_Link">
+        <a href={cvLink} className="Cv_Page_Link">
           <h1>{name}</h1>
         </a>
         <p className="Text_elipsis">{bio}</p>

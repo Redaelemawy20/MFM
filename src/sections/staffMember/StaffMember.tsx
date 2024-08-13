@@ -10,6 +10,7 @@ interface staffObject {
   name: string;
   img: string;
   bio: string;
+  cvLink:string;
   socialLinks: socialLinksObject[];
 }
 interface propsData {
@@ -28,6 +29,7 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
               img={item.img}
               name={item.name}
               bio={item.bio}
+              cvLink={item.cvLink}
               delayTime={index * 150}
               socialLinks={item.socialLinks}
             />
