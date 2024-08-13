@@ -23,6 +23,7 @@ export default interface MuiAccordionDetails<T, K extends keyof T> {
   error?: string | null;
   onChange: HandleChange;
   onDelete?: (i: number) => void;
+  onlyOne?: boolean;
 }
 export interface HasTitleAndValue {
   title: string;

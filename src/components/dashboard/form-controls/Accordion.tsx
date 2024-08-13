@@ -14,6 +14,7 @@ export default function Accordions<T, K extends keyof T>({
   onChange,
   onValidate,
   onDelete,
+  onlyOne = false,
 }: AccordionI<T, EnsureTheValueOfKeyIsWithType<T, K, string>>) {
   const value = rValue ? rValue : [];
   const handleChange = (
@@ -38,21 +39,21 @@ export default function Accordions<T, K extends keyof T>({
               <AccordionItem
                 title={item[titleProp] ? String(item[titleProp]) : "item"}
                 key={index}
-                indicator={({ isOpen }) => (
-                  <span
-                    onClick={(e) => {
-                      console.log("hello");
-
-                      const v = [...value];
-                      const fv = v.filter((v, i) => i !== index);
-                      onChange({ name, value: fv });
-                      onDelete && onDelete(index);
-                      onValidate && onValidate({ name, value: fv });
-                    }}
-                  >
-                    delete
-                  </span>
-                )}
+                indicator={({ isOpen }) =>
+                  !onlyOne && (
+                    <span
+                      onClick={(e) => {
+                        const v = [...value];
+                        const fv = v.filter((v, i) => i !== index);
+                        onChange({ name, value: fv });
+                        onDelete && onDelete(index);
+                        onValidate && onValidate({ name, value: fv });
+                      }}
+                    >
+                      delete
+                    </span>
+                  )
+                }
               >
                 <div className="flex flex-col">
                   <TextFeild
@@ -85,20 +86,22 @@ export default function Accordions<T, K extends keyof T>({
             );
           })}
       </Accordion>
-      <Button
-        color="success"
-        className=""
-        variant="shadow"
-        startContent={<MdLibraryAdd />}
-        onClick={() => {
-          const v = [...value];
-          v.push({} as T);
-          onChange({ name, value: v });
-          onValidate && onValidate({ name, value: v });
-        }}
-      >
-        add item
-      </Button>
+      {!onlyOne && (
+        <Button
+          color="success"
+          className=""
+          variant="shadow"
+          startContent={<MdLibraryAdd />}
+          onClick={() => {
+            const v = [...value];
+            v.push({} as T);
+            onChange({ name, value: v });
+            onValidate && onValidate({ name, value: v });
+          }}
+        >
+          add item
+        </Button>
+      )}
     </div>
   );
 }

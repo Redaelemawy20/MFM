@@ -1,6 +1,7 @@
 // select template will show
 
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
+import EditFooterModal from "@/components/dashboard/factories/EditFooterModal";
 import EditLinksModal from "@/components/dashboard/factories/EditLinksModal";
 import db from "@/db";
 import { getLayoutItemOfEntity } from "@/services/getLayoutItemOfEntity";
@@ -57,10 +58,10 @@ export default async function EntityLists({ params }: EntitySlugParams) {
           <h1 className="text-2xl font-extrabold">Footer</h1>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          {/* <EditLinksModal
+          <EditFooterModal
             entity_slug={slug}
-            data={(navLayout ? navLayout.data : {}) as any}
-          /> */}
+            data={(footerLayout ? footerLayout.data : {}) as any}
+          />
           <DisplaySectionModal
             entity_slug={slug}
             sections={footerSections}

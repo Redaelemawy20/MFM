@@ -46,6 +46,21 @@ export const EditNavSchema = z.object({
   start: z.string().min(3),
   end: z.string().min(3),
 });
+export const EditFooterSchema = z.object({
+  title: z.string().min(3),
+  paragraph: z.string().min(3),
+  column1Title: z.string().min(3),
+  column2Title: z.string().min(3),
+  location: z.string().min(3),
+  phone: z.string().min(3),
+  email: z.string().min(3).email(),
+  column1Links: z.array(
+    z.object({ name: z.string().min(3), href: z.string().min(3).url() })
+  ),
+  column2Links: z.array(
+    z.object({ name: z.string().min(3), href: z.string().min(3).url() })
+  ),
+});
 export const NewsSchema = z.object({
   title: z.string(),
   content: z.array(z.string()),

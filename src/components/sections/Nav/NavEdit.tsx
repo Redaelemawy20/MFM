@@ -24,6 +24,7 @@ const NavEdit = ({
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state }));
   formData.set("entity_slug", entity_slug);
+  formData.set("type", "nav");
   const modefiedAction = action.bind(null, formData);
   return (
     <Form action={modefiedAction} errorMessage={errorMessage}>

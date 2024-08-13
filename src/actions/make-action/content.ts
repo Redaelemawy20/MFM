@@ -33,9 +33,10 @@ export async function createEntityAction(data: any) {
   });
 }
 export async function setEntityLinksAction(data: any) {
+  console.log(data);
   const layoutItem = await db.layout.findFirst({
     where: {
-      type: "nav",
+      type: data.type,
       AND: {
         entity: {
           slug: data.entity_slug,
@@ -56,12 +57,7 @@ export async function setEntityLinksAction(data: any) {
     await db.layout.create({
       data: {
         data: data.data,
-        type: "nav",
-        section: {
-          connect: {
-            id: 1,
-          },
-        },
+        type: data.type,
         entity: {
           connect: {
             slug: data.entity_slug,
@@ -71,6 +67,7 @@ export async function setEntityLinksAction(data: any) {
     });
   }
 }
+
 export async function editNewsAction(data: any) {
   const { entity_slug } = data;
   delete data.entity_slug;

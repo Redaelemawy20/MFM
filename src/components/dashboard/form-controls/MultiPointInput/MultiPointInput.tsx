@@ -4,7 +4,7 @@ import MultiPointInterface from "../interfaces/MultiPointInputI";
 import Point from "./Point";
 import { Button } from "@nextui-org/react";
 
-export default function MultiPointInput<T>({
+export default function MultiPointInput({
   name: key,
   label,
   value: points = [],
@@ -38,7 +38,6 @@ export default function MultiPointInput<T>({
         <Button className="ms-1" onClick={handleAdd}>
           Add
         </Button>
-        Edit {label} Section
       </div>
       <div className="flex flex-col items-stretch m-2">
         {points && points.length

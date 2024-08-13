@@ -5,6 +5,7 @@ import {
   addSectionsShecma,
   createEntitySchema,
   createPageSchema,
+  EditFooterSchema,
   EditNavSchema,
   NewsSchema,
   sortSectionsSchema,
@@ -90,14 +91,6 @@ export const edit: EditSectionType<SectionProps> = async (
   return storeFileResult;
 };
 
-export const setEntityLinks: FormActionType = async (formState, formData) => {
-  const data = extractFormData(formData) as any;
-  const validationResult = validateFormData(EditNavSchema, data.data);
-  if (validationResult.message) return validationResult;
-  const result = await makeAction(setEntityLinksAction, data);
-  return result;
-};
-
 export const editNews: FormActionType = async (formState, formData) => {
   const data = JSON.parse(formData.get("data") as string);
   const [files, dataToStore] = extractUploadedFiles(data);
@@ -109,7 +102,21 @@ export const editNews: FormActionType = async (formState, formData) => {
   const storeFileResult = await storeFiles(files, formData);
   return storeFileResult;
 };
+export const setEntityLinks: FormActionType = async (formState, formData) => {
+  const data = extractFormData(formData) as any;
+  const validationResult = validateFormData(EditNavSchema, data.data);
+  if (validationResult.message) return validationResult;
+  const result = await makeAction(setEntityLinksAction, data);
+  return result;
+};
 
+export const editFooterLinks: FormActionType = async (formState, formData) => {
+  const data = extractFormData(formData);
+  // const validationResult = validateFormData(EditFooterSchema, data.data);
+  // if (validationResult.message) return validationResult;
+  const result = await makeAction(setEntityLinksAction, data);
+  return result;
+};
 export const setDisplaySection: FormActionType = async (
   formState,
   formData

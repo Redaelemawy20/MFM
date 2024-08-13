@@ -9,6 +9,15 @@ export default function validateFormData<T>(
   schema: ZodSchema<T> | keyof typeof schemas,
   data: Object
 ): ValidationResult {
+  if (typeof data === "string") {
+    try {
+      data = JSON.parse(data);
+    } catch (error) {
+      return {
+        message: "error parsing datat to validate!",
+      };
+    }
+  }
   // Validate the data object against the schema
   let result;
   if (typeof schema === "string" || typeof schema === "number")
