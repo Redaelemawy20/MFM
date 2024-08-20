@@ -1,7 +1,8 @@
 export default interface NavProps {
-  data: NavTopProps & Omit<NavContentProps, "logo" | "logoStyle">;
+  data: NavData;
   logo: string;
 }
+export type NavData = NavTopProps & Omit<NavContentProps, "logo" | "logoStyle">;
 export interface NavTopProps {
   start: string;
   end: string;

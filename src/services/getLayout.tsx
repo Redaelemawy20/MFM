@@ -18,17 +18,19 @@ export async function getLayout(entity_slug: string) {
   if (!layoutItems) return layout;
   for (let layoutItem of layoutItems) {
     const section = layoutItem.section;
-    const found = getComponent(section.componentId);
+    if (section) {
+      const found = getComponent(section.componentId);
 
-    const type = layoutItem.type as keyof LayoutI;
-    layout[type] = () => {
-      if (!found) return null;
-      const sectionData =
-        Object.keys(layoutItem.data as Object).length === 0
-          ? found.defaultData
-          : JSON.parse(layoutItem.data as string);
-      return <found.component data={sectionData} />;
-    };
+      const type = layoutItem.type as keyof LayoutI;
+      layout[type] = () => {
+        if (!found) return null;
+        const sectionData =
+          Object.keys(layoutItem.data as Object).length === 0
+            ? found.defaultData
+            : JSON.parse(layoutItem.data as string);
+        return <found.component data={sectionData} />;
+      };
+    }
   }
   return layout;
 }

@@ -3,6 +3,7 @@ import { MainTitleI } from "./MainTitle";
 import useStateManager from "@/hooks/useStateManager";
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import Form from "@/components/common/Form";
+import FormButton from "@/components/dashboard/forms/FormButton";
 
 interface MainTitleEditI extends MainTitleI, FormProps {
   id: number;
@@ -29,6 +30,7 @@ const MainTitleEdit = ({ id, action, data, errorMessage }: MainTitleEditI) => {
         label="Caption"
         onChange={handleChange}
       />
+      <FormButton>Save</FormButton>
     </Form>
   );
 };

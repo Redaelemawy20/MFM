@@ -6,6 +6,6 @@ export default interface GallaryItem {
   name?: string;
   componentId: string;
   component: (props: SectionProps) => JSX.Element;
-  componentEdit: (props: SectionProps & FormProps & HasId) => JSX.Element;
+  componentEdit: (props: SectionProps & FormProps) => JSX.Element;
   defaultData: any;
 }

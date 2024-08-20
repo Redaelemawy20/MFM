@@ -9,7 +9,7 @@ interface DisplaySectionFormProps extends FormProps {
   sections: { id: number; name: string; imgUrl: string }[];
   selectedIndex?: number;
   entity_slug: string;
-  sectionType: "nav" | "news" | "footer";
+  sectionType: "nav" | "news" | "footer" | "persons";
 }
 
 export default function DisplaySectionForm({

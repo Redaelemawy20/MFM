@@ -1,12 +1,11 @@
 "use client";
 import withModalForm from "@/components/common/modal-form";
-import { setEntityLinks } from "@/actions/content";
-import NavEdit from "@/components/sections/Nav/NavEdit";
+import { setDisplaySection } from "@/actions/content";
 import DisplaySectionForm from "../forms/DisplaySectionForm";
 
 const DisplaySectionModal = withModalForm(
   DisplaySectionForm,
-  setEntityLinks,
+  setDisplaySection,
   "Display Template"
 );
 export default DisplaySectionModal;

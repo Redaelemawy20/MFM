@@ -8,6 +8,7 @@ import {
   HTMLFormAction,
 } from "@/ts/Types/FormActionType";
 import { ModalHeader } from "react-bootstrap";
+import { useRouter } from "next/navigation";
 
 interface FormModalExtraProps {
   action: HTMLFormAction;
@@ -16,23 +17,25 @@ interface FormModalExtraProps {
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
   action: FormActionType | EditSectionType<T>,
-  btnText: string
+  btnText: string,
+  color?: "primary" | "default" | "secondary" | "success" | "warning" | "danger"
 ) {
   return (props: Omit<T, "action" | "errorMessage">) => {
     const [formState, formAction] = useFormState(action as FormActionType, {
       message: "",
     });
-
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     useEffect(() => {
       if (formState.message === false) {
         setOpen(false);
+        router.refresh();
       }
     }, [formState]);
     const { message } = formState;
     return (
       <>
-        <Button onPress={() => setOpen(true)} color="primary">
+        <Button onPress={() => setOpen(true)} color={color ? color : "primary"}>
           {btnText}
         </Button>
         <Modal

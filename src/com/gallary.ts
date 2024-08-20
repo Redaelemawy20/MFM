@@ -3,7 +3,6 @@ import Features from "@/components/sections/features/Features";
 import Hero from "@/components/sections/Hero";
 import HeroEdit from "@/components/sections/Hero/HeroEdit";
 import Nav from "@/components/sections/Nav";
-import NavEdit from "@/components/sections/Nav/NavEdit";
 import GallaryItem from "@/ts/interfaces/GallaryItem";
 import FeaturesEdit from "../components/sections/features/FeaturesEdit";
 import About from "@/components/sections/About";
@@ -23,9 +22,9 @@ import StaffMember from "@/sections/staffMember/StaffMember";
 import Footer from "@/components/Footer/Footer";
 
 // sections
-const gallary: GallaryItem[] = [
+export const sectionsGallary: GallaryItem[] = [
   {
-    componentId: "1720029268729",
+    componentId: "1700000001",
     component: Hero,
     componentEdit: HeroEdit,
     defaultData: {
@@ -40,7 +39,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268722",
+    componentId: "1700000002",
     component: About,
     componentEdit: AboutEdit,
     defaultData: {
@@ -62,7 +61,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268723",
+    componentId: "1700000003",
     component: CardWithAnimation,
     componentEdit: CardWithAnimationEdit,
     defaultData: {
@@ -85,7 +84,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268739",
+    componentId: "1700000004",
     component: Features,
     componentEdit: FeaturesEdit,
     defaultData: {
@@ -105,7 +104,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268724",
+    componentId: "1700000005",
     component: HighlightedSection,
     componentEdit: HighlightedSectionEdit,
     defaultData: {
@@ -117,7 +116,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268725",
+    componentId: "1700000006",
     component: MainTitle,
     componentEdit: MainTitleEdit,
     defaultData: {
@@ -128,7 +127,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268726",
+    componentId: "1700000007",
     component: Services,
     componentEdit: ServiceEdit,
     defaultData: {
@@ -151,7 +150,7 @@ const gallary: GallaryItem[] = [
     },
   },
   {
-    componentId: "1720029268727",
+    componentId: "1700000008",
     component: Statistics,
     componentEdit: StatisticsEdit,
     defaultData: {
@@ -237,4 +236,10 @@ export const footerGallary = [
   },
 ];
 
-export default gallary;
+export default [
+  ...sectionsGallary,
+  ...navGallary,
+  ...newsGallary,
+  ...personsGallary,
+  ...footerGallary,
+];

@@ -1,7 +1,9 @@
+"use client";
 import CardStaff from "@/components/cardstaff/CardStaff";
 import React, { ReactNode } from "react";
 import StaffMemberStyle from "./StaffMemberStyle";
-import MainTitel from "@/components/mainTitel/MainTitel";
+import MainTitle from "@/components/sections/mainTitle/MainTitle";
+
 interface socialLinksObject {
   platform: ReactNode;
   link: string;
@@ -10,7 +12,7 @@ interface staffObject {
   name: string;
   img: string;
   bio: string;
-  cvLink:string;
+  cvLink: string;
   socialLinks: socialLinksObject[];
 }
 interface propsData {
@@ -21,7 +23,11 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
   return (
     <StaffMemberStyle>
       <div className="Main_wraper">
-        <MainTitel mainTitel="القيادات الحالية لجامعة المنوفية" />
+        <MainTitle
+          data={{
+            mainTitle: "d",
+          }}
+        />
         <div className="Main_wraper_flex">
           {data.map((item, index) => (
             <CardStaff

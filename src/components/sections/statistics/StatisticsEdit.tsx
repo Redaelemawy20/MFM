@@ -33,10 +33,10 @@ const StatisticsEdit = ({
         titleProp="subtitle"
         value={state.items}
         onChange={handleChange}
-        childs={{
+        childs={() => ({
           num: (props) => <TextFeild {...(props as InputI)} />,
           description: (props) => <TextArea {...(props as TextAreaI)} />,
-        }}
+        })}
       />
       <FormButton>Save</FormButton>
     </Form>

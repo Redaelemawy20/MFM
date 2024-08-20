@@ -31,7 +31,7 @@ export const sortSectionsSchema = z.object({
 // Define the schema with a recursive reference using z.lazy
 const baseLinkSchema = z.object({
   name: z.string(),
-  href: z.string().url(),
+  href: z.string(),
 });
 
 type Link = z.infer<typeof baseLinkSchema> & {
@@ -55,16 +55,23 @@ export const EditFooterSchema = z.object({
   phone: z.string().min(3),
   email: z.string().min(3).email(),
   column1Links: z.array(
-    z.object({ name: z.string().min(3), href: z.string().min(3).url() })
+    z.object({ name: z.string().min(3), href: z.string().min(3) })
   ),
   column2Links: z.array(
-    z.object({ name: z.string().min(3), href: z.string().min(3).url() })
+    z.object({ name: z.string().min(3), href: z.string().min(3) })
   ),
 });
 export const NewsSchema = z.object({
   title: z.string(),
   content: z.array(z.string()),
   mainImageIdx: z.number(),
+});
+
+export const CreateStaffSchema = z.object({
+  title: z.string(),
+  name: z.string(),
+  position: z.string(),
+  degree: z.optional(z.string()),
 });
 export const schemas = {
   editHero: z.object({
@@ -118,7 +125,7 @@ export const schemas = {
   }),
   editMainTitle: z.object({
     mainTitle: z.string().min(3),
-    capiton: z.string().min(3),
+    caption: z.string().min(3),
   }),
   editServices: z.object({
     title: z.string().min(3),

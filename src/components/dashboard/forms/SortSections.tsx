@@ -10,14 +10,12 @@ interface SortSectionFormProps extends FormProps {
     section: { id: number; name: string; imgUrl: string };
     order: number | null;
   }[];
-  page: number;
 }
 
 export default function SortPageSectionForm({
   action,
   errorMessage,
   sections,
-  page,
 }: SortSectionFormProps) {
   const [state, setState] = useState(
     sections
@@ -51,7 +49,6 @@ export default function SortPageSectionForm({
     "data",
     JSON.stringify({
       sections: state,
-      pagename: page,
     })
   );
   const boundAction = action.bind(null, formData);
@@ -59,7 +56,7 @@ export default function SortPageSectionForm({
     <form action={boundAction} className="w-[500px]">
       <div className="flex flex-col  gap-4 p-4">
         <h3 className="text-lg">Sort sections </h3>
-        <input hidden defaultValue={page} name="pagename" />
+
         <div className="flex !flex-col  !items-start !justify-start  ">
           {state.length
             ? state.map((s, index) => {

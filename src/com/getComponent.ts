@@ -1,3 +1,5 @@
+// import gallary from "./gallary";
+
 import gallary from "./gallary";
 
 export default (code: string) => {

@@ -4,7 +4,6 @@
 
 import Card1 from "@/components/dashboard/cards/card1";
 import CreateEntityModal from "@/components/dashboard/factories/CreateEntityModal";
-import CreatePageModal from "@/components/dashboard/factories/CreatePageModal";
 import { Divider, Input } from "@nextui-org/react";
 
 // hospitals

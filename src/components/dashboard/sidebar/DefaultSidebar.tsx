@@ -1,8 +1,7 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Sidebar } from "./sidebar.styles";
-import { CompaniesDropdown } from "./companies-dropdown";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { SidebarMenu } from "./sidebar-menu";

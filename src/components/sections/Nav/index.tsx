@@ -6,6 +6,8 @@ import NavProps from "@/ts/interfaces/NavPops";
 import NavContent from "@/components/sections/Nav/NavContent";
 
 const Nav = ({ data, logo }: NavProps) => {
+  console.log("Navv");
+
   const [scrollDown, setScrollDown] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", () => {

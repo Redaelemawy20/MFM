@@ -8,9 +8,12 @@ const UniLayout = async ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <>
-      {layout.nav()}
+      {layout.nav ? layout.nav() : <header>no nav</header>}
       <div>{children}</div>
-      {/* {layout.footer()} */}
+
+      <div className="fixed left-0 bottom-0 w-full">
+        {layout.footer ? layout.footer() : <div>no footer</div>}
+      </div>
     </>
   );
 };

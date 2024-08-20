@@ -1,19 +1,27 @@
 "use client";
 import Image from "next/image";
 import { Sidebar } from "./sidebar.styles";
-import { usePathname } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useSelectedLayoutSegments,
+} from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
 import { SidebarMenu } from "./sidebar-menu";
 import { PaymentsIcon } from "../icons/sidebar/payments-icon";
-
-interface EntitySidebarI {
-  params: {};
-}
+import { entityAdminPath } from "@/services/router";
 
 const EntitySideBar = () => {
+  const { e: entity_slug } = useParams<{ e: string }>();
   const pathname = usePathname();
+  const entityPath = entityAdminPath(entity_slug);
+
+  const newsRoute = entityPath + "/news";
+  const listsRoute = entityPath + "/lists";
+  const staffRoute = entityPath + "/staff";
+  const pagesRoute = entityPath + "/pages";
 
   return (
     <>
@@ -31,36 +39,31 @@ const EntitySideBar = () => {
       </div>
       <div className="flex flex-col items-start justify-between h-full">
         <div className={Sidebar.Body()}>
-          <SidebarItem
-            title="Home Page"
-            icon={<HomeIcon />}
-            isActive={pathname === "/"}
-            href="/"
-          />
+          <SidebarItem title="Home Page" icon={<HomeIcon />} href="/" />
           <SidebarMenu title="Main Menu">
             <SidebarItem
-              isActive={pathname === "/news"}
+              isActive={pathname === newsRoute}
               title="News"
               icon={<AccountsIcon />}
-              href="/news"
+              href={newsRoute}
             />
             <SidebarItem
-              isActive={pathname === "/lists"}
+              isActive={pathname === listsRoute}
               title="Lists"
               icon={<AccountsIcon />}
-              href="/lists"
+              href={listsRoute}
             />
             <SidebarItem
-              isActive={pathname === "/staff"}
+              isActive={pathname === staffRoute}
               title="Staff"
               icon={<AccountsIcon />}
-              href="/staff"
+              href={staffRoute}
             />
             <SidebarItem
-              isActive={pathname === "/pages"}
+              isActive={pathname === pagesRoute}
               title="Pages"
               icon={<PaymentsIcon />}
-              href="/pages"
+              href={pagesRoute}
             />
           </SidebarMenu>
         </div>

@@ -33,7 +33,6 @@ export async function createEntityAction(data: any) {
   });
 }
 export async function setEntityLinksAction(data: any) {
-  console.log(data);
   const layoutItem = await db.layout.findFirst({
     where: {
       type: data.type,
@@ -88,7 +87,7 @@ export async function addSections(data: any) {
   const { pagename, sections } = data;
   await db.page.update({
     where: {
-      name: String(pagename),
+      slug: String(pagename),
     },
     data: {
       sections: {
@@ -105,7 +104,7 @@ export async function addSections(data: any) {
 }
 
 export async function sortSections(data: any) {
-  const { pagename, sections } = data;
+  const { sections } = data;
 
   for (let section of sections) {
     await db.pageSections.update({
@@ -117,21 +116,6 @@ export async function sortSections(data: any) {
       },
     });
   }
-  // await db.page.update({
-  //   where: {
-  //     name: pagename,
-  //   },
-  //   data: {
-  //     sections: {
-  //       updateMany: {
-  //         where: { id: sections.map((s: any) => s.id) },
-  //         data: sections.map((section: any) => {
-  //           return { order: section.order };
-  //         }),
-  //       },
-  //     },
-  //   },
-  // });
 }
 export async function editSections(data: any) {
   const id = parseInt(data.id);
@@ -146,9 +130,12 @@ export async function editSections(data: any) {
   });
 }
 export async function setDiplaySectionAction(data: any) {
+  console.log(data);
+
   const foundLayout = await db.layout.findFirst({
     where: {
-      sectionId: data.sectionId,
+      type: data.sectionType,
+
       AND: {
         entity: {
           slug: data.entity_slug,
@@ -157,12 +144,14 @@ export async function setDiplaySectionAction(data: any) {
     },
   });
   if (foundLayout) {
+    console.log(foundLayout);
+
     await db.layout.update({
       where: {
         id: foundLayout.id,
       },
       data: {
-        sectionId: data.sectionId,
+        sectionId: parseInt(data.sectionId),
       },
     });
   } else {
@@ -170,7 +159,12 @@ export async function setDiplaySectionAction(data: any) {
       data: {
         data: "{}",
         type: data.sectionType,
-        sectionId: data.sectionId,
+        // sectionId: parseInt(data.sectionId),
+        section: {
+          connect: {
+            id: parseInt(data.sectionId),
+          },
+        },
         entity: {
           connect: {
             slug: data.entity_slug,
@@ -179,6 +173,47 @@ export async function setDiplaySectionAction(data: any) {
       },
     });
   }
+}
+export async function deleteSectionAction(data: any) {
+  const id = data.id;
+  await db.pageSections.delete({ where: { id: parseInt(id) } });
+}
+export async function deletePageAction(data: any) {
+  const id = data.id;
+  await db.page.delete({ where: { id: parseInt(id) } });
+}
+
+export async function createStaffAction(data: any) {
+  const leader = Boolean(data.leadership);
+  delete data.leader;
+  if (data.slug) {
+    const slug = data.slug;
+    delete data.slug;
+    await db.user.update({
+      where: {
+        slug: slug,
+      },
+      data: {
+        name: data.name,
+        slug: convertToSlug(data.name),
+        leadership: leader,
+        data: data,
+      },
+    });
+  } else
+    await db.user.create({
+      data: {
+        name: data.name,
+        slug: convertToSlug(data.name),
+        data,
+        leadership: leader,
+        entity: {
+          connect: {
+            slug: data.entity_slug,
+          },
+        },
+      },
+    });
 }
 export const onPageCreated = () => {
   revalidatePath("/dashboard/content");

@@ -4,16 +4,20 @@ import { Button } from "@nextui-org/react";
 
 interface FormButtonProps {
   children: React.ReactNode;
+  disabled?: boolean;
 }
 
-export default function FormButton({ children }: FormButtonProps) {
+export default function FormButton({ children, disabled }: FormButtonProps) {
   const { pending } = useFormStatus();
 
   return (
     <Button
       type="submit"
       isLoading={pending}
-      className="rounded p-2 bg-blue-500 mt-3"
+      className={`rounded p-2  ${
+        disabled ? "bg-gray-200 cursor-not-allowed" : "bg-blue-500"
+      } mt-3`}
+      disabled={disabled}
     >
       {children}
     </Button>

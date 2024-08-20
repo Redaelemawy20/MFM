@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { HiOutlineLocationMarker } from "react-icons/hi";
@@ -6,6 +7,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import FooterStyle from "./FooterStyle";
 import FooterProps from "@/ts/interfaces/FooterProps";
 const Footer = ({ data }: FooterProps) => {
+  console.log(data);
+
   return (
     <FooterStyle>
       <div className="Main_wraper_grid">
