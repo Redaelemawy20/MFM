@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavContentProps } from "@/ts/interfaces/NavPops";
 import { FaAngleDown, FaBars } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
@@ -11,6 +11,7 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
   const [openSubDropdownIndex, setOpenSubDropdownIndex] = useState<
     number | null
   >(null);
+  const dropdownRef = useRef<HTMLUListElement>(null);
   const handleDropdownClick = (index: number) => {
     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
     setOpenSubDropdownIndex(null); // Close sub-dropdown when a new dropdown is opened
@@ -19,9 +20,14 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
     setOpenSubDropdownIndex(openSubDropdownIndex === index ? null : index);
   };
   const handleMouseDown = (event: MouseEvent) => {
-    setOpenDropdownIndex(null);
-    setOpenSubDropdownIndex(null);
-    setShowList(false);
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpenDropdownIndex(null);
+      setOpenSubDropdownIndex(null);
+      setShowList(false);
+    }
   };
 
   useEffect(() => {
@@ -44,7 +50,7 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
               <HiXMark />
             </button>
           )}
-          <ul className="flex list_links">
+          <ul className="flex list_links" ref={dropdownRef}>
             {items.map((item, index) => (
               <li key={index}>
                 <a onClick={() => handleDropdownClick(index)}>
@@ -56,14 +62,18 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
                     {item.menu.map((link, linkIndex) => (
                       <li key={linkIndex}>
                         <a
-                          href={link.href}
-                          onClick={() =>
+                          // href={link.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            console.log("lldldld");
+
                             link.hasDropDown &&
-                            handleSubDropdownClick(linkIndex)
-                          }
+                              handleSubDropdownClick(linkIndex);
+                          }}
                           // className={link.go === pathname ? "active" : ""}
                         >
-                          {link.name}
+                          {/* {link.name} */}
+                          dada {link.hasDropDown}
                           {link.hasDropDown && (
                             <FaAngleDown className="down_angle" />
                           )}

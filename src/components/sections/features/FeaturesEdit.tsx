@@ -39,9 +39,9 @@ const FeaturesEdit = ({ id, action, data, errorMessage }: FeaturesEditI) => {
           value={state.featuresItems}
           onChange={handleChange}
           titleProp="title"
-          childs={{
+          childs={() => ({
             description: (props) => <TextArea {...(props as TextAreaI)} />,
-          }}
+          })}
         />
       </WithTabs>
       <FormButton>Save</FormButton>

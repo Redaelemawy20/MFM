@@ -8,8 +8,6 @@ export function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const name = searchParams.get("name") as string;
 
-  console.log("kdhiw");
-
   // Define the storage folder path
   const storageFolderPath = path.join(process.cwd(), "storage", "u"); // Adjust the path according to your storage folder
 

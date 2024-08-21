@@ -29,6 +29,12 @@ export async function createEntityAction(data: any) {
       name,
       slug,
       meta,
+      pages: {
+        create: {
+          name: "_home",
+          slug: "_home",
+        },
+      },
     },
   });
 }
@@ -84,23 +90,33 @@ export async function editNewsAction(data: any) {
   });
 }
 export async function addSections(data: any) {
-  const { pagename, sections } = data;
-  await db.page.update({
+  const { pagename, sections, entity_slug } = data;
+  const entity = await db.entity.findUnique({
     where: {
-      slug: String(pagename),
-    },
-    data: {
-      sections: {
-        createMany: {
-          data: Array.isArray(sections)
-            ? sections.map((sectionId: string) => ({
-                sectionId: parseInt(sectionId),
-              }))
-            : [{ sectionId: parseInt(sections) }],
-        },
-      },
+      slug: entity_slug,
     },
   });
+  if (!entity) throw new Error("entity not found");
+  else
+    await db.page.update({
+      where: {
+        entityId_slug: {
+          entityId: entity.id,
+          slug: pagename,
+        },
+      },
+      data: {
+        sections: {
+          createMany: {
+            data: Array.isArray(sections)
+              ? sections.map((sectionId: string) => ({
+                  sectionId: parseInt(sectionId),
+                }))
+              : [{ sectionId: parseInt(sections) }],
+          },
+        },
+      },
+    });
 }
 
 export async function sortSections(data: any) {
@@ -130,12 +146,9 @@ export async function editSections(data: any) {
   });
 }
 export async function setDiplaySectionAction(data: any) {
-  console.log(data);
-
   const foundLayout = await db.layout.findFirst({
     where: {
       type: data.sectionType,
-
       AND: {
         entity: {
           slug: data.entity_slug,
@@ -144,14 +157,13 @@ export async function setDiplaySectionAction(data: any) {
     },
   });
   if (foundLayout) {
-    console.log(foundLayout);
-
     await db.layout.update({
       where: {
         id: foundLayout.id,
       },
       data: {
         sectionId: parseInt(data.sectionId),
+        order: parseInt(data.order),
       },
     });
   } else {
@@ -159,7 +171,7 @@ export async function setDiplaySectionAction(data: any) {
       data: {
         data: "{}",
         type: data.sectionType,
-        // sectionId: parseInt(data.sectionId),
+        order: parseInt(data.order),
         section: {
           connect: {
             id: parseInt(data.sectionId),

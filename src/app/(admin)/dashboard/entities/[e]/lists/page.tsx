@@ -3,8 +3,8 @@
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import EditFooterModal from "@/components/dashboard/factories/EditFooterModal";
 import EditLinksModal from "@/components/dashboard/factories/EditLinksModal";
-import { getLayoutItemOfEntity } from "@/services/getLayoutItemOfEntity";
-import { getSectionsOfType } from "@/services/getSectionsOfType";
+import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
+import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
 import { EntitySlugParams } from "@/ts/common/NextPageParams";
 import { FooterData } from "@/ts/interfaces/FooterProps";
 import { NavData, NavItemI } from "@/ts/interfaces/NavPops";

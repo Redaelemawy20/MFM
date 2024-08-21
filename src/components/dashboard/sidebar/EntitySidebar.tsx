@@ -11,7 +11,7 @@ import { HomeIcon } from "../icons/sidebar/home-icon";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
 import { SidebarMenu } from "./sidebar-menu";
 import { PaymentsIcon } from "../icons/sidebar/payments-icon";
-import { entityAdminPath } from "@/services/router";
+import { entityAdminPath } from "@/utils/router";
 
 const EntitySideBar = () => {
   const { e: entity_slug } = useParams<{ e: string }>();

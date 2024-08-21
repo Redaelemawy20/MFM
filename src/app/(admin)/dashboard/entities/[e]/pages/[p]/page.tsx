@@ -4,8 +4,9 @@ import SectionEditCard from "@/components/dashboard/cards/section-edit-card";
 import AddSectionModal from "@/components/dashboard/factories/AddSectionModal";
 
 import SortSectionModal from "@/components/dashboard/factories/SortSectionsModal";
-import { getPageSections } from "@/services/fetch/getPageSections";
+
 import { getSectionsToAdd } from "@/services/fetch/getSectionsToAdd";
+import { getPageSections } from "@/services/pageServices";
 import { notFound } from "next/navigation";
 
 // add section
@@ -16,10 +17,11 @@ import { notFound } from "next/navigation";
 interface PageProps {
   params: {
     p: string;
+    e: string;
   };
 }
 export default async ({ params }: PageProps) => {
-  const pageSections = await getPageSections(params.p);
+  const pageSections = await getPageSections(params.e, params.p);
   if (!pageSections) return notFound();
   const sections = await getSectionsToAdd();
 
@@ -31,7 +33,11 @@ export default async ({ params }: PageProps) => {
           All Sections
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <AddSectionModal sections={sections} page={params.p} />
+          <AddSectionModal
+            sections={sections}
+            entity_slug={params.e}
+            page={params.p}
+          />
           <SortSectionModal sections={pageSections} />
         </div>
       </div>

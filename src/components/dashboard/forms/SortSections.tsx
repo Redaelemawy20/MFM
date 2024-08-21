@@ -5,6 +5,7 @@ import { Card, CardBody, CardFooter, Chip } from "@nextui-org/react";
 import Image from "next/image";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useState } from "react";
+import { sortSectionsWithOrder } from "@/utils/sort-sections-w-order";
 interface SortSectionFormProps extends FormProps {
   sections: {
     section: { id: number; name: string; imgUrl: string };
@@ -18,15 +19,10 @@ export default function SortPageSectionForm({
   sections,
 }: SortSectionFormProps) {
   const [state, setState] = useState(
-    sections
-      .sort((a, b) => {
-        let first = a.order ?? 0;
-        let second = b.order ?? 0;
-        if (first === -1) return 1;
-        if (second === -1) return -1;
-        return first - second;
-      })
-      .map((section, index) => ({ ...section, order: index }))
+    sortSectionsWithOrder(sections).map((section, index) => ({
+      ...section,
+      order: index,
+    }))
   );
   const handleUp = (index: number) => {
     const clonedState = [...state];

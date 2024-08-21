@@ -5,8 +5,8 @@ import { getEntityWithStaff } from "@/services/fetch/getEntityWithStaff";
 import CreateStaffModal from "@/components/dashboard/factories/CreateStaffModal";
 import StaffTable from "@/components/dashboard/table/StaffTable";
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
-import { getSectionsOfType } from "@/services/getSectionsOfType";
-import { getLayoutItemOfEntity } from "@/services/getLayoutItemOfEntity";
+import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
+import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 
 // add account
 
@@ -31,6 +31,7 @@ export default async function ({ params }: EntitySlugParams) {
             entity_slug={entity_slug}
             sections={personSecitons}
             selectedIndex={personLayout ? personLayout.sectionId || 1 : 1}
+            withorder={{ order: personLayout?.order || 0 }}
             sectionType="persons"
           />
         </div>

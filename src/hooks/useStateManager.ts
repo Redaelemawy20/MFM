@@ -15,7 +15,6 @@ const useStateManager = <T>(data: T) => {
   const [lang, setLang] = useState<Lang>("en");
   const handleChange: HandleChange = (target): void => {
     const { name, value } = target;
-    console.log({ name, value });
 
     setState({ ...state, [name]: value });
   };

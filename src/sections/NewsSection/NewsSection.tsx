@@ -3,16 +3,16 @@ import CardNews from "@/components/cardNews/CardNews";
 import MainTitle from "@/components/sections/mainTitle/MainTitle";
 import { NewsProps } from "@/ts/interfaces/NewsProps";
 
-const NewsSection = ({ data: news }: { data: NewsProps[] }) => {
+const NewsSection = ({ data: news }: { data: { details: NewsProps }[] }) => {
   return (
     <div className="Main_wraper">
       <MainTitle data={{ mainTitle: "Latest News" }} />
       <div className="Main_wraper_divide flex  flex-wrap gap-4">
         {news.map((item, index) => (
           <CardNews
-            {...item}
-            date={item.date}
-            title={item.title}
+            {...item.details}
+            date={item.details.date}
+            title={item.details.title}
             index={index}
             key={index}
           />

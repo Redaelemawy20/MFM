@@ -4,12 +4,15 @@ import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import Form from "@/components/common/Form";
+import TextFeild from "../form-controls/Input";
+import useStateManager from "@/hooks/useStateManager";
 
 interface DisplaySectionFormProps extends FormProps {
   sections: { id: number; name: string; imgUrl: string }[];
   selectedIndex?: number;
   entity_slug: string;
   sectionType: "nav" | "news" | "footer" | "persons";
+  withorder?: { order: number };
 }
 
 export default function DisplaySectionForm({
@@ -19,12 +22,17 @@ export default function DisplaySectionForm({
   selectedIndex,
   entity_slug,
   sectionType,
+  withorder,
 }: DisplaySectionFormProps) {
-  const [sectionId, setSectionId] = useState(selectedIndex || 0);
+  const { state, handleChange } = useStateManager({
+    sectionId: selectedIndex || 0,
+    order: withorder ? withorder.order : 1,
+  });
   const formData = new FormData();
-  formData.set("sectionId", String(sectionId));
+  formData.set("sectionId", String(state.sectionId));
   formData.set("sectionType", sectionType);
   formData.set("entity_slug", entity_slug);
+  if (withorder) formData.set("order", String(state.order));
   const modefiedAction = action.bind(null, formData);
   return (
     <Form action={modefiedAction} errorMessage={errorMessage}>
@@ -54,11 +62,12 @@ export default function DisplaySectionForm({
                       <p className="text-default-500 ms-2">
                         <input
                           id={s.name + s.id}
-                          name="sections"
                           key={s.name}
                           type="checkbox"
-                          checked={sectionId == s.id}
-                          onClick={() => setSectionId(s.id)}
+                          checked={state.sectionId == s.id}
+                          onClick={(e) =>
+                            handleChange({ name: "sectionId", value: s.id })
+                          }
                         />
                       </p>
                     </CardFooter>
@@ -68,6 +77,14 @@ export default function DisplaySectionForm({
             })
           : "there no templates"}
       </div>
+      {withorder && (
+        <TextFeild
+          name="order"
+          label="enter order in the home page ex: 2 will show after 2 sections"
+          value={state.order}
+          onChange={handleChange}
+        />
+      )}
 
       <FormButton>Save</FormButton>
     </Form>

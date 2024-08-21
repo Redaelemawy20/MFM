@@ -10,11 +10,12 @@ model Entity {
 }
 model Page {
     id Int @id @default(autoincrement())
-    name String @unique
-    slug String @unique
+    name String 
+    slug String
     entityId Int 
     sections PageSections[] 
     entity Entity @relation(fields: [entityId], references: [id])
+    @@unique([entityId, slug])
 }
 model Section{
     id Int @id @default(autoincrement())
@@ -30,6 +31,7 @@ model Layout {
     data Json @default("{}")
     type SectionType @default(nav)
     sectionId Int?
+    order Int?
     entityId Int
     @@unique([sectionId, entityId])
     entity Entity @relation(fields: [entityId], references: [id])

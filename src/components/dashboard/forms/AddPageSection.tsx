@@ -6,6 +6,7 @@ import Image from "next/image";
 interface AddSectionFormProps extends FormProps {
   sections: { id: number; name: string; imgUrl: string }[];
   page: string;
+  entity_slug: string;
 }
 
 export default function AddPageSectionForm({
@@ -13,12 +14,14 @@ export default function AddPageSectionForm({
   errorMessage,
   sections,
   page,
+  entity_slug,
 }: AddSectionFormProps) {
   return (
     <form action={action} className="w-[700px]">
       <div className="flex flex-col  gap-4 p-4">
         <h3 className="text-lg">Add sections to this page</h3>
         <input hidden defaultValue={page} name="pagename" />
+        <input hidden defaultValue={entity_slug} name="entity_slug" />
         <div className="flex !flex-row flex-wrap !items-start !justify-start  ">
           {sections.length
             ? sections.map((s, index) => {

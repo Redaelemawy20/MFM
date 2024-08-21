@@ -12,10 +12,17 @@ const CardNews: React.FC<newsItemProps> = ({
   title,
   index,
 }) => {
-  const image = `/api/files?name=${gallary[mainImageIdx].img._s}`;
+  const showImage = () => {
+    const mainImage = gallary[mainImageIdx];
+    if (mainImage && mainImage.img) {
+      const image = `/api/files?name=${gallary[mainImageIdx].img._s}`;
+      return <img src={image} alt="" className="img_news" />;
+    }
+    return null;
+  };
   return (
     <CardNewsStyle data-aos="zoom-in" data-aos-delay={`${300 * index}`}>
-      <img src={image} alt="" className="img_news" />
+      {showImage()}
       <p className="date">{date}</p>
       <Link href="/" className="news_Title Text_elipsis">
         {title}

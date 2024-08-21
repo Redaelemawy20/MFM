@@ -37,7 +37,7 @@ const CardWithAnimationEdit = ({
         value={state.items}
         onChange={handleChange}
         titleProp={"title"}
-        childs={{
+        childs={() => ({
           img: (props) => (
             <ImageUploadPerview
               {...(props as ImageUploadPerviewI)}
@@ -47,7 +47,7 @@ const CardWithAnimationEdit = ({
           ),
           path: (props) => <TextFeild {...(props as InputI)} />,
           description: (props) => <TextArea {...(props as TextAreaI)} />,
-        }}
+        })}
       />
       <FormButton>Save</FormButton>
     </Form>

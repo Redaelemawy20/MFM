@@ -3,6 +3,8 @@ import CardStaff from "@/components/cardstaff/CardStaff";
 import React, { ReactNode } from "react";
 import StaffMemberStyle from "./StaffMemberStyle";
 import MainTitle from "@/components/sections/mainTitle/MainTitle";
+import { StaffData } from "@/ts/interfaces/StaffData";
+import { extractImgSrc } from "@/utils/get-img";
 
 interface socialLinksObject {
   platform: ReactNode;
@@ -16,28 +18,27 @@ interface staffObject {
   socialLinks: socialLinksObject[];
 }
 interface propsData {
-  data: staffObject[];
+  data: { data: StaffData }[];
 }
 const StaffMember: React.FC<propsData> = ({ data }) => {
-  console.log(data);
   return (
     <StaffMemberStyle>
       <div className="Main_wraper">
         <MainTitle
           data={{
-            mainTitle: "d",
+            mainTitle: "LeaderShip",
           }}
         />
         <div className="Main_wraper_flex">
           {data.map((item, index) => (
             <CardStaff
               key={index}
-              img={item.img}
-              name={item.name}
-              bio={item.bio}
-              cvLink={item.cvLink}
+              img={extractImgSrc(item.data, "avatar")}
+              name={item.data.name}
+              position={item.data.position}
+              // cvLink={item.cvLink}
               delayTime={index * 150}
-              socialLinks={item.socialLinks}
+              // socialLinks={item.socialLinks}
             />
           ))}
         </div>

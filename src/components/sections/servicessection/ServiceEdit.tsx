@@ -42,9 +42,9 @@ const ServiceEdit = ({ id, action, data, errorMessage }: ServiceEditI) => {
           titleProp={"title"}
           value={state.cardsData}
           onChange={handleChange}
-          childs={{
+          childs={() => ({
             description: (props) => <TextArea {...(props as TextAreaI)} />,
-          }}
+          })}
         />
       </WithTabs>
 

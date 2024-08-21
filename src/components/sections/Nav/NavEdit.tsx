@@ -65,9 +65,40 @@ const NavEdit = ({
                       {...props}
                       value={item.menu}
                       titleProp={"name"}
-                      childs={() => ({
-                        href: (p) => <TextFeild {...(p as InputI)} />,
-                      })}
+                      childs={(nitem) => {
+                        const ncheckbox = (props: CheckBoxI) => (
+                          <CheckBox
+                            {...props}
+                            label="has sub menu"
+                            value={Boolean(nitem.hasDropDown)}
+                          />
+                        );
+                        if (nitem.hasDropDown) {
+                          return {
+                            hasDropDown: ncheckbox,
+                            menu: (
+                              props: MuiAccordionDetails<NavItemI, "name">
+                            ) => (
+                              <div className="ms-6">
+                                <Accordions
+                                  {...props}
+                                  value={nitem.menu}
+                                  titleProp={"name"}
+                                  childs={() => ({
+                                    href: (p) => (
+                                      <TextFeild {...(p as InputI)} />
+                                    ),
+                                  })}
+                                />
+                              </div>
+                            ),
+                          };
+                        }
+                        return {
+                          hasDropDown: ncheckbox,
+                          href: (p) => <TextFeild {...(p as InputI)} />,
+                        };
+                      }}
                     />
                   </div>
                 ),

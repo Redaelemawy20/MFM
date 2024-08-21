@@ -7,8 +7,6 @@ import { HiOutlineMail } from "react-icons/hi";
 import FooterStyle from "./FooterStyle";
 import FooterProps from "@/ts/interfaces/FooterProps";
 const Footer = ({ data }: FooterProps) => {
-  console.log(data);
-
   return (
     <FooterStyle>
       <div className="Main_wraper_grid">
@@ -22,13 +20,17 @@ const Footer = ({ data }: FooterProps) => {
         <div className="data-foot">
           <h2> {data.column1Title}</h2>
           {data.column1Links.map((l) => (
-            <a href={l.href}>{l.name}</a>
+            <a href={l.href} key={l.name}>
+              {l.name}
+            </a>
           ))}
         </div>
         <div className="data-foot">
           <h2> {data.column2Title}</h2>
           {data.column2Links.map((l) => (
-            <a href={l.href}>{l.name}</a>
+            <a href={l.href} key={l.name}>
+              {l.name}
+            </a>
           ))}
         </div>
         <div className="data-foot">

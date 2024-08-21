@@ -32,7 +32,7 @@ const HeroEdit = ({ id, action, data, errorMessage }: HeroEditI) => {
         titleProp={"title"}
         value={state.items}
         onChange={handleChange}
-        childs={{
+        childs={() => ({
           backgroundImage: (props) => (
             <ImageUploadPerview
               {...(props as ImageUploadPerviewI)}
@@ -43,7 +43,7 @@ const HeroEdit = ({ id, action, data, errorMessage }: HeroEditI) => {
           description: (props) => {
             return <TextArea {...(props as TextAreaI)} />;
           },
-        }}
+        })}
       />
       <FormButton>Submit</FormButton>
     </Form>
