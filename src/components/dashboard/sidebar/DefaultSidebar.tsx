@@ -1,18 +1,24 @@
-"use client";
-import { usePathname, useRouter } from "next/navigation";
+// "use client";
+// import { usePathname } from "next/navigation";
 
 import { Sidebar } from "./sidebar.styles";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { SidebarMenu } from "./sidebar-menu";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
-import { PaymentsIcon } from "../icons/sidebar/payments-icon";
 import { CollapseItems } from "./collapse-items";
 import { BalanceIcon } from "../icons/sidebar/balance-icon";
 import Image from "next/image";
+import { getEntities } from "@/services/entityServices";
+import { entityAdminPath } from "@/utils/router";
 
-const DefaultSideBar = () => {
-  const pathname = usePathname();
+const DefaultSideBar = async () => {
+  // const pathname = usePathname();
+  const entities = await getEntities();
+  let links = entities.map((e) => ({
+    name: e.name,
+    href: entityAdminPath(e.slug),
+  }));
 
   return (
     <>
@@ -33,28 +39,19 @@ const DefaultSideBar = () => {
           <SidebarItem
             title="Home"
             icon={<HomeIcon />}
-            isActive={pathname === "/"}
+            // isActive={pathname === "/"}
             href="/"
           />
           <SidebarMenu title="Main Menu">
             <SidebarItem
-              isActive={pathname === "/accounts"}
+              // isActive={pathname === "/accounts"}
               title="Accounts"
               icon={<AccountsIcon />}
               href="accounts"
             />
-            <SidebarItem
-              isActive={pathname === "/payments"}
-              title="Payments"
-              icon={<PaymentsIcon />}
-            />
             <CollapseItems
               icon={<BalanceIcon />}
-              items={[
-                "Faculty of Medicne",
-                "Faculty of Computers and Information",
-                "Faculty of Law",
-              ]}
+              items={links}
               title="Faculties"
             />
           </SidebarMenu>

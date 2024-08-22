@@ -1,6 +1,5 @@
 import db from "@/db";
 export async function getPageSections(entity_slug: string, page_slug: string) {
-  const pageSections = [];
   const entity = await db.entity.findUnique({
     where: {
       slug: entity_slug,
