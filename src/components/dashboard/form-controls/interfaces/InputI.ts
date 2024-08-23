@@ -1,10 +1,25 @@
-import HandleChange from "../../../../ts/common/HandleChange";
-export default interface InputI {
+import { HandleChange } from "../../../../ts/common/HandleChange";
+
+type BaseInput = {
   name: string;
   label: string;
-  onChange: HandleChange;
+  onChange?: HandleChange;
   onValidate?: HandleChange;
-  value: string | undefined | number;
   error?: boolean | string;
   rest?: object;
+};
+export interface TranslatableInput<T> {
+  translatable: true;
+  value: TranslatableValue<T>;
+}
+export interface NormalInput<T> {
+  translatable?: false | null | undefined;
+  value: T;
+}
+type InputI<T> = BaseInput & (TranslatableInput<T> | NormalInput<T>);
+export default InputI;
+
+export interface TranslatableValue<T> {
+  ar: T;
+  en: T;
 }

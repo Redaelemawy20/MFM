@@ -1,37 +1,65 @@
 "use client";
 import React from "react";
-import MultiPointInterface from "../interfaces/MultiPointInputI";
 import Point from "./Point";
 import { Button } from "@nextui-org/react";
+import InputI from "../interfaces/InputI";
+import { useFormContext } from "../../forms/context/FormContext";
 
 export default function MultiPointInput({
   name: key,
   label,
-  value: points = [],
+  value: points,
   onValidate,
   onChange,
-}: MultiPointInterface) {
+  translatable,
+}: InputI) {
+  const { handleChangeUpdated, lang } = useFormContext();
+  let showedPoints;
+  if (translatable) {
+    let value = points ? points[lang] : points;
+    showedPoints = value || [];
+  } else {
+    showedPoints = points || [];
+  }
   const handleChange = (id: number, value: string): void => {
-    const clonedPoints = [...points];
+    const clonedPoints = [...showedPoints];
     clonedPoints[id] = value;
-    onChange({ name: key, value: clonedPoints });
+    handleChangeUpdated(
+      Boolean(translatable),
+      showedPoints,
+      { name: key, value: clonedPoints },
+      onChange
+    );
+
     onValidate && onValidate({ name: key, value: clonedPoints });
   };
   const handleDelete = (id: number): void => {
-    const clonedPoints = [...points];
+    const clonedPoints = [...showedPoints];
     const filtered = clonedPoints.filter((item, index) => {
       return id !== index;
     });
-    onChange({ name: key, value: filtered });
-    onValidate && onValidate({ name: key, value: filtered });
+
+    handleChangeUpdated(
+      Boolean(translatable),
+      showedPoints,
+      { name: key, value: filtered },
+      onChange
+    );
   };
   const handleAdd = () => {
-    const clonedPoints = [...points];
+    const clonedPoints = [...showedPoints];
 
     clonedPoints.push("");
-    onChange({ name: key, value: clonedPoints });
+    handleChangeUpdated(
+      Boolean(translatable),
+      showedPoints,
+      { name: key, value: clonedPoints },
+      onChange
+    );
+
     onValidate && onValidate({ name: key, value: clonedPoints });
   };
+
   return (
     <>
       <div className="flex flex-row">
@@ -40,20 +68,18 @@ export default function MultiPointInput({
         </Button>
       </div>
       <div className="flex flex-col items-stretch m-2">
-        {points && points.length
-          ? points.map((point, index) => {
-              return (
-                <Point
-                  id={index}
-                  key={index}
-                  label={label}
-                  onChange={handleChange}
-                  onDelete={handleDelete}
-                  point={point}
-                />
-              );
-            })
-          : `No items added to ${label} section`}
+        {showedPoints.map((point: string, index: number) => {
+          return (
+            <Point
+              id={index}
+              key={index}
+              label={label}
+              onChange={handleChange}
+              onDelete={handleDelete}
+              point={point}
+            />
+          );
+        })}
       </div>
     </>
   );

@@ -1,31 +1,70 @@
 "use client";
 
-import AccordionI, { ChildFunction } from "./interfaces/AccordionI";
+import AccordionI from "./interfaces/AccordionI";
 import { Accordion, AccordionItem, Button } from "@nextui-org/react";
-import TextFeild from "./Input";
-import EnsureTheValueOfKeyIsWithType from "@/ts/common/EnsureTheValueOfKeyIsWithType";
 import { MdLibraryAdd } from "react-icons/md";
+import { useFormContext } from "../forms/context/FormContext";
+import { HandleChange } from "@/ts/common/HandleChange";
 
-export default function Accordions<T, K extends keyof T>({
+export default function Accordions<T>({
   value: rValue,
   name,
-  titleProp,
+  getTitle,
   childs,
-  onChange,
-  onValidate,
-  onDelete,
-  onlyOne = false,
-}: AccordionI<T, EnsureTheValueOfKeyIsWithType<T, K, string>>) {
-  const value = rValue ? rValue : [];
-  const handleChange = (
-    id: number,
-    { name: inputName, value: inputValue }: { name: keyof T; value: any }
-  ) => {
-    const cloned = [...value];
-    const item = cloned[id];
 
-    item[inputName] = inputValue;
-    onChange({ name: String(name), value: cloned });
+  onChange,
+  translatable,
+  onlyOne = false,
+}: AccordionI<T>) {
+  const { lang, handleChangeUpdated } = useFormContext();
+  let value;
+  if (translatable) {
+    value = rValue ? rValue[lang] : [];
+  } else {
+    value = rValue ?? [];
+  }
+  value = Array.isArray(value) ? value : [];
+  // const value = rValue ? rValue : [];
+
+  const onDelete = (index: number) => {
+    const v = [...value];
+    const fv = v.filter((v, i) => i !== index);
+    handleChangeUpdated(
+      Boolean(translatable),
+      rValue,
+      { name, value: fv },
+      onChange
+    );
+  };
+  const onChildChange = (index: number): HandleChange => {
+    return ({ name: n, value: v }) => {
+      // console.log({ name, v });
+      // console.log({ state });
+      // console.log(n);
+
+      const clonedValues = [...value];
+      const changeItem = { ...clonedValues[index] };
+      changeItem[n as keyof T] = v;
+      clonedValues[index] = changeItem;
+      // console.log({ state });
+
+      handleChangeUpdated(
+        Boolean(translatable),
+        rValue,
+        { name, value: clonedValues },
+        onChange
+      );
+    };
+  };
+  const onAdd = () => {
+    const v = [...value];
+    v.push({} as T);
+    handleChangeUpdated(
+      Boolean(translatable),
+      rValue,
+      { name, value: v },
+      onChange
+    );
   };
 
   return (
@@ -37,50 +76,25 @@ export default function Accordions<T, K extends keyof T>({
           value.map((item, index) => {
             return (
               <AccordionItem
-                title={item[titleProp] ? String(item[titleProp]) : "item"}
+                title={getTitle(item) || "item"}
                 key={index}
                 indicator={({ isOpen }) =>
                   !onlyOne && (
-                    <span
-                      onClick={(e) => {
-                        const v = [...value];
-                        const fv = v.filter((v, i) => i !== index);
-                        onChange({ name, value: fv });
-                        onDelete && onDelete(index);
-                        onValidate && onValidate({ name, value: fv });
-                      }}
-                    >
-                      delete
-                    </span>
+                    <span onClick={(e) => onDelete(index)}>delete</span>
                   )
                 }
               >
                 <div className="flex flex-col">
-                  <TextFeild
-                    label="title"
-                    name={String(titleProp)}
-                    onChange={(target) => {
-                      handleChange(index, target as any);
-                    }}
-                    value={item[titleProp]}
-                  />
-
-                  {Object.entries(childs(item, index)).map((a, i) => {
-                    const child = a[1] as ChildFunction;
-                    return (
-                      <div key={i} className="w-full">
-                        {child({
-                          label: a[0],
-                          name: a[0],
-                          onChange: (target) => {
-                            handleChange(index, target as any);
-                          },
-                          value: item[a[0] as K] as any,
-                          index,
-                        })}
-                      </div>
-                    );
-                  })}
+                  {Object.entries(childs(item, onChildChange(index))).map(
+                    (a, i) => {
+                      const child = a[1] as () => React.ReactNode;
+                      return (
+                        <div key={i} className="w-full">
+                          {child()}
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
               </AccordionItem>
             );
@@ -89,15 +103,9 @@ export default function Accordions<T, K extends keyof T>({
       {!onlyOne && (
         <Button
           color="success"
-          className=""
           variant="shadow"
           startContent={<MdLibraryAdd />}
-          onClick={() => {
-            const v = [...value];
-            v.push({} as T);
-            onChange({ name, value: v });
-            onValidate && onValidate({ name, value: v });
-          }}
+          onClick={onAdd}
         >
           add item
         </Button>

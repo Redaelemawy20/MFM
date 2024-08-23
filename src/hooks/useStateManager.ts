@@ -1,12 +1,12 @@
 "use client";
-import HandleChange, {
-  HandleTranslatableChange,
+import { TranslatableValue } from "@/components/dashboard/form-controls/interfaces/InputI";
+import {
+  HandleChange,
+  HandleChangeUpdated,
+  HandleFileRemove,
+  HandleFileUpload,
 } from "@/ts/common/HandleChange";
-import HandleFileUpload, {
-  HandleDeleteFile,
-} from "@/ts/common/HandleFileUpload";
 import Translatable, { Lang } from "@/ts/common/Translatable";
-import { AttachedFiles } from "@/ts/state/WithFiles";
 import { useState } from "react";
 
 const useStateManager = <T>(data: T) => {
@@ -17,6 +17,29 @@ const useStateManager = <T>(data: T) => {
     const { name, value } = target;
 
     setState({ ...state, [name]: value });
+  };
+  const handleChangeUpdated: HandleChangeUpdated = (
+    translatable,
+    oldValue,
+    target,
+    onChange
+  ) => {
+    let clonedValue;
+    if (translatable) {
+      clonedValue = oldValue ? { ...oldValue } : ({} as TranslatableValue);
+      clonedValue[lang] = target.value;
+    } else {
+      clonedValue = target.value;
+    }
+
+    if (onChange) {
+
+      onChange({ name: target.name, value: clonedValue });
+    } else {
+     
+
+      handleChange({ name: target.name, value: clonedValue });
+    }
   };
   const handleTranslatableChange: HandleChange = (
     { name, value },
@@ -33,54 +56,32 @@ const useStateManager = <T>(data: T) => {
       return { ...prev, content: translatableValue };
     });
   };
-  const onUpload = (filename: string, file: File) => {
+  const handleFileUpload: HandleFileUpload = (filename: string, file: File) => {
     const clonedFiles = { ...files };
     clonedFiles[filename] = file;
     setFiles(clonedFiles);
   };
-  const onRemove = (filename: string) => {
+  const handleFileRemove: HandleFileRemove = (filename: string) => {
     const clonedFiles = { ...files };
     delete clonedFiles[filename];
     setFiles(clonedFiles);
   };
-  const handleDeleteFile: HandleDeleteFile<T> = <K extends keyof T>(
-    id: number,
-    file: K
-  ) => {
-    let attachedFiles = { ...(state[file] as AttachedFiles) };
-    let files = attachedFiles.Files ?? [];
 
-    // let deleted = attachedFiles.deletedFiles ?? [];
-
-    // deleted.push(files[id]);
-    let updatedIndices = attachedFiles.updatedIndices
-      ? [...attachedFiles.updatedIndices]
-      : [];
-    updatedIndices[id] = 2;
-    attachedFiles.updatedIndices = updatedIndices;
-    files = files.filter((file, index) => {
-      return index !== id;
-    });
-    attachedFiles.Files = files;
-    // setState({ ...state, [file]: attachedFiles });
-    setState((prev) => {
-      return { ...prev, [file]: attachedFiles };
-    });
-  };
   const handleMultiSelectChange: HandleChange = ({ name, value }) => {
     const newValue = typeof value === "string" ? value.split(",") : value;
     setState({ ...state, [name]: newValue });
   };
+
   return {
     state,
     files,
     lang,
+    handleChangeUpdated,
     setLang,
     handleTranslatableChange,
     handleChange,
-    onUpload,
-    onRemove,
-    handleDeleteFile,
+    handleFileUpload,
+    handleFileRemove,
     handleMultiSelectChange,
     setState,
   };

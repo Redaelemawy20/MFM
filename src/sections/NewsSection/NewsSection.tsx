@@ -1,7 +1,6 @@
 "use client";
 import CardNews from "@/components/cardNews/CardNews";
 import MainTitle from "@/components/sections/mainTitle/MainTitle";
-import { NewsProps } from "@/ts/interfaces/NewsProps";
 
 const NewsSection = ({ data: news }: { data: { details: NewsProps }[] }) => {
   return (

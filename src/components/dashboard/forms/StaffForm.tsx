@@ -1,11 +1,16 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./FormButton";
+import FormButton from "./form-button/FormButton";
 import Form from "@/components/common/Form";
 import TextFeild from "../form-controls/Input";
 import useStateManager from "@/hooks/useStateManager";
 import { StaffData } from "@/ts/interfaces/StaffData";
 import ImageUploadPerview from "../form-controls/ImageUploadPerview";
 import CheckBox from "../form-controls/CheckBox";
+import {
+  ContextType,
+  FormProvider,
+  useFormContext,
+} from "./context/FormContext";
 interface StaffFormI extends FormProps {
   entity_slug: string;
   staff?: { slug: string; data: StaffData };
@@ -17,50 +22,54 @@ export default function StaffForm({
   staff,
   errorMessage,
 }: StaffFormI) {
-  const { state, handleChange, onUpload, onRemove, files } = useStateManager(
-    staff ? staff.data : ({} as StaffData)
+  return (
+    <FormProvider
+      entity_slug={entity_slug}
+      action={action}
+      data={staff ? staff.data : {}}
+      errorMessage={errorMessage}
+      staff_slug={staff?.slug}
+    >
+      <FormElements />
+    </FormProvider>
   );
+}
+interface StaffContext extends ContextType {
+  state: StaffData;
+  entity_slug: string;
+  staff_slug?: string;
+}
+
+function FormElements() {
+  const { state, files, action, handleChange, entity_slug, staff_slug } =
+    useFormContext<StaffContext>();
   const formData = new FormData();
   formData.set(
     "data",
-    JSON.stringify({ ...state, entity_slug, slug: staff?.slug })
+    JSON.stringify({ ...state, entity_slug, slug: staff_slug })
   );
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form action={modefiedAction} errorMessage={errorMessage}>
+    <Form modifiedAction={modefiedAction}>
       <ImageUploadPerview
         name="avatar"
         onChange={handleChange}
-        onUpload={onUpload}
-        onRemove={onRemove}
         value={state.avatar}
       />
-      <TextFeild
-        label="Title ex: dr, prof"
-        value={state.title}
-        name="title"
-        onChange={handleChange}
-      />
-      <TextFeild
-        label="Enter Staff Name"
-        value={state.name}
-        name="name"
-        onChange={handleChange}
-      />
+      <TextFeild label="Title ex: dr, prof" value={state.title} name="title" />
+      <TextFeild label="Enter Staff Name" value={state.name} name="name" />
       <TextFeild
         label="Current Position"
         value={state.position}
         name="position"
-        onChange={handleChange}
       />
       <TextFeild
         label="Degree ex: PHD in Pathology"
         value={state.degree}
         name="degree"
-        onChange={handleChange}
       />
       <CheckBox
         label="Check if the member is one of the top leaders"

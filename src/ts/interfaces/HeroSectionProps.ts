@@ -6,7 +6,8 @@ interface DataProps {
   description: string;
 }
 export default interface HeroProps {
-  data: {
-    items: DataProps[];
-  };
+  data: HeroDataType;
 }
+export type HeroDataType = {
+  items: DataProps[];
+};

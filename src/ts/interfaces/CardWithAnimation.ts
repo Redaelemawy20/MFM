@@ -1,6 +1,6 @@
-import ServerImage from "./ImageI";
+import { ServerImage } from "./ImageI";
 
-interface DataProps {
+interface AnimatiedCardI {
   img: ServerImage;
   title: string;
   path: string;
@@ -8,7 +8,8 @@ interface DataProps {
 }
 
 export default interface CardWithAnimationProps {
-  data: {
-    items: DataProps[];
-  };
+  data: CardWithAnimationData;
 }
+export type CardWithAnimationData = {
+  items: AnimatiedCardI[];
+};

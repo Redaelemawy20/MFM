@@ -3,39 +3,60 @@ import React from "react";
 import ImageUploadPerviewI from "./interfaces/ImageUploadPerviewI";
 import { Button, Image } from "@nextui-org/react";
 import { CiSquareRemove } from "react-icons/ci";
+import { useFormContext } from "../forms/context/FormContext";
+import { TranslatableValue } from "./interfaces/InputI";
 const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   onChange,
-  onUpload,
-  onRemove,
   name,
   value,
   alt,
   btnText = "Upload Image",
+  translatable,
 }) => {
+  const { lang, handleChangeUpdated, handleFileUpload, handleFileRemove } =
+    useFormContext();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
 
     if (target.files) {
       const uploadedFile = target.files[0];
       const filename = Date.now() + uploadedFile.name;
+      let translatedFilename = translatable ? filename + lang : filename;
+
       const Image = {
         image: uploadedFile,
         preview: URL.createObjectURL(uploadedFile),
-        name: filename,
+        name: translatedFilename,
       };
-      onChange({ name, value: Image });
-      onUpload(filename, uploadedFile);
+      handleChangeUpdated(
+        Boolean(translatable),
+        value,
+        { name, value: Image },
+        onChange
+      );
+
+      handleFileUpload(translatedFilename, uploadedFile);
     }
   };
   const handleRemove = () => {
-    onChange({ name, value: {} });
+    handleChangeUpdated(
+      Boolean(translatable),
+      value,
+      { name, value: {} },
+      onChange
+    );
 
-    onRemove(value.name);
+    handleFileRemove(value.name);
   };
   const getSrc = () => {
-    if (typeof value !== "object") return value;
-    if (value.image) return value.preview;
-    if (value._s) return `/api/files?name=${value._s}`;
+    let obj;
+    if (translatable) {
+      obj = (value ? { ...value[lang] } || {} : {}) as TranslatableValue;
+    } else {
+      obj = value ?? {};
+    }
+    if (obj.image) return obj.preview;
+    if (obj._s) return `/api/files?name=${obj._s}`;
     return "";
   };
 

@@ -1,22 +1,9 @@
 "use client";
-import React, { ReactNode } from "react";
+import React from "react";
 import MainTitle from "../mainTitle/MainTitle";
 import ServiceCard from "./ServiceCard";
+import { ServicesProps } from "@/ts/models/Service";
 
-interface CardData {
-  // icon: ReactNode;
-  title: string;
-  description: string;
-}
-
-interface DataProps {
-  title: string;
-  caption: string;
-  cardsData: CardData[];
-}
-export interface ServicesProps {
-  data: DataProps;
-}
 const Services = ({ data }: ServicesProps) => {
   const cardsData = data.cardsData ? data.cardsData : [];
   return (

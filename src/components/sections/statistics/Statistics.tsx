@@ -1,15 +1,7 @@
-"use client";
-import React, { ReactNode } from "react";
+import React from "react";
 import CardofStatitics from "./CardofStatitics";
-interface DataProps {
-  // icon: ReactNode;
-  num: number;
-  subtitle: string;
-  description: string;
-}
-export interface StatisticsProps {
-  data: { items: DataProps[] };
-}
+import { StatisticsProps } from "@/ts/models/Statistics";
+
 const Statistics = ({ data }: StatisticsProps) => {
   const items = data.items ? data.items : [];
 

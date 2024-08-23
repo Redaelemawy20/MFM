@@ -1,6 +1,7 @@
-import InputI from "./interfaces/InputI";
+import InputI, { TranslatableValue } from "./interfaces/InputI";
 import { Input } from "@nextui-org/react";
 import React from "react";
+import { useFormContext } from "../forms/context/FormContext";
 
 const TextFeild = ({
   name,
@@ -9,22 +10,22 @@ const TextFeild = ({
   error,
   onChange,
   onValidate,
+  translatable,
   rest = {},
 }: InputI) => {
-  console.log(value);
-
+  const { lang, handleChangeUpdated } = useFormContext();
+  const inputValue = translatable ? value && value[lang] : value;
   return (
     <Input
       fullWidth
       label={label}
       name={name}
-      value={value ? String(value) : ""}
+      value={inputValue || ""}
       className="mb-2"
       onChange={(e) => {
-        onChange(e.target);
-        onValidate && onValidate(e.target);
+        handleChangeUpdated(Boolean(translatable), value, e.target, onChange);
       }}
-      {...rest}
+      // {...rest}
     />
   );
 };

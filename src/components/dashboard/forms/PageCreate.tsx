@@ -1,5 +1,5 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./FormButton";
+import FormButton from "./form-button/FormButton";
 import Form from "@/components/common/Form";
 import TextFeild from "../form-controls/Input";
 import useStateManager from "@/hooks/useStateManager";
@@ -18,9 +18,9 @@ export default function PageCreateForm({
   const formData = new FormData();
   formData.set("name", state.name);
   formData.set("entity_slug", entity_slug);
-  const modefiedAction = action.bind(null, formData);
+  const modifiedAction = action.bind(null, formData);
   return (
-    <Form action={modefiedAction} errorMessage={errorMessage}>
+    <Form modifiedAction={modifiedAction} errorMessage={errorMessage}>
       <TextFeild
         label="Page Name"
         value={state.name}

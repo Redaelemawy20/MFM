@@ -1,20 +1,8 @@
 "use client";
-import React, { ReactNode } from "react";
+import React from "react";
 import FeaturesStyle from "./FeaturesStyle";
-interface FeaturesItem {
-  // icon: ReactNode;
-  title: string;
-  description: string;
-}
+import { FeaturesProps } from "@/ts/models/Feature";
 
-interface DataProps {
-  mainImg: string;
-  featuresItems: FeaturesItem[];
-}
-
-export interface FeaturesProps {
-  data: DataProps;
-}
 const Features = ({ data }: FeaturesProps) => {
   const items = data.featuresItems || [{}];
   return (

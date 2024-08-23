@@ -1,19 +1,17 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./FormButton";
+import FormButton from "./form-button/FormButton";
 import TextFeild from "../form-controls/Input";
-import useStateManager from "@/hooks/useStateManager";
-import ImageUploadPerview from "../form-controls/ImageUploadPerview";
 import Form from "@/components/common/Form";
-import { NewsProps } from "@/ts/interfaces/NewsProps";
 import WithTabs from "@/components/common/withTabs";
-import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
 import Accordions from "../form-controls/Accordion";
-import ImageUploadPerviewI from "../form-controls/interfaces/ImageUploadPerviewI";
-import CheckBox from "../form-controls/CheckBox";
-import FooterProps from "@/ts/interfaces/FooterProps";
+import FooterProps, { FooterData } from "@/ts/interfaces/FooterProps";
 import TextArea from "../form-controls/TextArea";
-import InputI from "../form-controls/interfaces/InputI";
+import {
+  ContextType,
+  FormProvider,
+  useFormContext,
+} from "./context/FormContext";
 
 interface FooterEditPropsI extends FooterProps, FormProps {
   entity_slug: string;
@@ -24,29 +22,38 @@ export default function FooterForm({
   errorMessage,
   data,
 }: FooterEditPropsI) {
-  const { state, handleChange } = useStateManager(data);
+  return (
+    <FormProvider
+      entity_slug={entity_slug}
+      action={action}
+      data={data}
+      errorMessage={errorMessage}
+    >
+      <FormElements />
+    </FormProvider>
+  );
+}
+interface FooterContext extends ContextType {
+  state: FooterData;
+  entity_slug: string;
+}
+const FormElements = () => {
+  const { state, entity_slug, action } = useFormContext<FooterContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state }));
   formData.set("entity_slug", entity_slug);
   formData.set("type", "footer");
   const modefiedAction = action.bind(null, formData);
-
   return (
-    <Form action={modefiedAction} errorMessage={errorMessage}>
+    <Form modifiedAction={modefiedAction}>
       <WithTabs tabs={["Basic Ino", "Column 1", "Column 2", "Contact"]}>
         {/* basic info */}
         <>
-          <TextFeild
-            label="Title"
-            name="title"
-            value={state.title}
-            onChange={handleChange}
-          />
+          <TextFeild label="Title" name="title" value={state.title} />
           <TextArea
             label="Add Pragraph"
             value={state.paragraph}
             name="paragraph"
-            onChange={handleChange}
           />
         </>
         {/* column1 */}
@@ -55,16 +62,21 @@ export default function FooterForm({
             label="Column1 Title"
             value={state.column1Title}
             name="column1Title"
-            onChange={handleChange}
           />
           <Accordions
             name="column1Links"
             value={state.column1Links}
-            titleProp={"name"}
-            childs={() => ({
-              href: (props) => <TextFeild {...(props as InputI)} />,
+            getTitle={() => ""}
+            childs={(item, onChange) => ({
+              href: () => (
+                <TextFeild
+                  label="link"
+                  name="href"
+                  value={item.href}
+                  onChange={onChange}
+                />
+              ),
             })}
-            onChange={handleChange}
           />
         </>
         {/* column2 */}
@@ -73,41 +85,31 @@ export default function FooterForm({
             label="Column2 Title"
             value={state.column2Title}
             name="column2Title"
-            onChange={handleChange}
           />
           <Accordions
             name="column2Links"
             value={state.column2Links}
-            titleProp={"name"}
-            childs={() => ({
-              href: (props) => <TextFeild {...(props as InputI)} />,
+            getTitle={() => ""}
+            childs={(item, onChange) => ({
+              href: () => (
+                <TextFeild
+                  label="link"
+                  name="href"
+                  value={item.href}
+                  onChange={onChange}
+                />
+              ),
             })}
-            onChange={handleChange}
           />
         </>
         <>
-          <TextFeild
-            label="Location"
-            name="location"
-            value={state.location}
-            onChange={handleChange}
-          />
-          <TextFeild
-            label="Phone"
-            name="phone"
-            value={state.phone}
-            onChange={handleChange}
-          />
-          <TextFeild
-            label="Email"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-          />
+          <TextFeild label="Location" name="location" value={state.location} />
+          <TextFeild label="Phone" name="phone" value={state.phone} />
+          <TextFeild label="Email" name="email" value={state.email} />
         </>
       </WithTabs>
 
       <FormButton>Save</FormButton>
     </Form>
   );
-}
+};

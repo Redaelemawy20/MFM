@@ -1,13 +1,8 @@
 "use client";
 import React from "react";
 import MainTitleStyle from "./MainTitleStyle";
-interface DataProps {
-  mainTitle: string;
-  caption?: string;
-}
-export interface MainTitleI {
-  data: DataProps;
-}
+import { MainTitleI } from "@/ts/models/MainTiltel";
+
 const MainTitle = ({ data }: MainTitleI) => {
   return (
     <MainTitleStyle data-aos="fade-up">

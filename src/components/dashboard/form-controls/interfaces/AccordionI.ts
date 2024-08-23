@@ -1,45 +1,26 @@
 import React from "react";
-import Input from "../Input";
-import TextArea from "../TextArea";
-import HandleChange from "../../../../ts/common/HandleChange";
-import InputI from "./InputI";
-import TextAreaI from "./TextAreaI";
-import MultiPointInterface from "./MultiPointInputI";
-import ImageUploadPerview from "../ImageUploadPerview";
-import ImageUploadPerviewI from "./ImageUploadPerviewI";
-import CheckBoxI from "./CheckBoxI";
 
-export default interface MuiAccordionDetails<T, K extends keyof T> {
+import { HandleChange } from "../../../../ts/common/HandleChange";
+import { NormalInput, TranslatableInput } from "./InputI";
+
+interface BaseAccordion<T> {
   childs: (
     item: T,
-    index: number
+    onChildChange: HandleChange,
+    index?: number
   ) => Partial<{
-    [key in keyof T]: ChildFunction;
+    [key in keyof T]: () => React.ReactNode;
   }>;
   name: string;
-  titleProp: K;
-  value: T[];
+  getTitle: (item: T) => string;
+
   onValidate?: HandleChange;
   error?: string | null;
-  onChange: HandleChange;
+  onChange?: HandleChange;
   onDelete?: (i: number) => void;
   onlyOne?: boolean;
 }
-export interface HasTitleAndValue {
-  title: string;
-  value: any;
-}
-export type ChildFunction = (
-  props: (
-    | InputI
-    | TextAreaI
-    | MultiPointInterface
-    | ImageUploadPerviewI
-    | MuiAccordionDetails<any, any>
-    | CheckBoxI
-  ) & {
-    index: number;
-  }
-) => React.ReactElement<
-  typeof Input | typeof TextArea | typeof ImageUploadPerview
->;
+
+type AccordionI<T> = BaseAccordion<T> &
+  (NormalInput<T[]> | TranslatableInput<T[]>);
+export default AccordionI;

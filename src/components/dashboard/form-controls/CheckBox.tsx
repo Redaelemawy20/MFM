@@ -10,13 +10,12 @@ export default function ({
   onValidate,
   rest = {},
 }: CheckBoxI) {
-  console.log(value);
   const checked = value ? true : false;
   return (
     <Checkbox
       name={name}
       defaultSelected={checked}
-      // value={value}
+      // value={value as string}
       checked={checked}
       className="mb-2"
       onChange={(e) => {
