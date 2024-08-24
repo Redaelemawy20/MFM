@@ -22,6 +22,7 @@
     "mfm": "file:",
     "next": "14.1.4",
     "next-auth": "^5.0.0-beta.19",
+    "next-intl": "^3.17.6",
     "react": "^18",
     "react-bootstrap": "^2.10.3",
     "react-countup": "^6.5.3",

@@ -1,13 +1,15 @@
+import LanguageSwitcher from "@/components/sections/Nav/LanguageSwitcher";
 import { getLayoutElements } from "@/services/ui/get-layout-elements";
 import { notFound } from "next/navigation";
 
 const UniLayout = async ({ children }: { children: React.ReactNode }) => {
-  const layout = await getLayoutElements("menofia-university");
-  if (!layout) {
-    return notFound();
-  }
+  // const layout = await getLayoutElements("menofia-university");
+  // if (!layout) {
+  //   return notFound();
+  // }
   return (
     <>
+      <LanguageSwitcher />
       {/* {layout.nav ? layout.nav() : <header>no nav</header>} */}
       <div>{children}</div>
 
