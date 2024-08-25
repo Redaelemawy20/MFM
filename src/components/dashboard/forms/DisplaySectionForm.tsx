@@ -2,7 +2,6 @@ import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./form-button/FormButton";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import Image from "next/image";
-import { useState } from "react";
 import Form from "@/components/common/Form";
 import TextFeild from "../form-controls/Input";
 import useStateManager from "@/hooks/useStateManager";
@@ -35,7 +34,7 @@ export default function DisplaySectionForm({
   if (withorder) formData.set("order", String(state.order));
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form action={modefiedAction} errorMessage={errorMessage}>
+    <Form modifiedAction={modefiedAction} errorMessage={errorMessage}>
       <h3 className="text-lg">Select template that data will be showed in</h3>
       <div className="flex flex-col gap-2 ">
         {sections.length

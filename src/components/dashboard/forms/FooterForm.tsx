@@ -12,6 +12,8 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
+import { getValueIn } from "@/utils/trans";
+import LanguageSelect from "../form-controls/LanguageSelect";
 
 interface FooterEditPropsI extends FooterProps, FormProps {
   entity_slug: string;
@@ -38,7 +40,8 @@ interface FooterContext extends ContextType {
   entity_slug: string;
 }
 const FormElements = () => {
-  const { state, entity_slug, action } = useFormContext<FooterContext>();
+  const { state, entity_slug, action, lang, setLang } =
+    useFormContext<FooterContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state }));
   formData.set("entity_slug", entity_slug);
@@ -46,14 +49,21 @@ const FormElements = () => {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
-      <WithTabs tabs={["Basic Ino", "Column 1", "Column 2", "Contact"]}>
+      <LanguageSelect value={lang} onChange={setLang} />
+      <WithTabs tabs={["Basic Info", "Column 1", "Column 2", "Contact"]}>
         {/* basic info */}
         <>
-          <TextFeild label="Title" name="title" value={state.title} />
+          <TextFeild
+            label="Title"
+            name="title"
+            value={state.title}
+            translatable
+          />
           <TextArea
             label="Add Pragraph"
             value={state.paragraph}
             name="paragraph"
+            translatable
           />
         </>
         {/* column1 */}
@@ -62,12 +72,22 @@ const FormElements = () => {
             label="Column1 Title"
             value={state.column1Title}
             name="column1Title"
+            translatable
           />
           <Accordions
             name="column1Links"
             value={state.column1Links}
-            getTitle={() => ""}
+            getTitle={(item) => getValueIn(item.name, lang)}
             childs={(item, onChange) => ({
+              name: () => (
+                <TextFeild
+                  label="link text"
+                  name="name"
+                  value={item.name}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
               href: () => (
                 <TextFeild
                   label="link"
@@ -85,12 +105,22 @@ const FormElements = () => {
             label="Column2 Title"
             value={state.column2Title}
             name="column2Title"
+            translatable
           />
           <Accordions
             name="column2Links"
             value={state.column2Links}
-            getTitle={() => ""}
+            getTitle={(item) => getValueIn(item.name, lang)}
             childs={(item, onChange) => ({
+              name: () => (
+                <TextFeild
+                  label="link text"
+                  name="name"
+                  value={item.name}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
               href: () => (
                 <TextFeild
                   label="link"

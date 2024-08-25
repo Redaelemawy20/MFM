@@ -11,6 +11,8 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import { StatisticsData, StatisticsProps } from "@/ts/models/Statistics";
+import LanguageSelect from "../form-controls/LanguageSelect";
+import { getValueIn } from "@/utils/trans";
 interface StatisticsEditI extends StatisticsProps, FormProps {
   id: number;
 }
@@ -39,7 +41,8 @@ interface StatisticsContext extends ContextType {
   id: number;
 }
 function FormElements() {
-  const { state, action, id } = useFormContext<StatisticsContext>();
+  const { state, action, id, setLang, lang } =
+    useFormContext<StatisticsContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
   formData.set("schema", "editStatistics");
@@ -47,9 +50,10 @@ function FormElements() {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect onChange={setLang} value={lang} />
       <Accordions
         name="items"
-        getTitle={() => ""}
+        getTitle={(item) => getValueIn(item.subtitle, lang)}
         value={state.items}
         childs={(item, onChange) => ({
           subtitle: () => (
@@ -58,6 +62,7 @@ function FormElements() {
               label="title"
               value={item.subtitle}
               onChange={onChange}
+              translatable
             />
           ),
           num: () => (
@@ -74,6 +79,7 @@ function FormElements() {
               label="description"
               value={item.description}
               onChange={onChange}
+              translatable
             />
           ),
         })}

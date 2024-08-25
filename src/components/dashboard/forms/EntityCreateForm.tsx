@@ -12,15 +12,30 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import Entity from "@/ts/models/Entity";
+import LanguageSelect from "../form-controls/LanguageSelect";
 
-export default function EntityCreateForm({ action, errorMessage }: FormProps) {
-  const data = {
+interface EntityFormI extends FormProps {
+  data?: Entity;
+  entity_slug?: string;
+}
+export default function EntityForm({
+  data,
+  entity_slug,
+  action,
+  errorMessage,
+}: EntityFormI) {
+  const state = data || {
     name: "",
     description: "",
     logo: { _s: "" },
   };
   return (
-    <FormProvider data={data} action={action} errorMessage={errorMessage}>
+    <FormProvider
+      data={state}
+      entity_slug={entity_slug || ""}
+      action={action}
+      errorMessage={errorMessage}
+    >
       <FormElements />
     </FormProvider>
   );
@@ -28,28 +43,44 @@ export default function EntityCreateForm({ action, errorMessage }: FormProps) {
 
 interface EntityContextType extends ContextType {
   state: Entity;
+  entity_slug?: string;
 }
 function FormElements() {
-  const { state, files, action } = useFormContext<EntityContextType>();
+  const { state, files, action, entity_slug, lang, setLang } =
+    useFormContext<EntityContextType>();
   const formData = new FormData();
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
-  formData.set("data", JSON.stringify({ ...state }));
+  formData.set("data", JSON.stringify({ ...state, entity_slug }));
+
   const modefiedAction = action.bind(null, formData);
 
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect value={lang} onChange={setLang} />
       <ImageUploadPerview
         value={state.logo}
         name="logo"
         btnText="Upload Logo"
       />
-      <TextFeild label="Entity Name" value={state.name} name="name" />
+      <TextFeild
+        label="Entity Name"
+        value={state.name}
+        name="name"
+        translatable
+      />
+      <TextFeild
+        label="Title that apears at the top"
+        value={state.topTitle}
+        name="topTitle"
+        translatable
+      />
       <TextArea
         label="Description - will help in search"
         name="description"
         value={state.description}
+        translatable
       />
       <FormButton>Save</FormButton>
     </Form>

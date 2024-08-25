@@ -3,9 +3,10 @@ import React, { useRef, useState, useEffect, ReactNode } from "react";
 import CountUp from "react-countup";
 import CardStatisticsStyle from "./CardStatisticsStyle";
 import Link from "next/link";
+import { c } from "@/utils/get-content";
 interface DataProps {
   // icon: ReactNode;
-  num: number;
+  num: string;
   subtitle: string;
   description: string;
 }
@@ -48,18 +49,16 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
         {/* <span className="icon">{item.icon}</span> */}
         {startCount ? (
           <h2>
-            <CountUp end={item.num} duration={3} />
+            <CountUp end={parseInt(item.num)} duration={3} />
           </h2>
         ) : (
           <h2>0</h2>
         )}
       </div>
       <p className="description">
-        <span className="strong">{item.subtitle}</span>
-        {item.description}
+        <span className="strong">{c(item.subtitle)}</span>
+        {c(item.description)}
       </p>
-      {/* <Link href="#">Find out more »</Link> */}
-      <Link href="#">الـمـزيـد»</Link>
     </CardStatisticsStyle>
   );
 };

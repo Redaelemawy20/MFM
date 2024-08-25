@@ -1,5 +1,6 @@
 import db from "@/db";
 import convertToSlug from "@/utils/convet-to-slug";
+import { getValueIn } from "@/utils/trans";
 import { revalidatePath } from "next/cache";
 // import { setEntityLinks } from '../content';
 
@@ -16,16 +17,20 @@ export async function createPage(data: any) {
     },
   });
 }
-export async function createEntityAction(data: any) {
-  const name = data.name as string;
+export async function editEntityAction(data: any) {
+  const name = data.name.en;
   const slug = convertToSlug(name);
-  const description = data.description;
   const meta = JSON.stringify({
-    description,
+    topTitle: data.topTitle,
+    description: data.description,
+    name: data.name,
     logo: data.logo,
   });
-  await db.entity.create({
-    data: {
+  await db.entity.upsert({
+    where: {
+      slug: data.entity_slug,
+    },
+    create: {
       name,
       slug,
       meta,
@@ -35,6 +40,33 @@ export async function createEntityAction(data: any) {
           slug: "_home",
         },
       },
+    },
+    update: {
+      meta,
+    },
+  });
+}
+export async function editNewsAction(data: any) {
+  const { entity_slug, slug } = data;
+  const enTitle = getValueIn(data.title, "en");
+  delete data.entity_slug;
+  delete data.slug;
+  let newSlug = convertToSlug(enTitle.slice(0, 50));
+  await db.news.upsert({
+    where: { slug },
+    create: {
+      slug: newSlug,
+      title: enTitle,
+      details: data,
+      entity: {
+        connect: {
+          slug: entity_slug,
+        },
+      },
+    },
+    update: {
+      slug: newSlug,
+      details: data,
     },
   });
 }
@@ -73,22 +105,6 @@ export async function setEntityLinksAction(data: any) {
   }
 }
 
-export async function editNewsAction(data: any) {
-  const { entity_slug } = data;
-  delete data.entity_slug;
-  await db.news.create({
-    data: {
-      slug: convertToSlug(data.title.slice(0, 50)),
-      title: data.title,
-      details: data,
-      entity: {
-        connect: {
-          slug: entity_slug,
-        },
-      },
-    },
-  });
-}
 export async function addSections(data: any) {
   const { pagename, sections, entity_slug } = data;
   const entity = await db.entity.findUnique({
@@ -198,6 +214,8 @@ export async function deletePageAction(data: any) {
 export async function createStaffAction(data: any) {
   const leader = Boolean(data.leadership);
   delete data.leader;
+  let nameEn = getValueIn(data.name, "en");
+  const newSlug = convertToSlug(nameEn);
   if (data.slug) {
     const slug = data.slug;
     delete data.slug;
@@ -206,17 +224,17 @@ export async function createStaffAction(data: any) {
         slug: slug,
       },
       data: {
-        name: data.name,
-        slug: convertToSlug(data.name),
+        name: nameEn,
+        slug: newSlug,
         leadership: leader,
-        data: data,
+        data,
       },
     });
   } else
     await db.user.create({
       data: {
-        name: data.name,
-        slug: convertToSlug(data.name),
+        name: nameEn,
+        slug: newSlug,
         data,
         leadership: leader,
         entity: {

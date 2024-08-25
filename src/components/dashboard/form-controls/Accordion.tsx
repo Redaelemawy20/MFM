@@ -11,9 +11,9 @@ export default function Accordions<T>({
   name,
   getTitle,
   childs,
-
   onChange,
   translatable,
+  btnText,
   onlyOne = false,
 }: AccordionI<T>) {
   const { lang, handleChangeUpdated } = useFormContext();
@@ -38,10 +38,6 @@ export default function Accordions<T>({
   };
   const onChildChange = (index: number): HandleChange => {
     return ({ name: n, value: v }) => {
-      // console.log({ name, v });
-      // console.log({ state });
-      // console.log(n);
-
       const clonedValues = [...value];
       const changeItem = { ...clonedValues[index] };
       changeItem[n as keyof T] = v;
@@ -85,16 +81,16 @@ export default function Accordions<T>({
                 }
               >
                 <div className="flex flex-col">
-                  {Object.entries(childs(item, onChildChange(index))).map(
-                    (a, i) => {
-                      const child = a[1] as () => React.ReactNode;
-                      return (
-                        <div key={i} className="w-full">
-                          {child()}
-                        </div>
-                      );
-                    }
-                  )}
+                  {Object.entries(
+                    childs(item, onChildChange(index), index)
+                  ).map((a, i) => {
+                    const child = a[1] as () => React.ReactNode;
+                    return (
+                      <div key={i} className="w-full">
+                        {child()}
+                      </div>
+                    );
+                  })}
                 </div>
               </AccordionItem>
             );
@@ -107,7 +103,7 @@ export default function Accordions<T>({
           startContent={<MdLibraryAdd />}
           onClick={onAdd}
         >
-          add item
+          {btnText || "add item"}
         </Button>
       )}
     </div>

@@ -1,6 +1,3 @@
-// import { getSections } from "@/services/getSections";
-// import { notFound } from "next/navigation";
-
 import { getPageElements } from "@/services/ui/get-page-elements";
 import { notFound } from "next/navigation";
 import React from "react";

@@ -1,3 +1,5 @@
+import { ServerImage } from "../interfaces/ImageI";
+
 interface FeaturesItem {
   // icon: ReactNode;
   title: string;
@@ -5,7 +7,7 @@ interface FeaturesItem {
 }
 
 export interface FeaturesData {
-  mainImg: string;
+  mainImg: ServerImage;
   featuresItems: FeaturesItem[];
 }
 

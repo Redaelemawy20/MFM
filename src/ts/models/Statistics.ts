@@ -1,6 +1,6 @@
 interface Statistic {
   // icon: ReactNode;
-  num: number;
+  num: string;
   subtitle: string;
   description: string;
 }

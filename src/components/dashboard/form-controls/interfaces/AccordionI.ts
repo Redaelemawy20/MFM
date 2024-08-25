@@ -19,6 +19,7 @@ interface BaseAccordion<T> {
   onChange?: HandleChange;
   onDelete?: (i: number) => void;
   onlyOne?: boolean;
+  btnText?: string;
 }
 
 type AccordionI<T> = BaseAccordion<T> &

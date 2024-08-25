@@ -2,6 +2,13 @@
   "HomePage": {
     "title": "اهلا وسهلا اذاك اخويا اهلا وسهلا"
   },
+  "Hero": {
+    "read_more": "قراءة المزيد"
+  },
+  "Footer": {
+    "rights": "جميع الحقوق محفوظة @2024 لفريق الأحلام رضا العماوى و علاء عياد",
+    "contact": "تواصل "
+  },
   "LocaleSwitcher": {
     "switch": "switch to english"
   }

@@ -33,11 +33,8 @@ const useStateManager = <T>(data: T) => {
     }
 
     if (onChange) {
-
       onChange({ name: target.name, value: clonedValue });
     } else {
-     
-
       handleChange({ name: target.name, value: clonedValue });
     }
   };

@@ -2,13 +2,11 @@
 import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./form-button/FormButton";
 import TextFeild from "../form-controls/Input";
-import useStateManager from "@/hooks/useStateManager";
 import ImageUploadPerview from "../form-controls/ImageUploadPerview";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
 import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
 import Accordions from "../form-controls/Accordion";
-import ImageUploadPerviewI from "../form-controls/interfaces/ImageUploadPerviewI";
 import CheckBox from "../form-controls/CheckBox";
 import {
   ContextType,
@@ -16,21 +14,26 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import { NewsItem } from "@/ts/models/NewsProps";
+import { getValueIn } from "@/utils/trans";
+import LanguageSelect from "../form-controls/LanguageSelect";
 
 interface NewsFormI extends FormProps {
-  data: NewsItem;
+  data?: NewsItem;
   entity_slug: string;
+  slug?: string;
 }
 export default function NewsForm({
   entity_slug,
+  slug,
   action,
   errorMessage,
-  data,
+  data = {} as NewsItem,
 }: NewsFormI) {
   return (
     <FormProvider
       action={action}
       data={data}
+      slug={slug || ""}
       entity_slug={entity_slug}
       errorMessage={errorMessage}
     >
@@ -42,42 +45,61 @@ export default function NewsForm({
 interface NewsContext extends ContextType {
   state: NewsItem;
   entity_slug: string;
+  slug?: string;
 }
 
 function FormElements() {
-  const { state, files, entity_slug, action } = useFormContext<NewsContext>();
+  const {
+    state,
+    files,
+    entity_slug,
+    action,
+    lang,
+    setLang,
+    slug,
+    handleChange,
+  } = useFormContext<NewsContext>();
   const formData = new FormData();
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
-  formData.set("data", JSON.stringify({ ...state, entity_slug }));
+  formData.set("data", JSON.stringify({ ...state, entity_slug, slug }));
 
   const modefiedAction = action.bind(null, formData);
+  console.log({ state });
+
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect value={lang} onChange={setLang} />
       <WithTabs tabs={["News Details", "Gallary"]}>
         <>
-          <TextFeild label="Title" value={state.title} name="title" />
+          <TextFeild
+            label="Title"
+            value={state.title}
+            name="title"
+            translatable
+          />
           <MultiPointInput
-            label="Paragraphs"
+            label="Paragraphs will apear in news  details"
             name="content"
             value={state.content}
+            translatable
           />
         </>
         <Accordions
           name="gallary"
           value={state.gallary}
-          getTitle={() => ""}
+          getTitle={(item) => getValueIn(item.imageDescription, lang)}
           childs={(item, onChange, i) => {
             return {
               img: () => (
                 <>
                   <CheckBox
-                    label="Set main image"
+                    label="Set main image rest of images apear in news details"
                     name="mainImageIdx"
                     value={state.mainImageIdx == i}
                     onChange={() =>
-                      onChange({ name: "mainImageIdx", value: i })
+                      handleChange({ name: "mainImageIdx", value: i })
                     }
                   />
                   <TextFeild
@@ -85,6 +107,7 @@ function FormElements() {
                     label="image description"
                     value={item.imageDescription}
                     onChange={onChange}
+                    translatable
                   />
                   <ImageUploadPerview
                     name="img"

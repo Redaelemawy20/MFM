@@ -23,7 +23,7 @@ const DeleteConfirmationForm = ({
   formData.set("id", String(id));
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form action={modefiedAction} errorMessage={errorMessage}>
+    <Form modifiedAction={modefiedAction} errorMessage={errorMessage}>
       <p>Are you sure you want to delete this item</p>
       <strong className="text-danger-500">
         write this name agian: (

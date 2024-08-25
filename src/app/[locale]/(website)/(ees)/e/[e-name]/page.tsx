@@ -12,6 +12,8 @@ const EntityPage = async ({ params }: { params: { "e-name": string } }) => {
   let pageSections = await getPageElements(entity_name, "_home");
   if (!pageSections) return notFound();
   if (base.news) pageSections.splice(base.news.order, 0, base.news.component);
+  if (base.leaders)
+    pageSections.splice(base.leaders.order, 0, base.leaders.component);
   return (
     <>
       {pageSections.map((section, i) => (

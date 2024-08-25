@@ -7,11 +7,9 @@ const TextFeild = ({
   name,
   label,
   value,
-  error,
   onChange,
-  onValidate,
+
   translatable,
-  rest = {},
 }: InputI) => {
   const { lang, handleChangeUpdated } = useFormContext();
   const inputValue = translatable ? value && value[lang] : value;
@@ -23,7 +21,11 @@ const TextFeild = ({
       value={inputValue || ""}
       className="mb-2"
       onChange={(e) => {
-        handleChangeUpdated(Boolean(translatable), value, e.target, onChange);
+        if (typeof handleChangeUpdated === "function")
+          handleChangeUpdated(Boolean(translatable), value, e.target, onChange);
+        else {
+          if (onChange) onChange(e.target);
+        }
       }}
       // {...rest}
     />

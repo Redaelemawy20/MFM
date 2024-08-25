@@ -12,6 +12,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
+import LanguageSelect from "../form-controls/LanguageSelect";
 
 interface HighlightedSectionEditI extends HighlightedSectionProps, FormProps {
   id: number;
@@ -40,7 +41,8 @@ interface HighlightedSectionContext extends ContextType {
   id: number;
 }
 const FormElements = () => {
-  const { state, action, id } = useFormContext<HighlightedSectionContext>();
+  const { state, action, id, setLang, lang } =
+    useFormContext<HighlightedSectionContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
   formData.set("schema", "editHighlightedSection");
@@ -48,14 +50,21 @@ const FormElements = () => {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
-      <TextFeild name="title" value={state.title} label="Title" />
+      <LanguageSelect onChange={setLang} value={lang} />
+      <TextFeild name="title" value={state.title} label="Title" translatable />
       <TextArea
         name="description"
         value={state.description}
         label="Description"
+        translatable
       />
-      <TextFeild name="btnText" value={state.btnText} label="Button Text" />
-      <TextFeild name="path" value={state.path} label="path" />
+      <TextFeild
+        name="btnText"
+        value={state.btnText}
+        label="button Text"
+        translatable
+      />
+      <TextFeild name="path" value={state.path} label="where the button go" />
       <FormButton>Save</FormButton>
     </Form>
   );

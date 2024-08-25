@@ -1,25 +1,24 @@
-// "use client";
-import Features from "@/components/sections/features/Features";
 import Hero from "@/components/sections/Hero";
-import HeroEdit from "@/components/sections/Hero/HeroEdit";
-import Nav from "@/components/sections/Nav";
 import GallaryItem from "@/ts/interfaces/GallaryItem";
-import FeaturesEdit from "../components/sections/features/FeaturesEdit";
-import About from "@/components/sections/About";
+import About from "@/sections/About";
 import AboutEdit from "@/components/dashboard/forms/AboutEdit";
-import CardWithAnimation from "@/components/sections/CardWithAnimation";
-import CardWithAnimationEdit from "@/components/dashboard/forms/CardWithAnimationEdit";
-import HighlightedSection from "@/components/sections/HighlightedSection";
+import AnimatedCardEdit from "@/components/dashboard/forms/AnimatedCardEdit";
 import HighlightedSectionEdit from "@/components/dashboard/forms/HighlightedSectionEdit";
-import MainTitle from "@/components/sections/mainTitle/MainTitle";
-import MainTitleEdit from "@/components/sections/mainTitle/MainTitleEdit";
-import Services from "@/components/sections/servicessection/Services";
-import ServiceEdit from "@/components/sections/servicessection/ServiceEdit";
-import Statistics from "@/components/sections/statistics/Statistics";
-import StatisticsEdit from "@/components/sections/statistics/StatisticsEdit";
-import NewsSection from "@/sections/NewsSection/NewsSection";
-import StaffMember from "@/sections/staffMember/StaffMember";
-import Footer from "@/components/Footer/Footer";
+import MainTitle from "@/sections/MainTitle";
+import Services from "@/sections/Services";
+import Statistics from "@/sections/Statistics";
+import StaffMember from "@/sections/StaffMember";
+import HeroEdit from "@/components/dashboard/forms/HeroEdit";
+import FeaturesEdit from "@/components/dashboard/forms/FeaturesEdit";
+import MainTitleEdit from "@/components/dashboard/forms/MainTitleEdit";
+import ServiceEdit from "@/components/dashboard/forms/ServiceEdit";
+import StatisticsEdit from "@/components/dashboard/forms/StatisticsEdit";
+import Nav from "@/sections/Nav";
+import AnimatedCard from "@/sections/AnimatedCard";
+import Features from "@/sections/Features";
+import HighlightedSection from "@/sections/HighlightedSection";
+import Footer from "@/sections/Footer";
+import NewsSection from "@/sections/News";
 
 // sections
 export const sectionsGallary: GallaryItem[] = [
@@ -62,8 +61,8 @@ export const sectionsGallary: GallaryItem[] = [
   },
   {
     componentId: "1700000003",
-    component: CardWithAnimation,
-    componentEdit: CardWithAnimationEdit,
+    component: AnimatedCard,
+    componentEdit: AnimatedCardEdit,
     defaultData: {
       items: [
         {

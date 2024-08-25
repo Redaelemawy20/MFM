@@ -15,6 +15,8 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import TextFeild from "../form-controls/Input";
+import { getValueIn } from "@/utils/trans";
+import LanguageSelect from "../form-controls/LanguageSelect";
 
 interface FeaturesEditI extends FeaturesProps, FormProps {
   id: number;
@@ -40,7 +42,8 @@ interface FeaturesContext extends ContextType {
 }
 
 function FormElements() {
-  const { state, files, id, action } = useFormContext<FeaturesContext>();
+  const { state, files, id, action, lang, setLang } =
+    useFormContext<FeaturesContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
   for (let filename in files) {
@@ -51,12 +54,13 @@ function FormElements() {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect onChange={setLang} value={lang} />
       <WithTabs tabs={["Main image", "Features list"]}>
         <ImageUploadPerview name="mainImg" value={state.mainImg} />
         <Accordions
           name="featuresItems"
           value={state.featuresItems}
-          getTitle={(item) => item.title}
+          getTitle={(item) => getValueIn(item.title, lang)}
           childs={(item, onChange) => ({
             title: () => (
               <TextFeild
@@ -64,6 +68,7 @@ function FormElements() {
                 label="title label"
                 value={item.title}
                 onChange={onChange}
+                translatable
               />
             ),
             description: () => (
@@ -72,6 +77,7 @@ function FormElements() {
                 label="description label"
                 value={item.description}
                 onChange={onChange}
+                translatable
               />
             ),
           })}

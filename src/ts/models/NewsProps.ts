@@ -6,6 +6,7 @@ export interface NewsProps {
 
 export interface NewsItem {
   title: string;
+  slug: string;
   content: string[];
   gallary: ({ img: ServerImage } & { imageDescription: string })[];
   mainImageIdx: number;

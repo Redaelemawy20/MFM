@@ -1,5 +1,6 @@
 import { newsGallary, personsGallary } from "@/com/gallary";
 import db from "@/db";
+import { getNews } from "../models/news";
 
 type BaseElementsReturn = {
   news: { order: number; component: React.ReactNode } | null;
@@ -18,9 +19,6 @@ export async function getBaseElements(
       slug: entiy_slug,
     },
     include: {
-      news: {
-        take: 3,
-      },
       staff: {
         where: {
           leadership: true,
@@ -35,7 +33,8 @@ export async function getBaseElements(
     },
   });
   if (!entity) return baseSections;
-  const { news, staff, layoutItem: layouts } = entity;
+  const { staff, layoutItem: layouts } = entity;
+  const news = await getNews(entiy_slug, 3);
   let newsCompoent = null;
   let personsCompoent = null;
   const newsLayout = layouts.find((item) => item.type === "news");

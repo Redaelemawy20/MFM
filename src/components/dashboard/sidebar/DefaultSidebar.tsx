@@ -9,8 +9,8 @@ import { AccountsIcon } from "../icons/sidebar/accounts-icon";
 import { CollapseItems } from "./collapse-items";
 import { BalanceIcon } from "../icons/sidebar/balance-icon";
 import Image from "next/image";
-import { getEntities } from "@/services/entityServices";
 import { entityAdminPath } from "@/utils/router";
+import { getEntities } from "@/services/models/entity";
 
 const DefaultSideBar = async () => {
   // const pathname = usePathname();

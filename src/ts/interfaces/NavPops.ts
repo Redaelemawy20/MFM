@@ -3,10 +3,7 @@ export default interface NavProps {
   logo: string;
 }
 export type NavData = NavTopProps & Omit<NavContentProps, "logo" | "logoStyle">;
-export interface NavTopProps {
-  start: string;
-  end: string;
-}
+export type NavTopProps = { buttons: LinkBase[] };
 type logoStyle = {
   width: string;
   height: string;

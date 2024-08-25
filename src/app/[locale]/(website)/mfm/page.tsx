@@ -1,11 +1,11 @@
 "use client";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/sections/Footer/Footer";
 import Hero from "@/components/Hero/Hero";
 import MakeAppoint from "@/components/MakeAppoint/MakeAppoint";
 import Services from "@/components/servicessection/Services";
 import Statistics from "@/components/statistics/Statistics";
 import SubPagesLinks from "@/components/subpagescomp/SubPagesLinks";
-import NewsSection from "@/sections/NewsSection/NewsSection";
+import NewsSection from "@/sections/NewsSection";
 import React from "react";
 import { FaUserMd } from "react-icons/fa";
 import { FaAward, FaFlask, FaRegHospital } from "react-icons/fa6";

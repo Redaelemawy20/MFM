@@ -2,6 +2,14 @@
   "HomePage": {
     "title": "Hello world!"
   },
+  "Hero": {
+    "read_more": "Read More"
+  },
+  "Footer": {
+    "rights": "All rights reserved @2024 for dreams team Reda Elemawy and Alaa Ayaad",
+    "contact": "Contact"
+  },
+
   "LocaleSwitcher": {
     "switch": "حول الى اللغة العربية"
   }

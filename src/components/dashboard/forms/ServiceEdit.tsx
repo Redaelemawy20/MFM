@@ -11,6 +11,8 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import { ServiceData, ServicesProps } from "@/ts/models/Service";
+import LanguageSelect from "../form-controls/LanguageSelect";
+import { getValueIn } from "@/utils/trans";
 
 interface ServiceEditI extends ServicesProps, FormProps {
   id: number;
@@ -37,7 +39,7 @@ interface ServiceContext extends ContextType {
 }
 
 function FormElements() {
-  const { state, action, id } = useFormContext<ServiceContext>();
+  const { state, action, id, lang, setLang } = useFormContext<ServiceContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
   formData.set("schema", "editServices");
@@ -45,14 +47,25 @@ function FormElements() {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect value={lang} onChange={setLang} />
       <WithTabs tabs={["Title and caption", "Cards data"]}>
         <>
-          <TextFeild name="title" value={state.title} label="Title" />
-          <TextFeild name="caption" value={state.caption} label="Caption" />
+          <TextFeild
+            name="title"
+            value={state.title}
+            label="Title"
+            translatable
+          />
+          <TextFeild
+            name="caption"
+            value={state.caption}
+            label="Caption"
+            translatable
+          />
         </>
         <Accordions
           name="cardsData"
-          getTitle={() => ""}
+          getTitle={(item) => getValueIn(item.title, lang)}
           value={state.cardsData}
           childs={(item, onChange) => ({
             title: () => (
@@ -61,6 +74,7 @@ function FormElements() {
                 label="title"
                 value={item.title}
                 onChange={onChange}
+                translatable
               />
             ),
             description: () => (
@@ -69,6 +83,7 @@ function FormElements() {
                 label="description"
                 value={item.description}
                 onChange={onChange}
+                translatable
               />
             ),
           })}

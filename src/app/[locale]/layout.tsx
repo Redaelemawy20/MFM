@@ -4,6 +4,8 @@ import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import AosProvider from "@/components/common/AosProvider";
+
 export default async function RootLayout({
   children,
   params: { locale },
@@ -13,13 +15,12 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
   return (
-    <html lang={locale}>
-      <head>
-        <link rel="icon" href="/assets/imgs/logo.png" />
-      </head>
+    <html lang={locale} dir={locale === "en" ? "ltr" : "rtl"}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <NextUIProvider>{children}</NextUIProvider>
+          <NextUIProvider>
+            <AosProvider>{children}</AosProvider>
+          </NextUIProvider>
         </NextIntlClientProvider>
       </body>
     </html>

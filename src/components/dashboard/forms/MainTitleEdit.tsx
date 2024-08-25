@@ -46,9 +46,14 @@ const FormElements = () => {
           name="mainTitle"
           value={state.mainTitle}
           label="Main Title"
-          translatable={true}
+          translatable
         />
-        <TextFeild name="caption" value={state.caption} label="Caption" />
+        <TextFeild
+          name="caption"
+          value={state.caption}
+          label="Caption"
+          translatable
+        />
         <FormButton>Save</FormButton>
       </Form>
     </>

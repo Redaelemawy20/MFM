@@ -1,14 +1,10 @@
 import TextFeild from "@/components/dashboard/form-controls/Input";
-import useStateManager from "@/hooks/useStateManager";
 import FormProps from "@/ts/interfaces/FormProps";
 import NavProps, { NavData, NavItemI } from "@/ts/interfaces/NavPops";
 import Accordions from "../../dashboard/form-controls/Accordion";
-import InputI from "@/components/dashboard/form-controls/interfaces/InputI";
 import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import Form from "@/components/common/Form";
-import MuiAccordionDetails from "@/components/dashboard/form-controls/interfaces/AccordionI";
 import CheckBox from "@/components/dashboard/form-controls/CheckBox";
-import CheckBoxI from "../../dashboard/form-controls/interfaces/CheckBoxI";
 import WithTabs from "@/components/common/withTabs";
 import {
   ContextType,
@@ -16,6 +12,7 @@ import {
   useFormContext,
 } from "@/components/dashboard/forms/context/FormContext";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
+import { getValueIn } from "@/utils/trans";
 
 interface NavEditPropsI extends Omit<NavProps, "logo">, FormProps {
   entity_slug: string;
@@ -58,13 +55,36 @@ const FormElements = () => {
       <LanguageSelect onChange={setLang} value={lang} />
       <WithTabs tabs={["Top Nav", "Links"]}>
         <>
-          <TextFeild label="Top Start Text" name="start" value={state.start} />
-          <TextFeild label="Top End Text" name="end" value={state.end} />
+          <Accordions
+            name="buttons"
+            value={state.buttons}
+            getTitle={(button) => getValueIn(button.name, lang)}
+            childs={(item, onChange) => ({
+              name: () => (
+                <TextFeild
+                  label="Text of the button"
+                  name="name"
+                  value={item.name}
+                  translatable
+                  onChange={onChange}
+                />
+              ),
+              href: () => (
+                <TextFeild
+                  label="the link"
+                  name="href"
+                  value={item.href}
+                  onChange={onChange}
+                />
+              ),
+            })}
+            btnText="Add button"
+          />
         </>
         <Accordions
           name="items"
           value={state.items}
-          getTitle={() => ""}
+          getTitle={(item) => getValueIn(item.name, lang)}
           childs={(item, onChange) => {
             let itemsChilds = {
               hasDropDown: () => (
@@ -92,7 +112,7 @@ const FormElements = () => {
                 menu: () => (
                   <div className="ms-4">
                     <Accordions
-                      getTitle={() => ""}
+                      getTitle={(item) => getValueIn(item.name, lang)}
                       value={item.menu}
                       name="menu"
                       onChange={onChange}
@@ -124,7 +144,9 @@ const FormElements = () => {
                               <div className="ms-6">
                                 <Accordions
                                   value={menuItem.menu}
-                                  getTitle={() => ""}
+                                  getTitle={(item) =>
+                                    getValueIn(item.name, lang)
+                                  }
                                   name="menu"
                                   onChange={oncChange}
                                   childs={(subMenuItem, onSubMenuChange) => ({

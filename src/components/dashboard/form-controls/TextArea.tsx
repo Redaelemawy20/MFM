@@ -22,6 +22,7 @@ export default function ({
       fullWidth
       label={label}
       name={name}
+      className="mb-2"
       value={inputValue}
       onChange={(e) => {
         handleChangeUpdated(Boolean(translatable), value, e.target, onChange);

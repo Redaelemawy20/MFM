@@ -4,6 +4,7 @@ interface DataProps {
   };
   title: string;
   description: string;
+  readMoreLink?: string;
 }
 export default interface HeroProps {
   data: HeroDataType;

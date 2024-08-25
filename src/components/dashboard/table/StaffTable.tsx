@@ -3,8 +3,10 @@ import StaffMember from "@/ts/interfaces/StaffData";
 import Table from "./Table";
 import Image from "next/image";
 import EditStaffModal from "../factories/EditStaffModal";
-import { CheckboxIcon, Chip } from "@nextui-org/react";
+import { Chip } from "@nextui-org/react";
 import { BiCheck } from "react-icons/bi";
+import { extractImgSrc } from "@/utils/get-img";
+import { getValueIn } from "@/utils/trans";
 
 interface EntityStaffI {
   entityStaff: StaffMember[];
@@ -12,7 +14,7 @@ interface EntityStaffI {
 }
 const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
   return entityStaff.length === 0 ? (
-    <div className="text-xl "> No pages try to add </div>
+    <div className="text-xl "> No Stff try to add </div>
   ) : (
     <Table
       items={entityStaff}
@@ -24,25 +26,25 @@ const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
               width={40}
               height={40}
               alt="staff image"
-              src={`/api/files?name=${item.data.avatar._s} `}
+              src={extractImgSrc(item.data, "avatar")}
             />
           ),
         },
         {
           header: "title",
-          value: (item) => item.data.title,
+          value: (item) => getValueIn(item.data.title, "en"),
         },
         {
           header: "name",
-          value: (item) => item.data.name,
+          value: (item) => getValueIn(item.data.name, "en"),
         },
         {
           header: "current position",
-          value: (item) => item.data.position,
+          value: (item) => getValueIn(item.data.position, "en"),
         },
         {
           header: "degree",
-          value: (item) => item.data.degree,
+          value: (item) => getValueIn(item.data.degree, "en"),
         },
         {
           header: "Top Leaders",

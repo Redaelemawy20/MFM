@@ -1,22 +1,21 @@
 import { NavTopProps } from "@/ts/interfaces/NavPops";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { c } from "@/utils/get-content";
+import Link from "next/link";
 
-const NavTop = ({ start, end }: NavTopProps) => {
+const NavTop = ({ buttons }: NavTopProps) => {
   return (
     <div className="first_Row">
       <div className="Nav__Container flex">
         <p className="info flex">
-          <a className="btn_link" href="/">
-            {start}
-          </a>
-          <a className="btn_link" href="/">
-            {end}
-          </a>
+          {buttons.map((btn, i) => (
+            <Link className="btn_link" href={btn.href} key={i}>
+              {c(btn.name, true)}
+            </Link>
+          ))}
         </p>
         <p className="info flex">
-          <select>
-            <option>AR</option>
-            <option>EN</option>
-          </select>
+          <LanguageSwitcher />
         </p>
       </div>
     </div>

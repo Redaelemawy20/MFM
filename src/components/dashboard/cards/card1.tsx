@@ -3,11 +3,11 @@ import React from "react";
 import { Community } from "../icons/community";
 interface InfoCardI {
   title: string;
-  count: number;
+  content: () => React.ReactNode;
 }
-const Card1 = ({ title, count }: InfoCardI) => {
+const Card1 = ({ title, content }: InfoCardI) => {
   return (
-    <Card className="xl:max-w-sm bg-default-50 rounded-xl shadow-md px-3 w-full">
+    <Card className="bg-default-50 rounded-xl shadow-md px-3 w-full">
       <CardBody className="py-5">
         <div className="flex gap-2.5">
           <Community />
@@ -17,7 +17,7 @@ const Card1 = ({ title, count }: InfoCardI) => {
               {title}
             </span>
             <span className="text-default-900 text-xl font-semibold">
-              {count}
+              {content()}
             </span>
           </div>
         </div>

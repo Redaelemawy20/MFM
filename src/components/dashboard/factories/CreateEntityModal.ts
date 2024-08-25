@@ -1,12 +1,12 @@
 "use client";
 import withModalForm from "@/components/common/modal-form";
-import EntityCreateForm from "../forms/EntityCreateForm";
-import { createEntity } from "@/actions/content";
+import EntityForm from "../forms/EntityCreateForm";
+import { editEntity } from "@/actions/content";
 
-const CreateEntityModal = withModalForm(
-  EntityCreateForm,
-  createEntity,
+export const AddEntityModal = withModalForm(
+  EntityForm,
+  editEntity,
   "Add Entity"
 );
 
-export default CreateEntityModal;
+export const EditEntityModal = withModalForm(EntityForm, editEntity, "Edit");

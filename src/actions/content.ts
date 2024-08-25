@@ -14,7 +14,7 @@ import {
 import makeAction from "./make-action";
 import {
   addSections,
-  createEntityAction,
+  editEntityAction,
   createPage as createPageAction,
   createStaffAction,
   deletePageAction,
@@ -32,12 +32,12 @@ import SectionProps from "@/ts/interfaces/SectionProps";
 import extractUploadedFiles from "./utils/extract-uploaded-files";
 import storeFiles from "./utils/store-files";
 
-export const createEntity: FormActionType = async (formState, formData) => {
+export const editEntity: FormActionType = async (formState, formData) => {
   const data = JSON.parse(formData.get("data") as string);
   const [files, dataToStore] = extractUploadedFiles(data);
   const validationResult = validateFormData(createEntitySchema, data);
   if (validationResult.message) return validationResult;
-  const result = await makeAction(createEntityAction, dataToStore);
+  const result = await makeAction(editEntityAction, dataToStore);
   if (result.message) return result;
   const storeFileResult = await storeFiles(files, formData);
   return storeFileResult;

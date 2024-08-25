@@ -13,6 +13,7 @@ import {
 } from "@/components/dashboard/forms/context/FormContext";
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
+import { getValueIn } from "@/utils/trans";
 interface HeroContext extends ContextType {
   state: HeroDataType;
 }
@@ -50,20 +51,11 @@ const FormElements = () => {
     <Form modifiedAction={modifiedAction}>
       <LanguageSelect value={lang} onChange={setLang} />
       <Accordions
+        btnText="add a slide"
         name="items"
-        translatable
-        // titleProp={{ name: "title" }}
-        getTitle={() => ""}
+        getTitle={(item) => getValueIn(item.title, lang)}
         value={state.items}
         childs={(child, onChange) => ({
-          title: () => (
-            <TextFeild
-              name="title"
-              label="title"
-              value={child.title}
-              onChange={onChange}
-            />
-          ),
           backgroundImage: () => (
             <ImageUploadPerview
               name="backgroundImage"
@@ -71,12 +63,33 @@ const FormElements = () => {
               onChange={onChange}
             />
           ),
+          title: () => (
+            <TextFeild
+              name="title"
+              label="title"
+              value={child.title}
+              onChange={onChange}
+              translatable
+            />
+          ),
+
           description: () => {
             return (
               <TextArea
                 name="description"
                 value={child.description}
                 label="add description"
+                onChange={onChange}
+                translatable
+              />
+            );
+          },
+          readMoreLink: () => {
+            return (
+              <TextFeild
+                name="readMoreLink"
+                value={child.readMoreLink}
+                label="Link of read more button if exist"
                 onChange={onChange}
               />
             );

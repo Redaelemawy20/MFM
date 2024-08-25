@@ -1,11 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Sidebar } from "./sidebar.styles";
-import {
-  useParams,
-  usePathname,
-  useSelectedLayoutSegments,
-} from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
@@ -39,7 +35,12 @@ const EntitySideBar = () => {
       </div>
       <div className="flex flex-col items-start justify-between h-full">
         <div className={Sidebar.Body()}>
-          <SidebarItem title="Home Page" icon={<HomeIcon />} href="/" />
+          <SidebarItem title="Website Home Page" icon={<HomeIcon />} href="/" />
+          <SidebarItem
+            title="Dashboard Home Page"
+            icon={<HomeIcon />}
+            href="/dashboard/entities"
+          />
           <SidebarMenu title="Main Menu">
             <SidebarItem
               isActive={pathname === newsRoute}

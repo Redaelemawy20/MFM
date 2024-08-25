@@ -1,19 +1,9 @@
 import { footerGallary, navGallary } from "@/com/gallary";
-import db from "@/db";
-import { fileSrc } from "@/utils/file-src";
 import { extractImgSrc } from "@/utils/get-img";
+import { getEntityWithLayout } from "../models/entity";
 
 export async function getLayoutElements(entity_slug: string) {
-  const entity = await db.entity.findFirst({
-    where: { slug: entity_slug },
-    include: {
-      layoutItem: {
-        include: {
-          section: true,
-        },
-      },
-    },
-  });
+  let entity = await getEntityWithLayout(entity_slug);
   if (!entity) return null;
   let layout = {} as LayoutI;
   const layoutItems = entity.layoutItem;
@@ -22,12 +12,13 @@ export async function getLayoutElements(entity_slug: string) {
   const footerItem = layoutItems.find((item) => item.type === "footer");
   if (navItem && navItem.section) {
     const navItemObj = getNavComponent(navItem.section.componentId);
-    const logo = extractImgSrc(entity.meta, "logo");
+
+    const logo = extractImgSrc(JSON.parse(entity.meta as any), "logo");
     if (navItemObj) {
       layout.nav = () => (
         <navItemObj.component
           data={JSON.parse(navItem.data as string) as any}
-          logo={fileSrc(logo)}
+          logo={logo}
         />
       );
     }

@@ -2,7 +2,6 @@ import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./form-button/FormButton";
 import Form from "@/components/common/Form";
 import TextFeild from "../form-controls/Input";
-import useStateManager from "@/hooks/useStateManager";
 import { StaffData } from "@/ts/interfaces/StaffData";
 import ImageUploadPerview from "../form-controls/ImageUploadPerview";
 import CheckBox from "../form-controls/CheckBox";
@@ -11,6 +10,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
+import LanguageSelect from "../form-controls/LanguageSelect";
 interface StaffFormI extends FormProps {
   entity_slug: string;
   staff?: { slug: string; data: StaffData };
@@ -41,8 +41,16 @@ interface StaffContext extends ContextType {
 }
 
 function FormElements() {
-  const { state, files, action, handleChange, entity_slug, staff_slug } =
-    useFormContext<StaffContext>();
+  const {
+    state,
+    files,
+    action,
+    handleChange,
+    entity_slug,
+    staff_slug,
+    lang,
+    setLang,
+  } = useFormContext<StaffContext>();
   const formData = new FormData();
   formData.set(
     "data",
@@ -54,22 +62,35 @@ function FormElements() {
   const modefiedAction = action.bind(null, formData);
   return (
     <Form modifiedAction={modefiedAction}>
+      <LanguageSelect value={lang} onChange={setLang} />
       <ImageUploadPerview
         name="avatar"
         onChange={handleChange}
         value={state.avatar}
       />
-      <TextFeild label="Title ex: dr, prof" value={state.title} name="title" />
-      <TextFeild label="Enter Staff Name" value={state.name} name="name" />
+      <TextFeild
+        label="Title ex: dr, prof"
+        value={state.title}
+        name="title"
+        translatable
+      />
+      <TextFeild
+        label="Enter Staff Name"
+        value={state.name}
+        name="name"
+        translatable
+      />
       <TextFeild
         label="Current Position"
         value={state.position}
         name="position"
+        translatable
       />
       <TextFeild
         label="Degree ex: PHD in Pathology"
         value={state.degree}
         name="degree"
+        translatable
       />
       <CheckBox
         label="Check if the member is one of the top leaders"

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const HighlightedSection = styled.section`
+const HighlightedSectionStyle = styled.section`
   width: 100%;
   padding: 3.5rem 0;
   background-color: var(--secondary-color);
@@ -23,4 +23,4 @@ const HighlightedSection = styled.section`
     }
   }
 `;
-export default HighlightedSection;
+export default HighlightedSectionStyle;

@@ -9,7 +9,6 @@ export default function MultiPointInput({
   name: key,
   label,
   value: points,
-  onValidate,
   onChange,
   translatable,
 }: InputI) {
@@ -24,14 +23,26 @@ export default function MultiPointInput({
   const handleChange = (id: number, value: string): void => {
     const clonedPoints = [...showedPoints];
     clonedPoints[id] = value;
+
     handleChangeUpdated(
       Boolean(translatable),
-      showedPoints,
+      points,
       { name: key, value: clonedPoints },
       onChange
     );
+  };
 
-    onValidate && onValidate({ name: key, value: clonedPoints });
+  const handleAdd = () => {
+    const clonedPoints = [...showedPoints];
+
+    clonedPoints.push("");
+
+    handleChangeUpdated(
+      Boolean(translatable),
+      points,
+      { name: key, value: clonedPoints },
+      onChange
+    );
   };
   const handleDelete = (id: number): void => {
     const clonedPoints = [...showedPoints];
@@ -46,20 +57,6 @@ export default function MultiPointInput({
       onChange
     );
   };
-  const handleAdd = () => {
-    const clonedPoints = [...showedPoints];
-
-    clonedPoints.push("");
-    handleChangeUpdated(
-      Boolean(translatable),
-      showedPoints,
-      { name: key, value: clonedPoints },
-      onChange
-    );
-
-    onValidate && onValidate({ name: key, value: clonedPoints });
-  };
-
   return (
     <>
       <div className="flex flex-row">
