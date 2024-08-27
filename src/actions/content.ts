@@ -1,5 +1,5 @@
 "use server";
-import { EditSectionType, FormActionType } from "@/ts/Types/FormActionType";
+import { EditSectionType, FormActionType } from "@/ts/common/FormActionType";
 import validateFormData from "./validation";
 import {
   addSectionsShecma,

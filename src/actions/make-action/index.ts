@@ -1,4 +1,4 @@
-import { ActionResultType } from "@/ts/Types/FormActionType";
+import { ActionResultType } from "@/ts/common/FormActionType";
 
 const makeAction = async <T>(
   aciton: (data: T) => Promise<any>,

@@ -1,4 +1,4 @@
-import { ActionResultType } from "@/ts/Types/FormActionType";
+import { ActionResultType } from "@/ts/common/FormActionType";
 import fs from "fs/promises";
 import path from "path";
 

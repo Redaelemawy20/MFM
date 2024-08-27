@@ -1,4 +1,4 @@
-import { ServerImage } from "./ImageI";
+import { ServerImage } from "../common/ImageI";
 
 interface AnimatiedCardI {
   img: ServerImage;

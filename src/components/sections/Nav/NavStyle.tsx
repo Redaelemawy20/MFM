@@ -75,7 +75,7 @@ const NavStyle = styled.nav`
     color: var(--secondary-color);
   }
   .btn_link {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: var(--primary-color);
     background-color: var(--text-color);
     padding: 0.5em 1.2em;
@@ -106,7 +106,7 @@ const NavStyle = styled.nav`
     position: absolute;
     width: 230px;
     padding: 0.3em !important;
-    top: 73px;
+    top: 63px;
     background-color: var(--primary-color);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
@@ -147,7 +147,7 @@ const NavStyle = styled.nav`
   @media (max-width: 1150px) {
     li {
       margin-inline-start: 0;
-      font-size: 1.09rem;
+      font-size: 0.9rem;
     }
     .list_links {
       gap: 1em;
@@ -228,5 +228,8 @@ const NavStyle = styled.nav`
       }
     }
   }
+  /* li {
+    font-size: 0.7rem !important;
+  } */
 `;
 export default NavStyle;

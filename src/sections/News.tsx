@@ -1,7 +1,7 @@
 "use client";
 import CardNews from "@/components/sections/News/CardNews";
 import MainTitle from "@/sections/MainTitle";
-import { NewsProps } from "@/ts/models/NewsProps";
+import { NewsProps } from "@/ts/interfaces/NewsProps";
 import { c } from "@/utils/get-content";
 
 const NewsSection = ({ data: news }: { data: { details: NewsProps }[] }) => {
@@ -16,6 +16,7 @@ const NewsSection = ({ data: news }: { data: { details: NewsProps }[] }) => {
             title={c(item.details.title)}
             index={index}
             key={index}
+            link={"/news/" + item.slug}
           />
         ))}
       </div>

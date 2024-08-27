@@ -6,7 +6,7 @@ import {
   EditSectionType,
   FormActionType,
   HTMLFormAction,
-} from "@/ts/Types/FormActionType";
+} from "@/ts/common/FormActionType";
 import { ModalHeader } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 

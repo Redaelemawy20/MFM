@@ -1,5 +1,5 @@
 import { HandleChange } from "@/ts/common/HandleChange";
-import { ServerImage, UploadedImage } from "@/ts/interfaces/ImageI";
+import { ServerImage, UploadedImage } from "@/ts/common/ImageI";
 import { NormalInput, TranslatableInput } from "./InputI";
 interface Base {
   onChange?: HandleChange;

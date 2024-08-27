@@ -18,6 +18,7 @@
     "bootstrap": "^5.3.3",
     "framer-motion": "^11.2.13",
     "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.1",
     "mfm": "file:",
     "next": "14.1.4",

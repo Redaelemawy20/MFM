@@ -1,5 +1,4 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import { AboutProps } from "../../../sections/About";
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import ImageUploadPerview from "@/components/dashboard/form-controls/ImageUploadPerview";
 import TextArea from "@/components/dashboard/form-controls/TextArea";
@@ -9,6 +8,7 @@ import Form from "@/components/common/Form";
 import { FormProvider, useFormContext } from "./context/FormContext";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
 import FormButton from "./form-button/FormButton";
+import { AboutProps } from "@/ts/interfaces/About";
 
 interface AboutEditPropsI extends AboutProps, FormProps {
   id: number;

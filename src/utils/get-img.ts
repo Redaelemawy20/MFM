@@ -1,4 +1,4 @@
-import { ServerImage } from "@/ts/interfaces/ImageI";
+import { ServerImage } from "@/ts/common/ImageI";
 import { fileSrc } from "./file-src";
 
 export function extractImgSrc(obj: any, key: string) {

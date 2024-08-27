@@ -1,8 +1,8 @@
 "use client";
 import Carousel from "react-bootstrap/Carousel";
 
-import HeroStyle from "./HeroStyle";
-import Button from "../../common/Button";
+import HeroStyle from "../components/sections/Hero/HeroStyle";
+import Button from "../components/common/Button";
 import HeroProps from "@/ts/interfaces/HeroSectionProps";
 import { c } from "@/utils/get-content";
 import { useTranslations } from "next-intl";

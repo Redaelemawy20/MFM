@@ -8,7 +8,7 @@ import {
   useFormContext,
 } from "@/components/dashboard/forms/context/FormContext";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
-import { MainTitleData, MainTitleI } from "@/ts/models/MainTiltel";
+import { MainTitleData, MainTitleI } from "@/ts/interfaces/MainTiltel";
 import Form from "@/components/common/Form";
 
 interface MainTitleEditI extends MainTitleI, FormProps {

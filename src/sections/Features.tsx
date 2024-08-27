@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FeaturesProps } from "@/ts/models/Feature";
+import { FeaturesProps } from "@/ts/interfaces/Feature";
 import FeaturesStyle from "@/components/sections/features/FeaturesStyle";
 import { extractImgSrc } from "@/utils/get-img";
 import { c } from "@/utils/get-content";

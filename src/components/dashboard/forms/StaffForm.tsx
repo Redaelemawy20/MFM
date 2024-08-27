@@ -11,6 +11,10 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import LanguageSelect from "../form-controls/LanguageSelect";
+import WithTabs from "@/components/common/withTabs";
+import Accordions from "../form-controls/Accordion";
+import { getValueIn } from "@/utils/trans";
+import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
 interface StaffFormI extends FormProps {
   entity_slug: string;
   staff?: { slug: string; data: StaffData };
@@ -63,41 +67,73 @@ function FormElements() {
   return (
     <Form modifiedAction={modefiedAction}>
       <LanguageSelect value={lang} onChange={setLang} />
-      <ImageUploadPerview
-        name="avatar"
-        onChange={handleChange}
-        value={state.avatar}
-      />
-      <TextFeild
-        label="Title ex: dr, prof"
-        value={state.title}
-        name="title"
-        translatable
-      />
-      <TextFeild
-        label="Enter Staff Name"
-        value={state.name}
-        name="name"
-        translatable
-      />
-      <TextFeild
-        label="Current Position"
-        value={state.position}
-        name="position"
-        translatable
-      />
-      <TextFeild
-        label="Degree ex: PHD in Pathology"
-        value={state.degree}
-        name="degree"
-        translatable
-      />
-      <CheckBox
-        label="Check if the member is one of the top leaders"
-        name="leadership"
-        value={state.leadership}
-        onChange={handleChange}
-      />
+      <WithTabs tabs={["Basic Info", "CV"]}>
+        <>
+          <ImageUploadPerview
+            name="avatar"
+            onChange={handleChange}
+            value={state.avatar}
+          />
+          <TextFeild
+            label="Title ex: dr, prof"
+            value={state.title}
+            name="title"
+            translatable
+          />
+          <TextFeild
+            label="Enter Staff Name"
+            value={state.name}
+            name="name"
+            translatable
+          />
+          <TextFeild
+            label="Current Position"
+            value={state.position}
+            name="position"
+            translatable
+          />
+          <TextFeild
+            label="Degree ex: PHD in Pathology"
+            value={state.degree}
+            name="degree"
+            translatable
+          />
+          <CheckBox
+            label="Check if the member is one of the top leaders"
+            name="leadership"
+            value={state.leadership}
+            onChange={handleChange}
+          />
+        </>
+        <>
+          <Accordions
+            name="cv"
+            value={state.cv}
+            btnText="add cv section"
+            getTitle={(item) => getValueIn(item.title, lang)}
+            childs={(item, onChange) => ({
+              title: () => (
+                <TextFeild
+                  label="Section title ex: About, Experience"
+                  name="title"
+                  value={item.title}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+              points: () => (
+                <MultiPointInput
+                  name="points"
+                  value={item.points}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+            })}
+          />
+        </>
+      </WithTabs>
+
       <FormButton>Save</FormButton>
     </Form>
   );

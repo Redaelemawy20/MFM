@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import MainTitleStyle from "../components/sections/mainTitle/MainTitleStyle";
-import { MainTitleI } from "@/ts/models/MainTiltel";
+import { MainTitleI } from "@/ts/interfaces/MainTiltel";
 import { c } from "@/utils/get-content";
 
 const MainTitle = ({ data }: MainTitleI) => {

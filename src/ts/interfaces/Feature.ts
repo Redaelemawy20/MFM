@@ -1,4 +1,4 @@
-import { ServerImage } from "../interfaces/ImageI";
+import { ServerImage } from "../common/ImageI";
 
 interface FeaturesItem {
   // icon: ReactNode;

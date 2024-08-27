@@ -12,6 +12,7 @@ const CardNews: React.FC<newsItemProps> = ({
   date,
   title,
   index,
+  link,
 }) => {
   const showImage = () => {
     const mainImage = gallary[mainImageIdx];
@@ -21,7 +22,7 @@ const CardNews: React.FC<newsItemProps> = ({
     <CardNewsStyle data-aos="zoom-in" data-aos-delay={`${300 * index}`}>
       <img src={showImage()} alt="" className="img_news" />
       <p className="date">{date}</p>
-      <Link href="/" className="news_Title Text_elipsis">
+      <Link href={link} className="news_Title Text_elipsis">
         {title}
       </Link>
     </CardNewsStyle>

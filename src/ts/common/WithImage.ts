@@ -1,4 +1,4 @@
-import HasId from "../common/HasId";
+import HasId from "./HasId";
 export interface PreviwableImage {
   image?: File;
   preview?: string;

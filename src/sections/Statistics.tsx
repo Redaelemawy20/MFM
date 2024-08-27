@@ -1,6 +1,6 @@
 import React from "react";
 import CardofStatitics from "../components/sections/statistics/CardofStatitics";
-import { StatisticsProps } from "@/ts/models/Statistics";
+import { StatisticsProps } from "@/ts/interfaces/Statistics";
 
 const Statistics = ({ data }: StatisticsProps) => {
   const items = data.items ? data.items : [];

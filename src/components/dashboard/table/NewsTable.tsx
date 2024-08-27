@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Table from "./Table";
 import { entityAdminPagesPath } from "@/utils/router";
 import { Button } from "@nextui-org/react";
-import { NewsItem } from "@/ts/models/NewsProps";
+import { NewsItem } from "@/ts/interfaces/NewsProps";
 import Image from "next/image";
 import { extractImgSrc } from "@/utils/get-img";
 import { getValueIn } from "@/utils/trans";

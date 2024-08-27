@@ -7,7 +7,7 @@ import {
   HandleFileRemove,
   HandleFileUpload,
 } from "@/ts/common/HandleChange";
-import { HTMLFormAction } from "@/ts/Types/FormActionType";
+import { HTMLFormAction } from "@/ts/common/FormActionType";
 import React, { createContext } from "react";
 
 type BaseContextType = {

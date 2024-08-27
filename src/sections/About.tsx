@@ -1,25 +1,11 @@
 "use client";
 import React from "react";
-
 import AboutStyle from "../components/sections/About/AboutStyle";
 import { BiCheckCircle } from "react-icons/bi";
 import MainTitel from "./MainTitle";
-import { ServerImage } from "@/ts/interfaces/ImageI";
 import { c } from "@/utils/get-content";
 import { extractImgSrc } from "@/utils/get-img";
-
-interface DataProps {
-  mainTitle: string;
-  caption: string;
-  viewImg: ServerImage;
-  subTitle: string;
-  subCaption: string;
-  list: Array<string>;
-  endCaption: string;
-}
-export interface AboutProps {
-  data: DataProps;
-}
+import { AboutProps } from "@/ts/interfaces/About";
 
 const About = ({ data }: AboutProps) => {
   const { mainTitle, caption, subTitle, subCaption, list, endCaption } = data;

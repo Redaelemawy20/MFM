@@ -1,4 +1,4 @@
-import { ServerImage, UploadedImage } from "./ImageI";
+import { ServerImage, UploadedImage } from "../common/ImageI";
 
 export default interface StaffMember {
   id: number;
@@ -15,4 +15,9 @@ export interface StaffData {
   degree: string;
   leadership: boolean;
   avatar: (UploadedImage | ServerImage) & { name: string };
+  cv: CVSeciton[];
+}
+export interface CVSeciton {
+  title: string;
+  points: string[];
 }

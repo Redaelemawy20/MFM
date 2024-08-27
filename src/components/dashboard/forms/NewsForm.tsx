@@ -13,7 +13,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
-import { NewsItem } from "@/ts/models/NewsProps";
+import { NewsItem } from "@/ts/interfaces/NewsProps";
 import { getValueIn } from "@/utils/trans";
 import LanguageSelect from "../form-controls/LanguageSelect";
 

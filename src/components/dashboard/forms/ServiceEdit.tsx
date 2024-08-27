@@ -10,7 +10,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
-import { ServiceData, ServicesProps } from "@/ts/models/Service";
+import { ServiceData, ServicesProps } from "@/ts/interfaces/Service";
 import LanguageSelect from "../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
 

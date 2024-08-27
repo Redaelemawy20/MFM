@@ -68,10 +68,14 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
           src={logo}
           // style={logoStyle ? logoStyle : { width: "85px", height: "80px" }}
           alt="logo"
-          width={50}
+          width={80}
           height={100}
         />
-        <div className={`navigate_Cont flex ${showList ? "show" : ""}`}>
+        <div
+          className={`navigate_Cont flex items-center ${
+            showList ? "show" : ""
+          }`}
+        >
           {showList && (
             <button className="exit_btn" onClick={() => setShowList(!showList)}>
               <HiXMark />

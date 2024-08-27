@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+import Hero from "@/sections/Hero";
 import GallaryItem from "@/ts/interfaces/GallaryItem";
 import About from "@/sections/About";
 import AboutEdit from "@/components/dashboard/forms/AboutEdit";

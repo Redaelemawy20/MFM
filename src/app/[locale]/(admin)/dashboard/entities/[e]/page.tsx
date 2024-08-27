@@ -4,7 +4,7 @@ import Card1 from "@/components/dashboard/cards/card1";
 import { EditEntityModal } from "@/components/dashboard/factories/CreateEntityModal";
 import { getEntityWithLayout } from "@/services/models/entity";
 import { EntitySlugParams } from "@/ts/common/NextPageParams";
-import Entity from "@/ts/models/Entity";
+import Entity from "@/ts/interfaces/Entity";
 import { getAllValuesof } from "@/utils/get-all-values";
 import { Divider } from "@nextui-org/react";
 import { notFound } from "next/navigation";

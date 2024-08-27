@@ -10,7 +10,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
-import { StatisticsData, StatisticsProps } from "@/ts/models/Statistics";
+import { StatisticsData, StatisticsProps } from "@/ts/interfaces/Statistics";
 import LanguageSelect from "../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
 interface StatisticsEditI extends StatisticsProps, FormProps {

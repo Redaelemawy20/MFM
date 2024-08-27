@@ -1,4 +1,4 @@
-interface DataProps {
+interface Slide {
   backgroundImage: {
     _s: string;
   };
@@ -10,5 +10,5 @@ export default interface HeroProps {
   data: HeroDataType;
 }
 export type HeroDataType = {
-  items: DataProps[];
+  items: Slide[];
 };

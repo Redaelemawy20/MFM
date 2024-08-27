@@ -8,7 +8,7 @@ import CardStaff from "@/components/sections/staffMember/CardStaff";
 import { c } from "@/utils/get-content";
 
 interface propsData {
-  data: { data: StaffData }[];
+  data: { data: StaffData; slug: string }[];
 }
 const StaffMember: React.FC<propsData> = ({ data }) => {
   console.log({ staff: data });
@@ -28,6 +28,7 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
               img={extractImgSrc(item.data, "avatar")}
               name={c(item.data.name)}
               position={c(item.data.position)}
+              slug={item.slug}
               // cvLink={item.cvLink}
               delayTime={index * 150}
               // socialLinks={item.socialLinks}

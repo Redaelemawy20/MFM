@@ -1,6 +1,6 @@
 import { getEntityWithLayout } from "@/services/models/entity";
 import { getLayoutElements } from "@/services/ui/get-layout-elements";
-import Entity from "@/ts/models/Entity";
+import Entity from "@/ts/interfaces/Entity";
 import { extractImgSrc } from "@/utils/get-img";
 import { getValueIn } from "@/utils/trans";
 import { Metadata } from "next";

@@ -1,4 +1,4 @@
-import { HTMLFormAction } from "@/ts/Types/FormActionType";
+import { HTMLFormAction } from "@/ts/common/FormActionType";
 import { ReactNode } from "react";
 import { useFormContext } from "../dashboard/forms/context/FormContext";
 

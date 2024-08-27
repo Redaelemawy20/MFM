@@ -8,7 +8,7 @@ import TextAreaI from "@/components/dashboard/form-controls/interfaces/TextAreaI
 import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
-import { FeaturesData, FeaturesProps } from "@/ts/models/Feature";
+import { FeaturesData, FeaturesProps } from "@/ts/interfaces/Feature";
 import {
   ContextType,
   FormProvider,

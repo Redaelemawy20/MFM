@@ -1,4 +1,4 @@
-import Entity from "../models/Entity";
+import Entity from "../interfaces/Entity";
 import Feed from "../models/Feed";
 import Programme from "../models/Programme";
 

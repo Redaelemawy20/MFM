@@ -1,132 +1,208 @@
-import React, { ReactNode } from "react";
+"use client";
+import React, { useRef } from "react";
 import CvPageStyle from "./CvPageStyle";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+// @ts-ignore
+import html2pdf from "html2pdf.js";
 
-interface About {
-  dateOfBirth: string;
-  gradFrom: string;
-}
-interface socialLinksObject {
-  platform: ReactNode;
-  link: string;
-}
-interface staffObject {
-  id: number;
-  name: string;
-  img: string;
-  bio: string;
-  email?: string;
-  about: About;
-  office: string;
-  mobile: string;
-  empolyments: string[];
-  academicQualifications: string[];
-  publishedResearch: string[];
-  socialLinks: socialLinksObject[];
-}
-interface CvPageProps {
-  data: staffObject | undefined;
-}
-const CvPage: React.FC<CvPageProps> = ({ data }) => {
-  const downloadPdf = () => {
-    const input = document.getElementById("cv-content");
+import { StaffData } from "@/ts/interfaces/StaffData";
+import { extractImgSrc } from "@/utils/get-img";
+import { c } from "@/utils/get-content";
+import { getValueIn } from "@/utils/trans";
 
-    if (input) {
-      html2canvas(input)
-        .then((canvas) => {
-          const imgData = canvas.toDataURL("image/png");
-          console.log("Generated image data URL:", imgData);
-          const pdf = new jsPDF("p", "mm", "a4");
-          const imgProps = pdf.getImageProperties(imgData);
-          const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-          pdf.save("cv-template.pdf");
-        })
-        .catch((error) => {
-          console.error("Error generating canvas:", error);
-        });
-    } else {
-      console.error("Element with id 'cv-content' not found.");
-    }
+const styles = {
+  wrapper: {
+    boxSizing: "border-box",
+    height: "100%",
+  },
+  downloadButton: {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    zIndex: 1000,
+  },
+  downloadButtonButton: {
+    backgroundColor: "#3498db",
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+  downloadButtonButtonHover: {
+    backgroundColor: "#2980b9",
+  },
+  left: {
+    backgroundColor: "rgba(0, 0, 0, 0.025)",
+    borderRight: "1px solid rgba(0, 0, 0, 0.05)",
+    float: "right",
+    height: "100%",
+    marginLeft: "-1px",
+    minWidth: "256px",
+    position: "fixed",
+    width: "30%",
+  },
+  right: {
+    float: "right",
+    height: "100%",
+    position: "relative",
+    width: "70%",
+  },
+  nameHero: {
+    background: "rgba(0, 0, 0, 0.001)",
+    bottom: "0",
+    height: "290px",
+    left: "0",
+    margin: "auto",
+    position: "absolute",
+    right: "0",
+    top: "0",
+    width: "85%",
+  },
+  meImg: {
+    height: "180px",
+    margin: "0 auto",
+    position: "relative",
+    width: "180px",
+  },
+  meImgImg: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "50%",
+    padding: "5px",
+    border: "1px solid #3498db",
+  },
+  nameHeroH1: {
+    fontFamily: "Open Sans, sans-serif",
+    fontSize: "1.5em",
+    textAlign: "center",
+  },
+  nameHeroH1Em: {
+    color: "rgba(0, 0, 0, 0.3)",
+    fontStyle: "normal",
+    fontWeight: "700",
+  },
+  nameHeroP: {
+    color: "rgba(0, 0, 0, 0.75)",
+    fontSize: "0.85em",
+    lineHeight: "1.5",
+    margin: "0 8px 0 0",
+    textAlign: "center",
+  },
+  nameText: {
+    margin: "0 auto",
+    width: "85%",
+  },
+  inner: {
+    margin: "0 auto",
+    maxWidth: "975px",
+    padding: "3em",
+  },
+  innerH1: {
+    fontSize: "1.75em",
+  },
+  innerP: {
+    color: "rgba(0, 0, 0, 0.5)",
+  },
+  innerPEM: {
+    color: "rgba(0, 0, 0, 1)",
+    fontStyle: "normal",
+  },
+  section: {
+    margin: "100px auto",
+  },
+  ul: {
+    listStyleType: "none",
+    marginTop: "-10px",
+    maxWidth: "570px",
+    padding: "0",
+  },
+  skillSetLi: {
+    background: "rgba(0, 0, 0, 0.75)",
+    borderRadius: "5px",
+    color: "#fff",
+    display: "inline-block",
+    listStyle: "none",
+    margin: "15px 15px 0 0",
+    padding: "10px",
+    textAlign: "justify",
+  },
+};
+
+const CvPage = ({ staff }: { staff: StaffData }) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  const handleDownload = () => {
+    const element = sectionRef.current;
+
+    // Optional: Customize options for pdf
+    const options = {
+      margin: [0.5, 0.5, 0.5, 0.5],
+      filename: getValueIn(staff.name, "en") + "cv.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "landscape" },
+    };
+
+    // Generate and download the pdf
+    html2pdf().from(element).set(options).save();
   };
-  /****Destruct About *****/
-
-  const { dateOfBirth, gradFrom } = data?.about || {};
 
   return (
-    <CvPageStyle>
-      <div className="wrapper clearfix">
-        {/* Download  Button */}
-        <div className="download-button">
-          <button onClick={downloadPdf}>Download PDF</button>
-        </div>
+    <div style={styles.wrapper}>
+      {/* Download Button */}
+      <div style={styles.downloadButton}>
+        <button
+          style={styles.downloadButtonButton}
+          onMouseOver={(e) =>
+            (e.currentTarget.style.backgroundColor =
+              styles.downloadButtonButtonHover.backgroundColor)
+          }
+          onMouseOut={(e) =>
+            (e.currentTarget.style.backgroundColor =
+              styles.downloadButtonButton.backgroundColor)
+          }
+          onClick={handleDownload}
+        >
+          Download PDF
+        </button>
+      </div>
 
-        {/* CV Content */}
-        {/* <div id="cv-content"> */}
-        <div className="left">
-          <div className="name-hero">
-            <div className="me-img">
-              <img src={data?.img} alt="my photo" />
+      {/* CV Content */}
+      <div ref={sectionRef}>
+        <div style={styles.left}>
+          <div style={styles.nameHero}>
+            <div style={styles.meImg}>
+              <img
+                src={extractImgSrc(staff, "avatar")}
+                alt="my photo"
+                style={styles.meImgImg}
+              />
             </div>
-            <div className="name-text">
-              <h1>{data?.name}</h1>
-              <p>{data?.bio}</p>
-              <p>{data?.email}</p>
-              <p>(956) 500-5558</p>
+            <div style={styles.nameText}>
+              <p>Title: {c(staff.title)}</p>
+              <h1 style={styles.nameHeroH1}>Name: {c(staff.name)}</h1>
+              <p>Position: {c(staff.position)}</p>
+              <p>Degree: {c(staff.degree)}</p>
             </div>
           </div>
         </div>
-        <div id="cv-content">
-          <div className="right">
-            <div className="inner">
-              <section>
-                <h1>About</h1>
-                <p>Date Of Birth:{dateOfBirth}</p>
-                <p>{gradFrom}</p>
-              </section>
-              <section>
-                <h1>Employment</h1>
-                {data?.empolyments.map((item, index) => (
-                  <p key={index}>{item}</p>
-                ))}
-              </section>
-              <section>
-                <h1>Academic Qualifications</h1>
-                {data?.academicQualifications.map((item, index) => (
-                  <p key={index}>{item}</p>
-                ))}
-              </section>
-              <section>
-                <h1>Published Research</h1>
-                {data?.publishedResearch.map((item, index) => (
-                  <p key={index}>{item}</p>
-                ))}
-              </section>
-              {/* <section>
-                <h1>Personal Interests</h1>
-                <ul className="skill-set">
-                  <li>Faith</li>
-                  <li>Biblical Studies</li>
-                  <li>Playing Guitar</li>
-                  <li>Song Writing</li>
-                  <li>Health & Nutrition</li>
-                  <li>Reading</li>
-                </ul>
-              </section> */}
-              <section>
-                <div className="handmade">
-                  <p>
-                    handmade by <em> Alaa Ayaad</em>
+        <div id="cv-content" style={styles.right}>
+          <div style={styles.inner}>
+            {staff.cv.map((section, i) => (
+              <section key={i} style={styles.section}>
+                <h1 style={styles.innerH1}>{c(section.title)}</h1>
+                {c(section.points).map((point) => (
+                  <p key={point} style={styles.innerP}>
+                    {point}
                   </p>
-                </div>
+                ))}
               </section>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-    </CvPageStyle>
+    </div>
   );
 };
 

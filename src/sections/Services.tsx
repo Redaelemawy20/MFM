@@ -2,7 +2,7 @@
 import React from "react";
 import MainTitle from "./MainTitle";
 import ServiceCard from "../components/sections/servicessection/ServiceCard";
-import { ServicesProps } from "@/ts/models/Service";
+import { ServicesProps } from "@/ts/interfaces/Service";
 
 const Services = ({ data }: ServicesProps) => {
   const cardsData = data.cardsData ? data.cardsData : [];

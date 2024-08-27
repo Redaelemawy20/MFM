@@ -11,7 +11,7 @@ import {
   FormProvider,
   useFormContext,
 } from "./context/FormContext";
-import Entity from "@/ts/models/Entity";
+import Entity from "@/ts/interfaces/Entity";
 import LanguageSelect from "../form-controls/LanguageSelect";
 
 interface EntityFormI extends FormProps {
