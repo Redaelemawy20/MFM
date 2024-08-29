@@ -14,18 +14,28 @@ interface FormModalExtraProps {
   action: HTMLFormAction;
   errorMessage?: string;
 }
+interface Options {
+  color?:
+    | "primary"
+    | "default"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger";
+  btnText: string;
+  defaultOpen?: boolean;
+}
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
   action: FormActionType | EditSectionType<T>,
-  btnText: string,
-  color?: "primary" | "default" | "secondary" | "success" | "warning" | "danger"
+  { color, btnText, defaultOpen }: Options
 ) {
   return (props: Omit<T, "action" | "errorMessage">) => {
     const [formState, formAction] = useFormState(action as FormActionType, {
       message: "",
     });
     const router = useRouter();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(defaultOpen || false);
     useEffect(() => {
       if (formState.message === false) {
         setOpen(false);
@@ -35,9 +45,15 @@ function withModalForm<T extends FormModalExtraProps>(
     const { message } = formState;
     return (
       <>
-        <Button onPress={() => setOpen(true)} color={color ? color : "primary"}>
-          {btnText}
-        </Button>
+        {!defaultOpen && (
+          <Button
+            onPress={() => setOpen(true)}
+            color={color ? color : "primary"}
+          >
+            {btnText}
+          </Button>
+        )}
+
         <Modal
           isOpen={open}
           onClose={() => {

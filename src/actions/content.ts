@@ -21,7 +21,6 @@ import {
   deleteSectionAction,
   editNewsAction,
   editSections,
-  onPageCreated,
   onSectionAdded,
   setDiplaySectionAction,
   setEntityLinksAction,

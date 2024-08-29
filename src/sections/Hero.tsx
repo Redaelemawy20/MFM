@@ -1,7 +1,5 @@
 "use client";
 import Carousel from "react-bootstrap/Carousel";
-
-import HeroStyle from "../components/sections/Hero/HeroStyle";
 import Button from "../components/common/Button";
 import HeroProps from "@/ts/interfaces/HeroSectionProps";
 import { c } from "@/utils/get-content";
@@ -12,7 +10,7 @@ const Hero = ({ data }: HeroProps) => {
   const items = data.items || [];
   const t = useTranslations("Hero");
   return (
-    <HeroStyle>
+    <div>
       <Carousel fade>
         {items.map((item, index) => (
           <Carousel.Item
@@ -43,7 +41,7 @@ const Hero = ({ data }: HeroProps) => {
           </Carousel.Item>
         ))}
       </Carousel>
-    </HeroStyle>
+    </div>
   );
 };
 

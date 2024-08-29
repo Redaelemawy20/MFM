@@ -1,6 +1,4 @@
-"use client";
 import React from "react";
-import StaffMemberStyle from "../components/sections/staffMember/StaffMemberStyle";
 import MainTitle from "@/sections/MainTitle";
 import { StaffData } from "@/ts/interfaces/StaffData";
 import { extractImgSrc } from "@/utils/get-img";
@@ -11,10 +9,8 @@ interface propsData {
   data: { data: StaffData; slug: string }[];
 }
 const StaffMember: React.FC<propsData> = ({ data }) => {
-  console.log({ staff: data });
-
   return (
-    <StaffMemberStyle>
+    <div>
       <div className="Main_wraper">
         <MainTitle
           data={{
@@ -36,7 +32,7 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
           ))}
         </div>
       </div>
-    </StaffMemberStyle>
+    </div>
   );
 };
 

@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { NavContentProps } from "@/ts/interfaces/NavPops";
 import { FaAngleDown, FaBars } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
-import { c } from "@/utils/get-content";
 import Link from "next/link";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { getValueIn } from "@/utils/trans";
 import { Lang } from "@/ts/common/Translatable";
+import styles from "./nav.module.css";
 
 const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
   const [showList, setShowList] = useState(false);
@@ -52,7 +52,7 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
     return item.hasDropDown ? (
       <a onClick={() => onDropDown(index)}>
         {getValueIn(item.name, currentLang).toUpperCase()}
-        {item.hasDropDown && <FaAngleDown className="down_angle" />}
+        {item.hasDropDown && <FaAngleDown className={styles.down_angle} />}
       </a>
     ) : (
       <Link href={item.href}>
@@ -62,37 +62,40 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
   };
 
   return (
-    <div className="Nav__Container">
-      <div className="inner__Container flex">
+    <div className={styles.Nav__Container}>
+      <div className={`${styles.inner__Container} flex`}>
         <Image
           src={logo}
-          // style={logoStyle ? logoStyle : { width: "85px", height: "80px" }}
+          style={logoStyle ? logoStyle : { width: "85px", height: "80px" }}
           alt="logo"
           width={80}
           height={100}
         />
         <div
-          className={`navigate_Cont flex items-center ${
-            showList ? "show" : ""
-          }`}
+          className={`${styles.navigate_Cont}  ${showList ? styles.show : ""}`}
         >
           {showList && (
-            <button className="exit_btn" onClick={() => setShowList(!showList)}>
+            <button
+              className={styles.exit_btn}
+              onClick={() => setShowList(!showList)}
+            >
               <HiXMark />
             </button>
           )}
-          <ul className="flex list_links" ref={dropdownRef}>
+          <ul className={`flex ${styles.list_links}`} ref={dropdownRef}>
             {items.map((item, index) => (
               <li key={index}>
                 {renderLink(item, index, handleDropdownClick)}
                 {item.hasDropDown && openDropdownIndex === index && (
-                  <ul className="dropdown_menu">
+                  <ul className={styles.dropdown_menu}>
                     {item.menu.map((link, linkIndex) => (
                       <li key={linkIndex}>
                         {renderLink(link, linkIndex, handleSubDropdownClick)}
                         {link.hasDropDown &&
                           openSubDropdownIndex === linkIndex && (
-                            <ul className="dropdown_menu dropdown_sub_menu">
+                            <ul
+                              className={`${styles.dropdown_menu} ${styles.dropdown_sub_menu}`}
+                            >
                               {link.menu.map((subLink, subLinkIndex) => (
                                 <li key={subLinkIndex}>
                                   <Link href={subLink.href}>
@@ -111,7 +114,10 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
           </ul>
         </div>
         <div className="flex" style={{ gap: "25px" }}>
-          <button className="list_btn" onClick={() => setShowList(!showList)}>
+          <button
+            className={styles.list_btn}
+            onClick={() => setShowList(!showList)}
+          >
             <FaBars style={{ width: "100%", height: "100%" }} />
           </button>
         </div>

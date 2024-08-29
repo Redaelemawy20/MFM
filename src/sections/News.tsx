@@ -1,10 +1,13 @@
-"use client";
 import CardNews from "@/components/sections/News/CardNews";
 import MainTitle from "@/sections/MainTitle";
-import { NewsProps } from "@/ts/interfaces/NewsProps";
+import { NewsItem } from "@/ts/interfaces/NewsProps";
 import { c } from "@/utils/get-content";
 
-const NewsSection = ({ data: news }: { data: { details: NewsProps }[] }) => {
+const NewsSection = ({
+  data: news,
+}: {
+  data: { details: NewsItem; slug: string }[];
+}) => {
   return (
     <div className="Main_wraper">
       <MainTitle data={{ mainTitle: "Latest News" }} />

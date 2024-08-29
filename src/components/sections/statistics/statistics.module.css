@@ -1,0 +1,40 @@
+.statistics_Container {
+  flex-direction: column;
+  box-shadow: -10px -5px 40px 0 rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+}
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.icon {
+  color: var(--secondary-color);
+}
+.title h2 {
+  font-size: 2.8rem;
+  margin-inline-start: 0.5em;
+
+  font-weight: 700;
+  color: #555555;
+}
+.description {
+  padding-top: 30px;
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--paragraph-color);
+}
+.description .strong {
+  font-weight: 700;
+  margin-inline-end: 0.2em;
+}
+.statistics_Container a {
+  font-weight: 600;
+  display: block;
+  margin-top: 20px;
+  color: #7b7b7b;
+  font-size: 1rem;
+  transition: ease-in-out 0.3s;
+}

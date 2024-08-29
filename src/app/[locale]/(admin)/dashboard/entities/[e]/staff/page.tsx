@@ -1,12 +1,12 @@
 import { Divider } from "@nextui-org/react";
 import { EntitySlugParams } from "../../../../../../../ts/common/NextPageParams";
 import { notFound } from "next/navigation";
-import { getEntityWithStaff } from "@/services/fetch/getEntityWithStaff";
 import CreateStaffModal from "@/components/dashboard/factories/CreateStaffModal";
 import StaffTable from "@/components/dashboard/table/StaffTable";
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
+import { getEntityWithStaff } from "@/services/entityServices";
 
 // add account
 

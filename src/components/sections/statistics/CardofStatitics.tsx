@@ -1,8 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect, ReactNode } from "react";
 import CountUp from "react-countup";
-import CardStatisticsStyle from "./CardStatisticsStyle";
-import Link from "next/link";
+import styles from "./statistics.module.css";
 import { c } from "@/utils/get-content";
 interface DataProps {
   // icon: ReactNode;
@@ -44,9 +43,9 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
   }, []);
 
   return (
-    <CardStatisticsStyle ref={cardRef}>
-      <div className="title">
-        {/* <span className="icon">{item.icon}</span> */}
+    <div className={styles.statistics_Container} ref={cardRef}>
+      <div className={styles.title}>
+        {/* <span className={styles.icon}>{item.icon}</span> */}
         {startCount ? (
           <h2>
             <CountUp end={parseInt(item.num)} duration={3} />
@@ -55,11 +54,11 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
           <h2>0</h2>
         )}
       </div>
-      <p className="description">
-        <span className="strong">{c(item.subtitle)}</span>
+      <p className={styles.description}>
+        <span className={styles.strong}>{c(item.subtitle)}</span>
         {c(item.description)}
       </p>
-    </CardStatisticsStyle>
+    </div>
   );
 };
 

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import CardNewsStyle from "./CardNewsStyle";
-import { NewsProps } from "@/ts/interfaces/NewsProps";
+import styles from "./newscard.module.css";
+import { NewsItem, NewsProps } from "@/ts/interfaces/NewsProps";
 import { extractImgSrc } from "@/utils/get-img";
-interface newsItemProps extends NewsProps {
+interface newsItemProps extends NewsItem {
   index: number;
+  link: string;
 }
 const CardNews: React.FC<newsItemProps> = ({
   gallary,
@@ -19,13 +20,20 @@ const CardNews: React.FC<newsItemProps> = ({
     return extractImgSrc(mainImage, "img");
   };
   return (
-    <CardNewsStyle data-aos="zoom-in" data-aos-delay={`${300 * index}`}>
-      <img src={showImage()} alt="" className="img_news" />
-      <p className="date">{date}</p>
-      <Link href={link} className="news_Title Text_elipsis">
+    <div
+      className={styles.card_container}
+      data-aos="zoom-in"
+      data-aos-delay={`${300 * index}`}
+    >
+      <img src={showImage()} alt="" className={styles.img_news} />
+      <p className={styles.date}>{date}</p>
+      <Link
+        href={link}
+        className={`${styles.news_Title} ${styles.Text_elipsis}`}
+      >
         {title}
       </Link>
-    </CardNewsStyle>
+    </div>
   );
 };
 

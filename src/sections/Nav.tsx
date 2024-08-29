@@ -1,24 +1,15 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import NavStyle from "@/components/sections/Nav/NavStyle";
+import React from "react";
 import Top from "@/components/sections/Nav/NavTop";
 import NavProps from "@/ts/interfaces/NavPops";
 import NavContent from "@/components/sections/Nav/NavContent";
+import NavToggleFirstRow from "@/components/sections/Nav/NavToggleFirstRow";
 
 const Nav = ({ data, logo }: NavProps) => {
-  // const [scrollDown, setScrollDown] = useState(0);
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     setScrollDown(() => window.pageYOffset);
-  //   });
-  // }, []);
   return (
-    <NavStyle>
-      <div className={`main__Nav `}>
-        <Top buttons={data.buttons} />
-        <NavContent items={data.items} logo={logo} />
-      </div>
-    </NavStyle>
+    <NavToggleFirstRow>
+      <Top buttons={data.buttons} />
+      <NavContent items={data.items} logo={logo} />
+    </NavToggleFirstRow>
   );
 };
 

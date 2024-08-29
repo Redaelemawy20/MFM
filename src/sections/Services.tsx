@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
 import MainTitle from "./MainTitle";
-import ServiceCard from "../components/sections/servicessection/ServiceCard";
+import ServiceCard from "../components/sections/Services/ServiceCard";
 import { ServicesProps } from "@/ts/interfaces/Service";
 
 const Services = ({ data }: ServicesProps) => {

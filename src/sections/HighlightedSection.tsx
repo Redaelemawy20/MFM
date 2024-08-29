@@ -1,9 +1,7 @@
-"use client";
 import React from "react";
-
 import HighlightedSectionProps from "@/ts/interfaces/HighlightedSectionProps";
 import Button from "@/components/common/Button";
-import HighlightedSectionStyle from "@/components/sections/HighlightedSection/HighlightedSectionStyle";
+import styles from "@/components/sections/HighlightedSection/highlighted.module.css";
 import { c } from "@/utils/get-content";
 
 const HighlightedSection = ({ data }: HighlightedSectionProps) => {
@@ -20,9 +18,9 @@ const HighlightedSection = ({ data }: HighlightedSectionProps) => {
     color: "var(--primary-color)",
   };
   return (
-    <HighlightedSectionStyle>
-      <div className="inner__cont" data-aos="zoom-in">
-        <h2 className="title">{c(data.title)}</h2>
+    <div className={styles.apoint__cont}>
+      <div className={styles.inner__cont} data-aos="zoom-in">
+        <h2 className={styles.title}>{c(data.title)}</h2>
         <p>{c(data.description)}</p>
         <Button
           type="roundedLink"
@@ -31,7 +29,7 @@ const HighlightedSection = ({ data }: HighlightedSectionProps) => {
           styleButton={styleButton}
         />
       </div>
-    </HighlightedSectionStyle>
+    </div>
   );
 };
 

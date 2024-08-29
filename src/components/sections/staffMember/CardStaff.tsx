@@ -1,9 +1,6 @@
-import React, { ReactNode } from "react";
-import CardStaffStyle from "./CardStaffStyle";
-interface SocialLinks {
-  platform: ReactNode;
-  link: string;
-}
+import React from "react";
+import styles from "./staffsection.module.css";
+
 interface CardStaffProps {
   img: string;
   name: string;
@@ -22,18 +19,22 @@ function CardStaff({
 }: // socialLinks,
 CardStaffProps) {
   return (
-    <CardStaffStyle data-aos="fade-up" data-aos-delay={delayTime}>
-      <div className="img_container">
+    <div
+      className={styles.card_container}
+      data-aos="fade-up"
+      data-aos-delay={delayTime}
+    >
+      <div className={styles.img_container}>
         <img src={img} alt="profile Image" />
       </div>
-      <div className="info">
+      <div className={styles.info}>
         <h1>{name}</h1>
-        <a href={"/cv/" + slug} className="Cv_Page_Link">
+        <a href={"/cv/" + slug} className={styles.Cv_Page_Link}>
           explore cv
         </a>
-        <p className="Text_elipsis">{position}</p>
+        <p className={styles.Text_elipsis}>{position}</p>
       </div>
-    </CardStaffStyle>
+    </div>
   );
 }
 
