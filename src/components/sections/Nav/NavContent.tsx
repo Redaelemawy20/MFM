@@ -51,13 +51,11 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
   ) => {
     return item.hasDropDown ? (
       <a onClick={() => onDropDown(index)}>
-        {getValueIn(item.name, currentLang).toUpperCase()}
+        {getValueIn(item.name, currentLang)}
         {item.hasDropDown && <FaAngleDown className={styles.down_angle} />}
       </a>
     ) : (
-      <Link href={item.href}>
-        {getValueIn(item.name, currentLang).toUpperCase()}
-      </Link>
+      <Link href={item.href}>{getValueIn(item.name, currentLang)}</Link>
     );
   };
 
