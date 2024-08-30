@@ -7,8 +7,8 @@ import AuthStatus from "./AuthStatus";
 
 const NavTop = ({ buttons }: NavTopProps) => {
   return (
-    <div className={styles.first_Row}>
-      <div className={`${styles.Nav__Container} flex`}>
+    <div className={`${styles.first_Row} flex align-center`}>
+      <div className={`${styles.Nav__Container} hidden md:flex`}>
         <p className={`${styles.info} flex`}>
           {buttons.map((btn, i) => (
             <Link className={styles.btn_link} href={btn.href} key={i}>
@@ -16,10 +16,14 @@ const NavTop = ({ buttons }: NavTopProps) => {
             </Link>
           ))}
         </p>
-        <p className={`${styles.info} flex`}>
+      </div>
+      <div className="flex align-center">
+        <p className={`${styles.btn_link}  flex`}>
           <LanguageSwitcher />
         </p>
-        <AuthStatus />
+        <p className={`${styles.btn_link}  flex`}>
+          <AuthStatus />
+        </p>
       </div>
     </div>
   );
