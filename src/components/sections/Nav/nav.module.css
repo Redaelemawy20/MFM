@@ -16,6 +16,7 @@
   width: 94%;
   margin: auto;
   justify-content: space-between;
+  align-items: center;
 }
 .info img {
   margin-inline-end: 0.4em;
@@ -215,6 +216,9 @@
     margin-inline-start: 1rem;
   }
 }
+/* @media (max-width: 700px) {
+  .na
+} */
 @media (max-width: 580px) {
   /* .first_Row .Nav__Container > :first-child {
           display: none;
