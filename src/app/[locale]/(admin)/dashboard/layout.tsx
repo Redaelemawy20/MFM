@@ -4,13 +4,13 @@ import React from "react";
 import { useLockedBody } from "../../../../hooks/useBodyLock";
 import { NavbarWrapper } from "@/components/dashboard/navbar/navbar";
 import { Sidebar } from "@/components/dashboard/sidebar/sidebar.styles";
+import DefaultSideBar from "@/components/dashboard/sidebar/DefaultSidebar";
 
 interface Props {
   children: React.ReactNode;
-  aside: React.ReactNode;
 }
 
-const Layout = ({ children, aside }: Props) => {
+const Layout = ({ children }: Props) => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
   const [_, setLocked] = useLockedBody(false);
   const handleToggleSidebar = () => {
@@ -29,7 +29,7 @@ const Layout = ({ children, aside }: Props) => {
             collapsed: sidebarOpen,
           })}
         >
-          {aside}
+          <DefaultSideBar />
         </div>
       </aside>
       <NavbarWrapper>

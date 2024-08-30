@@ -3,10 +3,8 @@ import withModalForm from "@/components/common/modal-form";
 import { deletePage } from "@/actions/content";
 import DeleteConfirmationForm from "../forms/DeleteConfirmation";
 
-const DeletePageModal = withModalForm(
-  DeleteConfirmationForm,
-  deletePage,
-  "Delete",
-  "danger"
-);
+const DeletePageModal = withModalForm(DeleteConfirmationForm, deletePage, {
+  btnText: "Delete",
+  color: "danger",
+});
 export default DeletePageModal;

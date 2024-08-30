@@ -4,9 +4,11 @@
 
 import Card1 from "@/components/dashboard/cards/card1";
 import { AddEntityModal } from "@/components/dashboard/factories/CreateEntityModal";
+import { Link } from "@/navigation";
 import { getEntities } from "@/services/models/entity";
+import { entityAdminPath } from "@/utils/router";
 // import CreateEntityModal from "@/components/dashboard/factories/CreateEntityModal";
-import { Divider } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 
 export default async () => {
   const entities = await getEntities();
@@ -32,8 +34,13 @@ export default async () => {
                 title={entity.name}
                 content={() => (
                   <div>
-                    <span>Avaliable at link: </span>
-                    <span>{`/e/${entity.slug}`}</span>
+                    <div>
+                      <span>Avaliable at link: </span>
+                      <span>{`/e/${entity.slug}`}</span>
+                    </div>
+                    <Link className="" href={entityAdminPath(entity.slug)}>
+                      <Button color="secondary">manage</Button>
+                    </Link>
                   </div>
                 )}
               />

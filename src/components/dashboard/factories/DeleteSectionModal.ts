@@ -6,7 +6,6 @@ import DeleteConfirmationForm from "../forms/DeleteConfirmation";
 const DeleteSectionModal = withModalForm(
   DeleteConfirmationForm,
   deleteSection,
-  "Delete",
-  "danger"
+  { btnText: "Delete", color: "danger" }
 );
 export default DeleteSectionModal;

@@ -1,25 +1,23 @@
-// "use client";
-// import { usePathname } from "next/navigation";
+"use client";
 
 import { Sidebar } from "./sidebar.styles";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { SidebarMenu } from "./sidebar-menu";
 import { AccountsIcon } from "../icons/sidebar/accounts-icon";
-import { CollapseItems } from "./collapse-items";
-import { BalanceIcon } from "../icons/sidebar/balance-icon";
 import Image from "next/image";
 import { entityAdminPath } from "@/utils/router";
-import { getEntities } from "@/services/models/entity";
+import { useParams, usePathname } from "next/navigation";
+import { PaymentsIcon } from "../icons/sidebar/payments-icon";
 
 const DefaultSideBar = async () => {
-  // const pathname = usePathname();
-  const entities = await getEntities();
-  let links = entities.map((e) => ({
-    name: e.name,
-    href: entityAdminPath(e.slug),
-  }));
-
+  const { e: entity_slug } = useParams<{ e: string }>();
+  const pathname = usePathname();
+  const entityPath = entityAdminPath(entity_slug);
+  const newsRoute = entityPath + "/news";
+  const listsRoute = entityPath + "/lists";
+  const staffRoute = entityPath + "/staff";
+  const pagesRoute = entityPath + "/pages";
   return (
     <>
       <div className={Sidebar.Header()}>
@@ -42,6 +40,12 @@ const DefaultSideBar = async () => {
             // isActive={pathname === "/"}
             href="/"
           />
+          <SidebarItem
+            title="dashboard"
+            icon={<HomeIcon />}
+            // isActive={pathname === "/"}
+            href="/dashboard"
+          />
           <SidebarMenu title="Main Menu">
             <SidebarItem
               // isActive={pathname === "/accounts"}
@@ -49,12 +53,40 @@ const DefaultSideBar = async () => {
               icon={<AccountsIcon />}
               href="accounts"
             />
-            <CollapseItems
-              icon={<BalanceIcon />}
-              items={links}
-              title="Faculties"
+            <SidebarItem
+              title="Faculities"
+              icon={<HomeIcon />}
+              href="/dashboard/entities"
             />
           </SidebarMenu>
+          {entity_slug && (
+            <SidebarMenu title={entity_slug}>
+              <SidebarItem
+                isActive={pathname === newsRoute}
+                title="News"
+                icon={<AccountsIcon />}
+                href={newsRoute}
+              />
+              <SidebarItem
+                isActive={pathname === listsRoute}
+                title="Lists"
+                icon={<AccountsIcon />}
+                href={listsRoute}
+              />
+              <SidebarItem
+                isActive={pathname === staffRoute}
+                title="Staff"
+                icon={<AccountsIcon />}
+                href={staffRoute}
+              />
+              <SidebarItem
+                isActive={pathname === pagesRoute}
+                title="Pages"
+                icon={<PaymentsIcon />}
+                href={pagesRoute}
+              />
+            </SidebarMenu>
+          )}
         </div>
       </div>
     </>

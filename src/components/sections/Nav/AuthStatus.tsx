@@ -1,3 +1,4 @@
+"use server";
 import { auth, signIn, signOut } from "@/auth";
 
 const AuthStatus = async () => {

@@ -9,7 +9,7 @@ export default auth((req) => {
   const isAuthenticated = !!req.auth;
   if (isPublicPage || isAuthenticated) return ntlMiddelware(req);
 
-  return Response.redirect(new URL("/test", nextUrl));
+  return Response.redirect(new URL("/login", nextUrl));
 });
 
 export const config = {

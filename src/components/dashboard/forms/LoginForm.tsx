@@ -6,8 +6,6 @@ import { Input } from "@nextui-org/react";
 import MailIcon from "@/components/login/MailIcon";
 
 const LoginForm = ({ action, errorMessage }: FormProps) => {
-  console.log({ errorMessage });
-
   return (
     <Form modifiedAction={action} errorMessage={errorMessage}>
       <div style={{ marginBottom: "1rem", width: "100%" }}>
