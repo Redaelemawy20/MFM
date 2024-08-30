@@ -10,7 +10,7 @@ import { entityAdminPath } from "@/utils/router";
 import { useParams, usePathname } from "next/navigation";
 import { PaymentsIcon } from "../icons/sidebar/payments-icon";
 
-const DefaultSideBar = async () => {
+const DefaultSideBar = () => {
   const { e: entity_slug } = useParams<{ e: string }>();
   const pathname = usePathname();
   const entityPath = entityAdminPath(entity_slug);
