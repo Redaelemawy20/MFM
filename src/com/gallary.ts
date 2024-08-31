@@ -1,31 +1,30 @@
 import Hero from "@/sections/Hero";
-import GallaryItem from "@/ts/interfaces/GallaryItem";
 import About from "@/sections/About";
-import AboutEdit from "@/components/dashboard/forms/AboutEdit";
-import AnimatedCardEdit from "@/components/dashboard/forms/AnimatedCardEdit";
+// import AboutEdit from "";
 import HighlightedSectionEdit from "@/components/dashboard/forms/HighlightedSectionEdit";
 import MainTitle from "@/sections/MainTitle";
 import Services from "@/sections/Services";
 import Statistics from "@/sections/Statistics";
 import StaffMember from "@/sections/StaffMember";
-import HeroEdit from "@/components/dashboard/forms/HeroEdit";
-import FeaturesEdit from "@/components/dashboard/forms/FeaturesEdit";
 import MainTitleEdit from "@/components/dashboard/forms/MainTitleEdit";
 import ServiceEdit from "@/components/dashboard/forms/ServiceEdit";
-import StatisticsEdit from "@/components/dashboard/forms/StatisticsEdit";
+// import StatisticsEdit from "@/components/dashboard/forms/StatisticsEdit";
 import Nav from "@/sections/Nav";
 import AnimatedCard from "@/sections/AnimatedCard";
 import Features from "@/sections/Features";
 import HighlightedSection from "@/sections/HighlightedSection";
 import Footer from "@/sections/Footer";
 import NewsSection from "@/sections/News";
+import React from "react";
 
 // sections
-export const sectionsGallary: GallaryItem[] = [
+export const sectionsGallary = [
   {
     componentId: "1700000001",
     component: Hero,
-    componentEdit: HeroEdit,
+    componentEdit: [
+      React.lazy(() => import("@/components/dashboard/forms/HeroEdit")),
+    ],
     defaultData: {
       items: [
         {
@@ -40,7 +39,8 @@ export const sectionsGallary: GallaryItem[] = [
   {
     componentId: "1700000002",
     component: About,
-    componentEdit: AboutEdit,
+    // componentEdit: () =>
+    //   React.lazy(() => import("@/components/dashboard/forms/AboutEdit")),
     defaultData: {
       mainTitle: "ABOUT US",
       caption:
@@ -62,7 +62,9 @@ export const sectionsGallary: GallaryItem[] = [
   {
     componentId: "1700000003",
     component: AnimatedCard,
-    componentEdit: AnimatedCardEdit,
+    componentEdit: React.lazy(
+      () => import("@/components/dashboard/forms/AnimatedCardEdit")
+    ),
     defaultData: {
       items: [
         {
@@ -85,7 +87,9 @@ export const sectionsGallary: GallaryItem[] = [
   {
     componentId: "1700000004",
     component: Features,
-    componentEdit: FeaturesEdit,
+    componentEdit: React.lazy(
+      () => import("@/components/dashboard/forms/HeroEdit")
+    ),
     defaultData: {
       mainImg: { _s: "./assets/imgs/22.jpg" },
       featuresItems: [
@@ -151,7 +155,9 @@ export const sectionsGallary: GallaryItem[] = [
   {
     componentId: "1700000008",
     component: Statistics,
-    componentEdit: StatisticsEdit,
+    componentEdit: React.lazy(
+      () => import("@/components/dashboard/forms/StatisticsEdit")
+    ),
     defaultData: {
       items: [
         {

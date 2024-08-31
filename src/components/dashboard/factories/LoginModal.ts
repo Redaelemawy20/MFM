@@ -1,5 +1,5 @@
 "use client";
-import withModalForm from "@/components/common/modal-form";
+import withModalForm from "@/components/common/ModalForm";
 
 import LoginForm from "../forms/LoginForm";
 import { login } from "@/actions/authentication";

@@ -1,13 +1,14 @@
 import CardNews from "@/components/sections/News/CardNews";
 import MainTitle from "@/sections/MainTitle";
 import { NewsItem } from "@/ts/interfaces/NewsProps";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 
 const NewsSection = ({
   data: news,
 }: {
   data: { details: NewsItem; slug: string }[];
 }) => {
+  const c = useContent();
   return (
     <div className="Main_wraper">
       <MainTitle data={{ mainTitle: "Latest News" }} />

@@ -1,10 +1,9 @@
+"use client";
 import FormProps from "@/ts/interfaces/FormProps";
 
-import useStateManager from "@/hooks/useStateManager";
 import ImageUploadPerview from "@/components/dashboard/form-controls/ImageUploadPerview";
 import Accordions from "@/components/dashboard/form-controls/Accordion";
 import TextArea from "@/components/dashboard/form-controls/TextArea";
-import TextAreaI from "@/components/dashboard/form-controls/interfaces/TextAreaI";
 import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
@@ -17,6 +16,9 @@ import {
 import TextFeild from "../form-controls/Input";
 import { getValueIn } from "@/utils/trans";
 import LanguageSelect from "../form-controls/LanguageSelect";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import Features from "@/sections/Features";
 
 interface FeaturesEditI extends FeaturesProps, FormProps {
   id: number;
@@ -53,37 +55,42 @@ function FormElements() {
 
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form modifiedAction={modefiedAction}>
-      <LanguageSelect onChange={setLang} value={lang} />
-      <WithTabs tabs={["Main image", "Features list"]}>
-        <ImageUploadPerview name="mainImg" value={state.mainImg} />
-        <Accordions
-          name="featuresItems"
-          value={state.featuresItems}
-          getTitle={(item) => getValueIn(item.title, lang)}
-          childs={(item, onChange) => ({
-            title: () => (
-              <TextFeild
-                name="title"
-                label="title label"
-                value={item.title}
-                onChange={onChange}
-                translatable
-              />
-            ),
-            description: () => (
-              <TextArea
-                name="description"
-                label="description label"
-                value={item.description}
-                onChange={onChange}
-                translatable
-              />
-            ),
-          })}
-        />
-      </WithTabs>
-      <FormButton>Save</FormButton>
-    </Form>
+    <FormPreviewLayout>
+      <Form modifiedAction={modefiedAction}>
+        <LanguageSelect onChange={setLang} value={lang} />
+        <WithTabs tabs={["Main image", "Features list"]}>
+          <ImageUploadPerview name="mainImg" value={state.mainImg} />
+          <Accordions
+            name="featuresItems"
+            value={state.featuresItems}
+            getTitle={(item) => getValueIn(item.title, lang)}
+            childs={(item, onChange) => ({
+              title: () => (
+                <TextFeild
+                  name="title"
+                  label="title label"
+                  value={item.title}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+              description: () => (
+                <TextArea
+                  name="description"
+                  label="description label"
+                  value={item.description}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+            })}
+          />
+        </WithTabs>
+        <FormButton>Save</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <Features data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 }

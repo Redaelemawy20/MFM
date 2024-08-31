@@ -24,11 +24,12 @@ interface Options {
     | "danger";
   btnText: string;
   defaultOpen?: boolean;
+  width?: "normal" | "full";
 }
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
   action: FormActionType | EditSectionType<T>,
-  { color, btnText, defaultOpen }: Options
+  { color, btnText, defaultOpen, width }: Options
 ) {
   return (props: Omit<T, "action" | "errorMessage">) => {
     const [formState, formAction] = useFormState(action as FormActionType, {
@@ -61,15 +62,20 @@ function withModalForm<T extends FormModalExtraProps>(
           }}
           placement="top-center"
           shouldCloseOnInteractOutside={() => true}
+          className={`${
+            width == "full" ? "!max-w-full" : ""
+          }  max-h-[90vh] overflow-y-auto`}
         >
-          <ModalContent className="max-h-[90vh] overflow-y-auto">
+          <ModalContent>
             <ModalHeader className="font-bold p-3 pb-1">{btnText}</ModalHeader>
             <ModalBody>
-              <WrappedForm
-                {...(props as T)}
-                action={formAction}
-                errorMessage={message ?? null}
-              />
+              <div>
+                <WrappedForm
+                  {...(props as T)}
+                  action={formAction}
+                  errorMessage={message ?? null}
+                />
+              </div>
             </ModalBody>
           </ModalContent>
         </Modal>

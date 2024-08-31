@@ -13,10 +13,12 @@ import {
 import { StatisticsData, StatisticsProps } from "@/ts/interfaces/Statistics";
 import LanguageSelect from "../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import Statistics from "@/sections/Statistics";
 interface StatisticsEditI extends StatisticsProps, FormProps {
   id: number;
 }
-
 const StatisticsEdit = ({
   id,
   action,
@@ -49,42 +51,47 @@ function FormElements() {
 
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form modifiedAction={modefiedAction}>
-      <LanguageSelect onChange={setLang} value={lang} />
-      <Accordions
-        name="items"
-        getTitle={(item) => getValueIn(item.subtitle, lang)}
-        value={state.items}
-        childs={(item, onChange) => ({
-          subtitle: () => (
-            <TextFeild
-              name="subtitle"
-              label="title"
-              value={item.subtitle}
-              onChange={onChange}
-              translatable
-            />
-          ),
-          num: () => (
-            <TextFeild
-              name="num"
-              label="count"
-              value={item.num}
-              onChange={onChange}
-            />
-          ),
-          description: () => (
-            <TextArea
-              name="description"
-              label="description"
-              value={item.description}
-              onChange={onChange}
-              translatable
-            />
-          ),
-        })}
-      />
-      <FormButton>Save</FormButton>
-    </Form>
+    <FormPreviewLayout>
+      <Form modifiedAction={modefiedAction}>
+        <LanguageSelect onChange={setLang} value={lang} />
+        <Accordions
+          name="items"
+          getTitle={(item) => getValueIn(item.subtitle, lang)}
+          value={state.items}
+          childs={(item, onChange) => ({
+            subtitle: () => (
+              <TextFeild
+                name="subtitle"
+                label="title"
+                value={item.subtitle}
+                onChange={onChange}
+                translatable
+              />
+            ),
+            num: () => (
+              <TextFeild
+                name="num"
+                label="count"
+                value={item.num}
+                onChange={onChange}
+              />
+            ),
+            description: () => (
+              <TextArea
+                name="description"
+                label="description"
+                value={item.description}
+                onChange={onChange}
+                translatable
+              />
+            ),
+          })}
+        />
+        <FormButton>Save</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <Statistics data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 }

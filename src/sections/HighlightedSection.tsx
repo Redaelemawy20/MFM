@@ -2,9 +2,10 @@ import React from "react";
 import HighlightedSectionProps from "@/ts/interfaces/HighlightedSectionProps";
 import Button from "@/components/common/Button";
 import styles from "@/components/sections/HighlightedSection/highlighted.module.css";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 
 const HighlightedSection = ({ data }: HighlightedSectionProps) => {
+  const c = useContent();
   const styleButton = {
     fontWeight: "500",
     fontSize: "16px",

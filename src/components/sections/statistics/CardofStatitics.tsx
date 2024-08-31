@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect, ReactNode } from "react";
 import CountUp from "react-countup";
 import styles from "./statistics.module.css";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 interface DataProps {
   // icon: ReactNode;
   num: string;
@@ -13,6 +13,7 @@ interface CardStatisticsProps {
   item: DataProps;
 }
 const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
+  const c = useContent();
   const [startCount, setStartCount] = useState(false);
   const cardRef = useRef(null);
 

@@ -1,3 +1,5 @@
+import { Lang } from "../common/Translatable";
+
 interface Slide {
   backgroundImage: {
     _s: string;
@@ -8,6 +10,7 @@ interface Slide {
 }
 export default interface HeroProps {
   data: HeroDataType;
+  selectedLang?: Lang;
 }
 export type HeroDataType = {
   items: Slide[];

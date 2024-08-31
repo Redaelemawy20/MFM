@@ -14,6 +14,12 @@ import {
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
+import Hero from "@/sections/Hero";
+
+import DevicesPreview from "@/components/common/DevicesPreview";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+console.log("herooooooooooooooooo");
+
 interface HeroContext extends ContextType {
   state: HeroDataType;
 }
@@ -48,55 +54,60 @@ const FormElements = () => {
   const modifiedAction = action.bind(null, formData);
 
   return (
-    <Form modifiedAction={modifiedAction}>
-      <LanguageSelect value={lang} onChange={setLang} />
-      <Accordions
-        btnText="add a slide"
-        name="items"
-        getTitle={(item) => getValueIn(item.title, lang)}
-        value={state.items}
-        childs={(child, onChange) => ({
-          backgroundImage: () => (
-            <ImageUploadPerview
-              name="backgroundImage"
-              value={child.backgroundImage}
-              onChange={onChange}
-            />
-          ),
-          title: () => (
-            <TextFeild
-              name="title"
-              label="title"
-              value={child.title}
-              onChange={onChange}
-              translatable
-            />
-          ),
-
-          description: () => {
-            return (
-              <TextArea
-                name="description"
-                value={child.description}
-                label="add description"
+    <FormPreviewLayout>
+      <Form modifiedAction={modifiedAction}>
+        <LanguageSelect value={lang} onChange={setLang} />
+        <Accordions
+          btnText="add a slide"
+          name="items"
+          getTitle={(item) => getValueIn(item.title, lang)}
+          value={state.items}
+          childs={(child, onChange) => ({
+            backgroundImage: () => (
+              <ImageUploadPerview
+                name="backgroundImage"
+                value={child.backgroundImage}
+                onChange={onChange}
+              />
+            ),
+            title: () => (
+              <TextFeild
+                name="title"
+                label="title"
+                value={child.title}
                 onChange={onChange}
                 translatable
               />
-            );
-          },
-          readMoreLink: () => {
-            return (
-              <TextFeild
-                name="readMoreLink"
-                value={child.readMoreLink}
-                label="Link of read more button if exist"
-                onChange={onChange}
-              />
-            );
-          },
-        })}
-      />
-      <FormButton>Submit</FormButton>
-    </Form>
+            ),
+
+            description: () => {
+              return (
+                <TextArea
+                  name="description"
+                  value={child.description}
+                  label="add description"
+                  onChange={onChange}
+                  translatable
+                />
+              );
+            },
+            readMoreLink: () => {
+              return (
+                <TextFeild
+                  name="readMoreLink"
+                  value={child.readMoreLink}
+                  label="Link of read more button if exist"
+                  onChange={onChange}
+                />
+              );
+            },
+          })}
+        />
+        <FormButton>Submit</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <Hero data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import withModalForm from "@/components/common/modal-form";
+import withModalForm from "@/components/common/ModalForm";
 import { setDisplaySection } from "@/actions/content";
 import DisplaySectionForm from "../forms/DisplaySectionForm";
 

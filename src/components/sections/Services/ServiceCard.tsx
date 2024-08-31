@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 import styles from "./services.module.css";
 
 interface CardData {
@@ -14,6 +14,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ dataCard }) => {
+  const c = useContent();
   return (
     <div className={`${styles.Main_wraper_grid} Main_wraper_grid`}>
       <div className="Main_wraper_grid">

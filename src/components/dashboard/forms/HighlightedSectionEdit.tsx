@@ -13,6 +13,9 @@ import {
   useFormContext,
 } from "./context/FormContext";
 import LanguageSelect from "../form-controls/LanguageSelect";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import HighlightedSection from "@/sections/HighlightedSection";
 
 interface HighlightedSectionEditI extends HighlightedSectionProps, FormProps {
   id: number;
@@ -49,23 +52,33 @@ const FormElements = () => {
 
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form modifiedAction={modefiedAction}>
-      <LanguageSelect onChange={setLang} value={lang} />
-      <TextFeild name="title" value={state.title} label="Title" translatable />
-      <TextArea
-        name="description"
-        value={state.description}
-        label="Description"
-        translatable
-      />
-      <TextFeild
-        name="btnText"
-        value={state.btnText}
-        label="button Text"
-        translatable
-      />
-      <TextFeild name="path" value={state.path} label="where the button go" />
-      <FormButton>Save</FormButton>
-    </Form>
+    <FormPreviewLayout>
+      <Form modifiedAction={modefiedAction}>
+        <LanguageSelect onChange={setLang} value={lang} />
+        <TextFeild
+          name="title"
+          value={state.title}
+          label="Title"
+          translatable
+        />
+        <TextArea
+          name="description"
+          value={state.description}
+          label="Description"
+          translatable
+        />
+        <TextFeild
+          name="btnText"
+          value={state.btnText}
+          label="button Text"
+          translatable
+        />
+        <TextFeild name="path" value={state.path} label="where the button go" />
+        <FormButton>Save</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <HighlightedSection data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import withModalForm from "@/components/common/modal-form";
+import withModalForm from "@/components/common/ModalForm";
 import SortPageSectionForm from "../forms/SortSections";
 import { sortPageSections } from "@/actions/content";
 

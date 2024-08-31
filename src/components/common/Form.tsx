@@ -16,7 +16,7 @@ const Form = ({
   return (
     <form
       action={modifiedAction || action}
-      className="flex flex-col w-full gap-2"
+      className="flex flex-col gap-2 h-[80vh] overflow-y-auto"
     >
       {error ? (
         <div className=" overflow-y-hidden   border !border-danger-600    px-2 py-2 rounded-lg">

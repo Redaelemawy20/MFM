@@ -11,8 +11,10 @@ export async function getPageElements(entity_slug: string, page_slug: string) {
     let sectionObj = sectionsGallary.find(
       (sec) => section.section.componentId === sec.componentId
     );
-    if (sectionObj)
-      pageSections.push(<sectionObj.component data={section.data} />);
+    if (sectionObj) {
+      // let Sectioncomp = sectionObj.component;
+      // pageSections.push(<Sectioncomp data={section.data} />);
+    }
   }
   return pageSections;
 }

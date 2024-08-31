@@ -1,3 +1,4 @@
+"use client";
 import Form from "@/components/common/Form";
 import FormProps from "@/ts/interfaces/FormProps";
 import FormButton from "./form-button/FormButton";
@@ -8,7 +9,7 @@ import MailIcon from "@/components/login/MailIcon";
 const LoginForm = ({ action, errorMessage }: FormProps) => {
   return (
     <Form modifiedAction={action} errorMessage={errorMessage}>
-      <div style={{ marginBottom: "1rem", width: "100%" }}>
+      <div style={{ marginBottom: "1rem" }}>
         <Input
           autoFocus
           style={{

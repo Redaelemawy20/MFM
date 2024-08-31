@@ -1,3 +1,4 @@
+"use client";
 import FormProps from "@/ts/interfaces/FormProps";
 
 import TextFeild from "@/components/dashboard/form-controls/Input";
@@ -10,6 +11,9 @@ import {
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
 import { MainTitleData, MainTitleI } from "@/ts/interfaces/MainTiltel";
 import Form from "@/components/common/Form";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import MainTitle from "@/sections/MainTitle";
 
 interface MainTitleEditI extends MainTitleI, FormProps {
   id: number;
@@ -40,22 +44,28 @@ const FormElements = () => {
   const modefiedAction = action.bind(null, formData);
   return (
     <>
-      <Form modifiedAction={modefiedAction}>
-        <LanguageSelect value={lang} onChange={setLang} />
-        <TextFeild
-          name="mainTitle"
-          value={state.mainTitle}
-          label="Main Title"
-          translatable
-        />
-        <TextFeild
-          name="caption"
-          value={state.caption}
-          label="Caption"
-          translatable
-        />
-        <FormButton>Save</FormButton>
-      </Form>
+      <FormPreviewLayout>
+        <Form modifiedAction={modefiedAction}>
+          <LanguageSelect value={lang} onChange={setLang} />
+          <TextFeild
+            name="mainTitle"
+            value={state.mainTitle}
+            label="Main Title"
+            translatable
+          />
+          <TextFeild
+            name="caption"
+            value={state.caption}
+            label="Caption"
+            translatable
+          />
+          <FormButton>Save</FormButton>
+        </Form>
+
+        <DevicesPreview lang={lang}>
+          <MainTitle data={state} />
+        </DevicesPreview>
+      </FormPreviewLayout>
     </>
   );
 };

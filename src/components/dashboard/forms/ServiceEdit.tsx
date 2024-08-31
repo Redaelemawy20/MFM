@@ -1,3 +1,4 @@
+"use client";
 import FormProps from "@/ts/interfaces/FormProps";
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import Accordions from "@/components/dashboard/form-controls/Accordion";
@@ -13,6 +14,9 @@ import {
 import { ServiceData, ServicesProps } from "@/ts/interfaces/Service";
 import LanguageSelect from "../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import Services from "@/sections/Services";
 
 interface ServiceEditI extends ServicesProps, FormProps {
   id: number;
@@ -46,51 +50,56 @@ function FormElements() {
 
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form modifiedAction={modefiedAction}>
-      <LanguageSelect value={lang} onChange={setLang} />
-      <WithTabs tabs={["Title and caption", "Cards data"]}>
-        <>
-          <TextFeild
-            name="title"
-            value={state.title}
-            label="Title"
-            translatable
+    <FormPreviewLayout>
+      <Form modifiedAction={modefiedAction}>
+        <LanguageSelect value={lang} onChange={setLang} />
+        <WithTabs tabs={["Title and caption", "Cards data"]}>
+          <>
+            <TextFeild
+              name="title"
+              value={state.title}
+              label="Title"
+              translatable
+            />
+            <TextFeild
+              name="caption"
+              value={state.caption}
+              label="Caption"
+              translatable
+            />
+          </>
+          <Accordions
+            name="cardsData"
+            getTitle={(item) => getValueIn(item.title, lang)}
+            value={state.cardsData}
+            childs={(item, onChange) => ({
+              title: () => (
+                <TextFeild
+                  name="title"
+                  label="title"
+                  value={item.title}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+              description: () => (
+                <TextArea
+                  name="description"
+                  label="description"
+                  value={item.description}
+                  onChange={onChange}
+                  translatable
+                />
+              ),
+            })}
           />
-          <TextFeild
-            name="caption"
-            value={state.caption}
-            label="Caption"
-            translatable
-          />
-        </>
-        <Accordions
-          name="cardsData"
-          getTitle={(item) => getValueIn(item.title, lang)}
-          value={state.cardsData}
-          childs={(item, onChange) => ({
-            title: () => (
-              <TextFeild
-                name="title"
-                label="title"
-                value={item.title}
-                onChange={onChange}
-                translatable
-              />
-            ),
-            description: () => (
-              <TextArea
-                name="description"
-                label="description"
-                value={item.description}
-                onChange={onChange}
-                translatable
-              />
-            ),
-          })}
-        />
-      </WithTabs>
+        </WithTabs>
 
-      <FormButton>Submit</FormButton>
-    </Form>
+        <FormButton>Submit</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <Services data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 }

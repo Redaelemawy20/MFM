@@ -2,13 +2,14 @@ import React from "react";
 import styles from "@/components/sections/About/about.module.css";
 import { BiCheckCircle } from "react-icons/bi";
 import MainTitel from "./MainTitle";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 import { extractImgSrc } from "@/utils/get-img";
 import { AboutProps } from "@/ts/interfaces/About";
 
 const About = ({ data }: AboutProps) => {
+  const c = useContent();
   const { mainTitle, caption, subTitle, subCaption, list, endCaption } = data;
-  const points = c(list, true) || [];
+  const points = c(list) || [];
   return (
     <div className={styles.about_Cont}>
       <MainTitel
@@ -30,9 +31,9 @@ const About = ({ data }: AboutProps) => {
           data-aos="fade-left"
           data-aos-delay="300"
         >
-          <h2>{c(subTitle, true)}</h2>
+          <h2>{c(subTitle)}</h2>
           <p className={`${styles.italic} ${styles.sub__Caption}`}>
-            {c(subCaption, true)}
+            {c(subCaption)}
           </p>
           {points.map((item, index) => (
             <p key={index} className={styles.list_Item}>
@@ -42,7 +43,7 @@ const About = ({ data }: AboutProps) => {
               {item}
             </p>
           ))}
-          <p className={styles.end_Caption}>{c(endCaption, true)}</p>
+          <p className={styles.end_Caption}>{c(endCaption)}</p>
         </div>
       </div>
     </div>

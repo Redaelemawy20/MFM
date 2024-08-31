@@ -1,10 +1,10 @@
 import { useLocale } from "next-intl";
 
-export function c<T = any>(value: T, translatable = true): T {
-  const locale = useLocale() as keyof T;
-  if (translatable) {
-    const translated = value ? value[locale] : value;
+export function useContent() {
+  const locale = useLocale();
+  const translate = <T = any>(value: T): T => {
+    const translated = value ? value[locale as keyof T] : value;
     return translated as T;
-  }
-  return value;
+  };
+  return translate;
 }

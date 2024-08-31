@@ -1,3 +1,4 @@
+"use client";
 import Accordions from "@/components/dashboard/form-controls/Accordion";
 import ImageUploadPerview from "@/components/dashboard/form-controls/ImageUploadPerview";
 import TextFeild from "@/components/dashboard/form-controls/Input";
@@ -17,6 +18,9 @@ import {
 } from "./context/FormContext";
 import LanguageSelect from "../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
+import DevicesPreview from "@/components/common/DevicesPreview";
+import AnimatedCard from "@/sections/AnimatedCard";
+import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 
 interface CardWithAnimationEditI extends CardWithAnimationProps, FormProps {
   id: number;
@@ -56,50 +60,55 @@ const FormElements = () => {
   formData.set("schema", "editCardWithAnimation");
   const modefiedAction = action.bind(null, formData);
   return (
-    <Form modifiedAction={modefiedAction}>
-      <LanguageSelect onChange={setLang} value={lang} />
-      <Accordions
-        name="items"
-        value={state.items}
-        onChange={handleChange}
-        getTitle={(item) => getValueIn(item.title, lang)}
-        childs={(item, onChange) => ({
-          img: () => (
-            <ImageUploadPerview
-              name="img"
-              value={item.img}
-              onChange={onChange}
-            />
-          ),
-          title: () => (
-            <TextFeild
-              name="title"
-              label="title"
-              value={item.title}
-              onChange={onChange}
-              translatable
-            />
-          ),
-          path: () => (
-            <TextFeild
-              name="path"
-              label="path"
-              value={item.path}
-              onChange={onChange}
-            />
-          ),
-          description: () => (
-            <TextArea
-              name="description"
-              label="description"
-              value={item.description}
-              translatable
-              onChange={onChange}
-            />
-          ),
-        })}
-      />
-      <FormButton>Save</FormButton>
-    </Form>
+    <FormPreviewLayout>
+      <Form modifiedAction={modefiedAction}>
+        <LanguageSelect onChange={setLang} value={lang} />
+        <Accordions
+          name="items"
+          value={state.items}
+          onChange={handleChange}
+          getTitle={(item) => getValueIn(item.title, lang)}
+          childs={(item, onChange) => ({
+            img: () => (
+              <ImageUploadPerview
+                name="img"
+                value={item.img}
+                onChange={onChange}
+              />
+            ),
+            title: () => (
+              <TextFeild
+                name="title"
+                label="title"
+                value={item.title}
+                onChange={onChange}
+                translatable
+              />
+            ),
+            path: () => (
+              <TextFeild
+                name="path"
+                label="path"
+                value={item.path}
+                onChange={onChange}
+              />
+            ),
+            description: () => (
+              <TextArea
+                name="description"
+                label="description"
+                value={item.description}
+                translatable
+                onChange={onChange}
+              />
+            ),
+          })}
+        />
+        <FormButton>Save</FormButton>
+      </Form>
+      <DevicesPreview lang={lang}>
+        <AnimatedCard data={state} />
+      </DevicesPreview>
+    </FormPreviewLayout>
   );
 };

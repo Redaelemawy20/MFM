@@ -6,11 +6,12 @@ import { HiXMark } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
 import { useLocale } from "next-intl";
-import { getValueIn } from "@/utils/trans";
 import { Lang } from "@/ts/common/Translatable";
 import styles from "./nav.module.css";
+import { useContent } from "../../../utils/get-content";
 
 const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
+  const c = useContent();
   const [showList, setShowList] = useState(false);
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
@@ -51,11 +52,11 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
   ) => {
     return item.hasDropDown ? (
       <a onClick={() => onDropDown(index)}>
-        {getValueIn(item.name, currentLang)}
+        {c(item.name)}
         {item.hasDropDown && <FaAngleDown className={styles.down_angle} />}
       </a>
     ) : (
-      <Link href={item.href}>{getValueIn(item.name, currentLang)}</Link>
+      <Link href={item.href}>{c(item.name)}</Link>
     );
   };
 
@@ -97,7 +98,7 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
                               {link.menu.map((subLink, subLinkIndex) => (
                                 <li key={subLinkIndex}>
                                   <Link href={subLink.href}>
-                                    {getValueIn(subLink.name, currentLang)}
+                                    {c(subLink.name)}
                                   </Link>
                                 </li>
                               ))}

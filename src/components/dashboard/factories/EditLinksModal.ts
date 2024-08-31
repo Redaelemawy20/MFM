@@ -1,5 +1,5 @@
 "use client";
-import withModalForm from "@/components/common/modal-form";
+import withModalForm from "@/components/common/ModalForm";
 import { setEntityLinks } from "@/actions/content";
 import NavEdit from "../forms/NavEdit";
 

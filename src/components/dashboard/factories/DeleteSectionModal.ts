@@ -1,5 +1,5 @@
 "use client";
-import withModalForm from "@/components/common/modal-form";
+import withModalForm from "@/components/common/ModalForm";
 import { deleteSection } from "@/actions/content";
 import DeleteConfirmationForm from "../forms/DeleteConfirmation";
 

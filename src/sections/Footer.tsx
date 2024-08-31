@@ -4,10 +4,11 @@ import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import FooterProps from "@/ts/interfaces/FooterProps";
 import styles from "@/components/sections/Footer/footer.module.css";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 const Footer = ({ data }: FooterProps) => {
+  const c = useContent();
   const t = useTranslations("Footer");
   return (
     <div className={styles.footer_container}>
