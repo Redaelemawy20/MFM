@@ -12,7 +12,7 @@ const NewsSection = ({
   return (
     <div className="Main_wraper">
       <MainTitle data={{ mainTitle: "Latest News" }} />
-      <div className="Main_wraper_divide flex  flex-wrap gap-4">
+      <div className="Main_wraper_divide flex justify-center  flex-wrap gap-4">
         {news.map((item, index) => (
           <CardNews
             {...item.details}

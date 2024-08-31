@@ -57,6 +57,7 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
       </div>
       <p className={styles.description}>
         <span className={styles.strong}>{c(item.subtitle)}</span>
+        <br/>
         {c(item.description)}
       </p>
     </div>

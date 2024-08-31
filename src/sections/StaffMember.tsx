@@ -18,7 +18,7 @@ const StaffMember: React.FC<propsData> = ({ data }) => {
             mainTitle: "LeaderShip",
           }}
         />
-        <div className="Main_wraper_flex">
+        <div className="Main_wraper_grid">
           {data.map((item, index) => (
             <CardStaff
               key={index}
