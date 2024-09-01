@@ -1,5 +1,7 @@
-interface CardData {
-  // icon: ReactNode;
+import { IconType } from "@/components/common/Icons";
+
+export interface CardData {
+  icon: IconType;
   title: string;
   description: string;
 }

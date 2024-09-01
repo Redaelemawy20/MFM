@@ -3,13 +3,15 @@ import { FeaturesProps } from "@/ts/interfaces/Feature";
 import styles from "@/components/sections/features/featuresection.module.css";
 import { extractImgSrc } from "@/utils/get-img";
 import { useContent } from "@/utils/get-content";
+import MainTitle from "./MainTitle";
 
 const Features = ({ data }: FeaturesProps) => {
   const items = data.featuresItems || [{}];
   const c = useContent();
   return (
     <div className={styles.feature_Cont}>
-      <div className="Main_wraper">
+      <div className="Main_wraper" data-aos="fade-up">
+        <MainTitle data={{ mainTitle: c(data.title) }} />
         <div className={`Main_wraper_grid ${styles.Main_wraper_grid}`}>
           <div className={styles.info_content} data-aos="fade-up-right">
             {items.map((item, index) => (

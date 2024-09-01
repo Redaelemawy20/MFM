@@ -41,9 +41,8 @@ const DevicesPreview: React.FC<DevicesPreviewProps> = ({ lang, children }) => {
             device={activeDevice}
             color="silver"
             width={activeDevice === "MacBook Pro" ? 900 : 400}
-            zoom={0.7}
           >
-            <div className="scale-x-150 resize w-[400px]">{children}</div>
+            {children}
           </DeviceFrameset>
         </LocaleProvider>
       </div>

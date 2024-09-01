@@ -3,16 +3,10 @@ import React, { useRef, useState, useEffect, ReactNode } from "react";
 import CountUp from "react-countup";
 import styles from "./statistics.module.css";
 import { useContent } from "@/utils/get-content";
-interface DataProps {
-  // icon: ReactNode;
-  num: string;
-  subtitle: string;
-  description: string;
-}
-interface CardStatisticsProps {
-  item: DataProps;
-}
-const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
+import { Statistic } from "@/ts/interfaces/Statistics";
+import { getIcon } from "@/utils/get-icon";
+
+const CardStatistics = ({ item }: { item: Statistic }) => {
   const c = useContent();
   const [startCount, setStartCount] = useState(false);
   const cardRef = useRef(null);
@@ -42,11 +36,11 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
       }
     };
   }, []);
-
+  let icon = getIcon(item.icon);
   return (
     <div className={styles.statistics_Container} ref={cardRef}>
       <div className={styles.title}>
-        {/* <span className={styles.icon}>{item.icon}</span> */}
+        {icon && <span className={styles.icon}>{icon}</span>}
         {startCount ? (
           <h2>
             <CountUp end={parseInt(item.num)} duration={3} />
@@ -57,7 +51,7 @@ const CardStatistics: React.FC<CardStatisticsProps> = ({ item }) => {
       </div>
       <p className={styles.description}>
         <span className={styles.strong}>{c(item.subtitle)}</span>
-        <br/>
+        <br />
         {c(item.description)}
       </p>
     </div>

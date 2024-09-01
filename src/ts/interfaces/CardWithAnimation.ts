@@ -1,7 +1,7 @@
-import { ServerImage } from "../common/ImageI";
+import { IconType } from "@/components/common/Icons";
 
 interface AnimatiedCardI {
-  img: ServerImage;
+  icon: IconType;
   title: string;
   path: string;
   description: string;
@@ -12,4 +12,5 @@ export default interface CardWithAnimationProps {
 }
 export type CardWithAnimationData = {
   items: AnimatiedCardI[];
+  title: string;
 };

@@ -1,3 +1,4 @@
+"use client";
 import FormProps from "@/ts/interfaces/FormProps";
 import Accordions from "../../dashboard/form-controls/Accordion";
 import FormButton from "./form-button/FormButton";
@@ -16,6 +17,7 @@ import { getValueIn } from "@/utils/trans";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import Statistics from "@/sections/Statistics";
+import IconSelector from "../form-controls/IconSelector";
 interface StatisticsEditI extends StatisticsProps, FormProps {
   id: number;
 }
@@ -54,11 +56,20 @@ function FormElements() {
     <FormPreviewLayout>
       <Form modifiedAction={modefiedAction}>
         <LanguageSelect onChange={setLang} value={lang} />
+        <TextFeild
+          name="title"
+          label="section title"
+          value={state.title}
+          translatable
+        />
         <Accordions
           name="items"
           getTitle={(item) => getValueIn(item.subtitle, lang)}
           value={state.items}
           childs={(item, onChange) => ({
+            icon: () => (
+              <IconSelector name="icon" value={item.icon} onChange={onChange} />
+            ),
             subtitle: () => (
               <TextFeild
                 name="subtitle"

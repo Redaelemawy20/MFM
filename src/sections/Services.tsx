@@ -13,7 +13,7 @@ const Services = ({ data }: ServicesProps) => {
           caption: data.caption,
         }}
       />
-      <ServiceCard dataCard={cardsData} />
+      <ServiceCard cardsData={cardsData} />
     </div>
   );
 };

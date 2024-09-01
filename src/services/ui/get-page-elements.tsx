@@ -12,8 +12,8 @@ export async function getPageElements(entity_slug: string, page_slug: string) {
       (sec) => section.section.componentId === sec.componentId
     );
     if (sectionObj) {
-      // let Sectioncomp = sectionObj.component;
-      // pageSections.push(<Sectioncomp data={section.data} />);
+      let Sectioncomp = sectionObj.component;
+      pageSections.push(<Sectioncomp data={section.data} />);
     }
   }
   return pageSections;

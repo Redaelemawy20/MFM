@@ -9,6 +9,7 @@ interface FeaturesItem {
 export interface FeaturesData {
   mainImg: ServerImage;
   featuresItems: FeaturesItem[];
+  title: string;
 }
 
 export interface FeaturesProps {

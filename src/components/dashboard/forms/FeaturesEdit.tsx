@@ -58,6 +58,12 @@ function FormElements() {
     <FormPreviewLayout>
       <Form modifiedAction={modefiedAction}>
         <LanguageSelect onChange={setLang} value={lang} />
+        <TextFeild
+          name="title"
+          label="section title"
+          value={state.title}
+          translatable
+        />
         <WithTabs tabs={["Main image", "Features list"]}>
           <ImageUploadPerview name="mainImg" value={state.mainImg} />
           <Accordions

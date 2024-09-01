@@ -1,6 +1,5 @@
 "use client";
 import Accordions from "@/components/dashboard/form-controls/Accordion";
-import ImageUploadPerview from "@/components/dashboard/form-controls/ImageUploadPerview";
 import TextFeild from "@/components/dashboard/form-controls/Input";
 
 import TextArea from "@/components/dashboard/form-controls/TextArea";
@@ -21,6 +20,7 @@ import { getValueIn } from "@/utils/trans";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import AnimatedCard from "@/sections/AnimatedCard";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
+import IconSelector from "../form-controls/IconSelector";
 
 interface CardWithAnimationEditI extends CardWithAnimationProps, FormProps {
   id: number;
@@ -63,18 +63,20 @@ const FormElements = () => {
     <FormPreviewLayout>
       <Form modifiedAction={modefiedAction}>
         <LanguageSelect onChange={setLang} value={lang} />
+        <TextFeild
+          name="title"
+          label="section title"
+          value={state.title}
+          translatable
+        />
         <Accordions
           name="items"
           value={state.items}
           onChange={handleChange}
           getTitle={(item) => getValueIn(item.title, lang)}
           childs={(item, onChange) => ({
-            img: () => (
-              <ImageUploadPerview
-                name="img"
-                value={item.img}
-                onChange={onChange}
-              />
+            icon: () => (
+              <IconSelector name="icon" value={item.icon} onChange={onChange} />
             ),
             title: () => (
               <TextFeild

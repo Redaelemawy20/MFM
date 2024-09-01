@@ -17,6 +17,7 @@ import { getValueIn } from "@/utils/trans";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import Services from "@/sections/Services";
+import IconSelector from "../form-controls/IconSelector";
 
 interface ServiceEditI extends ServicesProps, FormProps {
   id: number;
@@ -73,6 +74,13 @@ function FormElements() {
             getTitle={(item) => getValueIn(item.title, lang)}
             value={state.cardsData}
             childs={(item, onChange) => ({
+              icon: () => (
+                <IconSelector
+                  name="icon"
+                  value={item.icon as any}
+                  onChange={onChange}
+                />
+              ),
               title: () => (
                 <TextFeild
                   name="title"

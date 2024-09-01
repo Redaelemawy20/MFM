@@ -14,8 +14,6 @@ import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import About from "@/sections/About";
 
-console.log("About Edit ......................");
-
 interface AboutEditPropsI extends AboutProps, FormProps {
   id: number;
 }

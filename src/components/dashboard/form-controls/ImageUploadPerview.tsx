@@ -5,7 +5,6 @@ import { Button, Image } from "@nextui-org/react";
 import { CiSquareRemove } from "react-icons/ci";
 import { useFormContext } from "../forms/context/FormContext";
 import { TranslatableValue } from "./interfaces/InputI";
-import { extractImgSrc } from "@/utils/get-img";
 const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
   onChange,
   name,

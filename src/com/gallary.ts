@@ -22,9 +22,9 @@ export const sectionsGallary = [
   {
     componentId: "1700000001",
     component: Hero,
-    componentEdit: [
-      React.lazy(() => import("@/components/dashboard/forms/HeroEdit")),
-    ],
+    componentEdit: React.lazy(
+      () => import("@/components/dashboard/forms/HeroEdit")
+    ),
     defaultData: {
       items: [
         {
@@ -39,8 +39,9 @@ export const sectionsGallary = [
   {
     componentId: "1700000002",
     component: About,
-    // componentEdit: () =>
-    //   React.lazy(() => import("@/components/dashboard/forms/AboutEdit")),
+    componentEdit: React.lazy(
+      () => import("@/components/dashboard/forms/AboutEdit")
+    ),
     defaultData: {
       mainTitle: "ABOUT US",
       caption:
@@ -88,7 +89,7 @@ export const sectionsGallary = [
     componentId: "1700000004",
     component: Features,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/HeroEdit")
+      () => import("@/components/dashboard/forms/FeaturesEdit")
     ),
     defaultData: {
       mainImg: { _s: "./assets/imgs/22.jpg" },
