@@ -16,7 +16,7 @@ const NewsSection = ({
         {news.map((item, index) => (
           <CardNews
             {...item.details}
-            date={item.details.date}
+            date={item.date}
             title={c(item.details.title)}
             index={index}
             key={index}
