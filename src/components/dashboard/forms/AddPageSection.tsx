@@ -17,7 +17,7 @@ export default function AddPageSectionForm({
   entity_slug,
 }: AddSectionFormProps) {
   return (
-    <form action={action} className="w-[700px]">
+    <form action={action}>
       <div className="flex flex-col  gap-4 p-4">
         <h3 className="text-lg">Add sections to this page</h3>
         <input hidden defaultValue={page} name="pagename" />

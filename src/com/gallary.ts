@@ -16,6 +16,8 @@ import HighlightedSection from "@/sections/HighlightedSection";
 import Footer from "@/sections/Footer";
 import NewsSection from "@/sections/News";
 import React from "react";
+import SubPages from "@/sections/SubPages";
+import SubPageEdit from "@/components/dashboard/forms/SubPageForm";
 
 // sections
 export const sectionsGallary = [
@@ -172,6 +174,14 @@ export const sectionsGallary = [
           description: "adipisci atque cum quia aut numquam delectus",
         },
       ],
+    },
+  },
+  {
+    componentId: "1700000012",
+    component: SubPages,
+    componentEdit: SubPageEdit,
+    defaultData: {
+      items: [],
     },
   },
 ];

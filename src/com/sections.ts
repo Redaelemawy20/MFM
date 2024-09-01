@@ -81,5 +81,12 @@ const sections: {
     imgUrl: "/assets/imgs/footer.PNG",
     type: "footer",
   },
+  {
+    id: 13,
+    name: "SubPages",
+    componentId: "1700000012",
+    imgUrl: "/assets/imgs/subpage.PNG",
+    type: "section",
+  },
 ];
 module.exports = { sections };
