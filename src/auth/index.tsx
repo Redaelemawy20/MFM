@@ -15,21 +15,19 @@ export const {
         email: { type: "email", label: "username" },
         password: { type: "password", label: "password" },
       },
-      authorize: async (credentials) => {
+      authorize: async (credentials: any): Promise<any> => {
         const result = await authenticate({
-          username: "kdkdhwo",
-          password: "kdowiw",
+          username: credentials.username,
+          password: credentials.password,
         });
-       
-        return { name: "reda@gmail.com" };
-        
+        return result;
       },
     }),
   ],
-  pages: {
-    error: "/test",
-  },
+
   logger: {
-    error: (er) => {},
+    error: (er) => {
+      console.log(er);
+    },
   },
 });

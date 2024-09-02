@@ -2,15 +2,12 @@
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { createCerdential, getCerdential } from "./models/cerdential";
-
-const PASSWORD_LENGTH = 8;
-export async function authenticate({
-  username,
-  password,
-}: {
+type Authentication = {
   username: string;
   password: string;
-}) {
+};
+const PASSWORD_LENGTH = 8;
+export async function authenticate({ username, password }: Authentication) {
   const cerdential = await getCerdential(username);
   if (cerdential) {
     let correctPassword = await verifyPassword(password, cerdential.password);
@@ -18,7 +15,6 @@ export async function authenticate({
       const { password, ...withoutPassowrd } = cerdential;
       return withoutPassowrd;
     }
-    return null;
   }
   return null;
 }

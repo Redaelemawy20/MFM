@@ -13,4 +13,3 @@ const TestPage = async () => {
 };
 
 export default TestPage;
-

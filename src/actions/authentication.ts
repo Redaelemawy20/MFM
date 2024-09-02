@@ -5,10 +5,10 @@ import { FormActionType } from "@/ts/common/FormActionType";
 
 export const login: FormActionType = async function (formState, formData) {
   try {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       redirect: false,
-      username: "reda",
-      password: "kdhaiwo",
+      username: formData.get("username"),
+      password: formData.get("password"),
     });
 
     return {
@@ -16,13 +16,14 @@ export const login: FormActionType = async function (formState, formData) {
     };
   } catch (error) {
     if (error instanceof Error) {
-      return {
-        message: error.message,
-      };
-    } else {
-      return {
-        message: "error while authentication",
-      };
+      if (error.name === ("CallbackRouteError" || "CredentialsSignin"))
+        return {
+          message: "error username or password",
+        };
     }
+
+    return {
+      message: "error while authentication",
+    };
   }
 };

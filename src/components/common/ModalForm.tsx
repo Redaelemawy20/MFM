@@ -25,11 +25,12 @@ interface Options {
   btnText: string;
   defaultOpen?: boolean;
   width?: "normal" | "full";
+  isDismissable?: boolean;
 }
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
   action: FormActionType | EditSectionType<T>,
-  { color, btnText, defaultOpen, width }: Options
+  { color, btnText, defaultOpen, width, isDismissable = true }: Options
 ) {
   return (props: Omit<T, "action" | "errorMessage">) => {
     const [formState, formAction] = useFormState(action as FormActionType, {
@@ -46,7 +47,7 @@ function withModalForm<T extends FormModalExtraProps>(
     const { message } = formState;
     return (
       <>
-        {!defaultOpen && (
+        {isDismissable && (
           <Button
             onPress={() => setOpen(true)}
             color={color ? color : "primary"}
@@ -60,6 +61,7 @@ function withModalForm<T extends FormModalExtraProps>(
           onClose={() => {
             setOpen(false);
           }}
+          isDismissable={isDismissable}
           placement="top-center"
           shouldCloseOnInteractOutside={() => true}
           className={`${

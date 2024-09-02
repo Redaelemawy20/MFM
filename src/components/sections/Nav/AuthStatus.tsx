@@ -1,5 +1,6 @@
 "use server";
-import { auth, signIn, signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
+import Link from "next/link";
 
 const AuthStatus = async () => {
   const session = await auth();
@@ -14,16 +15,7 @@ const AuthStatus = async () => {
         <button>Sign out</button>
       </form>
     );
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("credentials", { username: "reda", password: "kdhaiwo" });
-      }}
-    >
-      <button>Sign In</button>
-    </form>
-  );
+  return <Link href="/login">Sign In</Link>;
 };
 
 export default AuthStatus;

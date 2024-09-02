@@ -6,5 +6,6 @@ import { login } from "@/actions/authentication";
 const LoginModal = withModalForm(LoginForm, login, {
   btnText: "Login",
   defaultOpen: true,
+  isDismissable: false,
 });
 export default LoginModal;

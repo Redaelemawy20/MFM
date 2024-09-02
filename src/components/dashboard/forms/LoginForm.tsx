@@ -5,13 +5,21 @@ import FormButton from "./form-button/FormButton";
 import LockIcon from "@/components/login/LockIcon";
 import { Input } from "@nextui-org/react";
 import MailIcon from "@/components/login/MailIcon";
+import Image from "next/image";
 
 const LoginForm = ({ action, errorMessage }: FormProps) => {
   return (
     <Form modifiedAction={action} errorMessage={errorMessage}>
-      <div style={{ marginBottom: "1rem" }}>
+      <div className="h-full flex flex-col justify-center items-center">
+        <Image
+          src={"/assets/imgs/logo.png"}
+          width={200}
+          height={300}
+          alt="university logo"
+        />
         <Input
           autoFocus
+          className="m-2"
           style={{
             backgroundColor: "#fff",
             borderColor: "#e2e8f0",
@@ -24,19 +32,22 @@ const LoginForm = ({ action, errorMessage }: FormProps) => {
           label="Email"
           placeholder="Enter your email"
           variant="bordered"
+          name="username"
         />
+
+        <Input
+          style={{ backgroundColor: "#fff" }}
+          endContent={
+            <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+          }
+          label="Password"
+          placeholder="Enter your password"
+          type="password"
+          variant="bordered"
+          name="password"
+        />
+        <FormButton>Login</FormButton>
       </div>
-      <Input
-        style={{ backgroundColor: "#fff" }}
-        endContent={
-          <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-        }
-        label="Password"
-        placeholder="Enter your password"
-        type="password"
-        variant="bordered"
-      />
-      <FormButton>Login</FormButton>
     </Form>
   );
 };
