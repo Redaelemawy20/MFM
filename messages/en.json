@@ -5,6 +5,12 @@
   "Hero": {
     "read_more": "Read More"
   },
+  "News": {
+    "title": "Latest News"
+  },
+  "Staff": {
+    "title": "Leadership"
+  },
   "Footer": {
     "rights": "All rights reserved @2024 for dreams team Reda Elemawy and Alaa Ayaad",
     "contact": "Contact"

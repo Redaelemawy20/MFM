@@ -27,3 +27,14 @@ export async function findWithStaff(entiy_slug: string) {
   });
   return entity;
 }
+export async function findWithNews(entiy_slug: string) {
+  const entity = await db.entity.findUnique({
+    where: {
+      slug: entiy_slug,
+    },
+    include: {
+      news: true,
+    },
+  });
+  return entity;
+}

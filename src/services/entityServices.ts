@@ -1,6 +1,10 @@
-import { findWithStaff } from "./models/entity";
+import { cache } from "react";
+import { findWithNews, findWithStaff } from "./models/entity";
 
-// import db from "@/db";
-export async function getEntityWithStaff(entiy_slug: string) {
+export const getEntityWithStaff = cache(async function (entiy_slug: string) {
   return findWithStaff(entiy_slug);
-}
+});
+
+export const getEnityWithNews = cache(async function (entiy_slug: string) {
+  return findWithNews(entiy_slug);
+});

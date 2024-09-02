@@ -53,7 +53,6 @@ export default async ({ children, params }: EntiyPageLayoutProps) => {
       <main>{children}</main>
       <div className="fixed left-0 bottom-0 w-full">
         {layout.footer ? layout.footer() : <div>no footer</div>}
-        {/* footer */}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { newsGallary, personsGallary } from "@/com/gallary";
 import db from "@/db";
-import { getNews } from "../models/news";
+import { getNews } from "../newsService";
 
 type BaseElementsReturn = {
   news: { order: number; component: React.ReactNode } | null;

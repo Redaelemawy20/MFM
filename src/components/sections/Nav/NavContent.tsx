@@ -5,8 +5,7 @@ import { FaAngleDown, FaBars } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
-import { useLocale } from "next-intl";
-import { Lang } from "@/ts/common/Translatable";
+
 import styles from "./nav.module.css";
 import { useContent } from "../../../utils/get-content";
 
@@ -44,7 +43,7 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
       document.removeEventListener("mousedown", handleMouseDown);
     };
   }, []);
-  const currentLang = useLocale() as Lang;
+
   const renderLink = (
     item: (typeof items)[number],
     index: number,
@@ -82,34 +81,35 @@ const NavContent = ({ items, logo, logoStyle }: NavContentProps) => {
             </button>
           )}
           <ul className={`flex ${styles.list_links}`} ref={dropdownRef}>
-            {items.map((item, index) => (
-              <li key={index}>
-                {renderLink(item, index, handleDropdownClick)}
-                {item.hasDropDown && openDropdownIndex === index && (
-                  <ul className={styles.dropdown_menu}>
-                    {item.menu.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        {renderLink(link, linkIndex, handleSubDropdownClick)}
-                        {link.hasDropDown &&
-                          openSubDropdownIndex === linkIndex && (
-                            <ul
-                              className={`${styles.dropdown_menu} ${styles.dropdown_sub_menu}`}
-                            >
-                              {link.menu.map((subLink, subLinkIndex) => (
-                                <li key={subLinkIndex}>
-                                  <Link href={subLink.href}>
-                                    {c(subLink.name)}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+            {Array.isArray(items) &&
+              items.map((item, index) => (
+                <li key={index}>
+                  {renderLink(item, index, handleDropdownClick)}
+                  {item.hasDropDown && openDropdownIndex === index && (
+                    <ul className={styles.dropdown_menu}>
+                      {item.menu.map((link, linkIndex) => (
+                        <li key={linkIndex}>
+                          {renderLink(link, linkIndex, handleSubDropdownClick)}
+                          {link.hasDropDown &&
+                            openSubDropdownIndex === linkIndex && (
+                              <ul
+                                className={`${styles.dropdown_menu} ${styles.dropdown_sub_menu}`}
+                              >
+                                {link.menu.map((subLink, subLinkIndex) => (
+                                  <li key={subLinkIndex}>
+                                    <Link href={subLink.href}>
+                                      {c(subLink.name)}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
           </ul>
         </div>
         <div className="flex" style={{ gap: "25px" }}>

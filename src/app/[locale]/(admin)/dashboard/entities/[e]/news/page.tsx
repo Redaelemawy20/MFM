@@ -5,7 +5,7 @@ import { CreatNews } from "@/components/dashboard/factories/EditNewsModal";
 import NewsTable from "@/components/dashboard/table/NewsTable";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
-import { getNews } from "@/services/models/news";
+import { getNews } from "@/services/newsService";
 import { EntitySlugParams } from "@/ts/common/NextPageParams";
 import { Divider } from "@nextui-org/react";
 
