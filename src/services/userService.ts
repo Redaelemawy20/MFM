@@ -15,7 +15,7 @@ export async function createNewUser(data: any) {
   let nameEn = getValueIn(data.name, "en");
   const newSlug = convertToSlug(nameEn);
   const userData = { name: nameEn, slug: newSlug, data, leadership: leader };
-  await User.createOneForEntity(userData, data.entityId);
+  await User.createOneForEntity(userData, parseInt(data.entityId));
 }
 
 export async function updateUser(data: any) {
@@ -25,6 +25,12 @@ export async function updateUser(data: any) {
   const newSlug = convertToSlug(nameEn);
   const slug = data.user_slug;
   delete data.user_slug;
-  const userData = { name: nameEn, slug: newSlug, leadership: leader, data };
+  const userData = {
+    name: nameEn,
+    slug: newSlug,
+    leadership: leader,
+    data,
+    entityId: parseInt(data.entityId),
+  };
   await User.updateOne(userData, slug);
 }

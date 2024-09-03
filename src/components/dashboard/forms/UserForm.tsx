@@ -55,7 +55,7 @@ function FormElements() {
     entities,
   } = useFormContext<UserContext>();
   const formData = new FormData();
-  formData.set("data", JSON.stringify({ ...state, slug: user_slug }));
+  formData.set("data", JSON.stringify({ ...state, user_slug }));
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
@@ -82,23 +82,25 @@ function FormElements() {
           name="name"
           translatable
         />
-        <Select
-          label="Select user entity"
-          className="max-w-xs"
+
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Select user entity
+        </label>
+        <select
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={state.entityId}
           name="entityId"
           onChange={(e) => handleChange(e.target)}
         >
-          <SelectItem key="none" value="">
+          <option key="none" value="">
             None
-          </SelectItem>
-
-          {
-            entities.map((e) => (
-              <SelectItem key={e.id}>{e.name}</SelectItem>
-            )) as any
-          }
-        </Select>
+          </option>
+          {entities.map((e) => (
+            <option key={e.id} value={e.id}>
+              {e.name}
+            </option>
+          ))}
+        </select>
       </>
 
       <FormButton>Save</FormButton>

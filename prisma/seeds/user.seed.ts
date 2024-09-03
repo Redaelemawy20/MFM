@@ -23,9 +23,20 @@ const roles = [
   {
     id: 1,
     name: "superadmin",
+    description: "has all access over all",
   },
-  { id: 2, name: "admin" },
-  { id: 3, name: "user" },
+  {
+    id: 2,
+    name: "admin",
+    description: "has control  over one entity add staff, pages, sections...",
+  },
+  {
+    id: 3,
+    name: "editor",
+    description:
+      "has control over one entity can update daynamic data such as news",
+  },
+  { id: 4, name: "user", description: "has control only on his data and cv" },
 ];
 
 module.exports = async function seedFunction(db: any) {

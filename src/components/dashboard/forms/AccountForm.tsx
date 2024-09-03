@@ -19,7 +19,7 @@ export default function AccountForm({
   errorMessage,
 }: AccountFormI) {
   return (
-    <FormProvider action={action} data={user} errorMessage={errorMessage}>
+    <FormProvider action={action} data={user || {}} errorMessage={errorMessage}>
       <FormElements />
     </FormProvider>
   );
@@ -30,6 +30,7 @@ interface CerdentialsContext extends ContextType {
 
 function FormElements() {
   const { state, action } = useFormContext<CerdentialsContext>();
+
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, userId: state.id }));
 

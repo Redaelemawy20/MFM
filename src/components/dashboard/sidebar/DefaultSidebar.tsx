@@ -1,5 +1,4 @@
 "use client";
-
 import { Sidebar } from "./sidebar.styles";
 import { SidebarItem } from "./sidebar-item";
 import { HomeIcon } from "../icons/sidebar/home-icon";
@@ -52,6 +51,12 @@ const DefaultSideBar = () => {
               title="Accounts"
               icon={<AccountsIcon />}
               href="/dashboard/accounts"
+            />
+            <SidebarItem
+              // isActive={pathname === "/accounts"}
+              title="Roles"
+              icon={<AccountsIcon />}
+              href="/dashboard/roles"
             />
             <SidebarItem
               title="Faculities"

@@ -13,7 +13,7 @@ model Cerdential {
   username    String @unique
   password    String
   entityId Int?
-  roleId Int?
+  roleId Int? @default(4) // default role as user
   userId Int? @unique
   user User? @relation(fields: [userId], references: [id])
   role Role? @relation(fields: [roleId], references: [id])
@@ -22,6 +22,7 @@ model Cerdential {
 model Role {
   id Int @id @default(autoincrement())
   name String @unique
+  description String?
   cerdentials Cerdential[]
   permissions RolePermission[]
 }

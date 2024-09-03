@@ -1,7 +1,7 @@
 "use server";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { createCerdential, getCerdential } from "./models/cerdential";
+import { getCerdential } from "./models/cerdential";
 type Authentication = {
   username: string;
   password: string;
@@ -18,24 +18,12 @@ export async function authenticate({ username, password }: Authentication) {
   }
   return null;
 }
-export type SignUpI = { userId: number; username: string; password: string };
-export async function signup({ userId, username, password }: SignUpI) {
-  const hasedPassowrd = await hashPassword(password);
-  await createCerdential({ email: username, password: hasedPassowrd }, userId);
-}
 
 function generatePassword() {
   return crypto
     .randomBytes(length)
     .toString("base64")
     .slice(0, PASSWORD_LENGTH);
-}
-
-// Function to hash the password
-async function hashPassword(plainPassword: string) {
-  const saltRounds = 10; // Salt rounds determine the complexity of the hashing
-  const hashedPassword = await bcrypt.hash(plainPassword, saltRounds);
-  return hashedPassword;
 }
 
 async function verifyPassword(plainPassword: string, hashedPassword: string) {
