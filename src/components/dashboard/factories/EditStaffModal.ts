@@ -1,8 +1,9 @@
 "use client";
 import withModalForm from "@/components/common/ModalForm";
 import StaffForm from "../forms/StaffForm";
-import { createStaff } from "@/actions/content";
-const EditStaffModal = withModalForm(StaffForm, createStaff, {
+
+import { handleUserFormSubmit } from "@/actions/user";
+const EditStaffModal = withModalForm(StaffForm, handleUserFormSubmit, {
   btnText: "Edit Staff",
   color: "secondary",
 });

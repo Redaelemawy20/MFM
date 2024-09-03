@@ -18,10 +18,9 @@ export async function authenticate({ username, password }: Authentication) {
   }
   return null;
 }
-
-export async function signup(userId: number, username: string) {
-  const generatedPassword = generatePassword();
-  const hasedPassowrd = await hashPassword(generatedPassword);
+export type SignUpI = { userId: number; username: string; password: string };
+export async function signup({ userId, username, password }: SignUpI) {
+  const hasedPassowrd = await hashPassword(password);
   await createCerdential({ email: username, password: hasedPassowrd }, userId);
 }
 

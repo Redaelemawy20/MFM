@@ -5,9 +5,8 @@
 import Card1 from "@/components/dashboard/cards/card1";
 import { AddEntityModal } from "@/components/dashboard/factories/CreateEntityModal";
 import { Link } from "@/navigation";
-import { getEntities } from "@/services/models/entity";
+import { getEntities } from "@/services/entityServices";
 import { entityAdminPath } from "@/utils/router";
-// import CreateEntityModal from "@/components/dashboard/factories/CreateEntityModal";
 import { Button, Divider } from "@nextui-org/react";
 
 export default async () => {

@@ -1,12 +1,13 @@
 import { Divider } from "@nextui-org/react";
-import CreateStaffModal from "@/components/dashboard/factories/CreateStaffModal";
-import { EntitySlugParams } from "@/ts/common/NextPageParams";
+
 import { getUsersWithCerdentials } from "@/services/userService";
+import UsersTable from "@/components/dashboard/table/UsersTable";
+import AddUserModal from "@/components/dashboard/factories/AddUserModal";
+import { getEntities } from "@/services/entityServices";
 
-export default async function ({ params }: EntitySlugParams) {
-  const { e: entity_slug } = params;
+export default async function () {
   const users = await getUsersWithCerdentials();
-
+  const entities = await getEntities();
   return (
     <>
       <h3 className="text-xl font-semibold">All Users</h3>
@@ -15,14 +16,11 @@ export default async function ({ params }: EntitySlugParams) {
           <h3 className="text-xl font-semibold">Manage Users</h3>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <CreateStaffModal entity_slug={entity_slug} />
+          <AddUserModal entities={entities as any} />
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        {/* <StaffTable
-          entityStaff={entityStaff as any}
-          entity_slug={entity.slug}
-        /> */}
+        <UsersTable users={users} entities={entities} />
       </div>
       <Divider />
     </>

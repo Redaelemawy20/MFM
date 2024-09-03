@@ -1,23 +1,23 @@
 "use client";
-import StaffMember from "@/ts/interfaces/StaffData";
 import Table from "./Table";
 import Image from "next/image";
-import EditStaffModal from "../factories/EditStaffModal";
-import { Chip } from "@nextui-org/react";
-import { BiCheck } from "react-icons/bi";
 import { extractImgSrc } from "@/utils/get-img";
-import { getValueIn } from "@/utils/trans";
+import { GetUsersWithCerdentialsReturnType } from "@/services/userService";
+import EditUserModal from "../factories/EditUserModal";
+import { isNotSuperAdmin } from "@/utils/gaurds";
+import ChipDone from "../icons/ChipDone";
+import EnableAccountModal from "../factories/EnableAccountModal";
 
-interface EntityStaffI {
-  entityStaff: StaffMember[];
-  entity_slug: string;
+interface AllUsersTable {
+  users: GetUsersWithCerdentialsReturnType;
+  entities: { id: number; slug: string; name: string }[];
 }
-const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
-  return entityStaff.length === 0 ? (
+const UsersTable = ({ users, entities }: AllUsersTable) => {
+  return users.length === 0 ? (
     <div className="text-xl "> No Stff try to add </div>
   ) : (
     <Table
-      items={entityStaff}
+      items={users}
       columns={[
         {
           header: "###",
@@ -30,43 +30,35 @@ const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
             />
           ),
         },
-        {
-          header: "title",
-          value: (item) => getValueIn(item.data.title, "en"),
-        },
+
         {
           header: "name",
-          value: (item) => getValueIn(item.data.name, "en"),
+          value: (item) => item.name,
         },
         {
-          header: "current position",
-          value: (item) => getValueIn(item.data.position, "en"),
+          header: "entity",
+          value: (item) => {
+            const entity = entities.find((e) => e.id === item.entityId);
+            if (!entity) return null;
+            return entity.name;
+          },
         },
         {
-          header: "degree",
-          value: (item) => getValueIn(item.data.degree, "en"),
-        },
-        {
-          header: "Top Leaders",
+          header: "credentials",
           value: (item) =>
-            item.leadership ? (
-              <Chip color="default">
-                <BiCheck color="green" size={20} />
-              </Chip>
-            ) : null,
+            item.cerdential ? <ChipDone /> : <EnableAccountModal user={item} />,
         },
+
         {
           header: "actions",
-          value: (item) => (
-            <EditStaffModal
-              entity_slug={entity_slug}
-              staff={{ slug: item.slug, data: item.data }}
-            />
-          ),
+          value: (item: any) =>
+            isNotSuperAdmin(item) && (
+              <EditUserModal user={item} entities={entities as any} />
+            ),
         },
       ]}
     />
   );
 };
 
-export default StaffTable;
+export default UsersTable;

@@ -5,7 +5,6 @@ import {
   addSectionsShecma,
   createEntitySchema,
   createPageSchema,
-  CreateStaffSchema,
   EditFooterSchema,
   EditNavSchema,
   NewsSchema,
@@ -16,7 +15,6 @@ import {
   addSections,
   editEntityAction,
   createPage as createPageAction,
-  createStaffAction,
   deletePageAction,
   deleteSectionAction,
   editNewsAction,
@@ -137,15 +135,4 @@ export const deletePage: FormActionType = async (formState, formData) => {
   const data = extractFormData(formData);
   const result = await makeAction(deletePageAction, data);
   return result;
-};
-
-export const createStaff: FormActionType = async (formState, formData) => {
-  const data = JSON.parse(formData.get("data") as string);
-  const [files, dataToStore] = extractUploadedFiles(data);
-  const validationResult = validateFormData(CreateStaffSchema, data);
-  if (validationResult.message) return validationResult;
-  const result = await makeAction(createStaffAction, dataToStore);
-  if (result.message) return result;
-  const storeFileResult = await storeFiles(files, formData);
-  return storeFileResult;
 };

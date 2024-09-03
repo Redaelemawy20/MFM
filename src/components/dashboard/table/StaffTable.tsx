@@ -7,6 +7,7 @@ import { Chip } from "@nextui-org/react";
 import { BiCheck } from "react-icons/bi";
 import { extractImgSrc } from "@/utils/get-img";
 import { getValueIn } from "@/utils/trans";
+import ChipDone from "../icons/ChipDone";
 
 interface EntityStaffI {
   entityStaff: StaffMember[];
@@ -48,12 +49,7 @@ const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
         },
         {
           header: "Top Leaders",
-          value: (item) =>
-            item.leadership ? (
-              <Chip color="default">
-                <BiCheck color="green" size={20} />
-              </Chip>
-            ) : null,
+          value: (item) => item.leadership && <ChipDone />,
         },
         {
           header: "actions",

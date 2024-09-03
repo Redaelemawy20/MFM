@@ -51,7 +51,7 @@ const DefaultSideBar = () => {
               // isActive={pathname === "/accounts"}
               title="Accounts"
               icon={<AccountsIcon />}
-              href="accounts"
+              href="/dashboard/accounts"
             />
             <SidebarItem
               title="Faculities"
