@@ -65,7 +65,7 @@ function withModalForm<T extends FormModalExtraProps>(
           placement="top-center"
           shouldCloseOnInteractOutside={() => true}
           className={`${
-            width == "full" ? "!max-w-full" : ""
+            width == "full" ? "!max-w-full" : " !max-w-max  "
           }  max-h-[90vh] overflow-y-auto`}
         >
           <ModalContent>
