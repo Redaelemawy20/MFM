@@ -7,6 +7,8 @@ import DisplaySectionModal from "@/components/dashboard/factories/DisplaySection
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getEntityWithStaff } from "@/services/entityServices";
+import Main from "@/components/dashboard/structure/Main";
+import SubHeader from "@/components/dashboard/structure/SubHeader";
 
 // add account
 
@@ -19,12 +21,9 @@ export default async function ({ params }: EntitySlugParams) {
   if (!entity) return notFound();
   const { staff: entityStaff } = entity;
   return (
-    <>
-      <h3 className="text-xl font-semibold">{entity.name}</h3>
-      <div className="flex justify-between flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <h3 className="text-xl font-semibold">All Staff</h3>
-        </div>
+    <Main>
+      <SubHeader>
+        <h3 className="text-xl font-semibold">All Staff</h3>
         <div className="flex flex-row gap-3.5 flex-wrap">
           <CreateStaffModal
             entity_slug={entity_slug}
@@ -43,7 +42,7 @@ export default async function ({ params }: EntitySlugParams) {
             }}
           />
         </div>
-      </div>
+      </SubHeader>
       <div className="max-w-[95rem] mx-auto w-full">
         <StaffTable
           entityStaff={entityStaff as any}
@@ -51,6 +50,6 @@ export default async function ({ params }: EntitySlugParams) {
         />
       </div>
       <Divider />
-    </>
+    </Main>
   );
 }

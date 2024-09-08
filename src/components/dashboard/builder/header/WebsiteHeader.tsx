@@ -7,13 +7,28 @@ import { RiTeamLine } from "react-icons/ri";
 import Pages from "./DefaultPages";
 import { entityAdminNewsPath, entityAdminStaffPath } from "@/utils/router";
 import { useParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 const WebsiteHeader = () => {
   const params = useParams<{ e: string }>();
-
+  const {
+    data: entity,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryFn: () =>
+      axios
+        .get(`/api/admin/pages?entity_slug=${params.e}`)
+        .then((res) => res.data),
+    queryKey: [`/api/admin/pages/${params.e}`],
+  });
+  if (isLoading) return <div>...</div>;
+  if (isError) return null;
   return (
     <>
-      <h1 className="text-2xl font-bold text-gray-800">My Website</h1>
+      <h1 className="text-2xl font-bold text-gray-800 capitalize">
+        {entity.name}
+      </h1>
       <nav className="flex items-center space-x-4 !text-[16px] !text-bold">
         <Link
           href={entityAdminNewsPath(params.e)}
@@ -30,7 +45,7 @@ const WebsiteHeader = () => {
           <RiTeamLine fontSize={30} />
         </Link>
 
-        <Pages />
+        <Pages pages={entity.pages || []} />
       </nav>
     </>
   );

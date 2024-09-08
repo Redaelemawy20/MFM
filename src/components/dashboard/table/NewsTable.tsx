@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Table from "./Table";
 import { entityAdminPagesPath } from "@/utils/router";
 import { Button } from "@nextui-org/react";
@@ -35,17 +34,20 @@ const NewsTable = ({ entity_slug, news }: EntityPagesI) => {
       columns={[
         {
           header: "###",
-          value: (item) => (
-            <Image
-              width={80}
-              height={40}
-              alt="staff image"
-              src={extractImgSrc(
-                item.details.gallary[item.details.mainImageIdx],
-                "img"
-              )}
-            />
-          ),
+          value: (item) =>
+            item.details.gallary ? (
+              <Image
+                width={80}
+                height={40}
+                alt="image"
+                src={extractImgSrc(
+                  item.details.gallary[item.details.mainImageIdx],
+                  "img"
+                )}
+              />
+            ) : (
+              "you didn't add image"
+            ),
         },
         {
           header: "title",

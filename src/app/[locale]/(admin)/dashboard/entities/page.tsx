@@ -6,7 +6,7 @@ import { getEntities } from "@/services/entityServices";
 
 export default async () => {
   const entities = await getEntities();
-  const parseEntity = (e: any) => {};
+
   return (
     <Main>
       <SubHeader>

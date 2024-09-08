@@ -2,6 +2,8 @@
 
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import { NewsModal } from "@/components/dashboard/factories/EditNewsModal";
+import Main from "@/components/dashboard/structure/Main";
+import SubHeader from "@/components/dashboard/structure/SubHeader";
 import NewsTable from "@/components/dashboard/table/NewsTable";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
@@ -17,11 +19,9 @@ export default async function ({ params }: EntitySlugParams) {
   const news = await getNews(slug);
 
   return (
-    <>
-      <div className="flex justify-between flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <h1 className="text-2xl font-extrabold">All News</h1>
-        </div>
+    <Main>
+      <SubHeader>
+        <h1 className="text-2xl font-extrabold">All News</h1>
         <div className="flex flex-row gap-3.5 flex-wrap">
           <NewsModal
             entity_slug={params.e}
@@ -40,11 +40,12 @@ export default async function ({ params }: EntitySlugParams) {
             }}
           />
         </div>
-      </div>
+      </SubHeader>
+
       <Divider />
       <div className="flex flex-col gap-2">
         <NewsTable news={news as any} entity_slug={slug} />
       </div>
-    </>
+    </Main>
   );
 }
