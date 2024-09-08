@@ -5,7 +5,11 @@ import { FaRegNewspaper } from "react-icons/fa";
 import { RiTeamLine } from "react-icons/ri";
 
 import Pages from "./DefaultPages";
-import { entityAdminNewsPath, entityAdminStaffPath } from "@/utils/router";
+import {
+  BASEPATH,
+  entityAdminNewsPath,
+  entityAdminStaffPath,
+} from "@/utils/router";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
@@ -26,9 +30,10 @@ const WebsiteHeader = () => {
   if (isError) return null;
   return (
     <>
-      <h1 className="text-2xl font-bold text-gray-800 capitalize">
-        {entity.name}
-      </h1>
+      <div className="flex flex-row justify-center items-center gap-3 font-bold text-gray-800">
+        <h1 className="text-2xl   capitalize">{entity.name}</h1>
+        <Link href={BASEPATH}>Home Dashboard</Link>
+      </div>
       <nav className="flex items-center space-x-4 !text-[16px] !text-bold">
         <Link
           href={entityAdminNewsPath(params.e)}

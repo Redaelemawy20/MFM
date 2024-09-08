@@ -18,6 +18,8 @@ import NewsSection from "@/sections/News";
 import React from "react";
 import SubPages from "@/sections/SubPages";
 import SubPageEdit from "@/components/dashboard/forms/SubPageForm";
+import StaticContent from "@/sections/StaticContent";
+import StaticContentEdit from "@/components/dashboard/forms/StaticContentForm";
 
 // sections
 export const sectionsGallary = [
@@ -182,6 +184,14 @@ export const sectionsGallary = [
     componentEdit: SubPageEdit,
     defaultData: {
       items: [],
+    },
+  },
+  {
+    componentId: "1700000013",
+    component: StaticContent,
+    componentEdit: StaticContentEdit,
+    defaultData: {
+      items: {},
     },
   },
 ];

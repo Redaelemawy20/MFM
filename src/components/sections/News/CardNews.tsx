@@ -30,7 +30,7 @@ const CardNews: React.FC<newsItemProps> = ({
 }) => {
   const locale = useLocale();
   const showImage = () => {
-    const mainImage = gallary[mainImageIdx];
+    const mainImage = gallary ? gallary[mainImageIdx] : {};
     return extractImgSrc(mainImage, "img");
   };
 

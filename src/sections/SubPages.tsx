@@ -12,7 +12,6 @@ function SubPages({ data }: SubPageProps) {
   const handleStateContent = (id: number) => {
     setContentState(id);
   };
-  console.log(data);
 
   return (
     <div className={styles.Main_wraper_grid}>

@@ -88,5 +88,12 @@ const sections: {
     imgUrl: "/assets/imgs/subpage.PNG",
     type: "section",
   },
+  {
+    id: 14,
+    name: "StaticContent",
+    componentId: "1700000013",
+    imgUrl: "/assets/imgs/static-content.jpeg",
+    type: "section",
+  },
 ];
 module.exports = { sections };
