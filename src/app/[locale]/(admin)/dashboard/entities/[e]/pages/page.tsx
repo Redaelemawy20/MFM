@@ -25,7 +25,12 @@ export default async ({ params }: EntitySlugParams) => {
           <h3 className="text-xl font-semibold">All Pages</h3>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <CreatePageModal entity_slug={params.e} />
+          <CreatePageModal
+            entity_slug={params.e}
+            options={{
+              btnText: "Add Page",
+            }}
+          />
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">

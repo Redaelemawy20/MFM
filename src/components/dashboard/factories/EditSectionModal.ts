@@ -7,10 +7,5 @@ import SectionProps from "@/ts/interfaces/SectionProps";
 
 const EditSectionModal = (
   component: (props: SectionProps & FormProps & HasId) => JSX.Element
-) =>
-  withModalForm(component, edit, {
-    btnText: "Edit",
-    color: "secondary",
-    width: "full",
-  });
+) => withModalForm(component, edit);
 export default EditSectionModal;

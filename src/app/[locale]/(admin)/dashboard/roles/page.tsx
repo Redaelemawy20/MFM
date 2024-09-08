@@ -18,7 +18,12 @@ export default async function () {
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
           {/* <AddUserModal entities={entities as any} /> */}
-          <NewAccountModal />
+          <NewAccountModal
+            options={{
+              btnText: "New account",
+              color: "primary",
+            }}
+          />
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">

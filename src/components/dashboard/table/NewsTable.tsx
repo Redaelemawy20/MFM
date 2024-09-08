@@ -8,7 +8,7 @@ import { NewsItem } from "@/ts/interfaces/NewsProps";
 import Image from "next/image";
 import { extractImgSrc } from "@/utils/get-img";
 import { getValueIn } from "@/utils/trans";
-import { EditNews } from "../factories/EditNewsModal";
+import { NewsModal } from "../factories/EditNewsModal";
 
 interface EntityPagesI {
   news: { details: NewsItem; slug: string }[];
@@ -16,7 +16,15 @@ interface EntityPagesI {
 }
 const NewsTable = ({ entity_slug, news }: EntityPagesI) => {
   const actions = (item: (typeof news)[number]) => (
-    <EditNews entity_slug={entity_slug} data={item.details} slug={item.slug} />
+    <NewsModal
+      entity_slug={entity_slug}
+      data={item.details}
+      slug={item.slug}
+      options={{
+        btnText: "Edit",
+        color: "secondary",
+      }}
+    />
   );
 
   return news.length === 0 ? (

@@ -5,7 +5,13 @@ import LoginModal from "../dashboard/factories/LoginModal";
 export default function Login() {
   return (
     <>
-      <LoginModal />
+      <LoginModal
+        options={{
+          btnText: "Login",
+          defaultOpen: true,
+          isDismissable: false,
+        }}
+      />
     </>
   );
 }

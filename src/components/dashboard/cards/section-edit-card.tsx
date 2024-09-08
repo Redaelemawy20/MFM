@@ -1,10 +1,10 @@
 "use client";
-import { Card, CardBody, CardFooter } from "@nextui-org/react";
-import Image from "next/image";
-import DeleteSectionModal from "../factories/DeleteSectionModal";
-import { getEditComponent } from "@/services/fetch/getEditComponent";
+
 import EditSectionModal from "../factories/EditSectionModal";
 import { Section } from "@prisma/client";
+import SectionWrapper from "../structure/SectionWrapper";
+import getComponent from "@/com/getComponent";
+import DeleteSectionModal from "../factories/DeleteSectionModal";
 
 const SectionEditCard = ({
   section,
@@ -15,38 +15,44 @@ const SectionEditCard = ({
   data: any;
   id: number;
 }) => {
-  const editComponent = getEditComponent(section.componentId);
-  let Modal;
-  if (editComponent) {
-    let Btn = EditSectionModal(editComponent);
-    Modal = <Btn data={data} id={id} />;
-  }
-  return (
-    <Card
-      key={section.id}
-      className="m-2"
-      style={{
-        width: 450,
+  const component = getComponent(section.componentId) as any;
+  const Card = component.component;
+  const editComponent = component.componentEdit;
+  let Btn = EditSectionModal(editComponent);
+  const Modal = (
+    <Btn
+      data={data}
+      id={id}
+      options={{
+        btnText: "Edit",
+        color: "secondary",
+        width: "full",
       }}
-    >
-      <CardBody>
-        <Image
-          width="100"
-          height="100"
-          alt={section.name}
-          className="w-full object-cover h-[140px] rounded-lg "
-          src={section.imgUrl}
+    />
+  );
+
+  return (
+    <SectionWrapper
+      EditIcon={Modal ? Modal : ""}
+      DeleteIcon={
+        <DeleteSectionModal
+          item_name={section.name}
+          id={id}
+          options={{
+            btnText: "delete",
+            color: "danger",
+          }}
         />
-      </CardBody>
-      <CardFooter>
-        <b className="text-nowrap">{section.name}</b>
-        <p className="flex flex-row ms-2">
-          {Modal ? Modal : ""}
-          <DeleteSectionModal item_name={section.name} id={id} />
-        </p>
-      </CardFooter>
-    </Card>
+      }
+    >
+      <Card data={data} />
+    </SectionWrapper>
   );
 };
-
+{
+  /* <p className="flex flex-row ms-2">
+          
+          
+        </p> */
+}
 export default SectionEditCard;

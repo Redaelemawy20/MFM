@@ -1,7 +1,7 @@
 // add one
 
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
-import { CreatNews } from "@/components/dashboard/factories/EditNewsModal";
+import { NewsModal } from "@/components/dashboard/factories/EditNewsModal";
 import NewsTable from "@/components/dashboard/table/NewsTable";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
@@ -23,13 +23,21 @@ export default async function ({ params }: EntitySlugParams) {
           <h1 className="text-2xl font-extrabold">All News</h1>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <CreatNews entity_slug={params.e} />
+          <NewsModal
+            entity_slug={params.e}
+            options={{
+              btnText: "Add News",
+            }}
+          />
           <DisplaySectionModal
             entity_slug={slug}
             sections={newsSections}
             selectedIndex={newsLayout?.sectionId || 1}
             withorder={{ order: newsLayout?.order || 0 }}
             sectionType="news"
+            options={{
+              btnText: "Display Template",
+            }}
           />
         </div>
       </div>

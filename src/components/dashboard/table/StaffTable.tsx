@@ -57,6 +57,10 @@ const StaffTable = ({ entity_slug, entityStaff }: EntityStaffI) => {
             <EditStaffModal
               entity_slug={entity_slug}
               staff={{ slug: item.slug, data: item.data }}
+              options={{
+                btnText: "Edit Staff",
+                color: "secondary",
+              }}
             />
           ),
         },

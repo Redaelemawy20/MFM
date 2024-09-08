@@ -4,25 +4,27 @@ import { getUsersWithCerdentials } from "@/services/userService";
 import UsersTable from "@/components/dashboard/table/UsersTable";
 import AddUserModal from "@/components/dashboard/factories/AddUserModal";
 import { getEntities } from "@/services/entityServices";
+import SubHeader from "@/components/dashboard/structure/SubHeader";
+import Main from "@/components/dashboard/structure/Main";
 
 export default async function () {
   const users = await getUsersWithCerdentials();
   const entities = await getEntities();
   return (
-    <>
-      <h3 className="text-xl font-semibold">All Users</h3>
-      <div className="flex justify-between flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <h3 className="text-xl font-semibold">Manage Users</h3>
-        </div>
-        <div className="flex flex-row gap-3.5 flex-wrap">
-          <AddUserModal entities={entities as any} />
-        </div>
-      </div>
-      <div className="max-w-[95rem] mx-auto w-full">
+    <Main>
+      <SubHeader>
+        <h3 className="text-xl font-semibold">All Users</h3>
+        <AddUserModal
+          entities={entities as any}
+          options={{
+            btnText: "Add a new user",
+          }}
+        />
+      </SubHeader>
+      <div className="mt-3  max-w-[95rem] mx-auto w-full">
         <UsersTable users={users} entities={entities} />
       </div>
       <Divider />
-    </>
+    </Main>
   );
 }

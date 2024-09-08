@@ -48,12 +48,19 @@ export default async function EntityLists({ params }: EntitySlugParams) {
           <h1 className="text-2xl font-extrabold">All links</h1>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <EditLinksModal entity_slug={slug} data={navData} />
+          <EditLinksModal
+            entity_slug={slug}
+            data={navData}
+            options={{
+              btnText: "Edit nav links",
+            }}
+          />
           <DisplaySectionModal
             entity_slug={slug}
             sections={navSections}
             selectedIndex={navLayout ? navLayout.sectionId || 1 : 1}
             sectionType="nav"
+            options={{ btnText: "Display Template" }}
           />
         </div>
       </div>
@@ -66,12 +73,21 @@ export default async function EntityLists({ params }: EntitySlugParams) {
           <h1 className="text-2xl font-extrabold">Footer</h1>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <EditFooterModal entity_slug={slug} data={footerData} />
+          <EditFooterModal
+            entity_slug={slug}
+            data={footerData}
+            options={{
+              btnText: "Edit Footer",
+            }}
+          />
           <DisplaySectionModal
             entity_slug={slug}
             sections={footerSections}
             selectedIndex={footerLayout ? footerLayout.sectionId || 1 : 1}
             sectionType="footer"
+            options={{
+              btnText: "Display Template",
+            }}
           />
         </div>
       </div>

@@ -5,7 +5,6 @@ import DisplaySectionForm from "../forms/DisplaySectionForm";
 
 const DisplaySectionModal = withModalForm(
   DisplaySectionForm,
-  setDisplaySection,
-  { btnText: "Display Template" }
+  setDisplaySection
 );
 export default DisplaySectionModal;

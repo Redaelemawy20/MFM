@@ -46,14 +46,31 @@ const UsersTable = ({ users, entities }: AllUsersTable) => {
         {
           header: "credentials",
           value: (item) =>
-            item.cerdential ? <ChipDone /> : <EnableAccountModal user={item} />,
+            item.cerdential ? (
+              <ChipDone />
+            ) : (
+              <EnableAccountModal
+                user={item}
+                options={{
+                  btnText: "Enable Account",
+                  color: "warning",
+                }}
+              />
+            ),
         },
 
         {
           header: "actions",
           value: (item: any) =>
             isNotSuperAdmin(item) && (
-              <EditUserModal user={item} entities={entities as any} />
+              <EditUserModal
+                user={item}
+                entities={entities as any}
+                options={{
+                  btnText: "edit",
+                  color: "secondary",
+                }}
+              />
             ),
         },
       ]}

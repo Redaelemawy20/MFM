@@ -2,8 +2,5 @@
 import withModalForm from "@/components/common/ModalForm";
 import AccountForm from "../forms/AccountForm";
 import { enableAccount } from "@/actions/credentials";
-const EnableAccountModal = withModalForm(AccountForm, enableAccount, {
-  btnText: "Enable Account",
-  color: "warning",
-});
+const EnableAccountModal = withModalForm(AccountForm, enableAccount);
 export default EnableAccountModal;

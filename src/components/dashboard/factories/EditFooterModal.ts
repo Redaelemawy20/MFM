@@ -3,7 +3,5 @@ import withModalForm from "@/components/common/ModalForm";
 import { editFooterLinks } from "@/actions/content";
 import FooterForm from "../forms/FooterForm";
 
-const EditFooterModal = withModalForm(FooterForm, editFooterLinks, {
-  btnText: "Edit Footer",
-});
+const EditFooterModal = withModalForm(FooterForm, editFooterLinks);
 export default EditFooterModal;

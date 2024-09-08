@@ -1,10 +1,11 @@
-import { DeviceFrameset } from "react-device-frameset";
-import "react-device-frameset/styles/marvel-devices.min.css";
+import Header from "@/components/dashboard/builder/header/Header";
+import MainContent from "@/components/dashboard/builder/maincontent/MainContent";
 
 export default () => {
   return (
-    <DeviceFrameset device="MacBook Pro" color="gold" width={800}>
-      <div>Hello world</div>
-    </DeviceFrameset>
+    <>
+      <Header />
+      <MainContent />
+    </>
   );
 };

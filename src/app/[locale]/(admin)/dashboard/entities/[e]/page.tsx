@@ -1,7 +1,7 @@
 // entity page such as faculty or sector
 
 import Card1 from "@/components/dashboard/cards/card1";
-import { EditEntityModal } from "@/components/dashboard/factories/CreateEntityModal";
+import { EntityModal } from "@/components/dashboard/factories/CreateEntityModal";
 import { getEntityWithLayout } from "@/services/models/entity";
 import { EntitySlugParams } from "@/ts/common/NextPageParams";
 import Entity from "@/ts/interfaces/Entity";
@@ -27,7 +27,13 @@ export default async ({ params }: EntitySlugParams) => {
         {/* Card Section Top */}
         <div className="flex justify-between flex-wrap gap-4 items-center">
           <h3 className="text-xl font-semibold">{entity.name}</h3>
-          <EditEntityModal data={metadata as any} entity_slug={params.e} />
+          <EntityModal
+            data={metadata as any}
+            entity_slug={params.e}
+            options={{
+              btnText: "Edit  website",
+            }}
+          />
         </div>
         <div className="flex flex-col gap-2">
           <div className="grid md:grid-cols-2 grid-cols-1 2xl:grid-cols-3 gap-3  justify-center w-full">

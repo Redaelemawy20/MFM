@@ -28,7 +28,13 @@ const PagesTable = ({ entity_slug, entityPages }: EntityPagesI) => {
         Edit
       </Button>
       {item.name !== "_home" && (
-        <DeletePageModal item_name={item.slug} id={item.id} />
+        <DeletePageModal
+          item_name={item.slug}
+          id={item.id}
+          options={{
+            btnText: "delete",
+          }}
+        />
       )}
     </div>
   );

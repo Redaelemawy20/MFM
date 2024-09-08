@@ -66,7 +66,6 @@ function FormElements() {
   formData.set("data", JSON.stringify({ ...state, entity_slug, slug }));
 
   const modefiedAction = action.bind(null, formData);
-  console.log({ state });
 
   return (
     <Form modifiedAction={modefiedAction}>

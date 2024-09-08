@@ -26,13 +26,21 @@ export default async function ({ params }: EntitySlugParams) {
           <h3 className="text-xl font-semibold">All Staff</h3>
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <CreateStaffModal entity_slug={entity_slug} />
+          <CreateStaffModal
+            entity_slug={entity_slug}
+            options={{
+              btnText: "Create New Staff",
+            }}
+          />
           <DisplaySectionModal
             entity_slug={entity_slug}
             sections={personSecitons}
             selectedIndex={personLayout ? personLayout.sectionId || 1 : 1}
             withorder={{ order: personLayout?.order || 0 }}
             sectionType="persons"
+            options={{
+              btnText: "select show template",
+            }}
           />
         </div>
       </div>

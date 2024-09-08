@@ -65,6 +65,10 @@ const RolesTable = ({ cerdentials, roles, entities }: RolesTableI) => {
                 cerdential={item}
                 roles={rolesToChoose}
                 entities={entities}
+                options={{
+                  btnText: "Change control",
+                  color: "secondary",
+                }}
               />
             ),
         },

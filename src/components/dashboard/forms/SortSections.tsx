@@ -18,12 +18,7 @@ export default function SortPageSectionForm({
   errorMessage,
   sections,
 }: SortSectionFormProps) {
-  const [state, setState] = useState(
-    sortSectionsWithOrder(sections).map((section, index) => ({
-      ...section,
-      order: index,
-    }))
-  );
+  const [state, setState] = useState(sections);
   const handleUp = (index: number) => {
     const clonedState = [...state];
     const temp = clonedState[index - 1];

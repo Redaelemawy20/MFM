@@ -1,6 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
-import { ComponentType, useEffect, useState } from "react";
+import React, { ComponentType, useEffect, useState } from "react";
 import { Button, Modal, ModalBody, ModalContent } from "@nextui-org/react";
 import {
   EditSectionType,
@@ -22,17 +22,28 @@ interface Options {
     | "success"
     | "warning"
     | "danger";
-  btnText: string;
+  btnText?: string;
   defaultOpen?: boolean;
-  width?: "normal" | "full";
+  width?: string;
+  tirgger?: React.ReactElement;
   isDismissable?: boolean;
+  onClose?: VoidFunction;
 }
 function withModalForm<T extends FormModalExtraProps>(
   WrappedForm: ComponentType<T>,
-  action: FormActionType | EditSectionType<T>,
-  { color, btnText, defaultOpen, width, isDismissable = true }: Options
+  action: FormActionType | EditSectionType<T>
 ) {
-  return (props: Omit<T, "action" | "errorMessage">) => {
+  return (props: Omit<T, "action" | "errorMessage"> & { options: Options }) => {
+    const {
+      color,
+      btnText,
+      defaultOpen,
+      width,
+      isDismissable = true,
+      tirgger,
+      onClose,
+    } = props.options || {};
+    const { options, ...withOutOptions } = props;
     const [formState, formAction] = useFormState(action as FormActionType, {
       message: "",
     });
@@ -40,40 +51,55 @@ function withModalForm<T extends FormModalExtraProps>(
     const [open, setOpen] = useState(defaultOpen || false);
     useEffect(() => {
       if (formState.message === false) {
-        setOpen(false);
+        handleCloseModal();
         router.refresh();
       }
     }, [formState]);
+
     const { message } = formState;
+    let clonedTrigger;
+    if (tirgger) {
+      clonedTrigger = React.cloneElement(tirgger, {
+        onClick: () => {
+          setOpen(true);
+        },
+      });
+    }
+
+    const handleCloseModal = () => {
+      setOpen(false);
+      onClose && onClose();
+    };
     return (
       <>
-        {isDismissable && (
-          <Button
-            onPress={() => setOpen(true)}
-            color={color ? color : "primary"}
-          >
-            {btnText}
-          </Button>
-        )}
+        {isDismissable &&
+          (tirgger
+            ? clonedTrigger
+            : btnText && (
+                <Button
+                  onPress={() => setOpen(true)}
+                  color={color ? color : "primary"}
+                >
+                  {btnText}
+                </Button>
+              ))}
 
         <Modal
           isOpen={open}
-          onClose={() => {
-            setOpen(false);
-          }}
+          onClose={handleCloseModal}
           isDismissable={isDismissable}
           placement="top-center"
           shouldCloseOnInteractOutside={() => true}
           className={`${
-            width == "full" ? "!max-w-full" : " !max-w-max  "
-          }  max-h-[90vh] overflow-y-auto`}
+            width ? (width == "full" ? "!max-w-full" : width) : " !max-w-max"
+          }  max-h-[90vh] overflow-y-auto z-50`}
         >
           <ModalContent>
             <ModalHeader className="font-bold p-3 pb-1">{btnText}</ModalHeader>
             <ModalBody>
               <div>
                 <WrappedForm
-                  {...(props as T)}
+                  {...(withOutOptions as any)}
                   action={formAction}
                   errorMessage={message ?? null}
                 />

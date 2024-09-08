@@ -1,4 +1,6 @@
 export function sortSectionsWithOrder<T extends HasOrder>(sections: T[]) {
+  console.log({ sections });
+
   const clonedSections = [...sections];
   return clonedSections.sort((a, b) => {
     let first = a.order ?? 0;
