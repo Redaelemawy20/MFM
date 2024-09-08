@@ -11,23 +11,25 @@ import { RiPagesFill } from "react-icons/ri";
 import { entityAdminPagesPath } from "@/utils/router";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const BasePages = () => {
-  let options = [
-    {
-      title: "Add a static section",
-      description: "Add a static section Add a static section",
-    },
-    {
-      title: "Add news section",
-      description: "Add news section",
-    },
-    {
-      title: "Add staff section",
-      description: "Add staff sectionAdd staff sectionAdd staff section",
-    },
-  ];
   const params = useParams();
+  const {
+    data: pages,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryFn: () =>
+      axios
+        .get(`/api/admin/pages?entity_slug=${params.e}`)
+        .then((res) => res.data),
+    queryKey: [`/api/admin/pages/${params.e}`],
+  });
+  if (isLoading) return <div>loading</div>;
+  if (isError) return null;
+
   return (
     // <button className="px-4 py-2 text-white  bg-lime-500 rounded-lg   flex items-center justify-center gap-1">
     //   Pages
@@ -46,13 +48,15 @@ const BasePages = () => {
         <DropdownMenu
           disallowEmptySelection
           aria-label="Merge options"
-          selectedKeys={options[0].title}
+          selectedKeys={pages[0].name}
           selectionMode="single"
           className="max-w-[300px]"
         >
-          {options.map((opt) => (
-            <DropdownItem key={opt.title} description={opt.description}>
-              {opt.title}
+          {pages.map((page) => (
+            <DropdownItem key={page.name}>
+              <Link href={entityAdminPagesPath(params.e, page.slug)}>
+                {page.name}
+              </Link>
             </DropdownItem>
           ))}
         </DropdownMenu>

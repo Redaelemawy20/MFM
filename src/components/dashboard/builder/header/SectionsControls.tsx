@@ -30,14 +30,14 @@ const SectionsControls = ({ pageSections, sectionsToAdd }) => {
     <>
       {opendModal == "sections" && (
         <AddSectionModal
-          page=""
+          page={params.p}
           sections={sectionsToAdd}
           options={{
             width: "full",
             defaultOpen: true,
             onClose: () => setOpenModa(""),
           }}
-          entity_slug=""
+          entity_slug={params.e}
         />
       )}
       {opendModal == "sort" && (

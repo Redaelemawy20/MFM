@@ -1,11 +1,12 @@
 "use client";
 import { NewsItem } from "@/ts/interfaces/NewsProps";
-import { c } from "@/utils/get-content";
+import { useContent } from "@/utils/get-content";
 import { extractImgSrc } from "@/utils/get-img";
 import React from "react";
 import styled from "styled-components";
 
 const NewsDetails = ({ newsData }: { newsData: NewsItem }) => {
+  const c = useContent();
   const content = c(newsData.content) ?? [];
   return (
     <NewsPageStyle>

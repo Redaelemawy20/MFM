@@ -2,7 +2,6 @@
 
 import SectionsControls from "@/components/dashboard/builder/header/SectionsControls";
 import SectionEditCard from "@/components/dashboard/cards/section-edit-card";
-import AddSectionModal from "@/components/dashboard/factories/AddSectionModal";
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import EditFooterModal from "@/components/dashboard/factories/EditFooterModal";
 import EditLinksModal from "@/components/dashboard/factories/EditLinksModal";
