@@ -1,7 +1,7 @@
 import WebsiteCard from "@/components/dashboard/cards/WebsiteCard";
 import { EntityModal } from "@/components/dashboard/factories/CreateEntityModal";
 import Main from "@/components/dashboard/structure/Main";
-import SubHeader from "@/components/dashboard/structure/SubHeader";
+import SubHeader from "@/components/dashboard/slider/SubHeader";
 import { getEntities } from "@/services/entityServices";
 
 export default async () => {

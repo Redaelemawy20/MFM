@@ -1,42 +1,33 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
-import TextFeild from "../form-controls/Input";
-import ImageUploadPerview from "../form-controls/ImageUploadPerview";
+import FormButton from "../form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
+import ImageUploadPerview from "../../form-controls/ImageUploadPerview";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
-import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
-import Accordions from "../form-controls/Accordion";
-import CheckBox from "../form-controls/CheckBox";
+import MultiPointInput from "../../form-controls/MultiPointInput/MultiPointInput";
+import Accordions from "../../form-controls/Accordion";
+import CheckBox from "../../form-controls/CheckBox";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import { NewsItem } from "@/ts/interfaces/NewsProps";
 import { getValueIn } from "@/utils/trans";
-import LanguageSelect from "../form-controls/LanguageSelect";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 
 interface NewsFormI extends FormProps {
   data?: NewsItem;
-  entity_slug: string;
-  slug?: string;
+  id: number;
 }
-export default function NewsForm({
-  entity_slug,
-  slug,
+export default function AddNewsSectionForm({
   action,
   errorMessage,
   data = {} as NewsItem,
 }: NewsFormI) {
   return (
-    <FormProvider
-      action={action}
-      data={data}
-      slug={slug || ""}
-      entity_slug={entity_slug}
-      errorMessage={errorMessage}
-    >
+    <FormProvider action={action} data={data} errorMessage={errorMessage}>
       <FormElements />
     </FormProvider>
   );
@@ -60,15 +51,30 @@ function FormElements() {
     handleChange,
   } = useFormContext<NewsContext>();
   const formData = new FormData();
-  for (let filename in files) {
-    formData.set(filename, files[filename] as File);
-  }
-  formData.set("data", JSON.stringify({ ...state, entity_slug, slug }));
 
   const modefiedAction = action.bind(null, formData);
-
+  // const {
+  //   data: news,
+  //   isLoading,
+  //   isError,
+  // } = useQuery({
+  //   queryFn: () => axios.get(""),
+  //   queryKey: ["news"],
+  // });
+  // const {
+  //   data: newsTemplates,
+  //   isLoading: loadingTemplates,
+  //   isError: loadingTemplatesError,
+  // } = useQuery({
+  //   queryFn: () => axios.get(""),
+  //   queryKey: ["news"],
+  // });
   return (
-    <Form modifiedAction={modefiedAction}>
+    <>
+      <div>
+        <h2>Select Showing Templete !</h2>
+      </div>
+      {/* <Form modifiedAction={modefiedAction}>
       <LanguageSelect value={lang} onChange={setLang} />
       <WithTabs tabs={["News Details", "Gallary"]}>
         <>
@@ -120,6 +126,7 @@ function FormElements() {
         />
       </WithTabs>
       <FormButton>Save</FormButton>
-    </Form>
+    </Form> */}
+    </>
   );
 }

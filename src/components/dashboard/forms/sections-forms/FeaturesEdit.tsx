@@ -1,29 +1,29 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import TextFeild from "@/components/dashboard/form-controls/Input";
+
+import ImageUploadPerview from "@/components/dashboard/form-controls/ImageUploadPerview";
 import Accordions from "@/components/dashboard/form-controls/Accordion";
-import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import TextArea from "@/components/dashboard/form-controls/TextArea";
+import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
+import { FeaturesData, FeaturesProps } from "@/ts/interfaces/Feature";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
-import { ServiceData, ServicesProps } from "@/ts/interfaces/Service";
-import LanguageSelect from "../form-controls/LanguageSelect";
+} from "../context/FormContext";
+import TextFeild from "../../form-controls/Input";
 import { getValueIn } from "@/utils/trans";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
-import Services from "@/sections/Services";
-import IconSelector from "../form-controls/IconSelector";
+import Features from "@/sections/Features";
 
-interface ServiceEditI extends ServicesProps, FormProps {
+interface FeaturesEditI extends FeaturesProps, FormProps {
   id: number;
 }
-
-const ServiceEdit = ({ id, action, data, errorMessage }: ServiceEditI) => {
+const FeaturesEdit = ({ id, action, data, errorMessage }: FeaturesEditI) => {
   return (
     <FormProvider
       id={id}
@@ -36,55 +36,45 @@ const ServiceEdit = ({ id, action, data, errorMessage }: ServiceEditI) => {
   );
 };
 
-export default ServiceEdit;
+export default FeaturesEdit;
 
-interface ServiceContext extends ContextType {
-  state: ServiceData;
+interface FeaturesContext extends ContextType {
+  state: FeaturesData;
   id: number;
 }
 
 function FormElements() {
-  const { state, action, id, lang, setLang } = useFormContext<ServiceContext>();
+  const { state, files, id, action, lang, setLang } =
+    useFormContext<FeaturesContext>();
   const formData = new FormData();
   formData.set("data", JSON.stringify({ ...state, id }));
-  formData.set("schema", "editServices");
+  for (let filename in files) {
+    formData.set(filename, files[filename] as File);
+  }
+  formData.set("schema", "editFeatures");
 
   const modefiedAction = action.bind(null, formData);
   return (
     <FormPreviewLayout>
       <Form modifiedAction={modefiedAction}>
-        <LanguageSelect value={lang} onChange={setLang} />
-        <WithTabs tabs={["Title and caption", "Cards data"]}>
-          <>
-            <TextFeild
-              name="title"
-              value={state.title}
-              label="Title"
-              translatable
-            />
-            <TextFeild
-              name="caption"
-              value={state.caption}
-              label="Caption"
-              translatable
-            />
-          </>
+        <LanguageSelect onChange={setLang} value={lang} />
+        <TextFeild
+          name="title"
+          label="section title"
+          value={state.title}
+          translatable
+        />
+        <WithTabs tabs={["Main image", "Features list"]}>
+          <ImageUploadPerview name="mainImg" value={state.mainImg} />
           <Accordions
-            name="cardsData"
+            name="featuresItems"
+            value={state.featuresItems}
             getTitle={(item) => getValueIn(item.title, lang)}
-            value={state.cardsData}
             childs={(item, onChange) => ({
-              icon: () => (
-                <IconSelector
-                  name="icon"
-                  value={item.icon as any}
-                  onChange={onChange}
-                />
-              ),
               title: () => (
                 <TextFeild
                   name="title"
-                  label="title"
+                  label="title label"
                   value={item.title}
                   onChange={onChange}
                   translatable
@@ -93,7 +83,7 @@ function FormElements() {
               description: () => (
                 <TextArea
                   name="description"
-                  label="description"
+                  label="description label"
                   value={item.description}
                   onChange={onChange}
                   translatable
@@ -102,11 +92,10 @@ function FormElements() {
             })}
           />
         </WithTabs>
-
-        <FormButton>Submit</FormButton>
+        <FormButton>Save</FormButton>
       </Form>
       <DevicesPreview lang={lang}>
-        <Services data={state} />
+        <Features data={state} />
       </DevicesPreview>
     </FormPreviewLayout>
   );

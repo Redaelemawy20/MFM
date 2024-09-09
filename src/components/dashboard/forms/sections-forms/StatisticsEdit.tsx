@@ -1,23 +1,23 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import Accordions from "../../dashboard/form-controls/Accordion";
-import FormButton from "./form-button/FormButton";
-import TextFeild from "../../dashboard/form-controls/Input";
-import TextArea from "../../dashboard/form-controls/TextArea";
+import Accordions from "../../form-controls/Accordion";
+import FormButton from "../form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
+import TextArea from "../../form-controls/TextArea";
 
 import Form from "@/components/common/Form";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import { StatisticsData, StatisticsProps } from "@/ts/interfaces/Statistics";
-import LanguageSelect from "../form-controls/LanguageSelect";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import Statistics from "@/sections/Statistics";
-import IconSelector from "../form-controls/IconSelector";
+import IconSelector from "../../form-controls/IconSelector";
 interface StatisticsEditI extends StatisticsProps, FormProps {
   id: number;
 }

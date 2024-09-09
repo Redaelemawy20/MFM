@@ -1,11 +1,11 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 import Form from "@/components/common/Form";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import React from "react";
 import Entity from "@/ts/interfaces/Entity";
 import { Role } from "@/ts/interfaces/Role";

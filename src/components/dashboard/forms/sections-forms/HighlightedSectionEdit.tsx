@@ -11,8 +11,8 @@ import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
-import LanguageSelect from "../form-controls/LanguageSelect";
+} from "../context/FormContext";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import HighlightedSection from "@/sections/HighlightedSection";

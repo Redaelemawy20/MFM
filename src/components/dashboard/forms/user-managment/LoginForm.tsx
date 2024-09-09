@@ -1,7 +1,7 @@
 "use client";
 import Form from "@/components/common/Form";
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 import LockIcon from "@/components/login/LockIcon";
 import { Input } from "@nextui-org/react";
 import MailIcon from "@/components/login/MailIcon";

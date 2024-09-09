@@ -1,20 +1,20 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 import Form from "@/components/common/Form";
-import TextFeild from "../form-controls/Input";
+import TextFeild from "../../form-controls/Input";
 import { StaffData } from "@/ts/interfaces/StaffData";
-import ImageUploadPerview from "../form-controls/ImageUploadPerview";
-import CheckBox from "../form-controls/CheckBox";
+import ImageUploadPerview from "../../form-controls/ImageUploadPerview";
+import CheckBox from "../../form-controls/CheckBox";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
-import LanguageSelect from "../form-controls/LanguageSelect";
+} from "../context/FormContext";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import WithTabs from "@/components/common/withTabs";
-import Accordions from "../form-controls/Accordion";
+import Accordions from "../../form-controls/Accordion";
 import { getValueIn } from "@/utils/trans";
-import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
+import MultiPointInput from "../../form-controls/MultiPointInput/MultiPointInput";
 interface StaffFormI extends FormProps {
   entity_slug: string;
   staff?: { slug: string; data: StaffData };

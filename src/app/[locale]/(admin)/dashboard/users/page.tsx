@@ -4,7 +4,7 @@ import { getUsersWithCerdentials } from "@/services/userService";
 import UsersTable from "@/components/dashboard/table/UsersTable";
 import AddUserModal from "@/components/dashboard/factories/AddUserModal";
 import { getEntities } from "@/services/entityServices";
-import SubHeader from "@/components/dashboard/structure/SubHeader";
+import SubHeader from "@/components/dashboard/slider/SubHeader";
 import Main from "@/components/dashboard/structure/Main";
 
 export default async function () {

@@ -8,7 +8,7 @@ import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getEntityWithStaff } from "@/services/entityServices";
 import Main from "@/components/dashboard/structure/Main";
-import SubHeader from "@/components/dashboard/structure/SubHeader";
+import SubHeader from "@/components/dashboard/slider/SubHeader";
 
 // add account
 

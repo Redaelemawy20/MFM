@@ -3,7 +3,7 @@
 import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
 import { NewsModal } from "@/components/dashboard/factories/EditNewsModal";
 import Main from "@/components/dashboard/structure/Main";
-import SubHeader from "@/components/dashboard/structure/SubHeader";
+import SubHeader from "@/components/dashboard/slider/SubHeader";
 import NewsTable from "@/components/dashboard/table/NewsTable";
 import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
 import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";

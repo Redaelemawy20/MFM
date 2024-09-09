@@ -8,9 +8,9 @@ import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import LanguageSelect from "@/components/dashboard/form-controls/LanguageSelect";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";

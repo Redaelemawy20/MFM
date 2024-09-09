@@ -1,18 +1,18 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
-import TextFeild from "../form-controls/Input";
+import FormButton from "../form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
 
-import TextArea from "../form-controls/TextArea";
-import ImageUploadPerview from "../form-controls/ImageUploadPerview";
+import TextArea from "../../form-controls/TextArea";
+import ImageUploadPerview from "../../form-controls/ImageUploadPerview";
 import Form from "@/components/common/Form";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import Entity from "@/ts/interfaces/Entity";
-import LanguageSelect from "../form-controls/LanguageSelect";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 
 interface EntityFormI extends FormProps {
   data?: Entity;

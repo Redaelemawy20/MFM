@@ -1,5 +1,5 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import Image from "next/image";
 

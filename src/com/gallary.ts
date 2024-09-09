@@ -1,13 +1,13 @@
 import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 // import AboutEdit from "";
-import HighlightedSectionEdit from "@/components/dashboard/forms/HighlightedSectionEdit";
+import HighlightedSectionEdit from "@/components/dashboard/forms/sections-forms/HighlightedSectionEdit";
 import MainTitle from "@/sections/MainTitle";
 import Services from "@/sections/Services";
 import Statistics from "@/sections/Statistics";
 import StaffMember from "@/sections/StaffMember";
-import MainTitleEdit from "@/components/dashboard/forms/MainTitleEdit";
-import ServiceEdit from "@/components/dashboard/forms/ServiceEdit";
+import MainTitleEdit from "@/components/dashboard/forms/sections-forms/MainTitleEdit";
+import ServiceEdit from "@/components/dashboard/forms/sections-forms/ServiceEdit";
 // import StatisticsEdit from "@/components/dashboard/forms/StatisticsEdit";
 import Nav from "@/sections/Nav";
 import AnimatedCard from "@/sections/AnimatedCard";
@@ -17,9 +17,9 @@ import Footer from "@/sections/Footer";
 import NewsSection from "@/sections/News";
 import React from "react";
 import SubPages from "@/sections/SubPages";
-import SubPageEdit from "@/components/dashboard/forms/SubPageForm";
+import SubPageEdit from "@/components/dashboard/forms/sections-forms/SubPageForm";
 import StaticContent from "@/sections/StaticContent";
-import StaticContentEdit from "@/components/dashboard/forms/StaticContentForm";
+import StaticContentEdit from "@/components/dashboard/forms/sections-forms/StaticContentForm";
 
 // sections
 export const sectionsGallary = [
@@ -27,7 +27,7 @@ export const sectionsGallary = [
     componentId: "1700000001",
     component: Hero,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/HeroEdit")
+      () => import("@/components/dashboard/forms/sections-forms/HeroEdit")
     ),
     defaultData: {
       items: [
@@ -44,7 +44,7 @@ export const sectionsGallary = [
     componentId: "1700000002",
     component: About,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/AboutEdit")
+      () => import("@/components/dashboard/forms/sections-forms/AboutEdit")
     ),
     defaultData: {
       mainTitle: "ABOUT US",
@@ -68,7 +68,8 @@ export const sectionsGallary = [
     componentId: "1700000003",
     component: AnimatedCard,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/AnimatedCardEdit")
+      () =>
+        import("@/components/dashboard/forms/sections-forms/AnimatedCardEdit")
     ),
     defaultData: {
       items: [
@@ -93,7 +94,7 @@ export const sectionsGallary = [
     componentId: "1700000004",
     component: Features,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/FeaturesEdit")
+      () => import("@/components/dashboard/forms/sections-forms/FeaturesEdit")
     ),
     defaultData: {
       mainImg: { _s: "./assets/imgs/22.jpg" },
@@ -161,7 +162,7 @@ export const sectionsGallary = [
     componentId: "1700000008",
     component: Statistics,
     componentEdit: React.lazy(
-      () => import("@/components/dashboard/forms/StatisticsEdit")
+      () => import("@/components/dashboard/forms/sections-forms/StatisticsEdit")
     ),
     defaultData: {
       items: [

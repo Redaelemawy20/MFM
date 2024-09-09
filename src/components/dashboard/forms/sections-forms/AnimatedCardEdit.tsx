@@ -14,13 +14,13 @@ import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
-import LanguageSelect from "../form-controls/LanguageSelect";
+} from "../context/FormContext";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
 import DevicesPreview from "@/components/common/DevicesPreview";
 import AnimatedCard from "@/sections/AnimatedCard";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
-import IconSelector from "../form-controls/IconSelector";
+import IconSelector from "../../form-controls/IconSelector";
 
 interface CardWithAnimationEditI extends CardWithAnimationProps, FormProps {
   id: number;

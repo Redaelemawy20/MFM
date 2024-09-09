@@ -1,21 +1,21 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import Accordions from "../../dashboard/form-controls/Accordion";
-import FormButton from "./form-button/FormButton";
-import TextFeild from "../../dashboard/form-controls/Input";
+import Accordions from "../../form-controls/Accordion";
+import FormButton from "../form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
 
 import Form from "@/components/common/Form";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import { SubPageContent, SubPageProps } from "@/ts/interfaces/SubPage";
-import LanguageSelect from "../form-controls/LanguageSelect";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import { getValueIn } from "@/utils/trans";
 import FormPreviewLayout from "@/components/common/FormPreviewLayout";
 import DevicesPreview from "@/components/common/DevicesPreview";
-import MultiPointInput from "../form-controls/MultiPointInput/MultiPointInput";
+import MultiPointInput from "../../form-controls/MultiPointInput/MultiPointInput";
 import SubPages from "@/sections/SubPages";
 interface SubPageEditI extends SubPageProps, FormProps {
   id: number;

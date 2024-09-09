@@ -1,19 +1,19 @@
 "use client";
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
-import TextFeild from "../form-controls/Input";
+import FormButton from "../form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
 import Form from "@/components/common/Form";
 import WithTabs from "@/components/common/withTabs";
-import Accordions from "../form-controls/Accordion";
+import Accordions from "../../form-controls/Accordion";
 import FooterProps, { FooterData } from "@/ts/interfaces/FooterProps";
-import TextArea from "../form-controls/TextArea";
+import TextArea from "../../form-controls/TextArea";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
+} from "../context/FormContext";
 import { getValueIn } from "@/utils/trans";
-import LanguageSelect from "../form-controls/LanguageSelect";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 
 interface FooterEditPropsI extends FooterProps, FormProps {
   entity_slug: string;

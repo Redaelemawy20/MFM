@@ -3,8 +3,8 @@
 import Form from "@/components/common/Form";
 import useStateManager from "@/hooks/useStateManager";
 import FormProps from "@/ts/interfaces/FormProps";
-import TextFeild from "../form-controls/Input";
-import FormButton from "./form-button/FormButton";
+import TextFeild from "../../form-controls/Input";
+import FormButton from "../form-button/FormButton";
 
 interface DeleteConfirmationFormI extends FormProps {
   item_name: string;

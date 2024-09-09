@@ -1,16 +1,15 @@
 import FormProps from "@/ts/interfaces/FormProps";
-import FormButton from "./form-button/FormButton";
+import FormButton from "../form-button/FormButton";
 import Form from "@/components/common/Form";
-import TextFeild from "../form-controls/Input";
+import TextFeild from "../../form-controls/Input";
 import { StaffData } from "@/ts/interfaces/StaffData";
-import ImageUploadPerview from "../form-controls/ImageUploadPerview";
+import ImageUploadPerview from "../../form-controls/ImageUploadPerview";
 import {
   ContextType,
   FormProvider,
   useFormContext,
-} from "./context/FormContext";
-import LanguageSelect from "../form-controls/LanguageSelect";
-import { Select, SelectItem } from "@nextui-org/react";
+} from "../context/FormContext";
+import LanguageSelect from "../../form-controls/LanguageSelect";
 import Entity from "@/ts/interfaces/Entity";
 import React from "react";
 

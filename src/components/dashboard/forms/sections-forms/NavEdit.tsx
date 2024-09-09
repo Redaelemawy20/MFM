@@ -1,7 +1,7 @@
 import TextFeild from "@/components/dashboard/form-controls/Input";
 import FormProps from "@/ts/interfaces/FormProps";
-import NavProps, { NavData, NavItemI } from "@/ts/interfaces/NavPops";
-import Accordions from "../../dashboard/form-controls/Accordion";
+import NavProps, { NavData } from "@/ts/interfaces/NavPops";
+import Accordions from "../../form-controls/Accordion";
 import FormButton from "@/components/dashboard/forms/form-button/FormButton";
 import Form from "@/components/common/Form";
 import CheckBox from "@/components/dashboard/form-controls/CheckBox";
