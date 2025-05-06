@@ -2,7 +2,7 @@ model Entity {
     id Int @id @default(autoincrement())
     name String @unique
     slug String @unique
-    meta Json @default("{}")
+    meta Json 
     pages Page[]
     news  News[]
     staff User[]
@@ -29,7 +29,7 @@ model Section{
 }
 model Layout {
     id Int @id @default(autoincrement())
-    data Json @default("{}")
+    data Json 
     type SectionType @default(nav)
     sectionId Int?
     order Int?
@@ -46,7 +46,7 @@ model PageSections{
     sectionId Int
     page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
     section Section @relation(fields: [sectionId], references: [id])
-    data Json @default("{}")
+    data Json 
     order Int ?
    
 }

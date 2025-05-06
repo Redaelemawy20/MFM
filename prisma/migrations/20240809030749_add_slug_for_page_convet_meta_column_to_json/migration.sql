@@ -7,7 +7,7 @@
 
 */
 -- AlterTable
-ALTER TABLE `entity` MODIFY `meta` JSON NOT NULL DEFAULT "{}";
+-- ALTER TABLE `entity` MODIFY `meta` JSON NOT NULL DEFAULT "{}";
 
 -- AlterTable
 ALTER TABLE `page` ADD COLUMN `slug` VARCHAR(191) NOT NULL;

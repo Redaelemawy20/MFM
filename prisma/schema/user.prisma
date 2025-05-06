@@ -2,7 +2,7 @@ model User {
   id    Int     @id @default(autoincrement())
   name  String
   slug String @unique
-  data Json @default("{}")
+  data Json 
   leadership Boolean @default(false)
   entityId Int?
   entity Entity? @relation(fields: [entityId], references: [id])
