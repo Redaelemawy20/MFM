@@ -1,8 +1,8 @@
-import WebsiteCard from "@/components/dashboard/cards/WebsiteCard";
-import { EntityModal } from "@/components/dashboard/factories/CreateEntityModal";
-import Main from "@/components/dashboard/structure/Main";
-import SubHeader from "@/components/dashboard/slider/SubHeader";
-import { getEntities } from "@/services/entityServices";
+import WebsiteCard from '@/components/dashboard/cards/WebsiteCard';
+import { EntityModal } from '@/components/dashboard/factories/CreateEntityModal';
+import Main from '@/components/dashboard/structure/Main';
+import SubHeader from '@/components/dashboard/structure/SubHeader';
+import { getEntities } from '@/services/entityServices';
 
 export default async () => {
   const entities = await getEntities();
@@ -13,7 +13,7 @@ export default async () => {
         <h3 className="text-xl font-semibold">All Websites</h3>
         <EntityModal
           options={{
-            btnText: "Create new website",
+            btnText: 'Create new website',
           }}
         />
       </SubHeader>

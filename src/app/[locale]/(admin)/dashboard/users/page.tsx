@@ -1,11 +1,11 @@
-import { Divider } from "@nextui-org/react";
+import { Divider } from '@nextui-org/react';
 
-import { getUsersWithCerdentials } from "@/services/userService";
-import UsersTable from "@/components/dashboard/table/UsersTable";
-import AddUserModal from "@/components/dashboard/factories/AddUserModal";
-import { getEntities } from "@/services/entityServices";
-import SubHeader from "@/components/dashboard/slider/SubHeader";
-import Main from "@/components/dashboard/structure/Main";
+import { getUsersWithCerdentials } from '@/services/userService';
+import UsersTable from '@/components/dashboard/table/UsersTable';
+import AddUserModal from '@/components/dashboard/factories/AddUserModal';
+import { getEntities } from '@/services/entityServices';
+import SubHeader from '@/components/dashboard/structure/SubHeader';
+import Main from '@/components/dashboard/structure/Main';
 
 export default async function () {
   const users = await getUsersWithCerdentials();
@@ -17,7 +17,7 @@ export default async function () {
         <AddUserModal
           entities={entities as any}
           options={{
-            btnText: "Add a new user",
+            btnText: 'Add a new user',
           }}
         />
       </SubHeader>

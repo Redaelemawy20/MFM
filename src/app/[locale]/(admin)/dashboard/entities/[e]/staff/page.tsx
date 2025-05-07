@@ -1,14 +1,14 @@
-import { Divider } from "@nextui-org/react";
-import { EntitySlugParams } from "../../../../../../../ts/common/NextPageParams";
-import { notFound } from "next/navigation";
-import CreateStaffModal from "@/components/dashboard/factories/CreateStaffModal";
-import StaffTable from "@/components/dashboard/table/StaffTable";
-import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
-import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
-import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
-import { getEntityWithStaff } from "@/services/entityServices";
-import Main from "@/components/dashboard/structure/Main";
-import SubHeader from "@/components/dashboard/slider/SubHeader";
+import { Divider } from '@nextui-org/react';
+import { EntitySlugParams } from '../../../../../../../ts/common/NextPageParams';
+import { notFound } from 'next/navigation';
+import CreateStaffModal from '@/components/dashboard/factories/CreateStaffModal';
+import StaffTable from '@/components/dashboard/table/StaffTable';
+import DisplaySectionModal from '@/components/dashboard/factories/DisplaySectionModal';
+import { getSectionsOfType } from '@/services/fetch/getSectionsOfType';
+import { getLayoutItemOfEntity } from '@/services/fetch/getLayoutItemOfEntity';
+import { getEntityWithStaff } from '@/services/entityServices';
+import Main from '@/components/dashboard/structure/Main';
+import SubHeader from '@/components/dashboard/structure/SubHeader';
 
 // add account
 
@@ -16,8 +16,8 @@ import SubHeader from "@/components/dashboard/slider/SubHeader";
 export default async function ({ params }: EntitySlugParams) {
   const { e: entity_slug } = params;
   const entity = await getEntityWithStaff(entity_slug);
-  const personSecitons = await getSectionsOfType("persons");
-  const personLayout = await getLayoutItemOfEntity(entity_slug, "persons");
+  const personSecitons = await getSectionsOfType('persons');
+  const personLayout = await getLayoutItemOfEntity(entity_slug, 'persons');
   if (!entity) return notFound();
   const { staff: entityStaff } = entity;
   return (
@@ -28,7 +28,7 @@ export default async function ({ params }: EntitySlugParams) {
           <CreateStaffModal
             entity_slug={entity_slug}
             options={{
-              btnText: "Create New Staff",
+              btnText: 'Create New Staff',
             }}
           />
           <DisplaySectionModal
@@ -38,7 +38,7 @@ export default async function ({ params }: EntitySlugParams) {
             withorder={{ order: personLayout?.order || 0 }}
             sectionType="persons"
             options={{
-              btnText: "select show template",
+              btnText: 'select show template',
             }}
           />
         </div>
