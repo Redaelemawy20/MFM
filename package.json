@@ -10,7 +10,12 @@
     "seed": "ts-node ./prisma/seeds/seed",
     "use-node": "nvm use",
     "install-node": "nvm install",
-    "setup": "npm run install-node && npm run use-node && npm install"
+    "setup": "npm run install-node && npm run use-node && npm install",
+    "db:setup": "prisma generate && prisma migrate deploy",
+    "db:reset": "prisma migrate reset --force",
+    "db:seed": "npm run seed",
+    "db:dev": "prisma migrate dev",
+    "setup:full": "npm run setup && npm run db:setup"
   },
   "dependencies": {
     "@nextui-org/modal": "^2.0.36",
