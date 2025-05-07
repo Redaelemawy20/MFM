@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node ./prisma/seeds/seed"
+    "seed": "ts-node ./prisma/seeds/seed",
+    "use-node": "nvm use",
+    "install-node": "nvm install",
+    "setup": "npm run install-node && npm run use-node && npm install"
   },
   "dependencies": {
     "@nextui-org/modal": "^2.0.36",
