@@ -15,6 +15,29 @@
     "rights": "All rights reserved @2024 for dreams team Reda Elemawy and Alaa Ayaad",
     "contact": "Contact"
   },
+  "Sections": {
+    "sections": {
+      "title": "Available Sections",
+      "description": "Preview all available section components"
+    },
+    "availableSections": "Sections Library",
+    "sectionTypes": {
+      "services": "Services Section",
+      "staff": "Staff Member Section",
+      "staticContent": "Static Content Section",
+      "statistics": "Statistics Section",
+      "subPages": "Sub Pages Section",
+      "about": "About Section",
+      "animatedCard": "Animated Card Section",
+      "features": "Features Section",
+      "footer": "Footer Section",
+      "hero": "Hero Section",
+      "highlightedSection": "Highlighted Section",
+      "mainTitle": "Main Title Section",
+      "nav": "Navigation Section",
+      "news": "News Section"
+    }
+  },
 
   "Landing": {
     "nav": {
