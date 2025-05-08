@@ -3,11 +3,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-interface CTAProps {
-  locale: string;
-}
-
-export default function CTA({ locale }: CTAProps) {
+export default function CTA() {
   const t = useTranslations('Landing');
 
   return (
@@ -19,7 +15,7 @@ export default function CTA({ locale }: CTAProps) {
         </p>
         <div className="flex justify-center gap-4">
           <Link
-            href={`/${locale}/builder`}
+            href={`/builder`}
             className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
           >
             {t('cta.button')}

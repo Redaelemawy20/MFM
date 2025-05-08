@@ -2,11 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-interface TestimonialsProps {
-  locale: string;
-}
-
-export default function Testimonials({ locale }: TestimonialsProps) {
+export default function Testimonials() {
   const t = useTranslations('Landing');
 
   return (

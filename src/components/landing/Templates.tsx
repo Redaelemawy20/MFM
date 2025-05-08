@@ -1,13 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 
-interface TemplatesProps {
-  locale: string;
-}
-
-export default function Templates({ locale }: TemplatesProps) {
+export default function Templates() {
   const t = useTranslations('Landing');
 
   return (
@@ -32,7 +28,7 @@ export default function Templates({ locale }: TemplatesProps) {
                 {t(`templates.${template}.description`)}
               </p>
               <Link
-                href={`/${locale}/builder`}
+                href={`/builder`}
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
               >
                 {t('templates.useTemplate')}

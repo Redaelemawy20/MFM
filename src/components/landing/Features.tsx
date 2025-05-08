@@ -2,11 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-interface FeaturesProps {
-  locale: string;
-}
-
-export default function Features({ locale }: FeaturesProps) {
+export default function Features() {
   const t = useTranslations('Landing');
 
   return (

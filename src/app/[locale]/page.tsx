@@ -14,13 +14,13 @@ interface PageProps {
 export default function LandingPage({ params: { locale } }: PageProps) {
   return (
     <>
-      <Navbar locale={locale} />
+      <Navbar />
       <main className="min-h-screen pt-16">
-        <Hero locale={locale} />
+        <Hero />
         <Features />
         <Templates />
         <Testimonials />
-        <CTA locale={locale} />
+        <CTA />
       </main>
     </>
   );

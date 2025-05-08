@@ -1,13 +1,8 @@
 'use client';
-
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 
-interface HeroProps {
-  locale: string;
-}
-
-export default function Hero({ locale }: HeroProps) {
+export default function Hero() {
   const t = useTranslations('Landing');
 
   return (
@@ -21,7 +16,7 @@ export default function Hero({ locale }: HeroProps) {
           <p className="text-xl mb-8 text-blue-100">{t('hero.subtitle')}</p>
           <div className="flex gap-4">
             <Link
-              href={`/${locale}/builder`}
+              href={`/builder`}
               className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
             >
               {t('hero.cta')}

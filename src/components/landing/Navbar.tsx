@@ -1,17 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { usePathname, useRouter, Link } from '@/navigation';
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname, Link } from '@/navigation';
 import { useState, useRef, useEffect } from 'react';
 
-interface NavbarProps {
-  locale: string;
-}
-
-export default function Navbar({ locale }: NavbarProps) {
+export default function Navbar() {
   const t = useTranslations('Landing');
   const pathname = usePathname();
-  const currentLocale = locale;
+  const currentLocale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMobileLangMenuOpen, setIsMobileLangMenuOpen] = useState(false);
