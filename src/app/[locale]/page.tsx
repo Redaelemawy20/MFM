@@ -14,7 +14,6 @@ interface PageProps {
 export default function LandingPage({ params: { locale } }: PageProps) {
   return (
     <>
-      <Navbar />
       <main className="min-h-screen pt-16">
         <Hero />
         <Features />
