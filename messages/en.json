@@ -36,7 +36,33 @@
       "mainTitle": "Main Title Section",
       "nav": "Navigation Section",
       "news": "News Section"
-    }
+    },
+    "descriptions": {
+      "mainTitle": "A simple title component with a main title and optional caption.",
+      "services": "Displays service offerings with icons, titles, and descriptions.",
+      "staticContent": "Displays static content with title and text.",
+      "statistics": "Shows numerical statistics with icons and descriptions.",
+      "subPages": "Navigation for sub-pages within the site.",
+      "about": "About section with text and image.",
+      "animatedCard": "Cards with animation effects for featuring content.",
+      "features": "Highlights key features of products or services.",
+      "highlightedSection": "Section with special styling to highlight important content.",
+      "staff": "Shows team members with their information and photos.",
+      "footer": "Page footer with contact information and links.",
+      "hero": "Hero banner or slider for the main page header.",
+      "nav": "Navigation component for the site.",
+      "news": "Displays news articles with images and excerpts."
+    },
+    "previewNotImplemented": "This section requires complex data structures and is not implemented in the preview.",
+    "selectSectionPrompt": "Select a section to preview",
+    "livePreviewAvailable": "Live preview available",
+    "documentationOnly": "Documentation only",
+    "clickToView": "Click on a section name to view its documentation and preview",
+    "sectionInfo": "Section Info",
+    "description": "Description",
+    "requiredProps": "Required Props",
+    "liveExample": "Live Example",
+    "previewNotAvailable": "Preview Not Available"
   },
 
   "Landing": {

@@ -46,16 +46,20 @@ export default function SectionsPage() {
     {
       id: 'mainTitle',
       title: t('sectionTypes.mainTitle'),
-      description:
-        'A simple title component with a main title and optional caption.',
+      description: t('descriptions.mainTitle', {
+        defaultValue:
+          'A simple title component with a main title and optional caption.',
+      }),
       props: '{ mainTitle: string, caption?: string }',
       example: true,
     },
     {
       id: 'services',
       title: t('sectionTypes.services'),
-      description:
-        'Displays service offerings with icons, titles, and descriptions.',
+      description: t('descriptions.services', {
+        defaultValue:
+          'Displays service offerings with icons, titles, and descriptions.',
+      }),
       props:
         '{ title: string, caption: string, cardsData: Array<{title: string, description: string, icon: IconType}> }',
       example: true,
@@ -63,14 +67,18 @@ export default function SectionsPage() {
     {
       id: 'staticContent',
       title: t('sectionTypes.staticContent'),
-      description: 'Displays static content with title and text.',
+      description: t('descriptions.staticContent', {
+        defaultValue: 'Displays static content with title and text.',
+      }),
       props: '{ mainTitle: string, subTitle: string, lines: string[] }',
       example: true,
     },
     {
       id: 'statistics',
       title: t('sectionTypes.statistics'),
-      description: 'Shows numerical statistics with icons and descriptions.',
+      description: t('descriptions.statistics', {
+        defaultValue: 'Shows numerical statistics with icons and descriptions.',
+      }),
       props:
         '{ title: string, items: Array<{icon: IconType, num: string, subtitle: string, description: string}> }',
       example: true,
@@ -78,7 +86,9 @@ export default function SectionsPage() {
     {
       id: 'subPages',
       title: t('sectionTypes.subPages'),
-      description: 'Navigation for sub-pages within the site.',
+      description: t('descriptions.subPages', {
+        defaultValue: 'Navigation for sub-pages within the site.',
+      }),
       props:
         '{ items: Array<{mainTitle: string, subTitle: string, lines: string[]}> }',
       example: true,
@@ -86,7 +96,9 @@ export default function SectionsPage() {
     {
       id: 'about',
       title: t('sectionTypes.about'),
-      description: 'About section with text and image.',
+      description: t('descriptions.about', {
+        defaultValue: 'About section with text and image.',
+      }),
       props:
         '{ mainTitle: string, caption: string, subTitle: string, subCaption: string, list: string[], endCaption: string, viewImg: ServerImage }',
       example: true,
@@ -94,7 +106,9 @@ export default function SectionsPage() {
     {
       id: 'animatedCard',
       title: t('sectionTypes.animatedCard'),
-      description: 'Cards with animation effects for featuring content.',
+      description: t('descriptions.animatedCard', {
+        defaultValue: 'Cards with animation effects for featuring content.',
+      }),
       props:
         '{ title: string, description: string, image: string, items: Array<{title: string, description: string, icon: IconType, path: string}> }',
       example: true,
@@ -102,7 +116,9 @@ export default function SectionsPage() {
     {
       id: 'features',
       title: t('sectionTypes.features'),
-      description: 'Highlights key features of products or services.',
+      description: t('descriptions.features', {
+        defaultValue: 'Highlights key features of products or services.',
+      }),
       props:
         '{ title: string, featuresItems: Array<{title: string, description: string}>, mainImg: ServerImage }',
       example: true,
@@ -110,8 +126,10 @@ export default function SectionsPage() {
     {
       id: 'highlightedSection',
       title: t('sectionTypes.highlightedSection'),
-      description:
-        'Section with special styling to highlight important content.',
+      description: t('descriptions.highlightedSection', {
+        defaultValue:
+          'Section with special styling to highlight important content.',
+      }),
       props:
         '{ title: string, description: string, content: string, btnText: string, path: string, background: ServerImage }',
       example: true,
@@ -119,34 +137,44 @@ export default function SectionsPage() {
     {
       id: 'staff',
       title: t('sectionTypes.staff'),
-      description: 'Shows team members with their information and photos.',
+      description: t('descriptions.staff', {
+        defaultValue: 'Shows team members with their information and photos.',
+      }),
       props: '{ data: Array<{data: StaffData, slug: string}> }',
     },
     {
       id: 'footer',
       title: t('sectionTypes.footer'),
-      description: 'Page footer with contact information and links.',
+      description: t('descriptions.footer', {
+        defaultValue: 'Page footer with contact information and links.',
+      }),
       props:
         '{ title: string, paragraph: string, companyName: string, address: string, phone: string, email: string, location: {lat: number, lng: number}, column1Title: string, column2Title: string, column1Links: Array<{text: string, url: string}>, column2Links: Array<{text: string, url: string}>, socialLinks: Array<{platform: string, url: string}> }',
     },
     {
       id: 'hero',
       title: t('sectionTypes.hero'),
-      description: 'Hero banner or slider for the main page header.',
+      description: t('descriptions.hero', {
+        defaultValue: 'Hero banner or slider for the main page header.',
+      }),
       props:
         '{ items: Array<{title: string, description: string, backgroundImage: ServerImage, readMoreLink: string}> }',
     },
     {
       id: 'nav',
       title: t('sectionTypes.nav'),
-      description: 'Navigation component for the site.',
+      description: t('descriptions.nav', {
+        defaultValue: 'Navigation component for the site.',
+      }),
       props:
         '{ data: {links: Array<{text: string, url: string}>}, logo: string }',
     },
     {
       id: 'news',
       title: t('sectionTypes.news'),
-      description: 'Displays news articles with images and excerpts.',
+      description: t('descriptions.news', {
+        defaultValue: 'Displays news articles with images and excerpts.',
+      }),
       props: '{ data: Array<{details: NewsItem, slug: string}> }',
     },
   ];
@@ -324,8 +352,13 @@ export default function SectionsPage() {
               selectedSection === 'hero' ||
               selectedSection === 'nav' ||
               selectedSection === 'news'
-                ? 'This section requires complex data structures and is not implemented in the preview.'
-                : 'Select a section to preview'}
+                ? t('previewNotImplemented', {
+                    defaultValue:
+                      'This section requires complex data structures and is not implemented in the preview.',
+                  })
+                : t('selectSectionPrompt', {
+                    defaultValue: 'Select a section to preview',
+                  })}
             </p>
           </div>
         );
@@ -368,8 +401,10 @@ export default function SectionsPage() {
           </div>
           <p className="mt-2 text-sm text-gray-500">
             {selectedSectionInfo?.example
-              ? 'Live preview available'
-              : 'Documentation only'}
+              ? t('livePreviewAvailable', {
+                  defaultValue: 'Live preview available',
+                })
+              : t('documentationOnly', { defaultValue: 'Documentation only' })}
           </p>
         </div>
       );
@@ -379,7 +414,10 @@ export default function SectionsPage() {
       <>
         <h2 className="text-xl font-bold mb-4">{t('sections.title')}</h2>
         <p className="text-gray-600 mb-4 text-sm">
-          Click on a section name to view its documentation and preview
+          {t('clickToView', {
+            defaultValue:
+              'Click on a section name to view its documentation and preview',
+          })}
         </p>
 
         <ul className="space-y-1">
@@ -400,8 +438,44 @@ export default function SectionsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <MainTitle data={mainTitleData} />
+    <div className="container mx-auto px-4 pt-20 pb-8">
+      {/* Custom Header instead of MainTitle - Added top padding and margin to avoid nav overlap */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 text-white mb-10 mt-6">
+        <div className="flex items-center mb-4">
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-blue-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold">{t('availableSections')}</h1>
+        </div>
+        <p className="text-white text-opacity-90 ml-14">
+          {t('sections.description')}
+        </p>
+        <div className="mt-6 ml-14 flex flex-wrap gap-2">
+          {sections
+            .filter((s) => s.example)
+            .map((section) => (
+              <span
+                key={section.id}
+                className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm"
+              >
+                {section.title}
+              </span>
+            ))}
+        </div>
+      </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Section List */}
@@ -413,18 +487,21 @@ export default function SectionsPage() {
         <div className="md:col-span-2">
           <div className="bg-gray-50 border rounded-lg shadow-md p-6">
             <h2 className="text-xl font-bold mb-6">
-              {selectedSectionInfo?.title || 'Section Info'}
+              {selectedSectionInfo?.title ||
+                t('sectionInfo', { defaultValue: 'Section Info' })}
             </h2>
 
             {/* Section Documentation */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Description</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                {t('description', { defaultValue: 'Description' })}
+              </h3>
               <p className="text-gray-700">
                 {selectedSectionInfo?.description}
               </p>
 
               <h3 className="text-lg font-semibold mt-4 mb-2">
-                Required Props
+                {t('requiredProps', { defaultValue: 'Required Props' })}
               </h3>
               <pre className="bg-gray-100 p-3 rounded text-sm overflow-x-auto">
                 {selectedSectionInfo?.props}
@@ -435,24 +512,15 @@ export default function SectionsPage() {
             <div className="border p-6 rounded-lg bg-white shadow-md mt-6">
               <h3 className="text-lg font-semibold mb-4">
                 {selectedSectionInfo?.example
-                  ? 'Live Example'
-                  : 'Preview Not Available'}
+                  ? t('liveExample', { defaultValue: 'Live Example' })
+                  : t('previewNotAvailable', {
+                      defaultValue: 'Preview Not Available',
+                    })}
               </h3>
               <div className="border-t border-gray-200 pt-4">
                 {renderSectionExample()}
               </div>
             </div>
-
-            {/* <div className="mt-8 p-4 bg-blue-50 rounded-md">
-              <p className="text-blue-700 text-sm">
-                Note: To implement these sections with real data, refer to the
-                interface definitions in the
-                <code className="px-1 mx-1 bg-blue-100 rounded">
-                  src/ts/interfaces
-                </code>{' '}
-                directory and structure your data accordingly.
-              </p>
-            </div> */}
           </div>
         </div>
       </div>
