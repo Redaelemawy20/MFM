@@ -16,7 +16,82 @@
     "contact": "Contact"
   },
 
-  "LocaleSwitcher": {
-    "switch": "حول الى اللغة العربية"
+  "Landing": {
+    "nav": {
+      "home": "Home",
+      "features": "Features",
+      "pricing": "Pricing",
+      "templates": "Templates",
+      "get_started": "Get Started",
+      "switchLanguage": "Switch Language",
+      "sections": "Sections"
+    },
+    "hero": {
+      "title": "Create Beautiful Websites with Ease",
+      "subtitle": "Build professional websites using our modern, intuitive website builder. No coding required.",
+      "cta": "Start Building",
+      "learn_more": "Learn More"
+    },
+    "features": {
+      "title": "Powerful Features",
+      "subtitle": "Everything you need to create a stunning website",
+      "1": {
+        "icon": "🎨",
+        "title": "Drag & Drop Builder",
+        "description": "Create your website visually with our intuitive drag and drop interface."
+      },
+      "2": {
+        "icon": "📱",
+        "title": "Responsive Design",
+        "description": "Your website will look great on all devices, from desktop to mobile."
+      },
+      "3": {
+        "icon": "⚡",
+        "title": "Modern Components",
+        "description": "Access a library of modern, customizable components to build your site."
+      }
+    },
+    "templates": {
+      "title": "Beautiful Templates",
+      "subtitle": "Start with a professionally designed template and customize it to your needs",
+      "useTemplate": "Use Template",
+      "1": {
+        "title": "Modern Business",
+        "description": "Perfect for corporate websites and business presentations"
+      },
+      "2": {
+        "title": "Creative Portfolio",
+        "description": "Showcase your work with this stunning portfolio template"
+      },
+      "3": {
+        "title": "E-commerce Ready",
+        "description": "Start selling online with our fully-featured e-commerce template"
+      }
+    },
+    "testimonials": {
+      "title": "What Our Users Say",
+      "subtitle": "Join thousands of satisfied users who have built their websites with us",
+      "1": {
+        "name": "Sarah Johnson",
+        "role": "Small Business Owner",
+        "content": "The website builder is incredibly intuitive. I was able to create a professional website for my business in just a few hours!"
+      },
+      "2": {
+        "name": "Michael Chen",
+        "role": "Freelance Designer",
+        "content": "The templates are beautiful and the customization options are endless. It's the perfect tool for my client projects."
+      },
+      "3": {
+        "name": "Emma Davis",
+        "role": "Marketing Manager",
+        "content": "We've seen a significant increase in our online presence since switching to this platform. The support team is amazing too!"
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Your Website?",
+      "subtitle": "Join thousands of users who have already built their dream websites with our platform",
+      "button": "Get Started Now",
+      "secondary_button": "View Features"
+    }
   }
 }
