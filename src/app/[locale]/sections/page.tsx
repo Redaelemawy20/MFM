@@ -1,5 +1,6 @@
 'use client';
 import { useTranslations } from 'next-intl';
+import Nav from '@/sections/Nav';
 import MainTitle from '@/sections/MainTitle';
 import Services from '@/sections/Services';
 import StaticContent from '@/sections/StaticContent';
@@ -42,6 +43,8 @@ export default function SectionsPage() {
   // Render example section based on selection
   const renderSectionExample = () => {
     switch (selectedSection) {
+      case 'nav':
+        return <Nav {...PreviewData.NavData} />;
       case 'mainTitle':
         return (
           <MainTitle
@@ -74,7 +77,6 @@ export default function SectionsPage() {
               {selectedSection === 'staff' ||
               selectedSection === 'footer' ||
               selectedSection === 'hero' ||
-              selectedSection === 'nav' ||
               selectedSection === 'news'
                 ? t('previewNotImplemented', {
                     defaultValue:
@@ -242,7 +244,8 @@ export default function SectionsPage() {
                       defaultValue: 'Preview Not Available',
                     })}
               </h3>
-              <div className="border-t border-gray-200 pt-4">
+              {/* tailwind position relative min height 40vh*/}
+              <div className="relative border-t border-gray-200 pt-4 min-h-[40vh]">
                 {renderSectionExample()}
               </div>
             </div>

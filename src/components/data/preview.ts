@@ -1,4 +1,5 @@
 import { IconType } from '@/components/common/Icons';
+import NavProps from '@/ts/interfaces/NavPops';
 export const sections = [
   {
     id: 'mainTitle',
@@ -112,6 +113,7 @@ export const sections = [
     defaultValue: 'Navigation component for the site.',
     props:
       '{ data: {links: Array<{text: string, url: string}>}, logo: string }',
+    example: true,
   },
   {
     id: 'news',
@@ -253,4 +255,49 @@ export const highlightedSectionData = {
   btnText: 'Learn More',
   path: '/contact',
   background: { _s: '/placeholder-background.jpg' },
+};
+
+export const NavData: NavProps = {
+  data: {
+    buttons: [
+      {
+        name: 'Home',
+        href: '/',
+      },
+      {
+        name: 'About',
+        href: '/about',
+      },
+    ],
+    items: [
+      {
+        name: 'Home',
+        href: '/',
+      },
+      {
+        name: 'About',
+        href: '/about',
+      },
+      {
+        name: 'Contact',
+        href: '/contact',
+      },
+      {
+        name: 'Services',
+        href: '/services',
+        hasDropDown: true,
+        menu: [
+          {
+            name: 'Web Development',
+            href: '/web-development',
+          },
+          {
+            name: 'Mobile Apps',
+            href: '/mobile-apps',
+          },
+        ],
+      },
+    ],
+  },
+  logo: '/placeholder-logo.png',
 };
