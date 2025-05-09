@@ -73,7 +73,8 @@
       "templates": "القوالب",
       "get_started": "ابدأ الآن",
       "sections": "الأقسام",
-      "switchLanguage": "تبديل اللغة"
+      "switchLanguage": "تبديل اللغة",
+      "playground": "المعاينة"
     },
     "hero": {
       "title": "أنشئ مواقع ويب جميلة بسهولة",

@@ -17,6 +17,7 @@ export default function Navbar() {
     { href: `/`, label: t('nav.home') },
     { href: `/templates`, label: t('nav.templates') },
     { href: `/sections`, label: t('nav.sections') },
+    { href: `/playground`, label: t('nav.playground') },
   ];
 
   const languages = [
