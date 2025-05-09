@@ -142,7 +142,13 @@
     "playground": {
       "preview": "عرض المعاينة",
       "noSectionSelected": "لا يوجد قسم محدد",
-      "selectSection": "اختر قسمًا للمعاينة"
+      "selectSection": "اختر قسمًا للمعاينة",
+      "availableSections": "مكتبة الأقسام"
     }
+  },
+  "builder": {
+    "editForm": "تعديل النموذج",
+    "preview": "عرض المعاينة",
+    "viewingAs": "عرض كـ"
   }
 }

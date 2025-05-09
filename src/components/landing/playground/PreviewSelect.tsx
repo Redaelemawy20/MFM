@@ -1,5 +1,6 @@
 'use client';
 import { Section } from '@prisma/client';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 export default function PreviewSelect({
@@ -10,7 +11,7 @@ export default function PreviewSelect({
   onSelect?: (section: Section) => void;
 }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
-
+  const t = useTranslations('Landing');
   const handleSelectSection = (section: Section) => {
     const newSelectedId = selectedId === section.id ? null : section.id;
     setSelectedId(newSelectedId);
@@ -22,7 +23,9 @@ export default function PreviewSelect({
   if (!sections || sections.length === 0) {
     return (
       <div className="p-4 border rounded-md bg-gray-50">
-        <p className="text-gray-500 text-center">No sections available</p>
+        <p className="text-gray-500 text-center">
+          {t('playground.noSectionSelected')}
+        </p>
       </div>
     );
   }
@@ -30,9 +33,11 @@ export default function PreviewSelect({
   return (
     <div className="w-full">
       <div className="h-64 overflow-y-auto p-3 border rounded-md bg-gray-50">
-        <h2 className="text-lg font-semibold mb-3">Available Sections</h2>
+        <h2 className="text-lg font-semibold mb-3">
+          {t('playground.availableSections')}
+        </h2>
         <p className="text-md text-gray-500 mb-3">
-          Select a section to preview
+          {t('playground.selectSection')}
         </p>
         <div className="flex justify-center flex-wrap gap-2">
           {sections.map((section) => (

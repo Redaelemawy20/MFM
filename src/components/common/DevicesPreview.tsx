@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LocaleProvider } from '../dashboard/forms/context/LocaleContext';
 import { Lang } from '@/ts/common/Translatable';
 import { DeviceFrameset } from 'react-device-frameset';
-import { useMessages } from 'next-intl';
+import { useMessages, useTranslations } from 'next-intl';
 import 'react-device-frameset/styles/marvel-devices.min.css';
 import 'react-device-frameset/styles/device-emulator.min.css';
 import IframePreview from './IframePreview';
@@ -44,6 +44,7 @@ const devices: {
 
 const DevicesPreview: React.FC<DevicesPreviewProps> = ({ lang, children }) => {
   const messages = useMessages();
+  const t = useTranslations('builder');
   const [activeDevice, setActiveDevice] = useState<Device>(devices[0].value);
   const [zoom, setZoom] = useState<number>(80);
   // Helper to get device width based on type
@@ -264,7 +265,7 @@ const DevicesPreview: React.FC<DevicesPreviewProps> = ({ lang, children }) => {
       {/* Device info footer */}
       <div className="p-2 border-t bg-white text-xs text-gray-500 flex justify-between items-center">
         <span>
-          Viewing as:{' '}
+          {t('viewingAs')}:{' '}
           <span className="font-medium">
             {devices.find((d) => d.value === activeDevice)?.label}
           </span>
