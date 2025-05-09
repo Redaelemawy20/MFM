@@ -142,6 +142,11 @@
       "subtitle": "Join thousands of users who have already built their dream websites with our platform",
       "button": "Get Started Now",
       "secondary_button": "View Features"
+    },
+    "playground": {
+      "preview": "Preview",
+      "noSectionSelected": "No section selected",
+      "selectSection": "Select a section to preview"
     }
   }
 }
