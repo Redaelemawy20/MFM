@@ -164,7 +164,7 @@ export default function SectionsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-20 pb-8">
+    <div className="container mx-auto px-4  pb-8">
       {/* Custom Header instead of MainTitle - Added top padding and margin to avoid nav overlap */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 text-white mb-10 mt-6">
         <div className="flex items-center mb-4">

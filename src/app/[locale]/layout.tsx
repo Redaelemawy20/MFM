@@ -30,7 +30,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
-          {children}
+          <div className="container pt-20 mx-auto ">{children}</div>
         </NextIntlClientProvider>
       </body>
     </html>
