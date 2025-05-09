@@ -1,20 +1,20 @@
 // a generated page under the entity like department or unit
 
-import SectionsControls from "@/components/dashboard/builder/header/SectionsControls";
-import SectionEditCard from "@/components/dashboard/cards/section-edit-card";
-import DisplaySectionModal from "@/components/dashboard/factories/DisplaySectionModal";
-import EditFooterModal from "@/components/dashboard/factories/EditFooterModal";
-import EditLinksModal from "@/components/dashboard/factories/EditLinksModal";
+import SectionsControls from '@/components/dashboard/builder/header/SectionsControls';
+import SectionEditCard from '@/components/dashboard/cards/section-edit-card';
+import DisplaySectionModal from '@/components/dashboard/factories/DisplaySectionModal';
+import EditFooterModal from '@/components/dashboard/factories/EditFooterModal';
+import EditLinksModal from '@/components/dashboard/factories/EditLinksModal';
 
-import Main from "@/components/dashboard/structure/Main";
-import NavWrapper from "@/components/dashboard/structure/NavWrapper";
-import { getLayoutItemOfEntity } from "@/services/fetch/getLayoutItemOfEntity";
-import { getSectionsOfType } from "@/services/fetch/getSectionsOfType";
+import Main from '@/components/dashboard/structure/Main';
+import NavWrapper from '@/components/dashboard/structure/NavWrapper';
+import { getLayoutItemOfEntity } from '@/services/fetch/getLayoutItemOfEntity';
+import { getSectionsOfType } from '@/services/fetch/getSectionsOfType';
 
-import { getSectionsToAdd } from "@/services/fetch/getSectionsToAdd";
-import { getPageSections } from "@/services/pageServices";
-import { notFound } from "next/navigation";
-import { sortSectionsWithOrder } from "../../../../../../../../utils/sort-sections-w-order";
+import { getSectionsToAdd } from '@/services/fetch/getSectionsToAdd';
+import { getPageSections } from '@/services/pageServices';
+import { notFound } from 'next/navigation';
+import { sortSectionsWithOrder } from '@/utils/sort-sections-w-order';
 
 // add section
 
@@ -28,8 +28,8 @@ interface PageProps {
   };
 }
 export default async ({ params }: PageProps) => {
-  const nav = (await getLayoutItemOfEntity(params.e, "nav")) as any;
-  const footer = (await getLayoutItemOfEntity(params.e, "footer")) as any;
+  const nav = (await getLayoutItemOfEntity(params.e, 'nav')) as any;
+  const footer = (await getLayoutItemOfEntity(params.e, 'footer')) as any;
   const navData = nav ? JSON.parse(nav.data) : {};
   const footerData = footer ? JSON.parse(footer.data) : {};
 
@@ -38,8 +38,8 @@ export default async ({ params }: PageProps) => {
   const sortedSections = sortSectionsWithOrder(pageSections);
   const sections = await getSectionsToAdd();
 
-  const navSections = await getSectionsOfType("nav");
-  const footerSections = await getSectionsOfType("footer");
+  const navSections = await getSectionsOfType('nav');
+  const footerSections = await getSectionsOfType('footer');
   return (
     <Main>
       <div className="flex flex-col justify-center items-center">
@@ -49,8 +49,8 @@ export default async ({ params }: PageProps) => {
               entity_slug={params.e}
               data={navData as any}
               options={{
-                btnText: "Edit NavBar",
-                width: "w-[500px]",
+                btnText: 'Edit NavBar',
+                width: 'w-[500px]',
               }}
             />
             <DisplaySectionModal
@@ -59,8 +59,8 @@ export default async ({ params }: PageProps) => {
               selectedIndex={nav ? nav.sectionId || 1 : 1}
               sectionType="nav"
               options={{
-                btnText: "change display template",
-                color: "default",
+                btnText: 'change display template',
+                color: 'default',
               }}
             />
           </div>
@@ -79,8 +79,8 @@ export default async ({ params }: PageProps) => {
               entity_slug={params.e}
               data={footerData as any}
               options={{
-                btnText: "Edit footer",
-                width: "w-[500px]",
+                btnText: 'Edit footer',
+                width: 'w-[500px]',
               }}
             />
             <DisplaySectionModal
@@ -89,8 +89,8 @@ export default async ({ params }: PageProps) => {
               selectedIndex={footer ? footer.sectionId || 1 : 1}
               sectionType="footer"
               options={{
-                btnText: "change display template",
-                color: "default",
+                btnText: 'change display template',
+                color: 'default',
               }}
             />
           </div>
