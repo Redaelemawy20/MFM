@@ -7,17 +7,22 @@
 import Playground from '@/components/landing/playground';
 import PreviewSelect from '@/components/landing/playground/PreviewSelect';
 import { useSections } from '@/hooks/queries/useSections';
+import { useState } from 'react';
 
 export default function PlaygroundPage() {
   const { data: sections, isLoading, error } = useSections();
+  const [selectedSection, setSelectedSection] = useState<SectionsToAdd | null>(
+    null
+  );
   return (
     <div>
       <PreviewSelect
         sections={sections ?? []}
         loading={isLoading}
         error={error as Error}
+        onSelect={setSelectedSection}
       />
-      {/* <Playground sections={sections ?? []} /> */}
+      {selectedSection && <Playground selectedSection={selectedSection} />}
     </div>
   );
 }

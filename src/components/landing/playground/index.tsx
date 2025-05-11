@@ -1,17 +1,12 @@
 'use client';
-import PreviewSelect from '@/components/landing/playground/PreviewSelect';
-import { useState } from 'react';
 import getComponent from '@/com/getComponent';
 import { useTranslations } from 'next-intl';
 
 export default function Playground({
-  sections,
+  selectedSection,
 }: {
-  sections: SectionsToAdd[];
+  selectedSection: SectionsToAdd;
 }) {
-  const [selectedSection, setSelectedSection] = useState<SectionsToAdd | null>(
-    null
-  );
   useTranslations('playground');
   const t = useTranslations('Landing');
   const renderPlayGround = () => {
@@ -31,13 +26,6 @@ export default function Playground({
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      <div className="w-full">
-        <PreviewSelect
-          sections={sections}
-          onSelect={(section) => setSelectedSection(section)}
-        />
-      </div>
-
       <div className="w-full mt-4 border rounded-lg bg-white shadow-sm">
         <div className="p-4 border-b bg-gray-50 rounded-t-lg">
           <h3 className="font-medium text-gray-800">
