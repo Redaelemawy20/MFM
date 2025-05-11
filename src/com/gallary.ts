@@ -21,15 +21,8 @@ import SubPageEdit from '@/components/dashboard/forms/sections-forms/SubPageForm
 import StaticContent from '@/sections/StaticContent';
 import StaticContentEdit from '@/components/dashboard/forms/sections-forms/StaticContentForm';
 import FormProps from '@/ts/interfaces/FormProps';
+import GallaryItem from '@/ts/interfaces/GallaryItem';
 
-interface GallaryItem {
-  componentId: string;
-  component: React.ComponentType<any>;
-  componentEdit?: React.LazyExoticComponent<
-    React.ComponentType<{ data: any } & FormProps>
-  >;
-  defaultData: any;
-}
 // sections
 export const sectionsGallary: GallaryItem[] = [
   {
