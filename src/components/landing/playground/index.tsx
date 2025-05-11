@@ -1,12 +1,17 @@
 'use client';
-import { Section } from '@prisma/client';
 import PreviewSelect from '@/components/landing/playground/PreviewSelect';
 import { useState } from 'react';
 import getComponent from '@/com/getComponent';
 import { useTranslations } from 'next-intl';
 
-export default function Playground({ sections }: { sections: Section[] }) {
-  const [selectedSection, setSelectedSection] = useState<Section | null>(null);
+export default function Playground({
+  sections,
+}: {
+  sections: SectionsToAdd[];
+}) {
+  const [selectedSection, setSelectedSection] = useState<SectionsToAdd | null>(
+    null
+  );
   useTranslations('playground');
   const t = useTranslations('Landing');
   const renderPlayGround = () => {
