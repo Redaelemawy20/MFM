@@ -7,10 +7,12 @@ export default function PreviewSelect({
   sections,
   onSelect,
   loading,
+  error,
 }: {
   sections: Section[];
   onSelect?: (section: Section) => void;
   loading?: boolean;
+  error?: Error;
 }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const t = useTranslations('Landing');
@@ -21,7 +23,16 @@ export default function PreviewSelect({
       onSelect(section);
     }
   };
+  const renderDescriptionText = () => {
+    if (loading) {
+      return t('playground.sectionsLoading');
+    }
+    if (error) {
+      return t('playground.sectionsError');
+    }
 
+    return t('playground.selectSection');
+  };
   return (
     <div className="w-full">
       <div className="h-64 overflow-y-auto p-3 border rounded-md bg-gray-50">
@@ -29,11 +40,7 @@ export default function PreviewSelect({
           {t('playground.availableSections')}
         </h2>
 
-        <p className="text-md text-gray-500 mb-3">
-          {sections && sections.length > 0
-            ? t('playground.selectSection')
-            : t('playground.noSectionSelected')}
-        </p>
+        <p className="text-md text-gray-500 mb-3">{renderDescriptionText()}</p>
 
         {loading ? (
           <div className="flex justify-center flex-wrap gap-2">

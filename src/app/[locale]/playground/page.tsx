@@ -5,15 +5,19 @@
     the users can preview  the components live as they edit them
 */
 import Playground from '@/components/landing/playground';
+import PreviewSelect from '@/components/landing/playground/PreviewSelect';
 import { useSections } from '@/hooks/queries/useSections';
 
 export default function PlaygroundPage() {
   const { data: sections, isLoading, error } = useSections();
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
   return (
     <div>
-      <Playground sections={sections ?? []} />
+      <PreviewSelect
+        sections={sections ?? []}
+        loading={isLoading}
+        error={error as Error}
+      />
+      {/* <Playground sections={sections ?? []} /> */}
     </div>
   );
 }

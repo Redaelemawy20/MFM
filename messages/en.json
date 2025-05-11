@@ -147,7 +147,9 @@
       "preview": "Preview",
       "noSectionSelected": "No section selected",
       "selectSection": "Select a section to preview",
-      "availableSections": "Sections Library"
+      "availableSections": "Sections Library",
+      "sectionsLoading": "Loading sections",
+      "sectionsError": "Error loading sections"
     }
   },
   "builder": {

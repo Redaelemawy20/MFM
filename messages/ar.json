@@ -143,7 +143,9 @@
       "preview": "عرض المعاينة",
       "noSectionSelected": "لا يوجد قسم محدد",
       "selectSection": "اختر قسمًا للمعاينة",
-      "availableSections": "مكتبة الأقسام"
+      "availableSections": "مكتبة الأقسام",
+      "sectionsLoading": "جاري تحميل الأقسام",
+      "sectionsError": "حدث خطأ أثناء تحميل الأقسام"
     }
   },
   "builder": {
