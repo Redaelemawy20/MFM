@@ -45,17 +45,17 @@ export default function Login() {
             // Also store in localStorage for persistence
             localStorage.setItem('userData', JSON.stringify(data.user));
           }
-          setSuccessMessage(t('login.success'));
+          setSuccessMessage(t('loginSuccess'));
           // Redirect after a brief delay to show the success message
           setTimeout(() => {
             router.push('/');
           }, 1500);
         } else {
-          setErrorMessage(data.message || t('login.error'));
+          setErrorMessage(data.message || t('loginError'));
         }
       },
       onError: (error: any) => {
-        setErrorMessage(error.message || t('login.error'));
+        setErrorMessage(error.message || t('loginError'));
       },
     });
   };
@@ -65,10 +65,10 @@ export default function Login() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-md">
         <div>
           <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-gray-900">
-            {t('login.title')}
+            {t('loginTitle')}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            {t('login.description')}
+            {t('loginDescription')}
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function Login() {
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
               >
-                {t('login.username')}
+                {t('username')}
               </label>
               <input
                 id="username"
@@ -105,7 +105,7 @@ export default function Login() {
                 type="text"
                 required
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Enter your username"
+                placeholder={t('usernamePlaceholder')}
                 value={credentials.username}
                 onChange={handleChange}
               />
@@ -115,7 +115,7 @@ export default function Login() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                {t('login.password')}
+                {t('password')}
               </label>
               <input
                 id="password"
@@ -123,7 +123,7 @@ export default function Login() {
                 type="password"
                 required
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Enter your password"
+                placeholder={t('passwordPlaceholder')}
                 value={credentials.password}
                 onChange={handleChange}
               />
@@ -162,10 +162,10 @@ export default function Login() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  {t('login.signingIn')}
+                  {t('signingIn')}
                 </>
               ) : (
-                t('login.signIn')
+                t('signIn')
               )}
             </button>
           </div>

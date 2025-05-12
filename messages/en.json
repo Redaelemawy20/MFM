@@ -158,15 +158,18 @@
     "viewingAs": "Viewing as"
   },
   "auth": {
-    "login": {
-      "title": "Login",
-      "description": "Enter your credentials to access your account",
-      "success": "Login successful! Redirecting...",
-      "error": "Login failed. Please try again.",
-      "username": "Username",
-      "password": "Password",
-      "signIn": "Sign In",
-      "signingIn": "Signing in..."
-    }
+    "loginTitle": "Login",
+    "loginDescription": "Enter your credentials to access your account",
+    "loginSuccess": "Login successful! Redirecting...",
+    "loginError": "Login failed. Please try again.",
+    "username": "Username",
+    "password": "Password",
+    "usernamePlaceholder": "Enter your username",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "signOut": "Sign Out"
   }
 }
