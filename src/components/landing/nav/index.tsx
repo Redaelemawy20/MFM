@@ -3,6 +3,8 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
 import { useState, useRef, useEffect } from 'react';
+import UserMenu from './UserMenu';
+import { useUser } from '@/contexts/UserContext';
 
 export default function Navbar() {
   const t = useTranslations('Landing');
@@ -12,6 +14,7 @@ export default function Navbar() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMobileLangMenuOpen, setIsMobileLangMenuOpen] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
+  const { isAuthenticated } = useUser();
 
   const navLinks = [
     { href: `/`, label: t('nav.home') },
@@ -105,7 +108,7 @@ export default function Navbar() {
 
               {/* Language Dropdown */}
               {isLangMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-100">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-10">
                   {languages.map((lang) => (
                     <Link
                       key={lang.code}
@@ -127,12 +130,20 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link
-              href={`/builder`}
-              className="hidden md:block bg-gradient-to-r from-blue-700 to-indigo-700 text-white px-6 py-2.5 rounded-lg hover:from-blue-800 hover:to-indigo-800 transition-all duration-300 shadow-sm hover:shadow-md font-medium"
-            >
-              {t('nav.get_started')}
-            </Link>
+            {/* User Menu */}
+            <div className="hidden md:block">
+              <UserMenu />
+            </div>
+
+            {/* Only show Get Started if not authenticated */}
+            {!isAuthenticated && (
+              <Link
+                href={`/builder`}
+                className="hidden md:block bg-gradient-to-r from-blue-700 to-indigo-700 text-white px-6 py-2.5 rounded-lg hover:from-blue-800 hover:to-indigo-800 transition-all duration-300 shadow-sm hover:shadow-md font-medium"
+              >
+                {t('nav.get_started')}
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -177,6 +188,11 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+            </div>
+
+            {/* Mobile User Menu */}
+            <div className="border-t border-gray-100 pt-2 mt-2">
+              <UserMenu />
             </div>
 
             {/* Mobile Language Switcher */}
@@ -227,15 +243,17 @@ export default function Navbar() {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-2">
-              <Link
-                href={`/builder`}
-                className="block w-full text-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-700 to-indigo-700 text-white hover:from-blue-800 hover:to-indigo-800 transition-all duration-300 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('nav.get_started')}
-              </Link>
-            </div>
+            {!isAuthenticated && (
+              <div className="pt-2">
+                <Link
+                  href={`/builder`}
+                  className="block w-full text-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-700 to-indigo-700 text-white hover:from-blue-800 hover:to-indigo-800 transition-all duration-300 font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t('nav.get_started')}
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
