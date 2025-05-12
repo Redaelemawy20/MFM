@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import Navbar from '@/components/landing/nav';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { UserProvider } from '@/contexts/UserContext';
 const inter = Inter({ subsets: ['latin'] });
@@ -33,8 +32,7 @@ export default async function RootLayout({
         <ReactQueryProvider>
           <UserProvider>
             <NextIntlClientProvider locale={locale} messages={messages}>
-              <Navbar />
-              <div className="container pt-20 mx-auto ">{children}</div>
+              {children}
             </NextIntlClientProvider>
           </UserProvider>
         </ReactQueryProvider>
