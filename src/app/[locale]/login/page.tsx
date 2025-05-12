@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import { useLogin } from '@/hooks/queries/useAuth';
 import { useRouter } from '@/navigation';
+import { useTranslations } from 'next-intl';
+import { set } from 'date-fns';
 
 export default function Login() {
+  const t = useTranslations('auth');
+
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -32,17 +36,19 @@ export default function Login() {
 
     login(credentials, {
       onSuccess: (data) => {
-        if (data.token) {
+        if ('token' in data) {
           localStorage.setItem('authToken', data.token);
-          setSuccessMessage('Login successful! Redirecting...');
+          setSuccessMessage(t('login.success'));
           // Redirect after a brief delay to show the success message
           setTimeout(() => {
             router.push('/');
           }, 1500);
+        } else {
+          setErrorMessage(data.message || t('login.error'));
         }
       },
       onError: (error: any) => {
-        setErrorMessage(error.message || 'Login failed. Please try again.');
+        setErrorMessage(error.message || t('login.error'));
       },
     });
   };
@@ -52,10 +58,10 @@ export default function Login() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-md">
         <div>
           <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in to your account
+            {t('login.title')}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Enter your credentials to access your account
+            {t('login.description')}
           </p>
         </div>
 
@@ -84,7 +90,7 @@ export default function Login() {
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
               >
-                Username
+                {t('login.username')}
               </label>
               <input
                 id="username"
@@ -102,7 +108,7 @@ export default function Login() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                {t('login.password')}
               </label>
               <input
                 id="password"
@@ -149,10 +155,10 @@ export default function Login() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Signing in...
+                  {t('login.signingIn')}
                 </>
               ) : (
-                'Sign in'
+                t('login.signIn')
               )}
             </button>
           </div>

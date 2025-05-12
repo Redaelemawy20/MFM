@@ -12,7 +12,7 @@ export const useLogin = () => {
     }: {
       username: string;
       password: string;
-    }): Promise<LoginSuccess> => {
+    }): Promise<LoginSuccess | LoginError> => {
       return fetch(`${backendUrl}/auth/login`, {
         method: 'POST',
         headers: {

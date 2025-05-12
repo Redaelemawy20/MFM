@@ -11,6 +11,9 @@ declare global {
     user: User;
     token: string;
   }
+  interface LoginError {
+    message: string;
+  }
   interface User {
     id: number;
     email: string;
