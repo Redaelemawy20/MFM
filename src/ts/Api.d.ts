@@ -24,6 +24,22 @@ declare global {
     entityId: number | null;
     leadership: boolean;
   }
+  interface Website {
+    id: number;
+    name: string;
+    description: string;
+    url: string;
+    createdAt: Date;
+    updatedAt: Date;
+    status: string;
+    type: string;
+    category: string;
+    numberOfPages: number;
+    numberOfVisitors: number;
+    numberOfVisitorsPerDay: number;
+    numberOfVisitorsPerMonth: number;
+    icon: string;
+  }
 }
 
 export {};
