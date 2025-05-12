@@ -167,5 +167,28 @@
     "profile": "الحساب",
     "dashboard": "لوحة التحكم",
     "signOut": "تسجيل الخروج"
+  },
+  "dashboard": {
+    "dashboard": "لوحة التحكم",
+    "welcome": "مرحبا بك في لوحة التحكم",
+    "description": "مرحبا بك في لوحة التحكم الخاصة بك. هذا المكان لإدارة ومراقبة مواقعك المختلفة.",
+    "topPerforming": "الأكثر تقدما",
+    "websiteHighlights": "المواقع المهمة",
+    "monthlyVisitors": "زوار شهريا",
+    "activeWebsites": "المواقع النشطة",
+    "mostViewedWebsite": "الموقع الأكثر مشاهدة",
+    "mostPagesWebsite": "الموقع الأكثر صفحات",
+    "mostViewed": "الأكثر مشاهدة",
+    "mostPages": "الأكثر صفحات",
+    "visitors": "زوار"
+  },
+  "common": {
+    "brandName": "منشئ المواقع",
+    "visitors": "زوار",
+    "pages": "صفحات",
+    "status": "الحالة",
+    "type": "النوع",
+    "category": "التصنيف",
+    "websites": "المواقع"
   }
 }

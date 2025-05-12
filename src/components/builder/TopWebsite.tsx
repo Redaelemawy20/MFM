@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 export default function TopWebsite({
   website,
   title,
@@ -9,6 +11,7 @@ export default function TopWebsite({
   badge: string;
   badgeColor: string;
 }) {
+  const t = useTranslations();
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-6 border-l-4 border-purple-500">
       <div className="flex items-center justify-between mb-4">
@@ -30,19 +33,23 @@ export default function TopWebsite({
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div className="bg-gray-50 p-3 rounded-md">
-              <span className="block text-gray-500">Monthly visitors</span>
+              <span className="block text-gray-500">
+                {t('dashboard.monthlyVisitors')}
+              </span>
               <span className="block font-semibold text-gray-800">
                 {website.numberOfVisitorsPerMonth.toLocaleString()}
               </span>
             </div>
             <div className="bg-gray-50 p-3 rounded-md">
-              <span className="block text-gray-500">Category</span>
+              <span className="block text-gray-500">
+                {t('common.category')}
+              </span>
               <span className="block font-semibold text-gray-800">
                 {website.category}
               </span>
             </div>
             <div className="bg-gray-50 p-3 rounded-md">
-              <span className="block text-gray-500">Pages</span>
+              <span className="block text-gray-500">{t('common.pages')}</span>
               <span className="block font-semibold text-gray-800">
                 {website.numberOfPages}
               </span>

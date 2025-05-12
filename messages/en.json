@@ -171,5 +171,28 @@
     "profile": "Profile",
     "dashboard": "Dashboard",
     "signOut": "Sign Out"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "welcome": "Welcome to your dashboard",
+    "description": "Welcome to your dashboard. This place is for managing and monitoring your different websites.",
+    "topPerforming": "Top Performing",
+    "websiteHighlights": "Website Highlights",
+    "monthlyVisitors": "Monthly Visitors",
+    "activeWebsites": "Active Websites",
+    "mostViewedWebsite": "Most Viewed Website",
+    "mostPagesWebsite": "Most Pages Website",
+    "mostViewed": "Most Viewed",
+    "mostPages": "Most Pages",
+    "visitors": "Visitors"
+  },
+  "common": {
+    "brandName": "Website Builder",
+    "visitors": "Visitors",
+    "pages": "Pages",
+    "status": "Status",
+    "type": "Type",
+    "category": "Category",
+    "websites": "Websites"
   }
 }

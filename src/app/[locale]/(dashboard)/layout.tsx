@@ -14,10 +14,10 @@ export default function DashboardLayout({
   const { isAuthenticated, loading, user } = useUser();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const t = useTranslations('dashboard');
-
+  const tCommon = useTranslations('common');
   const menuItems = [
     { icon: '📊', label: t('dashboard'), href: '/dashboard' },
-    { icon: '📝', label: t('websites'), href: '/dashboard/websites' },
+    { icon: '📝', label: tCommon('websites'), href: '/dashboard/websites' },
   ];
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function DashboardLayout({
         <div className="flex items-center justify-between h-16 px-4 border-b">
           {sidebarOpen && (
             <span className="text-xl font-bold text-indigo-600">
-              {t('brand')}
+              {tCommon('brandName')}
             </span>
           )}
           <button

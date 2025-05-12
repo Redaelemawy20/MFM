@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 function WebsiteCard({
   website,
   highlight,
@@ -5,6 +7,7 @@ function WebsiteCard({
   website: Website;
   highlight?: string;
 }) {
+  const t = useTranslations('common');
   return (
     <div
       className={`bg-white rounded-lg shadow-sm p-6 ${
@@ -25,17 +28,17 @@ function WebsiteCard({
       </p>
       <div className="grid grid-cols-2 gap-2 text-sm">
         <div className="flex flex-col">
-          <span className="text-gray-500">Visitors</span>
+          <span className="text-gray-500">{t('visitors')}</span>
           <span className="font-medium">
             {website.numberOfVisitorsPerMonth.toLocaleString()}/mo
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-gray-500">Pages</span>
+          <span className="text-gray-500">{t('pages')}</span>
           <span className="font-medium">{website.numberOfPages}</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-gray-500">Status</span>
+          <span className="text-gray-500">{t('status')}</span>
           <span
             className={`font-medium ${
               website.status === 'Active' ? 'text-green-600' : 'text-yellow-600'
@@ -45,7 +48,7 @@ function WebsiteCard({
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-gray-500">Type</span>
+          <span className="text-gray-500">{t('type')}</span>
           <span className="font-medium">{website.type}</span>
         </div>
       </div>

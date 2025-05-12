@@ -182,7 +182,7 @@ const websites: Website[] = [
 export default function DashboardPage() {
   const { user } = useUser();
   const t = useTranslations('dashboard');
-
+  const tCommon = useTranslations('common');
   // Calculate analytics
   const totalVisitors = websites.reduce(
     (sum, site) => sum + site.numberOfVisitors,
@@ -212,25 +212,25 @@ export default function DashboardPage() {
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           {t('welcome')}, {user?.name}!
         </h1>
-        <p className="text-gray-600">{t('dashboardDescription')}</p>
+        <p className="text-gray-600">{t('description')}</p>
       </div>
 
       {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatCard
-          title="Total Visitors"
+          title={t('visitors')}
           value={totalVisitors.toLocaleString()}
           icon="👥"
           color="border-blue-500"
         />
         <StatCard
-          title="Active Websites"
+          title={t('activeWebsites')}
           value={activeWebsites}
           icon="🌐"
           color="border-green-500"
         />
         <StatCard
-          title="Total Pages"
+          title={tCommon('pages')}
           value={totalPages}
           icon="📄"
           color="border-purple-500"
@@ -245,16 +245,16 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <TopWebsite
           website={mostViewedWebsite}
-          title="Most Viewed Website"
-          badge="Most Viewed"
+          title={t('mostViewedWebsite')}
+          badge={t('mostViewed')}
           badgeColor="blue"
         />
 
         {/* Most pages website card */}
         <TopWebsite
           website={mostPagesWebsite}
-          title="Most Pages Website"
-          badge="Most Pages"
+          title={t('mostPagesWebsite')}
+          badge={t('mostPages')}
           badgeColor="purple"
         />
       </div>
