@@ -184,7 +184,10 @@
     "mostPagesWebsite": "Most Pages Website",
     "mostViewed": "Most Viewed",
     "mostPages": "Most Pages",
-    "visitors": "Visitors"
+    "visitors": "Visitors",
+    "addWebsite": "Add Website",
+    "websitesTitle": "Your Websites",
+    "websitesDescription": "This is where you can manage your websites"
   },
   "common": {
     "brandName": "Website Builder",

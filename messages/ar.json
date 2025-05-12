@@ -180,7 +180,10 @@
     "mostPagesWebsite": "الموقع الأكثر صفحات",
     "mostViewed": "الأكثر مشاهدة",
     "mostPages": "الأكثر صفحات",
-    "visitors": "زوار"
+    "visitors": "زوار",
+    "addWebsite": "إضافة موقع",
+    "websitesTitle": "مواقعك",
+    "websitesDescription": "هذا المكان لإدارة ومراقبة مواقعك المختلفة"
   },
   "common": {
     "brandName": "منشئ المواقع",
