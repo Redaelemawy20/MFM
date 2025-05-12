@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { useLogin } from '@/hooks/queries/useAuth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { set } from 'date-fns';
+import { useUser } from '@/contexts/UserContext';
 
 export default function Login() {
   const t = useTranslations('auth');
+  const { setUser } = useUser();
 
   const [credentials, setCredentials] = useState({
     username: '',
@@ -38,6 +39,12 @@ export default function Login() {
       onSuccess: (data) => {
         if ('token' in data) {
           localStorage.setItem('authToken', data.token);
+          // Store user data in context
+          if (data.user) {
+            setUser(data.user);
+            // Also store in localStorage for persistence
+            localStorage.setItem('userData', JSON.stringify(data.user));
+          }
           setSuccessMessage(t('login.success'));
           // Redirect after a brief delay to show the success message
           setTimeout(() => {
