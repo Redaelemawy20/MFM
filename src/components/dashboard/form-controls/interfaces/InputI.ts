@@ -1,4 +1,4 @@
-import { HandleChange } from "../../../../ts/common/HandleChange";
+import { HandleChange } from '../../../../ts/common/HandleChange';
 
 type BaseInput = {
   name: string;
@@ -7,6 +7,11 @@ type BaseInput = {
   onValidate?: HandleChange;
   error?: boolean | string;
   rest?: object;
+  value?: any;
+  className?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
 };
 export interface TranslatableInput<T> {
   translatable: true;
@@ -16,8 +21,10 @@ export interface NormalInput<T> {
   translatable?: false | null | undefined;
   value: T;
 }
-type InputI<T> = BaseInput & (TranslatableInput<T> | NormalInput<T>);
-export default InputI;
+export default interface InputI<T = any> extends BaseInput {
+  translatable?: boolean;
+  value: T;
+}
 
 export interface TranslatableValue<T> {
   ar: T;

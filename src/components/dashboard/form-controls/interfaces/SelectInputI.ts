@@ -1,8 +1,10 @@
-import InputI from "./InputI";
-export default interface SelectInputI<T extends NonNullable<any>>
-  extends InputI {
+import InputI from './InputI';
+export default interface SelectInputProps<T> extends Omit<InputI<T>, 'value'> {
+  value?: T[keyof T];
   options: T[];
   valueProp?: keyof T;
   optionValue?: keyof T;
-  allowNone?: boolean;
+  className?: string;
+  placeholder?: string;
+  required?: boolean;
 }
