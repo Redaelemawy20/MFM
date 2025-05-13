@@ -4,6 +4,7 @@ import WebsiteCard from '@/components/builder/WebsiteCard';
 import { Button, ModalContent, Modal, ModalHeader } from '@nextui-org/react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import WebsiteForm from '@/components/dashboard/forms/dashboard-controls/WebsiteForm';
 export default function WebsitesPage() {
   const t = useTranslations('dashboard');
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function WebsitesPage() {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalContent>
           <ModalHeader>{t('addWebsite')}</ModalHeader>
+          <WebsiteForm />
         </ModalContent>
       </Modal>
     </div>

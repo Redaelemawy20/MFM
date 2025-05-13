@@ -1,23 +1,23 @@
-"use client";
+'use client';
 // FormContext.js
-import useStateManager from "@/hooks/useStateManager";
+import useStateManager from '@/hooks/useStateManager';
 import {
   HandleChange,
   HandleChangeUpdated,
   HandleFileRemove,
   HandleFileUpload,
-} from "@/ts/common/HandleChange";
-import { HTMLFormAction } from "@/ts/common/FormActionType";
-import React, { createContext } from "react";
+} from '@/ts/common/HandleChange';
+import { HTMLFormAction } from '@/ts/common/FormActionType';
+import React, { createContext } from 'react';
 
 type BaseContextType = {
   state: any;
-  action: HTMLFormAction;
+  action?: HTMLFormAction;
   errorMessage?: string;
-  lang: "en" | "ar";
+  lang: 'en' | 'ar';
   handleChange: HandleChange;
   handleChangeUpdated: HandleChangeUpdated;
-  setLang: (lang: "en" | "ar") => void;
+  setLang: (lang: 'en' | 'ar') => void;
   handleFileUpload: HandleFileUpload;
   handleFileRemove: HandleFileRemove;
   files: { [key: string]: any };
@@ -34,7 +34,7 @@ export function FormProvider<T, D>({
   ...rest
 }: {
   children: React.ReactNode;
-  action: HTMLFormAction;
+  action?: HTMLFormAction;
   data: D;
 } & T) {
   const {
