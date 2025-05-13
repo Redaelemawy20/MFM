@@ -2,25 +2,26 @@
 import FormProps from '@/ts/interfaces/FormProps';
 import FormButton from '../form-button/FormButton';
 import TextFeild from '../../form-controls/Input';
-
 import TextArea from '../../form-controls/TextArea';
 import ImageUploadPerview from '../../form-controls/ImageUploadPerview';
+import SelectInput from '../../form-controls/Select';
 import Form from '@/components/common/Form';
 import {
   ContextType,
   FormProvider,
   useFormContext,
 } from '../context/FormContext';
-import Entity from '@/ts/interfaces/Entity';
+import Website from '@/ts/interfaces/Website';
 import LanguageSelect from '../../form-controls/LanguageSelect';
 
 interface WebsiteFormI extends FormProps {
-  data?: Entity;
-  entity_slug?: string;
+  data?: Website;
+  website_slug?: string;
 }
-export default function EntityForm({
+
+export default function WebsiteForm({
   data,
-  entity_slug,
+  website_slug,
   action,
   errorMessage,
 }: WebsiteFormI) {
@@ -28,11 +29,17 @@ export default function EntityForm({
     name: '',
     description: '',
     logo: { _s: '' },
+    topTitle: '',
+    status: 'Active',
+    type: 'Website',
+    category: '',
+    url: '',
   };
+
   return (
     <FormProvider
       data={state}
-      entity_slug={entity_slug || ''}
+      entity_slug={website_slug || ''}
       action={action}
       errorMessage={errorMessage}
     >
@@ -41,48 +48,130 @@ export default function EntityForm({
   );
 }
 
-interface EntityContextType extends ContextType {
-  state: Entity;
-  entity_slug?: string;
+interface WebsiteContextType extends ContextType {
+  state: Website;
+  website_slug?: string;
 }
+
+// Define the options for select dropdowns
+const statusOptions = [
+  { id: 'Active', name: 'Active' },
+  { id: 'Maintenance', name: 'Maintenance' },
+  { id: 'Archived', name: 'Archived' },
+];
+
+const typeOptions = [
+  { id: 'Website', name: 'Website' },
+  { id: 'E-commerce', name: 'E-commerce' },
+  { id: 'Blog', name: 'Blog' },
+  { id: 'Portfolio', name: 'Portfolio' },
+  { id: 'News', name: 'News' },
+  { id: 'Travel', name: 'Travel' },
+  { id: 'Education', name: 'Education' },
+  { id: 'Community', name: 'Community' },
+  { id: 'Application', name: 'Application' },
+];
+
 function FormElements() {
-  const { state, files, action, entity_slug, lang, setLang } =
-    useFormContext<EntityContextType>();
+  const { state, files, action, website_slug, lang, setLang, handleChange } =
+    useFormContext<WebsiteContextType>();
+
   const formData = new FormData();
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
-  formData.set('data', JSON.stringify({ ...state, entity_slug }));
+  formData.set('data', JSON.stringify({ ...state, website_slug }));
 
   const modefiedAction = action?.bind(null, formData);
 
   return (
     <Form modifiedAction={modefiedAction}>
-      <LanguageSelect value={lang} onChange={setLang} />
-      <ImageUploadPerview
-        value={state.logo}
-        name="logo"
-        btnText="Upload Logo"
-      />
-      <TextFeild
-        label="Entity Name"
-        value={state.name}
-        name="name"
-        translatable
-      />
-      <TextFeild
-        label="Title that apears at the top"
-        value={state.topTitle}
-        name="topTitle"
-        translatable
-      />
-      <TextArea
-        label="Description - will help in search"
-        name="description"
-        value={state.description}
-        translatable
-      />
-      <FormButton>Save</FormButton>
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b">
+          Website Information
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Language
+              </label>
+              <LanguageSelect value={lang} onChange={setLang} />
+            </div>
+
+            <TextFeild
+              label="Website Name"
+              value={state.name}
+              name="name"
+              translatable
+              placeholder="Enter website name"
+              required
+              className="mb-4"
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <SelectInput
+                label="Website Type"
+                name="type"
+                value={state.type}
+                options={typeOptions}
+                onChange={handleChange}
+                valueProp="id"
+                optionValue="name"
+                placeholder="Select type"
+              />
+
+              <SelectInput
+                label="Status"
+                name="status"
+                value={state.status}
+                options={statusOptions}
+                onChange={handleChange}
+                valueProp="id"
+                optionValue="name"
+                placeholder="Select status"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 mb-6">
+              <ImageUploadPerview
+                value={state.logo}
+                name="logo"
+                btnText="Upload Logo"
+              />
+            </div>
+          </div>
+        </div>
+        <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b">
+          Additional Information
+        </h2>
+        <TextFeild
+          label="Header Title"
+          value={state.topTitle || ''}
+          name="topTitle"
+          translatable
+          placeholder="Title that appears at the top of the website"
+          className="mb-4"
+        />
+        <TextArea
+          label="Website Description"
+          name="description"
+          value={state.description}
+          translatable
+          placeholder="Provide a detailed description of the website (helps with SEO)"
+          rows={5}
+          className="mb-6"
+        />
+
+        <div className="flex justify-end">
+          <FormButton className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md transition">
+            Save Website
+          </FormButton>
+        </div>
+      </div>
     </Form>
   );
 }

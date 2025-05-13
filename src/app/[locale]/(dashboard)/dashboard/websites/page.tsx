@@ -8,6 +8,10 @@ import WebsiteForm from '@/components/dashboard/forms/dashboard-controls/Website
 export default function WebsitesPage() {
   const t = useTranslations('dashboard');
   const [isOpen, setIsOpen] = useState(false);
+  const createWebsite = (formData: FormData) => {
+    const data = JSON.parse(formData.get('data') as string);
+    console.log(data);
+  };
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold">{t('websitesTitle')}</h1>
@@ -20,10 +24,10 @@ export default function WebsitesPage() {
           <WebsiteCard key={website.id} website={website} />
         ))}
       </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="5xl">
         <ModalContent>
           <ModalHeader>{t('addWebsite')}</ModalHeader>
-          <WebsiteForm />
+          <WebsiteForm action={createWebsite} />
         </ModalContent>
       </Modal>
     </div>
