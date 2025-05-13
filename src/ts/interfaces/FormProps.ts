@@ -1,6 +1,6 @@
-import { HTMLFormAction } from "../common/FormActionType";
+import { HTMLFormAction } from '../common/FormActionType';
 
 export default interface FormProps {
-  action: HTMLFormAction;
+  action?: HTMLFormAction;
   errorMessage?: string;
 }
