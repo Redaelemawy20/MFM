@@ -1,7 +1,7 @@
 /// section service
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-
+import { restHandler } from '@/com/restHandler';
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 // Query key constants
 export const SECTION_QUERY_KEYS = {
@@ -14,10 +14,10 @@ export const SECTION_QUERY_KEYS = {
 export function useSections() {
   return useQuery({
     queryKey: SECTION_QUERY_KEYS.list(),
-    queryFn: getAllSections,
+    queryFn: () =>
+      restHandler({
+        url: '/sections',
+        method: 'GET',
+      }),
   });
 }
-const getAllSections = async (): Promise<SectionsToAdd[]> => {
-  const response = await fetch(`${backendUrl}/sections`);
-  return await response.json();
-};

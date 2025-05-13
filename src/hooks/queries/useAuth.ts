@@ -1,7 +1,6 @@
 // useAuth hook
+import { restHandler } from '@/com/restHandler';
 import { useMutation } from '@tanstack/react-query';
-
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // it's a login mutation post request takes username and password and returns a token
 export const useLogin = () => {
@@ -13,13 +12,11 @@ export const useLogin = () => {
       username: string;
       password: string;
     }): Promise<LoginSuccess | LoginError> => {
-      return fetch(`${backendUrl}/auth/login`, {
+      return restHandler({
+        url: '/auth/login',
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      }).then((res) => res.json());
+        data: { username, password },
+      });
     },
   });
 };
