@@ -5,12 +5,17 @@ import { Button, ModalContent, Modal, ModalHeader } from '@nextui-org/react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import WebsiteForm from '@/components/dashboard/forms/dashboard-controls/WebsiteForm';
+import { useCreateWebsite } from '@/hooks/queries/useWebsites';
 export default function WebsitesPage() {
   const t = useTranslations('dashboard');
   const [isOpen, setIsOpen] = useState(false);
-  const createWebsite = (formData: FormData) => {
-    const data = JSON.parse(formData.get('data') as string);
-    console.log(data);
+  const { mutate: stroreWebsite, isPending } = useCreateWebsite();
+  const createWebsite = async (formData: FormData) => {
+    try {
+      await stroreWebsite(formData);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="flex flex-col gap-4">

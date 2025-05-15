@@ -55,9 +55,8 @@ interface WebsiteContextType extends ContextType {
 
 // Define the options for select dropdowns
 const statusOptions = [
-  { id: 'Active', name: 'Active' },
-  { id: 'Maintenance', name: 'Maintenance' },
-  { id: 'Archived', name: 'Archived' },
+  { id: 'ACTIVE', name: 'Active' },
+  { id: 'INACTIVE', name: 'Inactive' },
 ];
 
 const typeOptions = [
@@ -77,11 +76,11 @@ function FormElements() {
     useFormContext<WebsiteContextType>();
 
   const formData = new FormData();
+
   for (let filename in files) {
     formData.set(filename, files[filename] as File);
   }
   formData.set('data', JSON.stringify({ ...state, website_slug }));
-
   const modefiedAction = action?.bind(null, formData);
 
   return (
@@ -104,7 +103,6 @@ function FormElements() {
               label="Website Name"
               value={state.name}
               name="name"
-              translatable
               placeholder="Enter website name"
               required
               className="mb-4"
@@ -140,6 +138,7 @@ function FormElements() {
               <ImageUploadPerview
                 value={state.logo}
                 name="logo"
+                fileKey="logoImage"
                 btnText="Upload Logo"
               />
             </div>
