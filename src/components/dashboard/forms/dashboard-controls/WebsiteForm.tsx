@@ -19,14 +19,8 @@ interface WebsiteFormI extends FormProps {
   website_slug?: string;
 }
 
-export default function WebsiteForm({
-  data,
-  website_slug,
-  action,
-  clearOnSubmit,
-  errorMessage,
-}: WebsiteFormI) {
-  const state = data || {
+export default function WebsiteForm(props: WebsiteFormI) {
+  const state = props.data || {
     name: '',
     description: '',
     logo: { _s: '' },
@@ -40,10 +34,8 @@ export default function WebsiteForm({
   return (
     <FormProvider
       data={state}
-      entity_slug={website_slug || ''}
-      action={action}
-      errorMessage={errorMessage}
-      clearOnSubmit={clearOnSubmit}
+      {...props}
+      entity_slug={props.website_slug || ''}
     >
       <FormElements />
     </FormProvider>

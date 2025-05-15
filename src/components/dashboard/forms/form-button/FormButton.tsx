@@ -1,7 +1,6 @@
 'use client';
-import { useFormStatus } from 'react-dom';
 import { Button } from '@nextui-org/react';
-
+import { useFormContext } from '../context/FormContext';
 interface FormButtonProps {
   children: React.ReactNode;
   disabled?: boolean;
@@ -13,16 +12,17 @@ export default function FormButton({
   disabled,
   className,
 }: FormButtonProps) {
-  const { pending } = useFormStatus();
-
+  const { isPending } = useFormContext();
   return (
     <Button
       type="submit"
-      isLoading={pending}
+      isLoading={isPending}
       className={`rounded !p-4 h-3 ${
-        disabled ? 'bg-gray-200 cursor-not-allowed' : className || 'bg-blue-500'
+        disabled || isPending
+          ? 'bg-gray-200 cursor-not-allowed'
+          : className || 'bg-blue-500'
       } mt-3`}
-      disabled={disabled}
+      disabled={disabled || isPending}
     >
       {children}
     </Button>

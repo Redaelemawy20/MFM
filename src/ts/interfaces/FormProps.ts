@@ -4,4 +4,5 @@ export default interface FormProps {
   action?: HTMLFormAction;
   errorMessage?: string;
   clearOnSubmit?: boolean;
+  isPending?: boolean;
 }

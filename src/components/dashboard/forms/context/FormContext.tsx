@@ -9,6 +9,7 @@ import {
 } from '@/ts/common/HandleChange';
 import { HTMLFormAction } from '@/ts/common/FormActionType';
 import React, { createContext } from 'react';
+import FormProps from '@/ts/interfaces/FormProps';
 
 type BaseContextType = {
   state: any;
@@ -30,15 +31,12 @@ const FormContext = createContext<ContextType>({} as ContextType);
 export function FormProvider<T, D>({
   children,
   data,
-  action,
-  clearOnSubmit,
   ...rest
 }: {
   children: React.ReactNode;
-  action?: HTMLFormAction;
   data: D;
-  clearOnSubmit?: boolean;
-} & T) {
+} & T &
+  FormProps) {
   const {
     state,
     lang,
@@ -61,9 +59,7 @@ export function FormProvider<T, D>({
         handleChangeUpdated,
         handleFileUpload,
         handleFileRemove,
-        action,
         files,
-        clearOnSubmit,
         ...rest,
       }}
     >
