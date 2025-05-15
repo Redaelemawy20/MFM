@@ -32,7 +32,7 @@ export default function WebsitesPage() {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="5xl">
         <ModalContent>
           <ModalHeader>{t('addWebsite')}</ModalHeader>
-          <WebsiteForm action={createWebsite} />
+          <WebsiteForm action={createWebsite} clearOnSubmit />
         </ModalContent>
       </Modal>
     </div>

@@ -23,6 +23,7 @@ export default function WebsiteForm({
   data,
   website_slug,
   action,
+  clearOnSubmit,
   errorMessage,
 }: WebsiteFormI) {
   const state = data || {
@@ -42,6 +43,7 @@ export default function WebsiteForm({
       entity_slug={website_slug || ''}
       action={action}
       errorMessage={errorMessage}
+      clearOnSubmit={clearOnSubmit}
     >
       <FormElements />
     </FormProvider>
@@ -72,19 +74,11 @@ const typeOptions = [
 ];
 
 function FormElements() {
-  const { state, files, action, website_slug, lang, setLang, handleChange } =
+  const { state, lang, setLang, handleChange } =
     useFormContext<WebsiteContextType>();
 
-  const formData = new FormData();
-
-  for (let filename in files) {
-    formData.set(filename, files[filename] as File);
-  }
-  formData.set('data', JSON.stringify({ ...state, website_slug }));
-  const modefiedAction = action?.bind(null, formData);
-
   return (
-    <Form modifiedAction={modefiedAction}>
+    <Form>
       <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b">
           Website Information

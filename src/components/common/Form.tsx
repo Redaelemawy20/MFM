@@ -1,21 +1,40 @@
-import { HTMLFormAction } from "@/ts/common/FormActionType";
-import { ReactNode } from "react";
-import { useFormContext } from "../dashboard/forms/context/FormContext";
+import { ReactNode } from 'react';
+import { useFormContext } from '../dashboard/forms/context/FormContext';
 
 const Form = ({
   children,
   modifiedAction,
   errorMessage,
 }: {
-  modifiedAction?: HTMLFormAction;
+  modifiedAction?: (formData?: FormData) => void | VoidFunction;
   children: ReactNode;
   errorMessage?: string;
 }) => {
-  const { action, errorMessage: message } = useFormContext();
+  const {
+    action,
+    errorMessage: message,
+    files,
+    state,
+    setState,
+    clearOnSubmit,
+  } = useFormContext();
   const error = errorMessage || message;
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    for (let filename in files) {
+      formData.set(filename, files[filename] as File);
+    }
+    formData.set('data', JSON.stringify({ ...state }));
+    if (modifiedAction) {
+      await modifiedAction(formData);
+    } else {
+      await action?.(formData);
+    }
+    if (clearOnSubmit) setState({});
+  };
   return (
     <form
-      action={modifiedAction || action}
+      action={handleSubmit}
       className="flex flex-col gap-2 h-[80vh] overflow-y-auto"
     >
       {error ? (
@@ -23,7 +42,7 @@ const Form = ({
           {error}
         </div>
       ) : (
-        ""
+        ''
       )}
       {children}
     </form>

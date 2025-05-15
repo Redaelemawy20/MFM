@@ -31,11 +31,13 @@ export function FormProvider<T, D>({
   children,
   data,
   action,
+  clearOnSubmit,
   ...rest
 }: {
   children: React.ReactNode;
   action?: HTMLFormAction;
   data: D;
+  clearOnSubmit?: boolean;
 } & T) {
   const {
     state,
@@ -46,6 +48,7 @@ export function FormProvider<T, D>({
     handleFileUpload,
     handleFileRemove,
     files,
+    setState,
   } = useStateManager(data);
   return (
     <FormContext.Provider
@@ -53,12 +56,14 @@ export function FormProvider<T, D>({
         handleChange,
         lang,
         state,
+        setState,
         setLang,
         handleChangeUpdated,
         handleFileUpload,
         handleFileRemove,
         action,
         files,
+        clearOnSubmit,
         ...rest,
       }}
     >
