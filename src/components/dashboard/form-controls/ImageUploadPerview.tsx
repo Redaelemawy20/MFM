@@ -21,9 +21,8 @@ function ImageUploadPerview<Tr extends boolean>({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
 
-    if (target.files) {
+    if (target.files && target.files.length > 0) {
       const uploadedFile = target.files[0];
-      const filename = Date.now() + uploadedFile.name;
       let translatedFilename = translatable ? fileKey + lang : fileKey;
 
       const Image = {
