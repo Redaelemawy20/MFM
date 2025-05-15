@@ -13,8 +13,6 @@ import FormProps from '@/ts/interfaces/FormProps';
 
 type BaseContextType = {
   state: any;
-  action?: HTMLFormAction;
-  errorMessage?: string;
   lang: 'en' | 'ar';
   handleChange: HandleChange;
   handleChangeUpdated: HandleChangeUpdated;
@@ -22,7 +20,7 @@ type BaseContextType = {
   handleFileUpload: HandleFileUpload;
   handleFileRemove: HandleFileRemove;
   files: { [key: string]: any };
-};
+} & FormProps;
 type AdditionalValues = {
   [key: string]: any;
 };

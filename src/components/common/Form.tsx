@@ -5,20 +5,25 @@ const Form = ({
   children,
   modifiedAction,
   errorMessage,
+  successMessage,
 }: {
   modifiedAction?: (formData?: FormData) => void | VoidFunction;
   children: ReactNode;
   errorMessage?: string;
+  successMessage?: string;
 }) => {
   const {
     action,
-    errorMessage: message,
+    errorMessage: contextErrorMessage,
+    successMessage: contextSuccessMessage,
     files,
     state,
     setState,
     clearOnSubmit,
   } = useFormContext();
-  const error = errorMessage || message;
+  const error = errorMessage || contextErrorMessage;
+  const success = successMessage || contextSuccessMessage;
+  console.log({ error, success });
   const handleSubmit = async () => {
     const formData = new FormData();
     for (let filename in files) {
@@ -38,12 +43,15 @@ const Form = ({
       className="flex flex-col gap-2 h-[80vh] overflow-y-auto"
     >
       {error ? (
-        <div className=" overflow-y-hidden   border !border-danger-600    px-2 py-2 rounded-lg">
+        <div className="border !border-danger-600 px-2 py-2 rounded-lg text-danger-600">
           {error}
         </div>
-      ) : (
-        ''
-      )}
+      ) : null}
+      {success ? (
+        <div className="border !border-success-600 bg-success-50 px-2 py-2 rounded-lg text-success-600">
+          {success}
+        </div>
+      ) : null}
       {children}
     </form>
   );

@@ -9,12 +9,22 @@ import { useCreateWebsite } from '@/hooks/queries/useWebsites';
 export default function WebsitesPage() {
   const t = useTranslations('dashboard');
   const [isOpen, setIsOpen] = useState(false);
-  const { mutate: stroreWebsite, isPending } = useCreateWebsite();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [successMessage, setSuccessMessage] = useState<string | undefined>();
+  const { mutateAsync: stroreWebsite, isPending } = useCreateWebsite();
   const createWebsite = async (formData: FormData) => {
     try {
+      // Reset messages before submission
+      setErrorMessage(undefined);
+      setSuccessMessage(undefined);
+
       await stroreWebsite(formData);
+      // Set success message after successful submission
+      setSuccessMessage('websiteCreatedSuccessfully');
     } catch (error) {
       console.log(error);
+      // Set error message if submission fails
+      setErrorMessage('websiteCreationFailed');
     }
   };
   return (
@@ -36,6 +46,8 @@ export default function WebsitesPage() {
             action={createWebsite}
             clearOnSubmit
             isPending={isPending}
+            errorMessage={errorMessage}
+            successMessage={successMessage}
           />
         </ModalContent>
       </Modal>
