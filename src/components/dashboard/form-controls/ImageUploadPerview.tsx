@@ -1,18 +1,21 @@
-"use client";
-import React from "react";
-import ImageUploadPerviewI from "./interfaces/ImageUploadPerviewI";
-import { Button, Image } from "@nextui-org/react";
-import { CiSquareRemove } from "react-icons/ci";
-import { useFormContext } from "../forms/context/FormContext";
-import { TranslatableValue } from "./interfaces/InputI";
-const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
+'use client';
+import React from 'react';
+import ImageUploadPerviewI, {
+  ImageValue,
+} from './interfaces/ImageUploadPerviewI';
+import { Button, Image } from '@nextui-org/react';
+import { CiSquareRemove } from 'react-icons/ci';
+import { useFormContext } from '../forms/context/FormContext';
+import { TranslatableValue } from './interfaces/InputI';
+function ImageUploadPerview<Tr extends boolean>({
   onChange,
   name,
   value,
+  fileKey,
   alt,
-  btnText = "Upload Image",
+  btnText = 'Upload Image',
   translatable,
-}) => {
+}: ImageUploadPerviewI<Tr>) {
   const { lang, handleChangeUpdated, handleFileUpload, handleFileRemove } =
     useFormContext();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +24,7 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
     if (target.files) {
       const uploadedFile = target.files[0];
       const filename = Date.now() + uploadedFile.name;
-      let translatedFilename = translatable ? filename + lang : filename;
+      let translatedFilename = translatable ? fileKey + lang : fileKey;
 
       const Image = {
         image: uploadedFile,
@@ -46,26 +49,27 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
       onChange
     );
 
-    handleFileRemove(value.name);
+    handleFileRemove(fileKey);
   };
   const getSrc = () => {
     let obj;
-    if (translatable) {
-      obj = (value ? { ...value[lang] } || {} : {}) as TranslatableValue;
+    if (translatable && typeof value === 'object') {
+      let objVal = value as TranslatableValue<ImageValue>;
+      obj = objVal[lang];
     } else {
       obj = value ?? {};
     }
-    if (obj.image) return obj.preview;
+    if ('image' in obj) return obj.preview;
 
-    if (obj._s) return `/api/files?name=${obj._s}`;
-    return "";
+    if ('_s' in obj) return `/api/files?name=${obj._s}`;
+    return '';
   };
 
   return (
     <div className="flex flex-col items-center content-center mb-2">
       <Image
         fallbackSrc={
-          "https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+          'https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg'
         }
         src={getSrc()}
         width={240}
@@ -90,6 +94,6 @@ const ImageUploadPerview: React.FunctionComponent<ImageUploadPerviewI> = ({
       </div>
     </div>
   );
-};
+}
 
 export default ImageUploadPerview;

@@ -1,5 +1,5 @@
 // rest handler
-import axios, { AxiosRequestHeaders, Method } from 'axios';
+import axios, { AxiosHeaders, AxiosRequestHeaders, Method } from 'axios';
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -7,12 +7,12 @@ export const restHandler = async ({
   method = 'GET',
   url,
   data,
-  headers = {} as AxiosRequestHeaders,
+  headers = {},
 }: {
   method: Method;
   url: string;
   data?: any;
-  headers?: AxiosRequestHeaders;
+  headers?: Record<string, string>;
 }) => {
   const token = localStorage?.getItem('authToken');
   const response = await axios({
@@ -20,7 +20,6 @@ export const restHandler = async ({
     url: `${backendUrl}${url}`,
     data,
     headers: {
-      'Content-Type': 'application/json',
       ...headers,
       Authorization: `Bearer ${token}`,
     },
