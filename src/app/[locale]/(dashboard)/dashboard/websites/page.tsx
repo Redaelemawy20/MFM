@@ -20,11 +20,11 @@ export default function WebsitesPage() {
 
       await stroreWebsite(formData);
       // Set success message after successful submission
-      setSuccessMessage('websiteCreatedSuccessfully');
+      setSuccessMessage(t('websiteCreatedSuccessfully'));
     } catch (error) {
       console.log(error);
       // Set error message if submission fails
-      setErrorMessage('websiteCreationFailed');
+      setErrorMessage(t('websiteCreationFailed'));
     }
   };
   return (

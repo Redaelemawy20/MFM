@@ -1,9 +1,10 @@
-"use client";
-import { Radio, RadioGroup } from "@nextui-org/react";
-import { Lang } from "../../../ts/common/Translatable";
+'use client';
+import { Radio, RadioGroup } from '@nextui-org/react';
+import { Lang } from '../../../ts/common/Translatable';
+import { useTranslations } from 'next-intl';
 
 export default function LanguageSelect({
-  value = "en",
+  value = 'en',
   onChange,
 }: {
   value: Lang;
@@ -12,18 +13,21 @@ export default function LanguageSelect({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange((event.target as HTMLInputElement).value as Lang);
   };
+  const t = useTranslations('dashboard');
 
   return (
     <>
-      <h2>Language</h2>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {t('language')}
+      </label>
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
         value={value}
         onChange={handleChange}
       >
-        <Radio value="ar">arabic</Radio>
-        <Radio value="en">english</Radio>
+        <Radio value="ar">{t('arabic')}</Radio>
+        <Radio value="en">{t('english')}</Radio>
       </RadioGroup>
     </>
   );

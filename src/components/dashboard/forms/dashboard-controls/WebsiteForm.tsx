@@ -13,6 +13,7 @@ import {
 } from '../context/FormContext';
 import Website from '@/ts/interfaces/Website';
 import LanguageSelect from '../../form-controls/LanguageSelect';
+import { useTranslations } from 'next-intl';
 
 interface WebsiteFormI extends FormProps {
   data?: Website;
@@ -68,52 +69,49 @@ const typeOptions = [
 function FormElements() {
   const { state, lang, setLang, handleChange } =
     useFormContext<WebsiteContextType>();
-
+  const t = useTranslations('dashboard');
   return (
     <Form>
       <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b">
-        Website Information
+        {t('websiteInformation')}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Language
-            </label>
             <LanguageSelect value={lang} onChange={setLang} />
           </div>
 
           <TextFeild
-            label="Website Name"
+            label={t('websiteName')}
             value={state.name}
             name="name"
-            placeholder="Enter website name"
+            placeholder={t('enterWebsiteName')}
             required
             className="mb-4"
           />
 
           <div className="grid grid-cols-2 gap-4">
             <SelectInput
-              label="Website Type"
+              label={t('websiteType')}
               name="type"
               value={state.type}
               options={typeOptions}
               onChange={handleChange}
               valueProp="id"
               optionValue="name"
-              placeholder="Select type"
+              placeholder={t('selectType')}
             />
 
             <SelectInput
-              label="Status"
+              label={t('websiteStatus')}
               name="status"
               value={state.status}
               options={statusOptions}
               onChange={handleChange}
               valueProp="id"
               optionValue="name"
-              placeholder="Select status"
+              placeholder={t('selectStatus')}
             />
           </div>
         </div>
@@ -124,35 +122,35 @@ function FormElements() {
               value={state.logo}
               name="logo"
               fileKey="logoImage"
-              btnText="Upload Logo"
+              btnText={t('uploadLogo')}
             />
           </div>
         </div>
       </div>
       <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b">
-        Additional Information
+        {t('additionalInformation')}
       </h2>
       <TextFeild
-        label="Header Title"
+        label={t('headerTitle')}
         value={state.topTitle || ''}
         name="topTitle"
         translatable
-        placeholder="Title that appears at the top of the website"
+        placeholder={t('topTitlePlaceholder')}
         className="mb-4"
       />
       <TextArea
-        label="Website Description"
+        label={t('websiteDescription')}
         name="description"
         value={state.description}
         translatable
-        placeholder="Provide a detailed description of the website (helps with SEO)"
+        placeholder={t('websiteDescriptionPlaceholder')}
         rows={5}
         className="mb-6"
       />
 
       <div className="flex justify-end">
         <FormButton className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md transition">
-          Save Website
+          {t('saveWebsite')}
         </FormButton>
       </div>
     </Form>

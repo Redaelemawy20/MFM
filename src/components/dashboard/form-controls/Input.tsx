@@ -8,7 +8,7 @@ const TextFeild = ({
   label,
   value,
   onChange,
-
+  placeholder,
   translatable,
 }: InputI) => {
   const { lang, handleChangeUpdated } = useFormContext();
@@ -17,6 +17,7 @@ const TextFeild = ({
     <Input
       fullWidth
       label={label}
+      placeholder={placeholder}
       name={name}
       value={inputValue || ''}
       className="mb-2"
