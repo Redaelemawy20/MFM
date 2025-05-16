@@ -42,17 +42,19 @@ const Form = ({
       action={handleSubmit}
       className="flex flex-col gap-2 h-[80vh] overflow-y-auto"
     >
-      {error ? (
-        <div className="border !border-danger-600 px-2 py-2 rounded-lg text-danger-600">
-          {error}
-        </div>
-      ) : null}
-      {success ? (
-        <div className="border !border-success-600 bg-success-50 px-2 py-2 rounded-lg text-success-600">
-          {success}
-        </div>
-      ) : null}
-      {children}
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        {error ? (
+          <div className="border !border-danger-600 px-2 py-2  text-danger-600 mb-2">
+            {error}
+          </div>
+        ) : null}
+        {success ? (
+          <div className="border !border-success-600 bg-success-50 px-2 py-2  text-success-600 mb-2">
+            {success}
+          </div>
+        ) : null}
+        {children}
+      </div>
     </form>
   );
 };
