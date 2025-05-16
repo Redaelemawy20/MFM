@@ -9,7 +9,7 @@ export const restHandler = async ({
   data,
   headers = {},
 }: {
-  method: Method;
+  method?: Method;
   url: string;
   data?: any;
   headers?: Record<string, string>;
