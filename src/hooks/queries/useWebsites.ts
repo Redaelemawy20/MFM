@@ -1,5 +1,5 @@
 import { restHandler } from '@/com/restHandler';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const useCreateWebsite = () => {
   return useMutation({
@@ -10,5 +10,14 @@ export const useCreateWebsite = () => {
         data: website,
       });
     },
+  });
+};
+
+// get all websites for a user
+export const useGetMyWebsites = () => {
+  return useQuery({
+    queryKey: ['websites'],
+    queryFn: async () =>
+      await restHandler({ method: 'GET', url: '/websites/user' }),
   });
 };

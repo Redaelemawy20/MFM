@@ -1,3 +1,6 @@
+import { ServerImage } from './common/ImageI';
+import Translatable from './common/Translatable';
+
 declare global {
   type SectionType = 'nav' | 'footer' | 'news' | 'section' | 'persons';
   interface SectionsToAdd {
@@ -27,19 +30,32 @@ declare global {
   interface Website {
     id: number;
     name: string;
-    description: string;
-    url: string;
+    slug: string;
     createdAt: Date;
     updatedAt: Date;
-    status: string;
-    type: string;
-    category: string;
+    status: WebsiteStatus;
+    type: WebsiteType;
     numberOfPages: number;
     numberOfVisitors: number;
     numberOfVisitorsPerDay: number;
     numberOfVisitorsPerMonth: number;
-    icon: string;
+    meta: {
+      topTitle: Translatable<string>;
+      description: Translatable<string>;
+      logoImage: ServerImage;
+    };
   }
+  type WebsiteStatus = 'ACTIVE' | 'INACTIVE';
+  type WebsiteType =
+    | 'Ecommerce'
+    | 'Blog'
+    | 'Portfolio'
+    | 'News'
+    | 'Travel'
+    | 'Education'
+    | 'Community'
+    | 'Application'
+    | 'Other';
 }
 
 export {};
